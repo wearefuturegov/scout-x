@@ -31,6 +31,9 @@ It'll be on **localhost:3000**.
 
 ## Running it on the web
 
+[![Deploy](https://www.netlify.com/img/deploy/button.svg)](
+https://app.netlify.com/start/deploy?repository=https://github.com/wearefuturegov/scout-x)
+
 It's suitable for [any static host](https://facebook.github.io/create-react-app/docs/deployment), such as Netlify.
 
 Run the `npm run build` command and then serve the `/build` folder.
