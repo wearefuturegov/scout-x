@@ -44,4 +44,4 @@ Run the `npm run build` command and then serve the `/build` folder.
 
 ## Configuration
 
-- `API_HOST`: the location of the API where service data can be read.
+- `REACT_APP_API_HOST`: the location of the API where service data can be read.
