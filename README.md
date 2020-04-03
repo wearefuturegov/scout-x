@@ -10,6 +10,8 @@
 
 ---
 
+🚨 **This is ALPHA software and not ready for use yet** 🚨
+
 A simple API-driven front-end for local authority service directories and local offers.
 
 It's intended for use with [Outpost](https://github.com/wearefuturegov/outpost), but can consume any API that follows the [Open Community standard](https://opencommunity.org.uk/).
