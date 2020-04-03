@@ -1,68 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+    <a href="https://outpost-staging.herokuapp.com/">
+        <img src="https://github.com/wearefuturegov/scout-x/blob/master/public/scout.png?raw=true" width="350px" />               
+    </a>
+</p>
+  
+<p align="center">
+    <em>Service directories done right</em>         
+</p>
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+A simple API-driven front-end for local authority service directories and local offers.
 
-### `yarn start`
+It's intended for use with [Outpost](https://github.com/wearefuturegov/outpost), but can consume any API that follows the [Open Community standard](https://opencommunity.org.uk/).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+It's a React app under the hood.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Running it locally
 
-### `yarn test`
+You need Node.js and `npm` installed, plus an API for Scout to consume data from.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+First, clone the repo:
 
-### `yarn build`
+```
+npm install
+npm run dev
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+It'll be on **localhost:3000**.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Running it on the web
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+It's suitable for [any static host](https://facebook.github.io/create-react-app/docs/deployment), such as Netlify.
 
-### `yarn eject`
+Run the `npm run build` command and then serve the `/build` folder.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Configuration
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- `API_HOST`: the location of the API where service data can be read.
