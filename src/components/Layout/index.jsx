@@ -69,17 +69,14 @@ const ServiceName = styled.a`
 
 const PhaseTag = styled.strong`
     color: ${theme.text};
-    background: ${theme.white};
+    background: ${theme.focus};
     text-transform: uppercase;
     font-weight: bold;
     padding: 2px 5px;
     margin-left: 10px;
     font-size: 0.9rem;
+    letter-spacing: 0.5px;
     text-decoration: none !important;
-    @media screen and (min-width: ${theme.breakpointM}){
-        font-size: 1rem;
-        padding: 2px 5px;
-    }
 `
 
 const Footer = styled.footer`

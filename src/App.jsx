@@ -1,7 +1,9 @@
 import React from "react"
 import theme from "./components/_theme"
-import { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle } from "styled-components"
 import Layout from "./components/Layout"
+import Breadcrumbs from "./components/Breadcrumbs"
+import SearchBox from "./components/SearchBox"
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -10,13 +12,46 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
   }
+
+  *::-moz-focus-inner {
+    border: 0;
+  }
+`
+
+const Inner = styled.div`
+    max-width: ${theme.maxWidth};
+    margin-left: auto;
+    margin-right: auto;
+`
+
+const PageHeader = styled.header`
+  padding: 30px ${theme.outerSpacing};
+  @media screen and (min-width: ${theme.breakpointM}){
+    padding: 40px ${theme.outerSpacing};
+  }
+`
+
+const PageTitle = styled.h1`
+  color: ${theme.text};
+  font-size: 1.75rem;
+  margin-bottom: 30px;
+  @media screen and (min-width: ${theme.breakpointM}){
+    font-size: 2.625rem;
+    margin-bottom: 40px;
+  }
 `
 
 const App = () =>
   <>
     <GlobalStyle/>
     <Layout>
-      Test
+      <PageHeader>
+        <Inner>
+          <Breadcrumbs/>
+          <PageTitle>Search in your area</PageTitle>
+          <SearchBox/>
+        </Inner>
+      </PageHeader>
     </Layout>
   </>
 
