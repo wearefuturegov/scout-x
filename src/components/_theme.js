@@ -8,9 +8,10 @@ export default {
     pale: "#f7f6f2",
     white: "#ffffff",
 
+    cardShadow: "#E2DFD2",
+
     focus: "#FFB81C",
     error: "#d51010",
-
     
     maxWidth: "924px",
     outerSpacing: "20px",

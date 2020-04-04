@@ -1,5 +1,5 @@
 export default {
-    types: [
+    collections: [
         {   
             value: "services",
             label: "Activities, groups and services"

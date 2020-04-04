@@ -115,19 +115,19 @@ const SearchBox = () =>
         <Form>
 
             <Field>
-                <Label for="type">What</Label>
-                <Select name="type" id="type">
-                    {config.types.map(type =>
+                <Label htmlFor="collection">What</Label>
+                <Select name="collection" id="collection">
+                    {config.collections.map(col =>
                         <option 
-                            key={type.value} 
-                            value={type.value}
-                        >{type.label}</option>
+                            key={col.value} 
+                            value={col.value}
+                        >{col.label}</option>
                     )}
                 </Select>
             </Field>
 
             <Field>
-                <Label for="location">Where</Label>
+                <Label htmlFor="location">Where</Label>
                 <Input 
                     name="location" 
                     id="location"
