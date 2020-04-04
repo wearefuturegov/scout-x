@@ -41,6 +41,14 @@ const PageTitle = styled.h1`
   }
 `
 
+const ResultsArea = styled.header`
+  padding: 30px ${theme.outerSpacing};
+  background: ${theme.pale};
+  @media screen and (min-width: ${theme.breakpointM}){
+    padding: 40px ${theme.outerSpacing};
+  }
+`
+
 const App = () =>
   <>
     <GlobalStyle/>
@@ -52,6 +60,11 @@ const App = () =>
           <SearchBox/>
         </Inner>
       </PageHeader>
+      <ResultsArea>
+        <Inner>
+          Test
+        </Inner>
+      </ResultsArea>
     </Layout>
   </>
 
