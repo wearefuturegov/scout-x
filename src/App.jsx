@@ -1,29 +1,43 @@
 import React, { useState, useEffect } from "react"
 import fetch from "isomorphic-unfetch"
+import queryString from "query-string"
 import Layout, { ResultsList } from "./components/Layout"
 import SearchBox from "./components/SearchBox"
 import ServiceCard from "./components/ServiceCard"
+import Filter from "./components/Filter"
 
+const App = (props) => {
 
-const App = () => {
+  console.log(props)
 
-  const [services, setServices] = useState([])
+  const query = queryString.parse(window.location.search)
+
+  const [type, setType] = useState([])
+
+  const [results, setResults] = useState([])
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_HOST}/services`)
+    fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(query)}`)
       .then(res => res.json())
-      .then(data => setServices(data.content))
+      .then(data => setResults(data.content))
   }, [])
+
 
   return(
     <Layout
       headerComponents={<>
-        <SearchBox/>
+        {type}
+        <SearchBox
+          type={type}
+          setType={setType}
+        />
       </>}
-      sidebarComponents={"test"}
+      sidebarComponents={<>
+        <Filter/>
+      </>}
       mainContentComponents={<>
         <ResultsList>
-          {services.map(s =>
+          {results.map(s =>
             <ServiceCard key={s.id} {...s}/>  
           )}
         </ResultsList>

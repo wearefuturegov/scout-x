@@ -33,17 +33,20 @@ const StyledLink = styled(Link)`
     }
     &:focus{
         border: 0;
+        outline: none;
     }
 `
 
 const Name = styled.h3`
-    margin-bottom: 7px;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
 `
 
 const Description = styled.p`
-    color: ${theme.grey};
+    color: ${theme.text};
     font-size: 0.9rem;
     margin-bottom: 15px;
+    line-height: 1.5;
 `
 
 const CategoryTag = styled.span`

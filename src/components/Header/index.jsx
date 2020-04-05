@@ -43,6 +43,9 @@ const Logo = styled.img`
 `
 
 const ServiceNameArea = styled.nav`
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
     margin-bottom: 10px;
     @media screen and (min-width: ${theme.breakpointM}){
         margin-bottom: 0px;

@@ -111,12 +111,20 @@ const Button = styled.button`
     }
 `
 
-const SearchBox = () =>
+const SearchBox = ({
+    type,
+    setType
+}) =>
         <Form>
 
             <Field>
                 <Label htmlFor="collection">What</Label>
-                <Select name="collection" id="collection">
+                <Select 
+                    name="collection" 
+                    id="collection"
+                    value={type}
+                    onChange={e => setType(e.target.value)}
+                >
                     {config.collections.map(col =>
                         <option 
                             key={col.value} 
