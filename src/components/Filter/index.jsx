@@ -64,7 +64,6 @@ const Input = styled.input`
     }
 `
 
-
 const Filter = ({
     legend,
     options
