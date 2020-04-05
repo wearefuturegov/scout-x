@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useLocation } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
 import Layout, { ResultsList, Count } from "./components/Layout"
@@ -12,16 +12,15 @@ import config from "./_config"
 
 const App = () => {
 
-  const query = queryString.parse(useLocation().search)
+  let history = useHistory()
 
+  const query = queryString.parse(history.location.search)
 
   const [collection, setCollection] = useState(query.collection)
-  const [categories, setCategories] = useState([].concat(query.categories))
-  const [only, setOnly] = useState([].concat(query.only))
+  const [categories, setCategories] = useState(query.categories ? [].concat(query.categories) : [])
+  const [only, setOnly] = useState(query.only ? [].concat(query.only) : [])
 
-  const [results, setResults] = useState([])
-
-  console.log(categories)
+  const [results, setResults] = useState(false)
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(query)}`)
@@ -56,7 +55,7 @@ const App = () => {
       mainContentComponents={<>
         <Count>Showing {results.length} results near <strong>XXX</strong></Count>
         <ResultsList>
-          {results.length > 0 ?
+          {results ?
             results.map(s =>
               <ServiceCard key={s.id} {...s}/>  
             )
