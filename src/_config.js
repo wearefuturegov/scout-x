@@ -38,7 +38,7 @@ export default {
         },
         {   
             value: "free",
-            label: "Outdoors and exercise"
+            label: "Free"
         },
         {   
             value: "family",
