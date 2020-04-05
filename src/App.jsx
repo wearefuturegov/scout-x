@@ -4,6 +4,7 @@ import queryString from "query-string"
 import Layout, { ResultsList, Count } from "./components/Layout"
 import SearchBox from "./components/SearchBox"
 import ServiceCard from "./components/ServiceCard"
+import Skeleton from "./components/ServiceCard/Skeleton"
 import Filters from "./components/Filters"
 import Filter from "./components/Filter"
 import config from "./_config"
@@ -51,9 +52,13 @@ const App = (props) => {
       mainContentComponents={<>
         <Count>Showing {results.length} results near <strong>XXX</strong></Count>
         <ResultsList>
-          {results.map(s =>
-            <ServiceCard key={s.id} {...s}/>  
-          )}
+          {results.length > 0 ?
+            results.map(s =>
+              <ServiceCard key={s.id} {...s}/>  
+            )
+          : 
+          <Skeleton/>
+          }
         </ResultsList>
       </>}
     />

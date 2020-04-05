@@ -11,10 +11,17 @@ const Outer = styled.fieldset`
     }
 `
 
+const Header = styled.header`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+`
+
 const Legend = styled.legend`
     font-weight: bold;
     color: ${theme.text};
-    margin-bottom: 15px;
 `
 
 const Field = styled.div`
@@ -64,6 +71,24 @@ const Input = styled.input`
     }
 `
 
+const ClearButton = styled.button`
+    color: ${theme.link};
+    font-size: 0.9rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
+    }
+    &:focus{
+        background: ${theme.focus};
+        outline: 3px solid ${theme.focus};
+    }
+    &:active{
+        color: ${theme.text};
+    }
+`
+
 const Filter = ({
     legend,
     options,
@@ -80,9 +105,16 @@ const Filter = ({
         }
     }
 
+    const clear = () => setSelection([])
+
     return(
         <Outer>
-            <Legend>{legend}</Legend>
+            <Header>
+                <Legend>{legend}</Legend>
+                {selection.length > 0 && 
+                    <ClearButton onClick={clear}>Clear</ClearButton>
+                }
+            </Header>
             {options.map(o =>
                 <Field key={o.value}>
                     <Input 
