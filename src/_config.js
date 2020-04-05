@@ -12,5 +12,37 @@ export default {
             value: "schools",
             label: "Schools"
         },
+    ],
+    categories: [
+        {   
+            value: "social",
+            label: "Social"
+        },
+        {   
+            value: "active",
+            label: "Outdoors and exercise"
+        },
+        {   
+            value: "cultural",
+            label: "Culture and education"
+        },
+        {   
+            value: "support",
+            label: "Support with daily tasks"
+        },
+    ],
+    only: [
+        {   
+            value: "now",
+            label: "Open now"
+        },
+        {   
+            value: "free",
+            label: "Outdoors and exercise"
+        },
+        {   
+            value: "family",
+            label: "Suitable for whole family"
+        },
     ]
 }

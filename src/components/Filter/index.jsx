@@ -6,6 +6,9 @@ import tick from "./tick.svg"
 const Outer = styled.fieldset`
     border: none;
     margin-bottom: 25px;
+    @media screen and (min-width: ${theme.breakpointM}){
+        margin-bottom: 35px;
+    }
 `
 
 const Legend = styled.legend`
@@ -16,8 +19,11 @@ const Legend = styled.legend`
 
 const Field = styled.div`
     position: relative;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     padding: 4.5px 0px 4.5px 40px;
+    &:focus-within label:before{
+        outline: 3px solid ${theme.focus};
+    }
 `
 
 const Label = styled.label`
@@ -49,8 +55,8 @@ const Input = styled.input`
         display: block;
         height: 19px;
         width: 19px;
-        left: 4px;
-        top: 4px;
+        left: 5px;
+        top: 5px;
         background-image: url(${tick});
         background-size: contain;
         background-position: center;
@@ -59,21 +65,18 @@ const Input = styled.input`
 `
 
 
-const Filter = () =>
+const Filter = ({
+    legend,
+    options
+}) =>
     <Outer>
-        <Legend>Filter</Legend>
-        <Field>
-            <Input type="checkbox" checked/>
-            <Label>Example</Label>
-        </Field>
-        <Field>
-            <Input type="checkbox"/>
-            <Label>Example</Label>
-        </Field>
-        <Field>
-            <Input type="checkbox"/>
-            <Label>Example</Label>
-        </Field>
+        <Legend>{legend}</Legend>
+        {options.map(o =>
+            <Field key={o.value}>
+                <Input type="checkbox" id={o.value}/>
+                <Label htmlFor={o.value}>{o.label}</Label>
+            </Field>
+        )}
     </Outer>
 
 export default Filter

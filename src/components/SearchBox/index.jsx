@@ -141,7 +141,7 @@ const SearchBox = ({
                     id="location"
                     placeholder="Town or postcode"
                 />
-                <GeolocateButton>
+                <GeolocateButton title="Use your current location">
                     <img src={location} alt="Use current location"/>
                 </GeolocateButton>
             </Field>

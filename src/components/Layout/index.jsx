@@ -81,6 +81,12 @@ export const ResultsList = styled.ul`
   list-style: none;
 `
 
+export const Count = styled.p`
+  color: ${theme.grey};
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+`
+
 const Layout = ({
     headerComponents,
     sidebarComponents,
