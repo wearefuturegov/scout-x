@@ -12,7 +12,7 @@ const App = (props) => {
 
   const query = queryString.parse(window.location.search)
 
-  const [collection, setCollection] = useState([])
+  const [collection, setCollection] = useState("")
   const [categories, setCategories] = useState([])
   const [only, setOnly] = useState([])
 
@@ -37,14 +37,14 @@ const App = (props) => {
           <Filter
             legend="Categories"
             options={config.categories}
-            selected={categories}
-            setSelected={setCategories}
+            selection={categories}
+            setSelection={setCategories}
           />
           <Filter
             legend="Only show"
             options={config.only}
-            selected={only}
-            setSelected={setOnly}
+            selection={only}
+            setSelection={setOnly}
           />
         </Filters>
       </>}

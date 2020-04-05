@@ -66,16 +66,37 @@ const Input = styled.input`
 
 const Filter = ({
     legend,
-    options
-}) =>
-    <Outer>
-        <Legend>{legend}</Legend>
-        {options.map(o =>
-            <Field key={o.value}>
-                <Input type="checkbox" id={o.value}/>
-                <Label htmlFor={o.value}>{o.label}</Label>
-            </Field>
-        )}
-    </Outer>
+    options,
+    selection,
+    setSelection
+}) => {
+
+    const handleChange = e => {
+        let {checked, value} = e.target
+        if(checked){
+            setSelection([...selection, value]  )
+        } else {
+            setSelection(selection.filter(el=> el !== value))
+        }
+    }
+
+    return(
+        <Outer>
+            <Legend>{legend}</Legend>
+            {options.map(o =>
+                <Field key={o.value}>
+                    <Input 
+                        type="checkbox" 
+                        id={o.value}
+                        value={o.value}
+                        onChange={handleChange} 
+                        checked={selection.includes(o.value)}
+                    />
+                    <Label htmlFor={o.value}>{o.label}</Label>
+                </Field>
+            )}
+        </Outer>
+    )
+}
 
 export default Filter
