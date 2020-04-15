@@ -14,19 +14,27 @@ const App = () => {
 
   let history = useHistory()
 
-  const query = queryString.parse(history.location.search)
+  const originalQuery = queryString.parse(history.location.search)
 
-  const [collection, setCollection] = useState(query.collection)
-  const [categories, setCategories] = useState(query.categories ? [].concat(query.categories) : [])
-  const [only, setOnly] = useState(query.only ? [].concat(query.only) : [])
+  const [collection, setCollection] = useState(originalQuery.collection)
+  const [categories, setCategories] = useState(originalQuery.categories ? [].concat(originalQuery.categories) : [])
+  const [only, setOnly] = useState(originalQuery.only ? [].concat(originalQuery.only) : [])
+
 
   const [results, setResults] = useState(false)
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(query)}`)
+
+    let newQuery = {
+      collection,
+      categories,
+      only
+    }
+
+    fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
       .then(res => res.json())
       .then(data => setResults(data.content))
-  }, [])
+  }, [collection, categories, only])
 
   return(
     <Layout
