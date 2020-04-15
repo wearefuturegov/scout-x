@@ -32,10 +32,12 @@ const App = () => {
       only
     }
 
+    history.replace(`/?${queryString.stringify(newQuery)}`)
+
     fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
       .then(res => res.json())
       .then(data => setResults(data.content))
-  }, [collection, categories, only])
+  }, [categories, only])
 
   return(
     <Layout
