@@ -25,8 +25,9 @@ const App = () => {
 
   useEffect(() => {
 
+    setResults(false)
+
     let newQuery = {
-      collection,
       categories,
       only
     }
