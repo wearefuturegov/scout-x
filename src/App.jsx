@@ -17,19 +17,20 @@ const App = () => {
   const originalQuery = queryString.parse(history.location.search)
 
   const [collection, setCollection] = useState(originalQuery.collection)
+  const [coverage, setCoverage] = useState(originalQuery.coverage || "")
   const [categories, setCategories] = useState(originalQuery.categories ? [].concat(originalQuery.categories) : [])
   const [only, setOnly] = useState(originalQuery.only ? [].concat(originalQuery.only) : [])
-
 
   const [results, setResults] = useState(false)
 
   useEffect(() => {
-
     setResults(false)
 
     let newQuery = {
       categories,
-      only
+      only,
+      collection,
+      coverage
     }
 
     history.replace(`/?${queryString.stringify(newQuery)}`)
@@ -37,7 +38,7 @@ const App = () => {
     fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
       .then(res => res.json())
       .then(data => setResults(data.content))
-  }, [categories, only])
+  }, [categories, only, coverage, collection])
 
   return(
     <Layout
@@ -45,6 +46,8 @@ const App = () => {
         <SearchBox
           type={collection}
           setType={setCollection}
+          coverage={coverage}
+          setCoverage={setCoverage}
         />
       </>}
       sidebarComponents={<>

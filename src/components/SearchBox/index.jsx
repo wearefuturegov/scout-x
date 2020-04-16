@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import theme from "../_theme"
 import styled from "styled-components"
 import search from "./search.svg"
@@ -113,17 +113,29 @@ const Button = styled.button`
 
 const SearchBox = ({
     type,
-    setType
-}) =>
-        <Form>
+    setType,
+    coverage,
+    setCoverage
+}) => {
+    const [localType, setLocalType] = useState(type)
+    const [localCoverage, setLocalCoverage] = useState(coverage)
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        setType(localType)
+        setCoverage(localCoverage)
+    }
+
+    return(
+        <Form onSubmit={handleSubmit}>
 
             <Field>
                 <Label htmlFor="collection">What</Label>
                 <Select 
                     name="collection" 
                     id="collection"
-                    value={type}
-                    onChange={e => setType(e.target.value)}
+                    value={localType}
+                    onChange={e => setLocalType(e.target.value)}
                 >
                     {config.collections.map(col =>
                         <option 
@@ -140,6 +152,8 @@ const SearchBox = ({
                     name="location" 
                     id="location"
                     placeholder="Town or postcode"
+                    value={localCoverage}
+                    onChange={e => setLocalCoverage(e.target.value)}
                 />
                 <GeolocateButton title="Use your current location">
                     <img src={location} alt="Use current location"/>
@@ -150,5 +164,8 @@ const SearchBox = ({
                 <img src={search} alt="search"/>
             </Button>
         </Form>
+
+    )
+}
 
 export default SearchBox
