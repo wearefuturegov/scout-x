@@ -61,8 +61,8 @@ const Input = styled.input`
     &:focus{
         outline: 3px solid ${theme.focus};
     }
-    &:placeholder{
-        opacity: 0.25;
+    &::placeholder{
+        opacity: 0.3;
     }
 `
 
