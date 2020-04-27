@@ -66,7 +66,7 @@ const ResultsAreaInner = styled.div`
 
 const Sidebar = styled.aside`
     @media screen and (min-width: ${theme.breakpointM}){
-      width: 33%;
+      width: 25%;
       margin-right: 40px;
       flex: 1;
     }

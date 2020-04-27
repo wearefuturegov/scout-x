@@ -59,11 +59,12 @@ const CategoryTag = styled.span`
 `
 
 const ServiceCard = ({
+    id,
     name,
     description
 }) =>
     <Outer>
-        <StyledLink to="#">
+        <StyledLink to={`/service/${id}`}>
             <Name>{name}</Name>
         </StyledLink>
         <Description>{truncate(description, 18)}</Description>
