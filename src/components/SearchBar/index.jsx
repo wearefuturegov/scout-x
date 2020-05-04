@@ -5,7 +5,6 @@ import search from "./search.svg"
 import location from "./location.svg"
 import config from "../../_config"
 
-
 const Form = styled.form`
     @media screen and (min-width: ${theme.breakpointM}){
         display: flex;
@@ -111,12 +110,13 @@ const Button = styled.button`
     }
 `
 
-const SearchBox = ({
+const SearchBar = ({
     type,
     setType,
     coverage,
     setCoverage
 }) => {
+    
     const [localType, setLocalType] = useState(type)
     const [localCoverage, setLocalCoverage] = useState(coverage)
 
@@ -164,8 +164,7 @@ const SearchBox = ({
                 <img src={search} alt="search"/>
             </Button>
         </Form>
-
     )
 }
 
-export default SearchBox
+export default SearchBar
