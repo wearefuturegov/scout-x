@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import theme from "../_theme"
-import { Link } from "@reach/router"
 
 let styles = `
     display: inline-block;

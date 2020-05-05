@@ -45,7 +45,8 @@ const App = ({
     fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
       .then(res => res.json())
       .then(data => setResults(data.content))
-  }, [categories, only, coverage, collection])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lat, lng, categories, only, coverage, collection])
 
   return(
     <>
