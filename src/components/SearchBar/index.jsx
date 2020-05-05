@@ -5,6 +5,7 @@ import search from "./search.svg"
 import location from "./location.svg"
 import config from "../../_config"
 import AutocompletePlaceInput from "../AutocompletePlaceInput"
+import Spinner from "../Spinner"
 
 const Form = styled.form`
     @media screen and (min-width: ${theme.breakpointM}){
@@ -103,6 +104,8 @@ const SearchBar = ({
     setLat,
     setLng
 }) => {
+
+    const [finding, setFinding] = useState(false)
     
     const [localType, setLocalType] = useState(type)
     const [localCoverage, setLocalCoverage] = useState(coverage)
@@ -111,6 +114,20 @@ const SearchBar = ({
         e.preventDefault()
         setType(localType)
         setCoverage(localCoverage)
+    }
+
+    const geolocate =  () => {
+        setFinding(true)
+        navigator.geolocation.getCurrentPosition(async position => {
+            let {latitude, longitude} = position.coords
+            let res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
+            let { address } = await res.json()
+            console.log(address)
+            setLocalCoverage(address.postcode)
+            setLat(latitude)
+            setLng(longitude)
+            setFinding(false)
+        })
     }
 
     return(
@@ -144,9 +161,14 @@ const SearchBar = ({
                     setLat={setLat}
                     setLng={setLng}
                 />
-                <GeolocateButton title="Use your current location">
-                    <img src={location} alt="Use current location"/>
-                </GeolocateButton>
+                {navigator.geolocation && 
+                    finding ?  
+                        <Spinner/> 
+                        :
+                        <GeolocateButton title="Use your current location" onClick={geolocate}>
+                            <img src={location} alt="Use current location"/>
+                        </GeolocateButton>
+                }
             </Field>
 
             <Button>
