@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
 import Layout, { ResultsList, Count } from "./components/Layout"
@@ -19,8 +19,10 @@ const App = ({
 
   const [collection, setCollection] = useState(originalQuery.collection || "services")
   const [coverage, setCoverage] = useState(originalQuery.coverage || "")
-  const [categories, setCategories] = useState([].concat(originalQuery.categories))
-  const [only, setOnly] = useState([].concat(originalQuery.only))
+  const [categories, setCategories] = useState(originalQuery.categories ? [].concat(originalQuery.categories) : [])
+  const [only, setOnly] = useState(originalQuery.only ? [].concat(originalQuery.only) : [])
+
+  console.log(categories)
 
   const [results, setResults] = useState(false)
 
