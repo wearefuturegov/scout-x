@@ -26,7 +26,9 @@ const DetailDialog = ({
         <Dialog onDismiss={handleDismiss} aria-label={service.name}>
             <button onClick={handleDismiss}>Close</button>
             <h2>{service.name}</h2>
-            <p>{service.description}</p>
+            {service.description.split("\n").map((paragraph, i) =>
+                <p key={i}>{paragraph}</p>
+            )}
         </Dialog>
         :
         <Loader/>

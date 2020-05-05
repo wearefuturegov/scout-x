@@ -32,7 +32,7 @@ const App = ({
       collection,
       coverage
     }
-    navigate(`/?${queryString.stringify(newQuery)}`)
+    navigate(`?${queryString.stringify(newQuery)}`)
     fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
       .then(res => res.json())
       .then(data => setResults(data.content))
