@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef, useEffect } from "react"
 import styled from "styled-components"
 import theme from "../_theme"
 import { GoogleContextConsumer } from "../../contexts/googleContext"
@@ -25,11 +25,13 @@ const AutocompletePlacesInput = ({
     placeholder,
     onChange,
     value,
-    isLoaded
+    isLoaded,
+    setLat,
+    setLng
 }) => {
 
-    const [latLng, setLatLng] = useState([0,0])
     const inputRef = useRef(false)
+
     let autocomplete = null
 
     useEffect(() => {
@@ -46,32 +48,26 @@ const AutocompletePlacesInput = ({
     const handlePlaceChanged = () => {
         const place = autocomplete.getPlace()
         if(place.geometry){
-            const lat = place.geometry.location.lat()
-            const lng = place.geometry.location.lng()
-            setLatLng([lat, lng])
-            // feed a synthetic event to the change handler if it exists
-            if(onChange) onChange({
-                target: {
-                    value: place.formatted_address
-                }
-            })
+            setLat(place.geometry.location.lat())
+            setLng(place.geometry.location.lng())
+            onChange(place.formatted_address)
         }
     }
 
     return(
-        <>
-            <Input 
-                ref={inputRef}
-                name={name}
-                value={value}
-                onChange={onChange}
-                required
-                id={id}
-                placeholder={placeholder}
-            />
-            <input type="hidden" name="lat" value={latLng[0]} readOnly/>
-            <input type="hidden" name="lng" value={latLng[1]} readOnly/>
-        </>
+        <Input 
+            ref={inputRef}
+            name={name}
+            value={value}
+            onChange={e => {
+                setLat("")
+                setLng("")
+                onChange(e.target.value)
+            }}
+            required
+            id={id}
+            placeholder={placeholder}
+        />
     )
 }
 

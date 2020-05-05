@@ -21,8 +21,12 @@ const App = ({
 
   const [collection, setCollection] = useState(originalQuery.collection || "services")
   const [coverage, setCoverage] = useState(originalQuery.coverage || "")
+  const [lat, setLat] = useState(originalQuery.lat || "")
+  const [lng, setLng] = useState(originalQuery.lng || "")
+
   const [categories, setCategories] = useState(originalQuery.categories ? [].concat(originalQuery.categories) : [])
   const [only, setOnly] = useState(originalQuery.only ? [].concat(originalQuery.only) : [])
+  
   const [mapVisible, setMapVisible ] = useState(false)
 
   const [results, setResults] = useState(false)
@@ -30,6 +34,8 @@ const App = ({
   useEffect(() => {
     setResults(false)
     let newQuery = {
+      lat,
+      lng,
       categories,
       only,
       collection,
@@ -50,6 +56,8 @@ const App = ({
             setType={setCollection}
             coverage={coverage}
             setCoverage={setCoverage}
+            setLat={setLat}
+            setLng={setLng}
           />
         }
         sidebarComponents={<>

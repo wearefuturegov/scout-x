@@ -99,7 +99,9 @@ const SearchBar = ({
     type,
     setType,
     coverage,
-    setCoverage
+    setCoverage,
+    setLat,
+    setLng
 }) => {
     
     const [localType, setLocalType] = useState(type)
@@ -138,7 +140,9 @@ const SearchBar = ({
                     id="location"
                     placeholder="Town or postcode"
                     value={localCoverage}
-                    onChange={e => setLocalCoverage(e.target.value)}
+                    onChange={value => setLocalCoverage(value)}
+                    setLat={setLat}
+                    setLng={setLng}
                 />
                 <GeolocateButton title="Use your current location">
                     <img src={location} alt="Use current location"/>
