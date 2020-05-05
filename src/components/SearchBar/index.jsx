@@ -4,6 +4,7 @@ import styled from "styled-components"
 import search from "./search.svg"
 import location from "./location.svg"
 import config from "../../_config"
+import AutocompletePlaceInput from "../AutocompletePlaceInput"
 
 const Form = styled.form`
     @media screen and (min-width: ${theme.breakpointM}){
@@ -46,22 +47,6 @@ const Select = styled.select`
     height: 45px;
     &:focus{
         outline: 3px solid ${theme.focus};
-    }
-`
-
-const Input = styled.input`
-    font-size: 1rem;
-    padding: 10px;
-    border: 2px solid ${theme.text};
-    display: block;
-    width: 100%;
-    height: 45px;
-    padding-right: 45px;
-    &:focus{
-        outline: 3px solid ${theme.focus};
-    }
-    &::placeholder{
-        opacity: 0.3;
     }
 `
 
@@ -148,7 +133,7 @@ const SearchBar = ({
 
             <Field>
                 <Label htmlFor="location">Where</Label>
-                <Input 
+                <AutocompletePlaceInput 
                     name="location" 
                     id="location"
                     placeholder="Town or postcode"
