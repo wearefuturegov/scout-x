@@ -64,7 +64,6 @@ const AutocompletePlacesInput = ({
                 setLng("")
                 onChange(e.target.value)
             }}
-            required
             id={id}
             placeholder={placeholder}
         />
