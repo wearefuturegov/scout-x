@@ -30,6 +30,7 @@ const MastheadArea = styled.div`
 `
 
 const LogoLink = styled.a`
+    outline: none;
     &:focus-within img{
         outline: 3px solid ${theme.focus};
     }
@@ -86,7 +87,7 @@ const Header = () =>
     <Outer>
         <Inner>
             <MastheadArea>
-                <LogoLink href="#">
+                <LogoLink href="https://www.buckinghamshire.gov.uk/">
                     <Logo src={logo} alt="Buckinghamshire Council"/>
                 </LogoLink>
             </MastheadArea>

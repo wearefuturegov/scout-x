@@ -1,7 +1,10 @@
 import styled from "styled-components"
 import theme from "../_theme"
+import { Link } from "@reach/router"
 
-const Button = styled.button`
+let styles = `
+    display: inline-block;
+    text-decoration: none;
     color: ${theme.link};
     padding: 15px 45px;
     border: 3px solid ${theme.link};
@@ -21,5 +24,9 @@ const Button = styled.button`
         border-color: ${theme.linkActive}
     }
 `
+
+const Button = styled.button`${styles}`
+
+export const ButtonLink = styled.a`${styles}`
 
 export default Button

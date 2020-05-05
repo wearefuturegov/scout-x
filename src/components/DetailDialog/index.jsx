@@ -4,6 +4,7 @@ import fetch from "isomorphic-unfetch"
 import { Dialog } from "@reach/dialog"
 import "@reach/dialog/styles.css"
 import Loader from "../Loader"
+import { ButtonLink } from "../Button"
 import close from "./close.svg"
 import theme from "../_theme"
 
@@ -65,6 +66,7 @@ const DetailDialog = ({
             {service.description.split("\n").map((paragraph, i) =>
                 <p key={i}>{paragraph}</p>
             )}
+            {service.url && <ButtonLink href={service.url}>Visit website</ButtonLink>}
         </StyledDialog>
         :
         <Loader/>
