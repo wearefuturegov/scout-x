@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect } from "react"
 import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
 import Layout, { ResultsList, Count } from "./components/Layout"
@@ -22,22 +22,17 @@ const App = ({
   const [categories, setCategories] = useState(originalQuery.categories ? [].concat(originalQuery.categories) : [])
   const [only, setOnly] = useState(originalQuery.only ? [].concat(originalQuery.only) : [])
 
-  console.log(categories)
-
   const [results, setResults] = useState(false)
 
   useEffect(() => {
     setResults(false)
-    // 1. Form new query
     let newQuery = {
       categories,
       only,
       collection,
       coverage
     }
-    // 2. Update URL
     navigate(`/?${queryString.stringify(newQuery)}`)
-    // 3. Retrieve new results
     fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
       .then(res => res.json())
       .then(data => setResults(data.content))

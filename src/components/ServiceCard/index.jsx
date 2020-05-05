@@ -2,7 +2,7 @@ import React from "react"
 import theme from "../_theme"
 import styled from "styled-components"
 import { truncate } from "../../lib/utils"
-import { Link } from "@reach/router"
+import { Link, useLocation } from "@reach/router"
 
 const Outer = styled.li`
     padding: 25px;
@@ -62,13 +62,18 @@ const ServiceCard = ({
     id,
     name,
     description
-}) =>
-    <Outer>
-        <StyledLink to={`/service/${id}`}>
-            <Name>{name}</Name>
-        </StyledLink>
-        <Description>{truncate(description, 18)}</Description>
-        <CategoryTag>Category</CategoryTag>
-    </Outer>
+}) => {
+    const { search } = useLocation()
+    return(
+        <Outer>
+            <StyledLink to={`/service/${id}${search}`}>
+                <Name>{name}</Name>
+            </StyledLink>
+            <Description>{truncate(description, 18)}</Description>
+            <CategoryTag>Category</CategoryTag>
+        </Outer>
+    )
+}
+
 
 export default ServiceCard
