@@ -1,12 +1,15 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
-import { BrowserRouter as Router } from "react-router-dom"
+import { Router } from "@reach/router"
+import DetailDialog from "./components/DetailDialog"
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <App path="/" default >
+        <DetailDialog path="service/:serviceId"/>
+      </App>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

@@ -2,7 +2,7 @@ import React from "react"
 import theme from "../_theme"
 import styled from "styled-components"
 import { truncate } from "../../lib/utils"
-import { Link } from "react-router-dom"
+import { Link } from "@reach/router"
 
 const Outer = styled.li`
     padding: 25px;

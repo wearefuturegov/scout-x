@@ -46,7 +46,7 @@ export const PageTitle = styled.h1`
   }
 `
 
-const ResultsArea = styled.header`
+const ResultsArea = styled.div`
   padding: 30px ${theme.outerSpacing};
   background: ${theme.pale};
   @media screen and (min-width: ${theme.breakpointM}){
