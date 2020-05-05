@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
 import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
-import Layout, { ResultsList, Count } from "./components/Layout"
+import Button from "./components/Button"
+import Layout, { ResultsHeader, ResultsList, ResultsFooter, Count } from "./components/Layout"
+import Switch from "./components/Switch"
 import SearchBar from "./components/SearchBar"
 import ServiceCard from "./components/ServiceCard"
 import Skeleton from "./components/ServiceCard/Skeleton"
@@ -21,6 +23,7 @@ const App = ({
   const [coverage, setCoverage] = useState(originalQuery.coverage || "")
   const [categories, setCategories] = useState(originalQuery.categories ? [].concat(originalQuery.categories) : [])
   const [only, setOnly] = useState(originalQuery.only ? [].concat(originalQuery.only) : [])
+  const [mapVisible, setMapVisible ] = useState(false)
 
   const [results, setResults] = useState(false)
 
@@ -66,7 +69,15 @@ const App = ({
           </Filters>
         </>}
         mainContentComponents={<>
-          <Count>Showing {results.length} results near <strong>XXX</strong></Count>
+          <ResultsHeader>
+            <Count>Showing {results.length} results near <strong>XXX</strong></Count>
+            <Switch
+              id="map-toggle"
+              checked={mapVisible}
+              onChange={e => setMapVisible(e.target.checked)}
+              label="Show map?"
+            />
+          </ResultsHeader>
           <ResultsList aria-live="polite">
             {results ?
               results.map(s =>
@@ -76,6 +87,9 @@ const App = ({
             <Skeleton/>
             }
           </ResultsList>
+          <ResultsFooter>
+            <Button>Load more</Button>
+          </ResultsFooter>
         </>}
       />
       {children}

@@ -22,18 +22,20 @@ const DesktopOuter = styled.section`
 `
 
 const Button = styled.button`
+    width: 100%;
+    padding: 10px 20px;
     color: ${theme.link};
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-top: 0px;
-    background: none;
+    background: ${theme.link}1A;
     border: none;
     font-weight: bold;
     cursor: pointer;
     &:hover{
-        text-decoration: underline;
+        /* text-decoration: underline; */
     }
     &:focus{
-        background: ${theme.focus};
+        /* background: ${theme.focus}; */
         outline: 3px solid ${theme.focus};
     }
     &:active{

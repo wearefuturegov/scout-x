@@ -77,14 +77,36 @@ const MainArea = styled.div`
   flex: 2;
 `
 
-export const ResultsList = styled.ul`
-  list-style: none;
+export const ResultsHeader = styled.header`
+  margin-bottom: 25px;
+  *:first-child{
+    margin-bottom: 15px;
+  }
+  @media screen and (min-width: ${theme.breakpointM}){
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    *:first-child{
+      margin-bottom: 0px;
+    }
+  }
 `
 
 export const Count = styled.p`
   color: ${theme.grey};
   font-size: 0.9rem;
-  margin-bottom: 25px;
+  margin-bottom: 0px;
+`
+
+export const ResultsList = styled.ul`
+  list-style: none;
+`
+
+export const ResultsFooter = styled.footer`
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
 `
 
 const Layout = ({
