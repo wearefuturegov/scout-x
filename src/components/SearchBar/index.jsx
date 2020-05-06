@@ -38,6 +38,7 @@ const Select = styled.select`
     border: 2px solid ${theme.text};
     display: block;
     width: 100%;
+    border-radius: 0px;
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
