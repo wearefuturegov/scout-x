@@ -7,15 +7,24 @@ import { Link, useLocation } from "@reach/router"
 const Outer = styled.li`
     padding: 25px;
     background: ${theme.white};
-    /* box-shadow: 0px 2px 10px ${theme.cardShadow}80; */
+    box-shadow: 0px 2px 10px ${theme.cardShadow}80;
     margin-bottom: 15px;
     transition: box-shadow 0.2s ease-out;
     position: relative;
+    animation: fadeIn 0.2s ease-out;
     &:hover{
-        /* box-shadow: 0px 2px 12px ${theme.cardShadow}; */
+        box-shadow: 0px 2px 12px ${theme.cardShadow};
     }
     &:focus-within{
         outline: 3px solid ${theme.focus};
+    }
+    @keyframes fadeIn{
+        from{
+            opacity: 0
+        }
+        to{
+            opacity: 1;
+        }
     }
 `
 
@@ -52,7 +61,7 @@ const Description = styled.p`
 const CategoryTag = styled.span`
     display: inline-block;
     padding: 5px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: ${theme.link};
     background: ${theme.link}1A;
     border-radius: 2px;

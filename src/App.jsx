@@ -81,8 +81,6 @@ const App = ({
           />
         }
         sidebarComponents={<>
-          PAGE: {page}
-          TOTALPAGES: {totalPages}
           <Filters>
             <Filter
               legend="Categories"
