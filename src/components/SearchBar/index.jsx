@@ -7,6 +7,7 @@ import config from "../../_config"
 import AutocompletePlaceInput from "../AutocompletePlaceInput"
 import Spinner from "../Spinner"
 import { AlertContextConsumer } from "../../contexts/alertContext"
+import Tooltip from "../Tooltip"
 
 const Form = styled.form`
     @media screen and (min-width: ${theme.breakpointM}){
@@ -176,9 +177,11 @@ const SearchBar = ({
                     finding ?  
                         <Spinner/> 
                         :
-                        <GeolocateButton title="Use your current location" onClick={geolocate} type="button">
-                            <img src={location} alt="Use current location"/>
-                        </GeolocateButton>
+                        <Tooltip label="Use current location">
+                            <GeolocateButton onClick={geolocate} type="button">
+                                <img src={location} alt="Use current location"/>
+                            </GeolocateButton>
+                        </Tooltip>
                 }
             </Field>
 
