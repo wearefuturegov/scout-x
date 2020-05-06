@@ -28,7 +28,7 @@ const App = ({
   const [categories, setCategories] = useState(originalQuery.categories ? [].concat(originalQuery.categories) : [])
   const [only, setOnly] = useState(originalQuery.only ? [].concat(originalQuery.only) : [])
   
-  const [page, setPage] = useState(originalQuery.page || false)
+  const [page, setPage] = useState(parseInt(originalQuery.page) || 1)
 
   const [results, setResults] = useState(false)
 
@@ -36,7 +36,6 @@ const App = ({
   const [mapVisible, setMapVisible ] = useState(false)
 
   const [loading, setLoading] = useState(true)
-
 
   const fetchNewServices = async () => {
     setLoading(true)
@@ -53,12 +52,13 @@ const App = ({
     const res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
     const data = await res.json()
     setResults(data.content)
+    setPage(data.number)
     setTotalPages(data.totalPages)
     setLoading(false)
   }
 
   const nextPage = () => {
-    setPage(parseInt(page) + 1)
+    setPage(page + 1)
     document.documentElement.scrollTop = 0
   }
 
@@ -81,6 +81,8 @@ const App = ({
           />
         }
         sidebarComponents={<>
+          PAGE: {page}
+          TOTALPAGES: {totalPages}
           <Filters>
             <Filter
               legend="Categories"

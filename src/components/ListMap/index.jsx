@@ -41,13 +41,13 @@ const ListMap = ({
         <GoogleMap 
             mapContainerClassName="list-map"
             ref={mapInstance}
-            center={{lat: -34.397, lng: 150.644}}
+            center={{lat: 51.8152889, lng: -0.810456}}
             options={{
                 mapTypeControl: false,
                 streetViewControl: false,
                 fullscreenControl: false
             }}
-            zoom={16}
+            zoom={13}
         > 
             {results.map(service=>
                 <Marker
