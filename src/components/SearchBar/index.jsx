@@ -176,13 +176,13 @@ const SearchBar = ({
                     finding ?  
                         <Spinner/> 
                         :
-                        <GeolocateButton title="Use your current location" onClick={geolocate}>
+                        <GeolocateButton title="Use your current location" onClick={geolocate} type="button">
                             <img src={location} alt="Use current location"/>
                         </GeolocateButton>
                 }
             </Field>
 
-            <Button>
+            <Button type="submit">
                 <img src={search} alt="search"/>
             </Button>
         </Form>
