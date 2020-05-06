@@ -35,12 +35,11 @@ const App = ({
   const [totalPages, setTotalPages] = useState(false)
   const [mapVisible, setMapVisible ] = useState(false)
 
-  // const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
 
   const fetchNewServices = async () => {
-    // setLoading(true)
-    setResults(false)
+    setLoading(true)
     let newQuery = {
       page,
       lat,
@@ -56,7 +55,7 @@ const App = ({
     setResults(data.content)
     setPage(data.number)
     setTotalPages(data.totalPages)
-    // setLoading(false)
+    setLoading(false)
   }
 
   const nextPage = () => {
@@ -98,7 +97,7 @@ const App = ({
             />
           </Filters>
         </>}
-        mainContentComponents={
+        mainContentComponents={results ?
           <>
             <ResultsHeader>
               <Count>Showing {results.length} results</Count>
@@ -111,12 +110,12 @@ const App = ({
             </ResultsHeader>
             {mapVisible && <ListMap results={results}/>}
             <ResultsList aria-live="polite">
-              {results ?
+              {loading ?
+                <Skeleton/>
+                :
                 results.map(s =>
                   <ServiceCard key={s.id} {...s}/>  
                 )
-              : 
-              <Skeleton/>
               }
             </ResultsList>
               {totalPages > page &&
@@ -125,6 +124,8 @@ const App = ({
                 </ResultsFooter>
               }
           </>
+          :
+          <p>No results to show. Try widening your search.</p>
         }
       />
       {children}

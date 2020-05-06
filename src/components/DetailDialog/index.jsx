@@ -11,8 +11,14 @@ import theme from "../_theme"
 const StyledDialog = styled(Dialog)`
     position: relative;
     padding: 35px;
+    margin: 20px auto;
+    width: 90vw;
+    max-width: 700px;
     &:hover{
         box-shadow: 0px 2px 12px rgba(0,0,0,0.1);
+    }
+    @media screen and (min-width: ${theme.breakpointM}){
+        margin: 60px auto;
     }
 `
 

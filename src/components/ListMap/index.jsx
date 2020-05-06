@@ -9,6 +9,10 @@ const Outer = styled.section`
     height: 450px;
     border: 1px solid ${theme.cardShadow};
     margin-bottom: 25px;
+
+    .list-map{
+        height: 100%;
+    }
 `
 
 const ListMap = ({
@@ -37,6 +41,7 @@ const ListMap = ({
         <GoogleMap 
             mapContainerClassName="list-map"
             ref={mapInstance}
+            center={{lat: -34.397, lng: 150.644}}
             options={{
                 mapTypeControl: false,
                 streetViewControl: false,
