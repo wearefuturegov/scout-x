@@ -99,6 +99,13 @@ export const Count = styled.p`
   margin-bottom: 0px;
 `
 
+export const NoResults = styled.p`
+  color: ${theme.grey};
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 50px;
+`
+
 export const ResultsList = styled.ul`
   list-style: none;
 `

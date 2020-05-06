@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
 import Button from "./components/Button"
-import Layout, { ResultsHeader, ResultsList, ResultsFooter, Count } from "./components/Layout"
+import Layout, { ResultsHeader, ResultsList, ResultsFooter, Count, NoResults } from "./components/Layout"
 import Switch from "./components/Switch"
 import SearchBar from "./components/SearchBar"
 import ServiceCard from "./components/ServiceCard"
@@ -96,10 +96,12 @@ const App = ({
             />
           </Filters>
         </>}
-        mainContentComponents={results ?
+        mainContentComponents={!loading && results.length === 0 ?
+          <NoResults>No results to show. Try widening your search.</NoResults>
+          :
           <>
             <ResultsHeader>
-              <Count>Showing {results.length} results</Count>
+              <Count>{results.length > 0 && <>Showing {results.length} results</>}</Count>
               <Switch
                 id="map-toggle"
                 checked={mapVisible}
@@ -123,8 +125,6 @@ const App = ({
                 </ResultsFooter>
               }
           </>
-          :
-          <p>No results to show. Try widening your search.</p>
         }
       />
       {children}
