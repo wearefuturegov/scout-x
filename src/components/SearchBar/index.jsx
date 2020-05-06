@@ -126,10 +126,10 @@ const SearchBar = ({
     const geolocate =  () => {
         setFinding(true)
         navigator.geolocation.getCurrentPosition(async position => {
-            if(position){
-                let {latitude, longitude} = position.coords
-                let res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
-                let { address } = await res.json()
+            let {latitude, longitude} = position.coords
+            let res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
+            let { address } = await res.json()
+            if(address){
                 setLocalCoverage(address.postcode)
                 setLocalLat(latitude)
                 setLocalLng(longitude)

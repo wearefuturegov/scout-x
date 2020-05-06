@@ -27,13 +27,21 @@ const App = ({
   const [categories, setCategories] = useState(originalQuery.categories ? [].concat(originalQuery.categories) : [])
   const [only, setOnly] = useState(originalQuery.only ? [].concat(originalQuery.only) : [])
   
-  const [mapVisible, setMapVisible ] = useState(false)
+  const [page, setPage] = useState(originalQuery.page || false)
 
   const [results, setResults] = useState(false)
 
-  useEffect(() => {
+  const [totalPages, setTotalPages] = useState(false)
+  const [mapVisible, setMapVisible ] = useState(false)
+
+  // const [loading, setLoading] = useState(false)
+
+
+  const fetchNewServices = async () => {
+    // setLoading(true)
     setResults(false)
     let newQuery = {
+      page,
       lat,
       lng,
       categories,
@@ -42,11 +50,23 @@ const App = ({
       coverage
     }
     navigate(`?${queryString.stringify(newQuery)}`)
-    fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
-      .then(res => res.json())
-      .then(data => setResults(data.content))
+    const res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
+    const data = await res.json()
+    setResults(data.content)
+    setPage(data.number)
+    setTotalPages(data.totalPages)
+    // setLoading(false)
+  }
+
+  const nextPage = () => {
+    setPage(page + 1)
+    document.documentElement.scrollTop = 0
+  }
+
+  useEffect(() => {
+    fetchNewServices()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lat, lng, categories, only, coverage, collection])
+  }, [page, lat, lng, categories, only, coverage, collection])
 
   return(
     <>
@@ -77,29 +97,33 @@ const App = ({
             />
           </Filters>
         </>}
-        mainContentComponents={<>
-          <ResultsHeader>
-            <Count>Showing {results.length} results near <strong>XXX</strong></Count>
-            <Switch
-              id="map-toggle"
-              checked={mapVisible}
-              onChange={e => setMapVisible(e.target.checked)}
-              label="Show map?"
-            />
-          </ResultsHeader>
-          <ResultsList aria-live="polite">
-            {results ?
-              results.map(s =>
-                <ServiceCard key={s.id} {...s}/>  
-              )
-            : 
-            <Skeleton/>
-            }
-          </ResultsList>
-          <ResultsFooter>
-            <Button>Load more</Button>
-          </ResultsFooter>
-        </>}
+        mainContentComponents={
+          <>
+            <ResultsHeader>
+              <Count>Showing {results.length} results</Count>
+              <Switch
+                id="map-toggle"
+                checked={mapVisible}
+                onChange={e => setMapVisible(e.target.checked)}
+                label="Show map?"
+              />
+            </ResultsHeader>
+            <ResultsList aria-live="polite">
+              {results ?
+                results.map(s =>
+                  <ServiceCard key={s.id} {...s}/>  
+                )
+              : 
+              <Skeleton/>
+              }
+            </ResultsList>
+              {totalPages > page &&
+                <ResultsFooter>
+                  <Button onClick={nextPage}>Load more</Button>
+                </ResultsFooter>
+              }
+          </>
+        }
       />
       {children}
     </>
