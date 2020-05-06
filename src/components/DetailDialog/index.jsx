@@ -62,13 +62,20 @@ const Icon = styled.img`
 
 const Caption = styled.p`
     color: ${theme.grey};
-    font-size: 1.2rem;
     margin-bottom: 10px;
+    font-size: 1.1rem;
+    @media screen and (min-width: ${theme.breakpointM}){
+        font-size: 1.2rem;
+    }
 `
 
 const Title = styled.h1`
     color: ${theme.text};
     margin-bottom: 0px;
+    font-size: 1.5rem;
+    @media screen and (min-width: ${theme.breakpointM}){
+        font-size: 2rem;
+    }
 `
 
 const Description = styled.article`
@@ -85,6 +92,21 @@ const Description = styled.article`
 
 const Actions = styled.div`
     margin-bottom: 25px;
+`
+
+const Tags = styled.div`
+    margin-top: 8px;
+`
+
+const Tag = styled.span`
+    display: inline-block;
+    padding: 5px;
+    font-size: 0.8rem;
+    color: ${theme.link};
+    background: ${theme.link}1A;
+    border-radius: 2px;
+    margin-right: 7px;
+    margin-top: 7px;
 `
 
 const DetailDialog = ({
@@ -113,6 +135,11 @@ const DetailDialog = ({
             <Header>
                 {service.organisation.name && <Caption>{service.organisation.name}</Caption>}
                 <Title>{service.name}</Title>
+                <Tags>
+                    {service.taxonomies.map(taxonomy =>
+                        <Tag>{taxonomy.name}</Tag>
+                    )}
+                </Tags>
             </Header>
             <Map
                 latitude={51.815606}

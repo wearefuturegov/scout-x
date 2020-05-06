@@ -101,7 +101,7 @@ const App = ({
           :
           <>
             <ResultsHeader>
-              <Count>{results.length > 0 && <>Showing {results.length} results</>}</Count>
+        <Count>{results.length > 0 && <>Showing {page === 1 && "first "}{results.length} results</>}</Count>
               <Switch
                 id="map-toggle"
                 checked={mapVisible}
