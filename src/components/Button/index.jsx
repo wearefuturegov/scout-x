@@ -24,8 +24,12 @@ let styles = `
     }
 `
 
-const Button = styled.button`${styles}`
+export default styled.button`${styles}`
 
 export const ButtonLink = styled.a`${styles}`
 
-export default Button
+export const SecondaryButtonLink = styled(ButtonLink)`
+    border: none;
+    padding: 15px;
+    margin-left: 15px;
+`

@@ -58,6 +58,12 @@ const Description = styled.p`
     line-height: 1.5;
 `
 
+const Footer = styled.footer`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`
+
 const CategoryTag = styled.span`
     display: inline-block;
     padding: 5px;
@@ -65,6 +71,16 @@ const CategoryTag = styled.span`
     color: ${theme.link};
     background: ${theme.link}1A;
     border-radius: 2px;
+    margin-right: 7px;
+    &:last-of-type{
+        margin-right: 15px;
+    }
+`
+
+const Distance = styled.p`
+    display: inline-block;
+    font-size: 0.8rem;
+    color: ${theme.grey};
 `
 
 const ServiceCard = ({
@@ -79,7 +95,10 @@ const ServiceCard = ({
                 <Name>{name}</Name>
             </StyledLink>
             <Description>{truncate(description, 18)}</Description>
-            <CategoryTag>Category</CategoryTag>
+            <Footer>
+                <CategoryTag>Category</CategoryTag>
+                <Distance>About X miles away</Distance>
+            </Footer>
         </Outer>
     )
 }

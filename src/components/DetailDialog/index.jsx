@@ -4,7 +4,7 @@ import fetch from "isomorphic-unfetch"
 import { Dialog } from "@reach/dialog"
 import "@reach/dialog/styles.css"
 import Loader from "../Loader"
-import { ButtonLink } from "../Button"
+import { ButtonLink, SecondaryButtonLink } from "../Button"
 import close from "./close.svg"
 import theme from "../_theme"
 import Map from "./Map"
@@ -20,6 +20,17 @@ const StyledDialog = styled(Dialog)`
     }
     @media screen and (min-width: ${theme.breakpointM}){
         margin: 60px auto;
+    }
+    animation: splat 0.15s ease-out;
+    @keyframes splat{
+        from{
+            opacity: 0;
+            transform: scale(0.99);
+        }
+        to{
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 `
 
@@ -148,6 +159,7 @@ const DetailDialog = ({
             <Body>
                 <Actions>
                     {service.url && <ButtonLink href={service.url}>Visit website</ButtonLink>}
+                    <SecondaryButtonLink href="#">Add to pinboard</SecondaryButtonLink>
                 </Actions>
                 <Description>
                     {service.description.split("\n").map((paragraph, i) =>

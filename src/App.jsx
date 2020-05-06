@@ -48,7 +48,7 @@ const App = ({
       collection,
       coverage
     }
-    navigate(`?${queryString.stringify(newQuery)}`)
+    navigate(`?${queryString.stringify(newQuery)}`, { replace: true })
     const res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
     const data = await res.json()
     setResults(data.content)
