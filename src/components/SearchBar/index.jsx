@@ -111,11 +111,15 @@ const SearchBar = ({
     
     const [localType, setLocalType] = useState(type)
     const [localCoverage, setLocalCoverage] = useState(coverage)
+    const [localLat, setLocalLat] = useState("")
+    const [localLng, setLocalLng] = useState("")
 
     const handleSubmit = e => {
         e.preventDefault()
         setType(localType)
         setCoverage(localCoverage)
+        setLat(localLat)
+        setLng(localLng)
     }
 
     const geolocate =  () => {
@@ -126,8 +130,8 @@ const SearchBar = ({
                 let res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
                 let { address } = await res.json()
                 setLocalCoverage(address.postcode)
-                setLat(latitude)
-                setLng(longitude)
+                setLocalLat(latitude)
+                setLocalLng(longitude)
             } else {
                 triggerAlert("Couldn't find your current location. Please enter it another way.")
             }
@@ -163,8 +167,8 @@ const SearchBar = ({
                     placeholder="Town or postcode"
                     value={localCoverage}
                     onChange={value => setLocalCoverage(value)}
-                    setLat={setLat}
-                    setLng={setLng}
+                    setLat={setLocalLat}
+                    setLng={setLocalLng}
                 />
                 {navigator.geolocation && 
                     finding ?  
