@@ -20,14 +20,14 @@ const ListMap = ({
 
     useEffect(()=>{
         if(isLoaded && results.length > 0){
-            const bounds = new window.google.maps.LatLngBounds()
-            results.map(service => {
-                return bounds.extend(new window.google.maps.LatLng(
-                    service.geo.coordinates[1],
-                    service.geo.coordinates[0]
-                ))
-            })
-            mapInstance.current.state.map.fitBounds(bounds)
+            // const bounds = new window.google.maps.LatLngBounds()
+            // results.map(service => {
+            //     return bounds.extend(new window.google.maps.LatLng(
+            //         service.geo.coordinates[1],
+            //         service.geo.coordinates[0]
+            //     ))
+            // })
+            // mapInstance.current.state.map.fitBounds(bounds)
         }
     // eslint-disable-next-line
     }, [results])
