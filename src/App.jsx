@@ -53,13 +53,12 @@ const App = ({
     const res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
     const data = await res.json()
     setResults(data.content)
-    setPage(data.number)
     setTotalPages(data.totalPages)
     setLoading(false)
   }
 
   const nextPage = () => {
-    setPage(page + 1)
+    setPage(parseInt(page) + 1)
     document.documentElement.scrollTop = 0
   }
 
