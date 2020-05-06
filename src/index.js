@@ -4,16 +4,19 @@ import App from "./App"
 import { Router } from "@reach/router"
 import DetailDialog from "./components/DetailDialog"
 import { GoogleContextProvider } from "./contexts/googleContext"
+import { AlertContextProvider } from "./contexts/alertContext"
 
 ReactDOM.render(
   <React.StrictMode>
-    <GoogleContextProvider>
-      <Router>
-        <App path="/" default >
-          <DetailDialog path="service/:serviceId"/>
-        </App>
-      </Router>
-    </GoogleContextProvider>
+    <AlertContextProvider>
+      <GoogleContextProvider>
+        <Router>
+          <App path="/" default >
+            <DetailDialog path="service/:serviceId"/>
+          </App>
+        </Router>
+      </GoogleContextProvider>
+      </AlertContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 )

@@ -6,6 +6,7 @@ import location from "./location.svg"
 import config from "../../_config"
 import AutocompletePlaceInput from "../AutocompletePlaceInput"
 import Spinner from "../Spinner"
+import { AlertContextConsumer } from "../../contexts/alertContext"
 
 const Form = styled.form`
     @media screen and (min-width: ${theme.breakpointM}){
@@ -102,7 +103,8 @@ const SearchBar = ({
     coverage,
     setCoverage,
     setLat,
-    setLng
+    setLng,
+    triggerAlert
 }) => {
 
     const [finding, setFinding] = useState(false)
@@ -119,13 +121,16 @@ const SearchBar = ({
     const geolocate =  () => {
         setFinding(true)
         navigator.geolocation.getCurrentPosition(async position => {
-            let {latitude, longitude} = position.coords
-            let res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
-            let { address } = await res.json()
-            console.log(address)
-            setLocalCoverage(address.postcode)
-            setLat(latitude)
-            setLng(longitude)
+            if(position){
+                let {latitude, longitude} = position.coords
+                let res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
+                let { address } = await res.json()
+                setLocalCoverage(address.postcode)
+                setLat(latitude)
+                setLng(longitude)
+            } else {
+                triggerAlert("Couldn't find your current location. Please enter it another way.")
+            }
             setFinding(false)
         })
     }
@@ -178,4 +183,11 @@ const SearchBar = ({
     )
 }
 
-export default SearchBar
+const WrappedInput = props =>
+    <AlertContextConsumer>
+        {context =>
+            <SearchBar triggerAlert={context.triggerAlert} {...props}/>
+        }
+    </AlertContextConsumer>
+
+export default WrappedInput
