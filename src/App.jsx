@@ -9,6 +9,7 @@ import ServiceCard from "./components/ServiceCard"
 import Skeleton from "./components/ServiceCard/Skeleton"
 import Filters from "./components/Filters"
 import Filter from "./components/Filter"
+import ListMap from "./components/ListMap"
 import config from "./_config"
 
 const App = ({
@@ -108,6 +109,7 @@ const App = ({
                 label="Show map?"
               />
             </ResultsHeader>
+            {mapVisible && <ListMap results={results}/>}
             <ResultsList aria-live="polite">
               {results ?
                 results.map(s =>
