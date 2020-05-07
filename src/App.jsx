@@ -111,7 +111,6 @@ const App = ({
             </ResultsHeader>
             {mapVisible && <ListMap results={results}/>}
             <ResultsList aria-live="polite">
-            <Skeleton/>
               {loading ?
                 <Skeleton/>
                 :
