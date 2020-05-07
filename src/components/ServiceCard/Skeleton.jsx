@@ -64,7 +64,7 @@ const SkeletonCard = ({
     name,
     description
 }) =>
-    <Outer>
+    <Outer aria-hidden="true">
         <Name/>
         <Description/>
         <Description/>
