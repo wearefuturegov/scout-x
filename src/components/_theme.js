@@ -3,6 +3,9 @@ export default {
     linkHover: "#1f205e",
     linkActive: "#131338",
 
+    linkBackground: "rgba(44, 45, 132, 0.1)",
+    textBackground: "rgba(33, 33, 33, 0.1)",
+
     text: "#212121",
     grey: "#343434",
     pale: "#f7f6f2",

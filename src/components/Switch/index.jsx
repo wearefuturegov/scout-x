@@ -24,7 +24,7 @@ const Input = styled.input`
             background-color: ${theme.link};
         }
         &:after{
-            background: ${theme.link}1A;
+            background: ${theme.linkBackground};
         }
     }
 `

@@ -30,7 +30,7 @@ const Button = styled.button`
     color: ${theme.text};
     font-size: 1.1rem;
     margin-top: 0px;
-    /* background: ${theme.link}1A; */
+    /* background: ${theme.linkBackground}; */
     border: none;
     background: none;
     border-bottom: 4px solid ${theme.text};

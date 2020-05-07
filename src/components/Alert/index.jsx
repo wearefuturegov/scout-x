@@ -15,7 +15,7 @@ const StyledAlert = styled(Alert)`
     left: 50%;
     transform: translateX(-50%);
     margin: 20px;
-    box-shadow: 0px 2px 12px ${theme.text}1A;
+    box-shadow: 0px 2px 12px ${theme.textBackground};
     animation: popIn 5s ease-out;
 
     @keyframes popIn{
