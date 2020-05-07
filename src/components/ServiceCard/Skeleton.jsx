@@ -3,10 +3,14 @@ import theme from "../_theme"
 import styled from "styled-components"
 
 const Outer = styled.li`
-    padding: 25px;
-    background: ${theme.white};
-    margin-bottom: 15px;
-    position: relative;
+    display: none;
+    @supports(mix-blend-mode: overlay){
+        display: block;
+        padding: 25px;
+        background: ${theme.white};
+        margin-bottom: 15px;
+        position: relative;
+    }
 `
 
 const Shimmer = styled.div`
