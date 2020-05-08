@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react"
-import queryString from "query-string"
 import Button from "./components/Button"
 import Layout, { ResultsHeader, ResultsList, ResultsFooter, Count, NoResults } from "./components/Layout"
 import Switch from "./components/Switch"
@@ -10,6 +9,7 @@ import Filters from "./components/Filters"
 import Filter from "./components/Filter"
 import ListMap from "./components/ListMap"
 import config from "./data/_config"
+import useQuery from "./hooks/useQuery"
 import { fetchResultsByQuery } from "./lib/api"
 
 const App = ({
@@ -20,47 +20,29 @@ const App = ({
 
   const scrollTarget = useRef(null)
 
-  const intialQuery = queryString.parse(location.search)
+  const [collection, setCollection] = useQuery("collection", "services")
+  const [coverage, setCoverage] = useQuery("coverage", "")
+  const [lat, setLat] = useQuery("lat", "")
+  const [lng, setLng] = useQuery("lng", "")
 
-  const [collection, setCollection] = useState(intialQuery.collection || "services")
-  const [coverage, setCoverage] = useState(intialQuery.coverage || "")
-  const [lat, setLat] = useState(intialQuery.lat || "")
-  const [lng, setLng] = useState(intialQuery.lng || "")
-
-  const [categories, setCategories] = useState(intialQuery.categories ? [].concat(intialQuery.categories) : [])
-  const [only, setOnly] = useState(intialQuery.only ? [].concat(intialQuery.only) : [])
+  const [categories, setCategories] = useQuery("categories", [])
+  const [only, setOnly] = useQuery("only", [])
   
   const [results, setResults] = useState(false)
   const [mapVisible, setMapVisible ] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  const [page, setPage] = useState(parseInt(intialQuery.page) || 1)
+  const [page, setPage] = useQuery("page", 1, true)
   const [totalPages, setTotalPages] = useState(false)
 
   useEffect(() => {
-    let newQuery = {
-      collection,
-      coverage,
-      lat,
-      lng,
-      categories,
-      only,
-      // IF THIS IS INTIIAL LOAD, USE VALUE IN QUERY
-      page
-    }
     setLoading(true)
-    fetchResultsByQuery(newQuery).then(data => {
+    fetchResultsByQuery(location.search).then(data => {
       setResults(data.content)
       setTotalPages(data.totalPages)
       setLoading(false)
-      navigate(`/services?${queryString.stringify(newQuery)}`)
     })
-  },[collection, coverage, lat, lng, categories, only, page])
-
-  // useEffect(() => {
-  //   // Handle page changes only
-
-  // }, [page])
+  }, [location.search])
 
   return(
     <>
@@ -78,6 +60,7 @@ const App = ({
         }
         sidebarComponents={<>
           <Filters>
+            {page}
             <Filter
               legend="Categories"
               options={config.categories}
@@ -97,7 +80,7 @@ const App = ({
           :
           <>
             <ResultsHeader>
-              <Count>{results.length > 0 && <>Showing {intialQuery.page === 1 && "first "}{results.length} results</>}</Count>
+              <Count>{results.length > 0 && <>Showing {page === 1 && "first "}{results.length} results</>}</Count>
               <Switch
                 id="map-toggle"
                 checked={mapVisible}
