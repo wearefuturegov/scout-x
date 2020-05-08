@@ -28,29 +28,28 @@ const App = ({
   const [categories, setCategories] = useState(originalQuery.categories ? [].concat(originalQuery.categories) : [])
   const [only, setOnly] = useState(originalQuery.only ? [].concat(originalQuery.only) : [])
   
-  const [page, setPage] = useState(parseInt(originalQuery.page) || 1)
-
   const [results, setResults] = useState(false)
-
-  const [totalPages, setTotalPages] = useState(false)
   const [mapVisible, setMapVisible ] = useState(false)
-
   const [loading, setLoading] = useState(true)
 
-  const fetchNewServices = async () => {
+  const [page, setPage] = useState(originalQuery.page || 1)
+  const [totalPages, setTotalPages] = useState(false)
+
+  // TODO reusable utility function that stringifies a query, passes updates the state
+  const fetchServices = async incrementPage => {
     setLoading(true)
     let newQuery = {
-      page,
       lat,
       lng,
       categories,
-      only,
       collection,
-      coverage
+      coverage,
+      only,
+      page: incrementPage ? page + 1 : 1
     }
-    navigate(`?${queryString.stringify(newQuery)}`, { replace: true })
-    const res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
-    const data = await res.json()
+    let res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
+    let data = await res.json()
+    navigate(`/${queryString.stringify(newQuery)}`, {replace: true})
     setResults(data.content)
     setPage(data.number)
     setTotalPages(data.totalPages)
@@ -58,14 +57,13 @@ const App = ({
   }
 
   const nextPage = () => {
-    setPage(page + 1)
-    document.documentElement.scrollTop = 0
+    fetchServices(true)
   }
 
   useEffect(() => {
-    fetchNewServices()
+    fetchServices()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, lat, lng, categories, only, coverage, collection])
+  }, [lat, lng, categories, collection, coverage, only])
 
   return(
     <>
@@ -82,6 +80,8 @@ const App = ({
         }
         sidebarComponents={<>
           <Filters>
+            {totalPages}
+            {originalQuery.page}
             <Filter
               legend="Categories"
               options={config.categories}
@@ -101,7 +101,7 @@ const App = ({
           :
           <>
             <ResultsHeader>
-        <Count>{results.length > 0 && <>Showing {page === 1 && "first "}{results.length} results</>}</Count>
+        <Count>{results.length > 0 && <>Showing {originalQuery.page === 1 && "first "}{results.length} results</>}</Count>
               <Switch
                 id="map-toggle"
                 checked={mapVisible}
@@ -119,11 +119,11 @@ const App = ({
                 )
               }
             </ResultsList>
-              {totalPages > page &&
+              {/* {totalPages > originalQuery.page && */}
                 <ResultsFooter>
                   <Button onClick={nextPage}>Load more</Button>
                 </ResultsFooter>
-              }
+              {/* } */}
           </>
         }
       />
