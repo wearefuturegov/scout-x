@@ -107,6 +107,7 @@ const SearchBar = ({
     setCoverage,
     setLat,
     setLng,
+    setPage,
     triggerAlert
 }) => {
 
@@ -124,6 +125,7 @@ const SearchBar = ({
         setLat(localLat)
         setLng(localLng)
         setFinding(false)
+        setPage(1)
     }
 
     const geolocate =  () => {

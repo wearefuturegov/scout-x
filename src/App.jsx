@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from "react"
-import Button from "./components/Button"
-import Layout, { ResultsHeader, ResultsList, ResultsFooter, Count, NoResults } from "./components/Layout"
+import Layout, { ResultsHeader, ResultsList, Count, NoResults } from "./components/Layout"
 import Switch from "./components/Switch"
 import SearchBar from "./components/SearchBar"
 import ServiceCard from "./components/ServiceCard"
@@ -8,6 +8,7 @@ import Skeleton from "./components/ServiceCard/Skeleton"
 import Filters from "./components/Filters"
 import Filter from "./components/Filter"
 import ListMap from "./components/ListMap"
+import Pagination from "./components/Pagination"
 import config from "./data/_config"
 import useQuery from "./hooks/useQuery"
 import { fetchResultsByQuery } from "./lib/api"
@@ -56,6 +57,7 @@ const App = ({
             setCoverage={setCoverage}
             setLat={setLat}
             setLng={setLng}
+            setPage={setPage}
           />
         }
         sidebarComponents={<>
@@ -66,12 +68,14 @@ const App = ({
               options={config.categories}
               selection={categories}
               setSelection={setCategories}
+              setPage={setPage}
             />
             <Filter
               legend="Only show"
               options={config.only}
               selection={only}
               setSelection={setOnly}
+              setPage={setPage}
             />
           </Filters>
         </>}
@@ -80,7 +84,11 @@ const App = ({
           :
           <>
             <ResultsHeader>
-              <Count>{results.length > 0 && <>Showing {page === 1 && "first "}{results.length} results</>}</Count>
+              <Count>
+                {results.length > 0 && 
+                  <>Showing {page === 1 && "first "}{results.length} results</>
+                }
+              </Count>
               <Switch
                 id="map-toggle"
                 checked={mapVisible}
@@ -98,14 +106,12 @@ const App = ({
                 )
               }
             </ResultsList>
-              {totalPages > page &&
-                <ResultsFooter>
-                  <Button onClick={() => setPage(page + 1)}>Next page</Button>
-                  {page > 1 && 
-                    <button onClick={() => setPage(page - 1)}>Previous page</button>
-                  }
-                </ResultsFooter>
-              }
+            <Pagination
+              totalPages={totalPages}
+              page={page}
+              setPage={setPage}
+              scrollTarget={scrollTarget}
+            />
           </>
         }
       />

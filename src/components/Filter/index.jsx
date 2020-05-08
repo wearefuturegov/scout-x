@@ -93,7 +93,8 @@ const Filter = ({
     legend,
     options,
     selection,
-    setSelection
+    setSelection,
+    setPage
 }) => {
 
     const handleChange = e => {
@@ -103,6 +104,7 @@ const Filter = ({
         } else {
             setSelection(selection.filter(el=> el !== value))
         }
+        setPage(1)
     }
 
     const clear = () => setSelection([])

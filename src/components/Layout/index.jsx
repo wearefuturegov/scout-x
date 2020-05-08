@@ -113,6 +113,8 @@ export const ResultsList = styled.ul`
 export const ResultsFooter = styled.footer`
   margin-top: 25px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 `
 
