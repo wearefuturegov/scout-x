@@ -20,6 +20,10 @@ const App = ({
 
   const originalQuery = queryString.parse(location.search)
 
+  console.log(originalQuery)
+
+  console.log("QUERY PAGE: ", originalQuery.page)
+
   const [collection, setCollection] = useState(originalQuery.collection || "services")
   const [coverage, setCoverage] = useState(originalQuery.coverage || "")
   const [lat, setLat] = useState(originalQuery.lat || "")
@@ -32,8 +36,10 @@ const App = ({
   const [mapVisible, setMapVisible ] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  const [page, setPage] = useState(originalQuery.page || 1)
+  const [page, setPage] = useState(parseInt(originalQuery.page) || 1)
   const [totalPages, setTotalPages] = useState(false)
+
+  console.log("PAGE: ", page)
 
   // TODO reusable utility function that stringifies a query, passes updates the state
   const fetchServices = async incrementPage => {
@@ -45,11 +51,11 @@ const App = ({
       collection,
       coverage,
       only,
-      page: incrementPage ? page + 1 : 1
+      page: incrementPage ? page + 1 : page
     }
     let res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
     let data = await res.json()
-    navigate(`/${queryString.stringify(newQuery)}`, {replace: true})
+    navigate(`/?${queryString.stringify(newQuery)}`, {replace: true})
     setResults(data.content)
     setPage(data.number)
     setTotalPages(data.totalPages)
@@ -61,6 +67,7 @@ const App = ({
   }
 
   useEffect(() => {
+    console.log(originalQuery)
     fetchServices()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lat, lng, categories, collection, coverage, only])
@@ -80,8 +87,6 @@ const App = ({
         }
         sidebarComponents={<>
           <Filters>
-            {totalPages}
-            {originalQuery.page}
             <Filter
               legend="Categories"
               options={config.categories}
