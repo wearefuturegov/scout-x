@@ -20,21 +20,21 @@ const App = ({
 
   const scrollTarget = useRef(null)
 
-  const originalQuery = queryString.parse(location.search)
+  const intialQuery = queryString.parse(location.search)
 
-  const [collection, setCollection] = useState(originalQuery.collection || "services")
-  const [coverage, setCoverage] = useState(originalQuery.coverage || "")
-  const [lat, setLat] = useState(originalQuery.lat || "")
-  const [lng, setLng] = useState(originalQuery.lng || "")
+  const [collection, setCollection] = useState(intialQuery.collection || "services")
+  const [coverage, setCoverage] = useState(intialQuery.coverage || "")
+  const [lat, setLat] = useState(intialQuery.lat || "")
+  const [lng, setLng] = useState(intialQuery.lng || "")
 
-  const [categories, setCategories] = useState(originalQuery.categories ? [].concat(originalQuery.categories) : [])
-  const [only, setOnly] = useState(originalQuery.only ? [].concat(originalQuery.only) : [])
+  const [categories, setCategories] = useState(intialQuery.categories ? [].concat(intialQuery.categories) : [])
+  const [only, setOnly] = useState(intialQuery.only ? [].concat(intialQuery.only) : [])
   
   const [results, setResults] = useState(false)
   const [mapVisible, setMapVisible ] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  const [page, setPage] = useState(parseInt(originalQuery.page) || 1)
+  const [page, setPage] = useState(parseInt(intialQuery.page) || 1)
   const [totalPages, setTotalPages] = useState(false)
 
   const fetchServices = async incrementPage => {
@@ -66,8 +66,6 @@ const App = ({
     fetchServices()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lat, lng, categories, collection, coverage, only])
-
-  console.log(scrollTarget)
 
   return(
     <>
@@ -104,7 +102,7 @@ const App = ({
           :
           <>
             <ResultsHeader>
-              <Count>{results.length > 0 && <>Showing {originalQuery.page === 1 && "first "}{results.length} results</>}</Count>
+              <Count>{results.length > 0 && <>Showing {intialQuery.page === 1 && "first "}{results.length} results</>}</Count>
               <Switch
                 id="map-toggle"
                 checked={mapVisible}
@@ -122,7 +120,7 @@ const App = ({
                 )
               }
             </ResultsList>
-              {totalPages > originalQuery.page &&
+              {totalPages > intialQuery.page &&
                 <ResultsFooter>
                   <Button onClick={nextPage}>Load more</Button>
                 </ResultsFooter>
