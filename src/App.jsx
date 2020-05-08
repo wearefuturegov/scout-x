@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
 import Button from "./components/Button"
@@ -17,6 +17,8 @@ const App = ({
   location,
   navigate
 }) => {
+
+  const scrollTarget = useRef(null)
 
   const originalQuery = queryString.parse(location.search)
 
@@ -56,6 +58,7 @@ const App = ({
   }
 
   const nextPage = () => {
+    scrollTarget.current.scrollIntoView()
     fetchServices(true)
   }
 
@@ -64,9 +67,12 @@ const App = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lat, lng, categories, collection, coverage, only])
 
+  console.log(scrollTarget)
+
   return(
     <>
       <Layout
+        scrollRef={scrollTarget}
         headerComponents={
           <SearchBar
             type={collection}
@@ -98,7 +104,7 @@ const App = ({
           :
           <>
             <ResultsHeader>
-        <Count>{results.length > 0 && <>Showing {originalQuery.page === 1 && "first "}{results.length} results</>}</Count>
+              <Count>{results.length > 0 && <>Showing {originalQuery.page === 1 && "first "}{results.length} results</>}</Count>
               <Switch
                 id="map-toggle"
                 checked={mapVisible}
@@ -116,11 +122,11 @@ const App = ({
                 )
               }
             </ResultsList>
-              {/* {totalPages > originalQuery.page && */}
+              {totalPages > originalQuery.page &&
                 <ResultsFooter>
                   <Button onClick={nextPage}>Load more</Button>
                 </ResultsFooter>
-              {/* } */}
+              }
           </>
         }
       />

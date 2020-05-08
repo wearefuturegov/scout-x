@@ -119,7 +119,8 @@ export const ResultsFooter = styled.footer`
 const Layout = ({
     headerComponents,
     sidebarComponents,
-    mainContentComponents
+    mainContentComponents,
+    scrollRef
 }) =>
     <>
         <GlobalStyle/>
@@ -131,7 +132,7 @@ const Layout = ({
                 {headerComponents}
             </PageHeaderInner>
         </PageHeader>
-        <ResultsArea>
+        <ResultsArea ref={scrollRef}>
             <ResultsAreaInner>
                 <Sidebar>
                     {sidebarComponents}
