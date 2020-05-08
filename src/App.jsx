@@ -62,7 +62,6 @@ const App = ({
         }
         sidebarComponents={<>
           <Filters>
-            {page}
             <Filter
               legend="Categories"
               options={config.categories}
