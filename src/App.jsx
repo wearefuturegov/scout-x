@@ -20,10 +20,6 @@ const App = ({
 
   const originalQuery = queryString.parse(location.search)
 
-  console.log(originalQuery)
-
-  console.log("QUERY PAGE: ", originalQuery.page)
-
   const [collection, setCollection] = useState(originalQuery.collection || "services")
   const [coverage, setCoverage] = useState(originalQuery.coverage || "")
   const [lat, setLat] = useState(originalQuery.lat || "")
@@ -39,9 +35,6 @@ const App = ({
   const [page, setPage] = useState(parseInt(originalQuery.page) || 1)
   const [totalPages, setTotalPages] = useState(false)
 
-  console.log("PAGE: ", page)
-
-  // TODO reusable utility function that stringifies a query, passes updates the state
   const fetchServices = async incrementPage => {
     setLoading(true)
     let newQuery = {
@@ -67,7 +60,6 @@ const App = ({
   }
 
   useEffect(() => {
-    console.log(originalQuery)
     fetchServices()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lat, lng, categories, collection, coverage, only])
