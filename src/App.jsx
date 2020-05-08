@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react"
-import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
 import Button from "./components/Button"
 import Layout, { ResultsHeader, ResultsList, ResultsFooter, Count, NoResults } from "./components/Layout"
@@ -11,6 +10,7 @@ import Filters from "./components/Filters"
 import Filter from "./components/Filter"
 import ListMap from "./components/ListMap"
 import config from "./data/_config"
+import { fetchResultsByQuery } from "./lib/api"
 
 const App = ({
   children,
@@ -37,35 +37,30 @@ const App = ({
   const [page, setPage] = useState(parseInt(intialQuery.page) || 1)
   const [totalPages, setTotalPages] = useState(false)
 
-  const fetchServices = async incrementPage => {
-    setLoading(true)
+  useEffect(() => {
     let newQuery = {
+      collection,
+      coverage,
       lat,
       lng,
       categories,
-      collection,
-      coverage,
       only,
-      page: incrementPage ? page + 1 : page
+      // IF THIS IS INTIIAL LOAD, USE VALUE IN QUERY
+      page
     }
-    let res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
-    let data = await res.json()
-    navigate(`/?${queryString.stringify(newQuery)}`, {replace: true})
-    setResults(data.content)
-    setPage(data.number)
-    setTotalPages(data.totalPages)
-    setLoading(false)
-  }
+    setLoading(true)
+    fetchResultsByQuery(newQuery).then(data => {
+      setResults(data.content)
+      setTotalPages(data.totalPages)
+      setLoading(false)
+      navigate(`/services?${queryString.stringify(newQuery)}`)
+    })
+  },[collection, coverage, lat, lng, categories, only, page])
 
-  const nextPage = () => {
-    scrollTarget.current.scrollIntoView()
-    fetchServices(true)
-  }
+  // useEffect(() => {
+  //   // Handle page changes only
 
-  useEffect(() => {
-    fetchServices()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lat, lng, categories, collection, coverage, only])
+  // }, [page])
 
   return(
     <>
@@ -120,9 +115,12 @@ const App = ({
                 )
               }
             </ResultsList>
-              {totalPages > intialQuery.page &&
+              {totalPages > page &&
                 <ResultsFooter>
-                  <Button onClick={nextPage}>Load more</Button>
+                  <Button onClick={() => setPage(page + 1)}>Next page</Button>
+                  {page > 1 && 
+                    <button onClick={() => setPage(page - 1)}>Previous page</button>
+                  }
                 </ResultsFooter>
               }
           </>
