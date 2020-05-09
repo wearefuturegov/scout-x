@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
+import useHover from "../../hooks/useHover"
 import styled from "styled-components"
 import theme from "../_theme"
 import add from "./add.svg"
-import useHover from "../../hooks/useHover"
 import remove from "./remove.svg"
 import tick from "./tick.svg"
 import { PinboardContextConsumer } from "../../contexts/pinboardContext"
@@ -54,7 +54,10 @@ const AddButton = styled(BaseButton)`
 
 const RemoveButton = styled(BaseButton)`
     &:before{
-        background-image: url(${props => props.hovered ? remove : tick});
+        background-image: url(${tick});
+    }
+    &:hover:before{
+        background-image: url(${props => props.justPinned ? tick : remove});
     }
 `
 
@@ -66,20 +69,36 @@ const PinboardButton = ({
     triggerAlert
 }) => {
 
-    const [hoverRef, isHovered] = useHover()
-
     const isPinned = isInPinboard(service.id)
+    const [justPinned, setJustPinned] = useState(false)
+    const [ref, isHovered] = useHover()
+
+    const handleMouseOut = () => {
+        setJustPinned(false)
+    }
+
+    useEffect(() => {
+        let node = ref.current
+        if (node) {
+            node.addEventListener('mouseout', handleMouseOut)
+            return () => {
+                node.removeEventListener('mouseout', handleMouseOut)
+            }
+        }
+    }, [ref])
 
     return(
-        <div aria-live="polite" ref={hoverRef}>
+        <div aria-live="polite" ref={ref}>
             {isPinned ?        
-                <RemoveButton hovered={isHovered} onClick={() => 
-                    removeFromPinboard(service.id)
-                }>
-                    {isHovered ? "Remove?" : "Added"}
+                <RemoveButton 
+                    justPinned={justPinned}
+                    onClick={() => removeFromPinboard(service.id)}
+                >
+                    {(!justPinned && isHovered) ? "Remove?" : "Added"}
                 </RemoveButton>
                 :
                 <AddButton onClick={() => {
+                    setJustPinned(true)
                     addToPinboard(service)
                     triggerAlert("Added to pinboard")
                 }}>Add to pinboard</AddButton>

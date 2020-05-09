@@ -8,13 +8,13 @@ const StyledAlert = styled(Alert)`
     padding: 15px;
     color: ${theme.white};
     font-weight: bold;
-    width: 100%;
+    width: 90vw;
     border-radius: 2px;
     max-width: 400px;
     bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
-    margin: 20px;
+    margin: 20px 0px;
     box-shadow: 0px 2px 12px ${theme.textBackground};
     animation: popIn 5s ease-out;
     z-index: 999;

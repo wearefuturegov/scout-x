@@ -20,6 +20,7 @@ export default () => {
                 node.removeEventListener('mouseout', handleMouseOut)
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ref.current])
 
     return [ref, value]
