@@ -8,18 +8,21 @@ import { Router } from "@reach/router"
 import DetailDialog from "./components/DetailDialog"
 import { GoogleContextProvider } from "./contexts/googleContext"
 import { AlertContextProvider } from "./contexts/alertContext"
+import { ShortlistContextProvider } from "./contexts/shortlistContext"
 
 ReactDOM.render(
   <React.StrictMode>
-    <AlertContextProvider>
-      <GoogleContextProvider>
-        <Router>
-          <App path="/" default >
-            <DetailDialog path="service/:serviceId"/>
-          </App>
-        </Router>
-      </GoogleContextProvider>
+    <ShortlistContextProvider>
+      <AlertContextProvider>
+        <GoogleContextProvider>
+          <Router>
+            <App path="/" default >
+              <DetailDialog path="service/:serviceId"/>
+            </App>
+          </Router>
+        </GoogleContextProvider>
       </AlertContextProvider>
+    </ShortlistContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 )
