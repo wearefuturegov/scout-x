@@ -156,7 +156,7 @@ const DetailDialog = ({
                 <Title>{service.name}</Title>
                 <Tags>
                     {service.taxonomies.map(taxonomy =>
-                        <Tag>{taxonomy.name}</Tag>
+                        <Tag key={taxonomy.id}>{taxonomy.name}</Tag>
                     )}
                 </Tags>
             </Header>
@@ -167,7 +167,7 @@ const DetailDialog = ({
             <Body>
                 <Actions>
                     {service.url && <ButtonLink href={service.url}>Visit website</ButtonLink>}
-                    <PinboardButton/>
+                    <PinboardButton service={service}/>
                 </Actions>
                 <Description>
                     {service.description.split("\n").map((paragraph, i) =>

@@ -10,6 +10,7 @@ import Filter from "./components/Filter"
 import KeywordFilter from "./components/Filter/KeywordFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
+import Pinboard from "./components/Pinboard"
 import config from "./data/_config"
 import useQuery from "./hooks/useQuery"
 import { fetchResultsByQuery } from "./lib/api"
@@ -28,8 +29,6 @@ const App = ({
   const [lng, setLng] = useQuery("lng", "")
 
   const [categories, setCategories] = useQuery("categories", [], {array: true})
-
-  console.log(categories)
 
   const [only, setOnly] = useQuery("only", [], {array: true})
   
@@ -108,6 +107,7 @@ const App = ({
               />
             </ResultsHeader>
             {mapVisible && <ListMap results={results}/>}
+            <Pinboard/>
             <ResultsList aria-live="polite">
               {loading ?
                 <Skeleton/>

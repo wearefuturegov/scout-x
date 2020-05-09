@@ -8,11 +8,11 @@ import { Router } from "@reach/router"
 import DetailDialog from "./components/DetailDialog"
 import { GoogleContextProvider } from "./contexts/googleContext"
 import { AlertContextProvider } from "./contexts/alertContext"
-import { ShortlistContextProvider } from "./contexts/shortlistContext"
+import { PinboardContextProvider } from "./contexts/pinboardContext"
 
 ReactDOM.render(
   <React.StrictMode>
-    <ShortlistContextProvider>
+    <PinboardContextProvider>
       <AlertContextProvider>
         <GoogleContextProvider>
           <Router>
@@ -22,7 +22,7 @@ ReactDOM.render(
           </Router>
         </GoogleContextProvider>
       </AlertContextProvider>
-    </ShortlistContextProvider>
+    </PinboardContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 )
