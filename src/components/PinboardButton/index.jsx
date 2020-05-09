@@ -8,26 +8,27 @@ import tick from "./tick.svg"
 import { PinboardContextConsumer } from "../../contexts/pinboardContext"
 import { AlertContextConsumer } from "../../contexts/alertContext"
 
-const AddButton = styled(Button)`
-    border: none;
-    padding: 15px 20px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    &:hover{
-        background: ${theme.pale};
-        color: ${theme.link};
-    }
+const BaseButton = styled.button`
     &:before{
         display: block;
-        margin-right: 10px;
         content: "";
         height: 15px;
         width: 15px;
-        background-image: url(${add});
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+    }
+`
+
+const AddButton = styled(BaseButton)`
+    &:before{
+        background-image: url(${add});
+    }
+`
+
+const RemoveButton = styled(BaseButton)`
+    &:before{
+        background-image: url(${remove});
     }
 `
 
@@ -53,36 +54,6 @@ const Added = styled.div`
     &:hover button,
     &:focus-within button{
         opacity: 1;
-    }
-`
-
-const RemoveButton = styled.button`
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    min-width: 100%;
-    height: 100%;
-    padding: 15px 20px;
-    opacity: 0;
-    cursor: pointer;
-    display: inline-flex;
-    font-size: 1rem;
-    flex-direction: row;
-    align-items: center;
-    border: none;
-    color: ${theme.link};
-    background: ${theme.pale};
-    font-weight: bold;
-    &:before{
-        display: block;
-        margin-right: 10px;
-        content: "";
-        height: 15px;
-        width: 15px;
-        background-image: url(${remove});
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
     }
 `
 

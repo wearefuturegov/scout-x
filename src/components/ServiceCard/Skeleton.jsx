@@ -3,14 +3,11 @@ import theme from "../_theme"
 import styled from "styled-components"
 
 const Outer = styled.li`
-    display: none;
-    @supports(mix-blend-mode: overlay){
-        display: block;
-        padding: 25px;
-        background: ${theme.white};
-        margin-bottom: 15px;
-        position: relative;
-    }
+    display: block;
+    padding: 25px;
+    background: ${theme.white};
+    margin-bottom: 15px;
+    position: relative;
     opacity: 0;
     animation-fill-mode: forwards;
     animation: pulse 1.5s infinite;
@@ -58,7 +55,7 @@ const Shimmer = styled.div`
 const Name = styled.div`
     height: 25px;
     width: 50%;
-    background: ${theme.cardShadow}80;
+    background: ${theme.cardShadow};
     margin-bottom: 15px;
     border-radius: 10px;
 `
@@ -66,7 +63,7 @@ const Name = styled.div`
 const Description = styled.div`
     height: 10px;
     margin-bottom: 5px;
-    background: ${theme.cardShadow}80;
+    background: ${theme.cardShadow};
     border-radius: 10px;
 `
 
@@ -76,7 +73,7 @@ const Tag = styled.div`
     width: 80px;
     margin-right: 10px;
     display: inline-block;
-    background: ${theme.cardShadow}80;
+    background: ${theme.cardShadow};
     border-radius: 2px;
     border-radius: 10px;
 `
