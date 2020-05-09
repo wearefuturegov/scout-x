@@ -5,7 +5,9 @@ import { useState, useCallback } from "react"
 import queryString from "query-string"
 import { useNavigate } from "@reach/router"
 
-const useQuery = (key, initialValue, numerical) => {
+const useQuery = (key, initialValue, options = {}) => {
+
+    let { numerical, array } = options
 
     const navigate = useNavigate()
 
@@ -27,7 +29,12 @@ const useQuery = (key, initialValue, numerical) => {
         applyQueryString(`?${newString}`)
     }
 
-    const getQueryStringValue = (key, query) => numerical ? parseInt(queryString.parse(query)[key]) : queryString.parse(query)[key]
+    const getQueryStringValue = (key, query) => {
+        const value = queryString.parse(query)[key]
+        if(numerical) return parseInt(value)
+        if(array) return [].concat(value)
+        return value
+    }
 
     const [value, setValue] = useState(getQueryStringValue(key, window.location.search) || initialValue)
 
