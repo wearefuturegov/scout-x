@@ -105,7 +105,7 @@ const Description = styled.article`
 const Actions = styled.div`
     margin-bottom: 25px;
     a:first-of-type{
-        margin-bottom: 15px;
+        margin-bottom: 25px;
     }
     @media screen and (min-width: ${theme.breakpointM}) {
         display: flex;
@@ -113,7 +113,7 @@ const Actions = styled.div`
         align-items: center;
         a:first-of-type{
             margin-bottom: 0px;
-            margin-right: 10px;
+            margin-right: 30px;
         }
     }
 `

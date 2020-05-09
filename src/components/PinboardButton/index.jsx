@@ -1,8 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import theme from "../_theme"
-import Button from "../Button"
 import add from "./add.svg"
+import useHover from "../../hooks/useHover"
 import remove from "./remove.svg"
 import tick from "./tick.svg"
 import { PinboardContextConsumer } from "../../contexts/pinboardContext"
@@ -19,7 +19,6 @@ const BaseButton = styled.button`
     font-weight: bold;
     color: ${theme.link};
     font-size: 1rem;
-    padding: 18px 25px;
     cursor: pointer;
     width: 100%;
     &:before{
@@ -33,9 +32,13 @@ const BaseButton = styled.button`
         background-position: center;
     }
     &:hover{
-        background: ${theme.pale};
+        color: ${theme.linkHover};
+    }
+    &:active{
+        color: ${theme.linkActive};
     }
     &:focus{
+        background: ${theme.focus};
         outline: 3px solid ${theme.focus};
     }
     @media screen and (min-width: ${theme.breakpointM}){
@@ -50,44 +53,8 @@ const AddButton = styled(BaseButton)`
 `
 
 const RemoveButton = styled(BaseButton)`
-    background: ${theme.pale};
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    opacity: 0;
-    transition: opacity 0.1s ease-out;
     &:before{
-        background-image: url(${remove});
-    }
-`
-
-const Added = styled.div`
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    color: ${theme.link};
-    padding: 18px 25px;
-    font-weight: bold;
-    &:before{
-        display: block;
-        margin-right: 10px;
-        content: "";
-        height: 15px;
-        width: 15px;
-        background-image: url(${tick});
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    &:hover button,
-    &:focus-within button{
-        opacity: 1;
-    }
-    @media screen and (min-width: ${theme.breakpointM}){
-        width: inherit;
+        background-image: url(${props => props.hovered ? remove : tick});
     }
 `
 
@@ -99,18 +66,26 @@ const PinboardButton = ({
     triggerAlert
 }) => {
 
-    const [justAdded, setJustAdded] = useState(false)
+    const [hoverRef, isHovered] = useHover()
 
-    return isInPinboard(service.id) ?
-        <Added>
-            Added
-            {!justAdded && <RemoveButton onClick={() => removeFromPinboard(service.id)}>Remove?</RemoveButton>}
-        </Added>
-        :
-        <AddButton onClick={() => {
-            addToPinboard(service)
-            triggerAlert("Added to pinboard")
-        }}>Add to pinboard</AddButton>
+    const isPinned = isInPinboard(service.id)
+
+    return(
+        <div>
+            {isPinned ?        
+                <RemoveButton ref={hoverRef} hovered={isHovered} onClick={() => 
+                    removeFromPinboard(service.id)
+                }>
+                    {isHovered ? "Remove?" : "Added"}
+                </RemoveButton>
+                :
+                <AddButton onClick={() => {
+                    addToPinboard(service)
+                    triggerAlert("Added to pinboard")
+                }}>Add to pinboard</AddButton>
+            }
+        </div>
+    )
 }
 
 
