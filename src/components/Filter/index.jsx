@@ -1,11 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import theme from "../_theme"
 import tick from "./tick.svg"
+import downArrow from "./down-arrow.svg"
+import upArrow from "./up-arrow.svg"
 
 const Outer = styled.fieldset`
     border: none;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     @media screen and (min-width: ${theme.breakpointM}){
         margin-bottom: 35px;
     }
@@ -17,6 +19,32 @@ const Header = styled.header`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+`
+
+const UnfoldButton = styled.button`
+    display: flex;
+    align-items: center;
+    border: none;
+    font-size: 1rem;
+    background: none;
+    cursor: pointer;
+    &:after{
+        content: "";
+        display: inline-block;
+        height: 10px;
+        width: 15px;
+        margin-left: 10px;
+        background-image: url(${upArrow});
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    &[aria-expanded=true]:after{
+        background-image: url(${downArrow});
+    }
+    &:focus{
+        outline: 3px solid ${theme.focus};
+    }
 `
 
 const Legend = styled.legend`
@@ -94,8 +122,11 @@ const Filter = ({
     options,
     selection,
     setSelection,
-    setPage
+    setPage,
+    foldable
 }) => {
+
+    const [unfolded, setUnfolded] = useState(selection.length > 0 ? true : false)
 
     const handleChange = e => {
         let {checked, value} = e.target
@@ -112,12 +143,23 @@ const Filter = ({
     return(
         <Outer>
             <Header>
-                <Legend>{legend}</Legend>
+                {foldable ?
+                    <UnfoldButton 
+                        type="button"
+                        aria-expanded={unfolded ? "true" : "false"} 
+                        onClick={() => setUnfolded(!unfolded)}
+                    >
+                        <Legend>{legend}</Legend>
+                    </UnfoldButton>
+                    :
+                    <Legend>{legend}</Legend>
+                }
                 {selection.length > 0 && 
                     <ClearButton onClick={clear}>Clear</ClearButton>
                 }
             </Header>
-            {options.map(o =>
+
+            {(!foldable || unfolded) && options.map(o =>
                 <Field key={o.value}>
                     <Input 
                         type="checkbox" 

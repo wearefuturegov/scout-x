@@ -7,6 +7,7 @@ import ServiceCard from "./components/ServiceCard"
 import Skeleton from "./components/ServiceCard/Skeleton"
 import Filters from "./components/Filters"
 import Filter from "./components/Filter"
+import KeywordFilter from "./components/Filter/KeywordFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import config from "./data/_config"
@@ -26,14 +27,19 @@ const App = ({
   const [lat, setLat] = useQuery("lat", "")
   const [lng, setLng] = useQuery("lng", "")
 
-  const [categories, setCategories] = useQuery("categories", [])
-  const [only, setOnly] = useQuery("only", [])
+  const [categories, setCategories] = useQuery("categories", [], {array: true})
+
+  console.log(categories)
+
+  const [only, setOnly] = useQuery("only", [], {array: true})
   
+  const [keywords, setKeywords] = useQuery("keywords", "")
+
   const [results, setResults] = useState(false)
   const [mapVisible, setMapVisible ] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  const [page, setPage] = useQuery("page", 1, true)
+  const [page, setPage] = useQuery("page", 1, {numerical: true})
   const [totalPages, setTotalPages] = useState(false)
 
   useEffect(() => {
@@ -74,6 +80,12 @@ const App = ({
               options={config.only}
               selection={only}
               setSelection={setOnly}
+              setPage={setPage}
+              foldable
+            />
+            <KeywordFilter
+              value={keywords}
+              setValue={setKeywords}
               setPage={setPage}
             />
           </Filters>

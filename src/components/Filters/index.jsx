@@ -8,12 +8,9 @@ const MobileOuter = styled.section`
     @media screen and (min-width: ${theme.breakpointM}){
         display: none;
     }
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     fieldset:first-of-type{
         margin-top: 20px;
-    }
-    fieldset:last-of-type{
-        margin-bottom: 0px;
     }
 `
 const DesktopOuter = styled.section`
@@ -30,7 +27,6 @@ const Button = styled.button`
     color: ${theme.text};
     font-size: 1.1rem;
     margin-top: 0px;
-    /* background: ${theme.linkBackground}; */
     border: none;
     background: none;
     border-bottom: 4px solid ${theme.text};
@@ -40,11 +36,7 @@ const Button = styled.button`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    &:hover{
-        /* text-decoration: underline; */
-    }
     &:focus{
-        /* background: ${theme.focus}; */
         outline: 3px solid ${theme.focus};
     }
     &:active{

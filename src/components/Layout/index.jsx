@@ -70,6 +70,9 @@ const Sidebar = styled.aside`
       margin-right: 40px;
       flex: 1;
     }
+    @media screen and (min-width: ${theme.breakpointL}){
+      margin-right: 60px;
+    }
 `
 
 const MainArea = styled.div`
