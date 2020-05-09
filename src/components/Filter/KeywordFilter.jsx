@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Header, UnfoldButton, ClearButton } from "./index"
+import { Header, UnfoldButton, ClearButton, Content } from "./index"
 import theme from "../_theme"
 
 const Form = styled.form`
@@ -88,16 +88,18 @@ const KeywordFilter = ({
                 }
             </Header>
             {unfolded &&
-                <Field>
-                    <Input 
-                        id="keywords"
-                        type="search"
-                        placeholder="Search..."
-                        value={localKeywords}
-                        onChange={e => setLocalKeywords(e.target.value)} 
-                    />
-                    <ApplyButton type="submit">Apply</ApplyButton>
-                </Field>
+                <Content>
+                    <Field>
+                        <Input 
+                            id="keywords"
+                            type="search"
+                            placeholder="Search..."
+                            value={localKeywords}
+                            onChange={e => setLocalKeywords(e.target.value)} 
+                        />
+                        <ApplyButton type="submit">Apply</ApplyButton>
+                    </Field>
+                </Content>
             }
         </Form>
     )

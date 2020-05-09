@@ -7,9 +7,9 @@ import upArrow from "./up-arrow.svg"
 
 const Outer = styled.fieldset`
     border: none;
-    margin-bottom: 20px;
-    @media screen and (min-width: ${theme.breakpointM}){
-        margin-bottom: 35px;
+    margin-bottom: 10px;
+    @media screen and (min-width: ${theme.breakpointM}) {
+        margin-bottom: 15px;   
     }
 `
 
@@ -50,6 +50,10 @@ export const UnfoldButton = styled.button`
 const Legend = styled.legend`
     font-weight: bold;
     color: ${theme.text};
+`
+
+export const Content = styled.div`
+    margin-bottom: 25px;
 `
 
 const Field = styled.div`
@@ -158,19 +162,22 @@ const Filter = ({
                     <ClearButton onClick={clear}>Clear</ClearButton>
                 }
             </Header>
-
-            {(!foldable || unfolded) && options.map(o =>
-                <Field key={o.value}>
-                    <Input 
-                        type="checkbox" 
-                        id={o.value}
-                        value={o.value}
-                        onChange={handleChange} 
-                        checked={selection.includes(o.value)}
-                    />
-                    <Label htmlFor={o.value}>{o.label}</Label>
-                </Field>
-            )}
+            {(!foldable || unfolded) && 
+                <Content>
+                    {options.map(o =>
+                        <Field key={o.value}>
+                            <Input 
+                                type="checkbox" 
+                                id={o.value}
+                                value={o.value}
+                                onChange={handleChange} 
+                                checked={selection.includes(o.value)}
+                            />
+                            <Label htmlFor={o.value}>{o.label}</Label>
+                        </Field>
+                    )}
+                </Content>
+            }
         </Outer>
     )
 }

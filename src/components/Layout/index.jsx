@@ -115,6 +115,7 @@ export const ResultsList = styled.ul`
 
 export const ResultsFooter = styled.footer`
   margin-top: 25px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
