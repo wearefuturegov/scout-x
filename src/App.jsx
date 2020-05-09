@@ -41,7 +41,7 @@ const App = ({
     fetchResultsByQuery(location.search).then(data => {
       setResults(data.content)
       setTotalPages(data.totalPages)
-      setLoading(false)
+      // setLoading(false)
     })
   }, [location.search])
 

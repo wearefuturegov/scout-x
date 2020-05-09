@@ -11,25 +11,46 @@ const Outer = styled.li`
         margin-bottom: 15px;
         position: relative;
     }
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation: pulse 1.5s infinite;
+    animation-delay: ${props => props.index}s;
+    @keyframes pulse{
+        0%{
+            opacity: 1;
+        }
+        50%{
+            opacity: 0.5;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    @supports(mix-blend-mode: lighten){
+        animation: none;
+        opacity: 1;
+    }
 `
 
 const Shimmer = styled.div`
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(to right, ${theme.pale} 0%, ${theme.cardShadow} 20%, ${theme.pale} 40%, ${theme.pale} 100%);
-    animation: shimmer 1s infinite;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
-    mix-blend-mode: lighten;
-    @keyframes shimmer {
-        from {
-            background-position-x: 0px;
-        }
-        to {
-            background-position-x: 500px;
+    @supports(mix-blend-mode: lighten){
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(to right, ${theme.pale} 0%, ${theme.cardShadow} 20%, ${theme.pale} 40%, ${theme.pale} 100%);
+        animation: shimmer 1s infinite;
+        animation-fill-mode: forwards;
+        animation-timing-function: linear;
+        mix-blend-mode: lighten;
+        @keyframes shimmer {
+            from {
+                background-position-x: 0px;
+            }
+            to {
+                background-position-x: 500px;
+            }
         }
     }
 `
@@ -62,9 +83,10 @@ const Tag = styled.div`
 
 const SkeletonCard = ({
     name,
-    description
+    description,
+    index
 }) =>
-    <Outer aria-hidden="true">
+    <Outer aria-hidden="true" index={index}>
         <Name/>
         <Description/>
         <Description/>
@@ -74,9 +96,9 @@ const SkeletonCard = ({
 
 const Skeleton = () =>
     <>
-        <SkeletonCard/>
-        <SkeletonCard/>
-        <SkeletonCard/>
+        <SkeletonCard index={0}/>
+        <SkeletonCard index={0.5}/>
+        <SkeletonCard index={1}/>
     </>
 
 export default Skeleton
