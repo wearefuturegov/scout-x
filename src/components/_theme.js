@@ -11,7 +11,7 @@ export default {
     pale: "#f7f6f2",
     white: "#ffffff",
 
-    cardShadow: "#E2DFD2",
+    cardShadow: "rgba(225,223,210, 0.5)",
 
     focus: "#FFB81C",
     error: "#d51010",
