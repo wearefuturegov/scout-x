@@ -73,9 +73,7 @@ const PinboardButton = ({
     const [justPinned, setJustPinned] = useState(false)
     const [ref, isHovered] = useHover()
 
-    const handleMouseOut = () => {
-        setJustPinned(false)
-    }
+    const handleMouseOut = () => setJustPinned(false)
 
     useEffect(() => {
         let node = ref.current
@@ -106,7 +104,6 @@ const PinboardButton = ({
         </div>
     )
 }
-
 
 export default props =>
     <AlertContextConsumer>
