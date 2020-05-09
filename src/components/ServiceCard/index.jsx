@@ -7,14 +7,14 @@ import { Link, useLocation } from "@reach/router"
 const Outer = styled.li`
     padding: 25px;
     background: ${theme.white};
-    box-shadow: 0px 2px 10px ${theme.cardShadow}80;
+    box-shadow: 0px 4px 5px ${theme.cardShadow}80;
     margin-bottom: 15px;
     transition: box-shadow 0.2s ease-out;
     position: relative;
     animation: fadeIn 0.2s ease-out;
-    &:hover{
+    /* &:hover{
         box-shadow: 0px 2px 12px ${theme.cardShadow};
-    }
+    } */
     &:focus-within{
         outline: 3px solid ${theme.focus};
     }

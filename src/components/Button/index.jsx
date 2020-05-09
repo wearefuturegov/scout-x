@@ -32,8 +32,3 @@ let styles = `
 export default styled.button`${styles}`
 
 export const ButtonLink = styled.a`${styles}`
-
-export const SecondaryButtonLink = styled(ButtonLink)`
-    border: none;
-    padding: 15px;
-`

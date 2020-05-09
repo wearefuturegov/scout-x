@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import fetch from "isomorphic-unfetch"
 import { Dialog } from "@reach/dialog"
+import PinboardButton from "../PinboardButton"
 import "@reach/dialog/styles.css"
 import Loader from "../Loader"
-import { ButtonLink, SecondaryButtonLink } from "../Button"
+import { ButtonLink } from "../Button"
 import close from "./close.svg"
 import theme from "../_theme"
 import Map from "./Map"
@@ -102,6 +103,13 @@ const Description = styled.article`
 `
 
 const Actions = styled.div`
+    a:first-of-type{
+        margin-bottom: 15px;
+        @media screen and (min-width: ${theme.breakpointM}) {
+            margin-bottom: 0px;
+            margin-right: 10px;
+        }
+    }
     margin-bottom: 25px;
 `
 
@@ -159,7 +167,7 @@ const DetailDialog = ({
             <Body>
                 <Actions>
                     {service.url && <ButtonLink href={service.url}>Visit website</ButtonLink>}
-                    <SecondaryButtonLink href="#">Add to pinboard</SecondaryButtonLink>
+                    <PinboardButton/>
                 </Actions>
                 <Description>
                     {service.description.split("\n").map((paragraph, i) =>
