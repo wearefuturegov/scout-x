@@ -13,7 +13,7 @@ const Outer = styled.fieldset`
     }
 `
 
-const Header = styled.header`
+export const Header = styled.header`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -21,7 +21,7 @@ const Header = styled.header`
     margin-bottom: 15px;
 `
 
-const UnfoldButton = styled.button`
+export const UnfoldButton = styled.button`
     display: flex;
     align-items: center;
     border: none;
@@ -99,7 +99,7 @@ const Input = styled.input`
     }
 `
 
-const ClearButton = styled.button`
+export const ClearButton = styled.button`
     color: ${theme.link};
     font-size: 0.9rem;
     background: none;

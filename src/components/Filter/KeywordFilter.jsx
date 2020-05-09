@@ -1,57 +1,22 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import { Header, UnfoldButton, ClearButton } from "./index"
 import theme from "../_theme"
-import downArrow from "./down-arrow.svg"
-import upArrow from "./up-arrow.svg"
 
-const Outer = styled.form`
+const Form = styled.form`
     border: none;
     margin-bottom: 20px;
 `
 
-const Header = styled.header`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-`
-
-const UnfoldButton = styled.button`
-    display: flex;
-    align-items: center;
-    border: none;
-    font-size: 1rem;
-    background: none;
-    cursor: pointer;
-    &:after{
-        content: "";
-        display: inline-block;
-        height: 10px;
-        width: 15px;
-        margin-left: 10px;
-        background-image: url(${upArrow});
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-    &[aria-expanded=true]:after{
-        background-image: url(${downArrow});
-    }
-    &:focus{
-        outline: 3px solid ${theme.focus};
-    }
+const Field = styled.div`
+    position: relative;
+    margin-bottom: 7px;
 `
 
 const Label = styled.label`
     font-weight: bold;
     color: ${theme.text};
     cursor: pointer;
-`
-
-const Field = styled.div`
-    position: relative;
-    margin-bottom: 7px;
 `
 
 const Input = styled.input`
@@ -86,25 +51,7 @@ const ApplyButton = styled.button`
     }
 `
 
-const ClearButton = styled.button`
-    color: ${theme.link};
-    font-size: 0.9rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    &:hover{
-        text-decoration: underline;
-    }
-    &:focus{
-        background: ${theme.focus};
-        outline: 3px solid ${theme.focus};
-    }
-    &:active{
-        color: ${theme.text};
-    }
-`
-
-const Filter = ({
+const KeywordFilter = ({
     value,
     setValue,
     setPage
@@ -127,7 +74,7 @@ const Filter = ({
     }
 
     return(
-        <Outer onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <Header>
                 <UnfoldButton 
                     type="button"
@@ -136,7 +83,7 @@ const Filter = ({
                 >
                     <Label>Keywords</Label>
                 </UnfoldButton>
-                {localKeywords.length > 0 && 
+                {value.length > 0 && 
                     <ClearButton type="button" onClick={clear}>Clear</ClearButton>
                 }
             </Header>
@@ -152,8 +99,8 @@ const Filter = ({
                     <ApplyButton type="submit">Apply</ApplyButton>
                 </Field>
             }
-        </Outer>
+        </Form>
     )
 }
 
-export default Filter
+export default KeywordFilter
