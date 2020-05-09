@@ -71,9 +71,9 @@ const PinboardButton = ({
     const isPinned = isInPinboard(service.id)
 
     return(
-        <div>
+        <div aria-live="polite" ref={hoverRef}>
             {isPinned ?        
-                <RemoveButton ref={hoverRef} hovered={isHovered} onClick={() => 
+                <RemoveButton hovered={isHovered} onClick={() => 
                     removeFromPinboard(service.id)
                 }>
                     {isHovered ? "Remove?" : "Added"}
