@@ -92,7 +92,6 @@ const KeywordFilter = ({
                     <Field>
                         <Input 
                             id="keywords"
-                            type="search"
                             placeholder="Search..."
                             value={localKeywords}
                             onChange={e => setLocalKeywords(e.target.value)} 

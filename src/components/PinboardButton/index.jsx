@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import theme from "../_theme"
 import Button from "../Button"
@@ -9,7 +9,21 @@ import { PinboardContextConsumer } from "../../contexts/pinboardContext"
 import { AlertContextConsumer } from "../../contexts/alertContext"
 
 const BaseButton = styled.button`
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: ${theme.link};
+    font-size: 1rem;
+    padding: 18px 25px;
+    cursor: pointer;
+    width: 100%;
     &:before{
+        margin-right: 10px;
         display: block;
         content: "";
         height: 15px;
@@ -17,6 +31,15 @@ const BaseButton = styled.button`
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+    }
+    &:hover{
+        background: ${theme.pale};
+    }
+    &:focus{
+        outline: 3px solid ${theme.focus};
+    }
+    @media screen and (min-width: ${theme.breakpointM}){
+        width: inherit;
     }
 `
 
@@ -27,18 +50,26 @@ const AddButton = styled(BaseButton)`
 `
 
 const RemoveButton = styled(BaseButton)`
+    background: ${theme.pale};
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
     &:before{
         background-image: url(${remove});
     }
 `
 
 const Added = styled.div`
-    display: inline-flex;
+    display: flex;
+    width: 100%;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     position: relative;
     color: ${theme.link};
-    padding: 15px 20px;
+    padding: 18px 25px;
     font-weight: bold;
     &:before{
         display: block;
@@ -55,6 +86,9 @@ const Added = styled.div`
     &:focus-within button{
         opacity: 1;
     }
+    @media screen and (min-width: ${theme.breakpointM}){
+        width: inherit;
+    }
 `
 
 const PinboardButton = ({
@@ -63,16 +97,22 @@ const PinboardButton = ({
     addToPinboard,
     removeFromPinboard,
     triggerAlert
-}) => isInPinboard(service.id) ?
-    <Added>
-        Added
-        <RemoveButton onClick={() => removeFromPinboard(service.id)}>Remove?</RemoveButton>
-    </Added>
-    :
-    <AddButton onClick={() => {
-        addToPinboard(service)
-        triggerAlert("Added to pinboard")
-    }}>Add to pinboard</AddButton>
+}) => {
+
+    const [justAdded, setJustAdded] = useState(false)
+
+    return isInPinboard(service.id) ?
+        <Added>
+            Added
+            {!justAdded && <RemoveButton onClick={() => removeFromPinboard(service.id)}>Remove?</RemoveButton>}
+        </Added>
+        :
+        <AddButton onClick={() => {
+            addToPinboard(service)
+            triggerAlert("Added to pinboard")
+        }}>Add to pinboard</AddButton>
+}
+
 
 export default props =>
     <AlertContextConsumer>

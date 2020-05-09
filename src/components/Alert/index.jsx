@@ -18,6 +18,7 @@ const StyledAlert = styled(Alert)`
     box-shadow: 0px 2px 12px ${theme.textBackground};
     animation: popIn 5s ease-out;
     z-index: 999;
+    pointer-events: none;
 
     @keyframes popIn{
         0%{
