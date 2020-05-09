@@ -19,6 +19,7 @@ export default {
     maxWidth: "924px",
     outerSpacing: "20px",
 
+    breakpointS: "400px",
     breakpointM: "750px",
     breakpointL: "1000px"
 }

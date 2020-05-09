@@ -82,7 +82,7 @@ export const ResultsHeader = styled.header`
   *:first-child{
     margin-bottom: 15px;
   }
-  @media screen and (min-width: ${theme.breakpointM}){
+  @media screen and (min-width: ${theme.breakpointS}){
     display: flex;
     flex-direction: row;
     justify-content: space-between;
