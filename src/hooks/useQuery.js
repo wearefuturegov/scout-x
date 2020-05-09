@@ -24,7 +24,7 @@ const useQuery = (key, initialValue, options = {}) => {
         const parsedValues = queryString.parse(query)
         const newString = queryString.stringify({
             ...parsedValues,
-            [key]: numerical ? parseInt(value) : value
+            [key]: value
         })
         applyQueryString(`?${newString}`)
     }
@@ -32,7 +32,7 @@ const useQuery = (key, initialValue, options = {}) => {
     const getQueryStringValue = (key, query) => {
         const value = queryString.parse(query)[key]
         if(numerical) return parseInt(value)
-        if(array) return [].concat(value)
+        if(array) return value ? [].concat(value) : []
         return value
     }
 
