@@ -122,6 +122,27 @@ export const ResultsFooter = styled.footer`
   justify-content: center;
 `
 
+const SkipLink = styled.a`
+  position: absolute;
+  font-size: 1rem;
+  background: ${theme.pale};
+  top: 10px;
+  left: 20px;
+  padding: 10px;
+  color: ${theme.link};
+  text-decoration: none;
+  font-weight: bold;
+  transform: translateY(-500px);
+  @media screen and (min-width: ${theme.breakpointM}){
+    top: 13px;
+    left: 13px;
+  }
+  &:focus{
+    outline: 3px solid ${theme.focus};
+    transform: translateY(0);
+  }
+`
+
 const Layout = ({
     headerComponents,
     sidebarComponents,
@@ -130,12 +151,16 @@ const Layout = ({
 }) =>
     <>
         <GlobalStyle/>
+        <SkipLink href="#main-content">Skip to main content</SkipLink>
         <Header/>
         <PageHeader>
             <PageHeaderInner>
                 <Breadcrumbs/>
                 <PageTitle>Search in your area</PageTitle>
+                <div id="main-content">
+
                 {headerComponents}
+                </div>
             </PageHeaderInner>
         </PageHeader>
         <ResultsArea ref={scrollRef}>
