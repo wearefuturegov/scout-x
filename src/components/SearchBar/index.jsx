@@ -130,24 +130,23 @@ const SearchBar = ({
 
     const geolocate =  () => {
         setFinding(true)
-        navigator.geolocation.getCurrentPosition(async position => {
+        navigator.geolocation.getCurrentPosition(async (position, error) => {
+            if(error) {
+                triggerAlert("Couldn't find your current location. Please enter it another way.")
+                setFinding(false)
+            }
             let {latitude, longitude} = position.coords
             let res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
             let { address } = await res.json()
-            if(address){
-                setLocalCoverage(address.postcode)
-                setLocalLat(latitude)
-                setLocalLng(longitude)
-            } else {
-                triggerAlert("Couldn't find your current location. Please enter it another way.")
-            }
+            setLocalCoverage(address.postcode)
+            setLocalLat(latitude)
+            setLocalLng(longitude)
             setFinding(false)
         })
     }
-
+    
     return(
         <Form onSubmit={handleSubmit}>
-
             <Field>
                 <Label htmlFor="collection">What</Label>
                 <Select 
@@ -164,7 +163,6 @@ const SearchBar = ({
                     )}
                 </Select>
             </Field>
-
             <Field>
                 <Label htmlFor="location">Where</Label>
                 <AutocompletePlaceInput 
@@ -187,7 +185,6 @@ const SearchBar = ({
                         </Tooltip>
                 }
             </Field>
-
             <Button type="submit">
                 <img src={search} alt="search"/>
             </Button>

@@ -9,8 +9,6 @@ export const AlertContextProvider = ({
 
     const [alert, setAlert] = useState(false)
 
-    console.log(alert)
-
     return (
         <AlertContext.Provider
             value={{

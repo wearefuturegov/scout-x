@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
 import { Dialog } from "@reach/dialog"
 import "@reach/dialog/styles.css"
@@ -93,8 +93,6 @@ const PinboardDialog = ({
     navigate,
     pinboard
 }) => {
-
-    const [service, setService] = useState(false)
     
     const handleDismiss = () => {
         navigate(`/${location.search}`)
@@ -113,7 +111,7 @@ const PinboardDialog = ({
             </Header>
             <Body>
                 {pinboard.map(pin =>
-                    <ServiceCard {...pin}/>    
+                    <ServiceCard key={pin.id} {...pin}/>    
                 )}
             </Body>
         </StyledDialog>

@@ -20,7 +20,7 @@ const StyledDialog = styled(Dialog)`
         box-shadow: 0px 2px 12px rgba(0,0,0,0.1);
     }
     @media screen and (min-width: ${theme.breakpointM}){
-        margin: 60px auto;
+        margin: 40px auto;
     }
     animation: splat 0.15s ease-out;
     @keyframes splat{
