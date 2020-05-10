@@ -171,7 +171,12 @@ const DetailDialog = ({
             />
             <Body>
                 <Actions>
-                    {service.url && <ButtonLink href={service.url}>Visit website</ButtonLink>}
+                    {service.url ?
+                        <ButtonLink href={service.url}>Visit website</ButtonLink>
+                        :
+                        service.email &&
+                            <ButtonLink href={`mailto:${service.email}`}>Send email</ButtonLink>
+                    }
                     <PinboardButton service={service}/>
                 </Actions>
                 <Description>

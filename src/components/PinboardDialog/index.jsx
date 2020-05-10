@@ -46,6 +46,9 @@ const Body = styled.ul`
     @media screen and (min-width: ${theme.breakpointM}){
         padding: 45px;
     }
+    li:last-child{
+        margin-bottom: 0px;
+    }
 `
 
 const Icon = styled.img`

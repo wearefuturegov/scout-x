@@ -107,7 +107,7 @@ const App = ({
               />
             </ResultsHeader>
             {mapVisible && <ListMap results={results}/>}
-            {/* <Pinboard/> */}
+            <Pinboard/>
             <ResultsList aria-live="polite">
               {loading ?
                 <Skeleton/>
