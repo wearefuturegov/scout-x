@@ -19,7 +19,6 @@
   "devDependencies": {
     "chalk": "^4.0.0",
     "progress-bar-webpack-plugin": "^2.1.0",
-    "react-snap": "^1.23.0",
     "webpack": "4.42.0",
     "webpack-bundle-analyzer": "^3.7.0"
   },
@@ -28,8 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "analyse": "node analyse",
-    "postbuild": "react-snap"
+    "analyse": "node analyse"
   },
   "eslintConfig": {
     "extends": "react-app"
