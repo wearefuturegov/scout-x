@@ -2,7 +2,7 @@
 // import "react-app-polyfill/stable"
 
 import React from "react"
-import ReactDOM from "react-dom"
+// import ReactDOM from "react-dom"
 import App from "./App"
 import { Router } from "@reach/router"
 import DetailDialog from "./components/DetailDialog"
@@ -11,7 +11,11 @@ import { GoogleContextProvider } from "./contexts/googleContext"
 import { AlertContextProvider } from "./contexts/alertContext"
 import { PinboardContextProvider } from "./contexts/pinboardContext"
 
-ReactDOM.render(
+import { hydrate, render } from "react-dom"
+
+const rootElement = document.getElementById("root")
+
+const Index = () =>
   <React.StrictMode>
     <PinboardContextProvider>
       <AlertContextProvider>
@@ -25,6 +29,10 @@ ReactDOM.render(
         </GoogleContextProvider>
       </AlertContextProvider>
     </PinboardContextProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
-)
+  </React.StrictMode>
+
+if (rootElement.hasChildNodes()) {
+  hydrate(<Index />, rootElement)
+} else {
+  render(<Index />, rootElement)
+}
