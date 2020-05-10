@@ -33,9 +33,10 @@ const Count = styled.span`
 `
 
 const PinboardLink = ({
-    pinboard
+    pinboard,
+    location
 }) => pinboard.length > 0 ?
-    <StyledLink to="/pinboard">
+    <StyledLink to={`/pinboard${location.search}`}>
         See pinned services
         <Count>({pinboard.length})</Count>
     </StyledLink>
