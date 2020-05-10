@@ -32,10 +32,11 @@ const BaseButton = styled.button`
         background-position: center;
     }
     &:hover{
-        color: ${theme.linkHover};
+        /* color: ${theme.linkHover}; */
+        text-decoration: underline;
     }
     &:active{
-        color: ${theme.linkActive};
+        color: ${theme.text};
     }
     &:focus{
         background: ${theme.focus};

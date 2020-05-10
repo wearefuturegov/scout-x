@@ -3,6 +3,7 @@ import styled from "styled-components"
 import fetch from "isomorphic-unfetch"
 import { Dialog } from "@reach/dialog"
 import PinboardButton from "../PinboardButton"
+import Description from "../Description"
 import "@reach/dialog/styles.css"
 import Loader from "../Loader"
 import { ButtonLink } from "../Button"
@@ -90,18 +91,6 @@ const Title = styled.h1`
     }
 `
 
-const Description = styled.article`
-    margin-bottom: 25px;
-    color: ${theme.text};
-    p{
-        line-height: 1.4;
-        margin-bottom: 10px;
-        &:last-child{
-            margin-bottom: 0px;
-        }
-    }
-`
-
 const Actions = styled.div`
     margin-bottom: 25px;
     a:first-of-type{
@@ -179,11 +168,7 @@ const DetailDialog = ({
                     }
                     <PinboardButton service={service}/>
                 </Actions>
-                <Description>
-                    {service.description.split("\n").map((paragraph, i) =>
-                        <p key={i}>{paragraph}</p>
-                    )}
-                </Description>
+                <Description description={service.description}/>
             </Body>
         </StyledDialog>
         :
