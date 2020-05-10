@@ -21,9 +21,9 @@ export const AlertContextProvider = ({
                         link
                     })
                     // Remove the last message after 5 seconds
-                    // setTimeout(() => {
-                    //     setAlert(false)
-                    // }, 5000)
+                    setTimeout(() => {
+                        setAlert(false)
+                    }, 5000)
                 }
             }}
         >
