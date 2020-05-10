@@ -11,7 +11,8 @@ export const GoogleContextProvider = ({
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_CLIENT_KEY,
-        libraries: libs
+        libraries: libs,
+        preventGoogleFontsLoading: true
     })
 
     return (
