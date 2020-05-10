@@ -10,7 +10,7 @@ import Filter from "./components/Filter"
 import KeywordFilter from "./components/Filter/KeywordFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
-import Pinboard from "./components/Pinboard"
+import PinboardLink from "./components/PinboardLink"
 import config from "./data/_config"
 import useQuery from "./hooks/useQuery"
 import { fetchResultsByQuery } from "./lib/api"
@@ -31,7 +31,8 @@ const App = ({
   const [categories, setCategories] = useQuery("categories", [], {array: true})
 
   const [only, setOnly] = useQuery("only", [], {array: true})
-  
+  const [accessibility, setAccessibility] = useQuery("accessibility", [], {array: true})
+
   const [keywords, setKeywords] = useQuery("keywords", "")
 
   const [results, setResults] = useState(false)
@@ -80,6 +81,13 @@ const App = ({
               selection={only}
               setSelection={setOnly}
               setPage={setPage}
+            />
+            <Filter
+              legend="Accessibility"
+              options={config.accessibility}
+              selection={accessibility}
+              setSelection={setAccessibility}
+              setPage={setPage}
               foldable
             />
             <KeywordFilter
@@ -107,7 +115,7 @@ const App = ({
               />
             </ResultsHeader>
             {mapVisible && <ListMap results={results}/>}
-            <Pinboard/>
+            <PinboardLink/>
             <ResultsList aria-live="polite">
               {loading ?
                 <Skeleton/>

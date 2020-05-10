@@ -83,6 +83,11 @@ const Title = styled.h1`
     }
 `
 
+const Count = styled.span`
+    font-weight: normal;
+    /* margin-left: 10px; */
+`
+
 const PinboardDialog = ({
     location,
     navigate,
@@ -101,7 +106,10 @@ const PinboardDialog = ({
                 <Icon src={close} alt="Close dialog"/>
             </CloseButton>
             <Header>
-                <Title>Pinned services ({pinboard.length})</Title>
+                <Title>
+                    Pinned services
+                    <Count> ({pinboard.length})</Count>
+                </Title>
             </Header>
             <Body>
                 {pinboard.map(pin =>

@@ -44,5 +44,19 @@ export default {
             value: "family",
             label: "Suitable for whole family"
         },
+    ],
+    accessibility: [
+        {   
+            value: "wheelchair-access",
+            label: "Wheelchair access"
+        },
+        {   
+            value: "hearing-loop",
+            label: "Hearing loop"
+        },
+        {   
+            value: "bus-stop",
+            label: "Bus stop nearby"
+        },
     ]
 }

@@ -51,6 +51,14 @@ const ApplyButton = styled.button`
     }
 `
 
+const HiddenLabel = styled.label`
+    position: absolute; 
+    overflow: hidden; 
+    clip: rect(0 0 0 0); 
+    height: 1px; width: 1px; 
+    margin: -1px; padding: 0; border: 0;
+`
+
 const KeywordFilter = ({
     value,
     setValue,
@@ -90,6 +98,7 @@ const KeywordFilter = ({
             {unfolded &&
                 <Content>
                     <Field>
+                        <HiddenLabel htmlFor="keywords">Keyword search</HiddenLabel>
                         <Input 
                             id="keywords"
                             placeholder="Search..."

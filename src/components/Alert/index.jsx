@@ -16,6 +16,7 @@ const StyledAlert = styled(Alert)`
     padding: 15px;
     color: ${theme.white};
     font-weight: bold;
+    pointer-events: none;
     box-shadow: 0px 2px 12px ${theme.textBackground};
     animation: popIn 5s ease-out;
     @media screen and (min-width: ${theme.breakpointM}){

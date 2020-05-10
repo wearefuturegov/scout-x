@@ -8,11 +8,20 @@ const StyledLink = styled(Link)`
     display: block;
     text-align: center;
     padding: 10px;
-    background: ${theme.cardShadow};
+    /* background: ${theme.cardShadow}; */
+    border: 2px solid ${theme.link};
     margin-bottom: 25px;
-    color: ${theme.text};
+    color: ${theme.link};
     font-weight: bold;
     text-decoration: none;
+    &:hover{
+        color: ${theme.linkHover};
+        border-color: ${theme.linkHover};
+    }
+    &:active{
+        color: ${theme.linkActive};
+        border-color: ${theme.linkActive};
+    }
     &:focus{
         outline: 3px solid ${theme.focus};
     }
@@ -23,7 +32,7 @@ const Count = styled.span`
     font-weight: normal;
 `
 
-const Pinboard = ({
+const PinboardLink = ({
     pinboard
 }) => pinboard.length > 0 ?
     <StyledLink to="/pinboard">
@@ -36,7 +45,7 @@ const Pinboard = ({
 export default props =>
     <PinboardContextConsumer>
         {pinContext => 
-            <Pinboard
+            <PinboardLink
                 {...pinContext} 
                 {...props}
             />

@@ -19,6 +19,7 @@ const Map = ({
     })
 
     return <Img 
+        loading="lazy"
         src={`https://maps.googleapis.com/maps/api/staticmap?${query}`} 
         alt=""
         />
