@@ -98,7 +98,10 @@ const PinboardButton = ({
                 <AddButton onClick={() => {
                     setJustPinned(true)
                     addToPinboard(service)
-                    triggerAlert("Added to pinboard")
+                    triggerAlert("Added to pinboard", {
+                        label: "View pins",
+                        href: "/pinboard"
+                    })
                 }}>Add to pinboard</AddButton>
             }
         </div>
