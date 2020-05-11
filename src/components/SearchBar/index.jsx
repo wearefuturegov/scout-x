@@ -53,6 +53,9 @@ const Select = styled.select`
     &:focus{
         outline: 3px solid ${theme.focus};
     }
+    &::-ms-expand {
+        display: none;
+    }
 `
 
 const GeolocateButton = styled.button`
