@@ -2,8 +2,8 @@ const fetch = require("isomorphic-unfetch")
 
 exports.handler = async (event, context, callback) => {
 
-    const res = await fetch("https://gracious-bartik-fd7170.netlify.app/wards.geojson")
-    const data = await res.json()
+    // const res = await fetch("https://gracious-bartik-fd7170.netlify.app/wards.geojson")
+    // const data = await res.json()
 
     return {
         statusCode: 200,
@@ -12,7 +12,7 @@ exports.handler = async (event, context, callback) => {
         },
         body: JSON.stringify({
             query: event.queryStringParameters,
-            data: data
+            data: event.body
         })
     }
 }

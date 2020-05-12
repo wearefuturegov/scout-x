@@ -23,12 +23,12 @@ const App = ({
 
   const scrollTarget = useRef(null)
 
-  const [collection, setCollection] = useQuery("collection", "services")
+  const [collection, setCollection] = useQuery("service_type", "services")
   const [coverage, setCoverage] = useQuery("coverage", "")
   const [lat, setLat] = useQuery("lat", "")
   const [lng, setLng] = useQuery("lng", "")
 
-  const [categories, setCategories] = useQuery("categories", [], {array: true})
+  const [categories, setCategories] = useQuery("taxonomies", [], {array: true})
 
   const [only, setOnly] = useQuery("only", [], {array: true})
   const [accessibility, setAccessibility] = useQuery("accessibility", [], {array: true})

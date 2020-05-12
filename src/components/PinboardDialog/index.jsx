@@ -6,6 +6,7 @@ import close from "./close.svg"
 import theme from "../_theme"
 import { PinboardContextConsumer } from "../../contexts/pinboardContext"
 import ServiceCard from "../ServiceCard"
+import fetch from "isomorphic-unfetch"
 
 const StyledDialog = styled(Dialog)`
     position: relative;
@@ -98,6 +99,14 @@ const PinboardDialog = ({
         navigate(`/${location.search}`)
     }
 
+    const handleClick = async () => {
+        let res = await fetch("/.netlify/functions/send-email", {
+            method: "post",
+            body: JSON.stringify(pinboard)
+        })
+        console.log(await res.json())
+    }
+
     return (
         <StyledDialog onDismiss={handleDismiss} aria-label="Pinboard">
             <CloseButton onClick={handleDismiss}>
@@ -108,6 +117,7 @@ const PinboardDialog = ({
                     Pinned services
                     <Count> ({pinboard.length})</Count>
                 </Title>
+                <button onClick={handleClick}>Call lambda</button>
             </Header>
             <Body>
                 {pinboard.map(pin =>
