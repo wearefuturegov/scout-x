@@ -55,7 +55,7 @@ const PinboardDialog = ({
             method: "post",
             body: JSON.stringify(pinboard)
         })
-        console.log(await res.json())
+        await res.json()
     }
 
     return (

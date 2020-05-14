@@ -44,10 +44,11 @@ const DetailDialog = ({
             .then(data => setService(data.service))
     }, [serviceId])
 
-    console.log(service)
-
     return service ?
         <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>
+            <Helmet>
+                <title>{service.name} | Family information service | Buckinghamshire Council</title>}
+            </Helmet>
             <Header>
                 {service.organisation.name && <Caption>{service.organisation.name}</Caption>}
                 <Title>{service.name}</Title>
