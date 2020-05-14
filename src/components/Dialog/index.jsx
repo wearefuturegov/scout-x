@@ -9,7 +9,7 @@ const StyledDialog = styled(Dialog)`
     position: relative;
     padding: 0px;
     margin: 20px auto;
-    width: 90vw;
+    width: 92vw;
     max-width: 700px;
     &:hover{
         box-shadow: 0px 2px 12px rgba(0,0,0,0.1);
@@ -64,3 +64,27 @@ export default ({
             </CloseButton>
             {children}
         </StyledDialog>
+
+
+export const Header = styled.header`
+    padding: 25px;
+    @media screen and (min-width: ${theme.breakpointM}){
+        padding: 45px;
+    }
+`
+
+export const Body = styled.div`
+    padding: 25px;
+    @media screen and (min-width: ${theme.breakpointM}){
+        padding: 45px;
+    }
+`
+
+export const Title = styled.h1`
+    color: ${theme.text};
+    margin-bottom: 0px;
+    font-size: 1.5rem;
+    @media screen and (min-width: ${theme.breakpointM}){
+        font-size: 2rem;
+    }
+`

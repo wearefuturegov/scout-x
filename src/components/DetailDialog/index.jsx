@@ -6,20 +6,17 @@ import Description from "../Description"
 import "@reach/dialog/styles.css"
 import Loader from "../Loader"
 import { ButtonLink } from "../Button"
-import Dialog from "../Dialog"
+import Dialog, { Body, Header, Title } from "../Dialog"
 import Map from "./Map"
 import {
-    Header,
-    Title,
     Tags,
     Tag,
     Caption,
     Location,
     LocationInner,
     Crosshead,
-    Link,
-    Body,
     DarkBody,
+    A,
     Actions,
     SplitContent,
     SplitContentSection,
@@ -69,7 +66,7 @@ const DetailDialog = ({
                     <p>{service.locations[0].address_1}</p>
                     <p>{service.locations[0].city}</p>
                     <p>{service.locations[0].postal_code}</p>
-                    <p><Link href={`https://maps.google.com/maps/search/${service.locations[0].postal_code}`}>Get directions</Link></p>
+                    <p><A href={`https://maps.google.com/maps/search/${service.locations[0].postal_code}`}>Get directions</A></p>
                 </LocationInner>
             </Location>
 
@@ -87,13 +84,14 @@ const DetailDialog = ({
 
                 <SplitContent>
                     <SplitContentSection>
+                        <Crosshead>When</Crosshead>
+                        <p>Schedule info goes here</p>
+                    </SplitContentSection>
+                    <SplitContentSection>
                         <Crosshead>Contact</Crosshead>
-                        <p>{service.email}</p>
-
-                        <p>{service.contacts[0].name}</p>
-                        <p>{service.contacts[0].title}</p>
+                        <p><A href="mailto:{service.email}">{service.email}</A></p>
+                        <p><em>{service.contacts[0].name}, {service.contacts[0].title}</em></p>
                         <p>{service.contacts[0].phones[0].number}</p>
-
                     </SplitContentSection>
                 </SplitContent>
             </Body>
@@ -102,7 +100,7 @@ const DetailDialog = ({
             </DarkBody>
             <Disclaimer>
                 <p>We regularly check and update these community services, but can’t guarantee that they will always be accurate.</p>
-                <p>If anything here is out of date or missing, please <a href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>suggest an edit</a>.</p>
+                <p>If anything here is out of date or missing, please <A href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>suggest an edit</A>.</p>
                 <p>You may need a referral for some activities and groups. Contact the organiser if unsure.</p>
             </Disclaimer>
         </Dialog>

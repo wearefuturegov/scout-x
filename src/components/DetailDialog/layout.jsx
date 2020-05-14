@@ -1,21 +1,6 @@
 import styled from "styled-components"
 import theme from "../_theme"
-
-
-
-export const Header = styled.header`
-    padding: 30px;
-    @media screen and (min-width: ${theme.breakpointM}){
-        padding: 45px;
-    }
-`
-
-export const Body = styled.div`
-    padding: 30px;
-    @media screen and (min-width: ${theme.breakpointM}){
-        padding: 45px;
-    }
-`
+import { Body } from "../Dialog"
 
 export const DarkBody = styled(Body)`
     background: ${theme.pale};
@@ -30,12 +15,17 @@ export const Caption = styled.p`
     }
 `
 
-export const Title = styled.h1`
-    color: ${theme.text};
-    margin-bottom: 0px;
-    font-size: 1.5rem;
-    @media screen and (min-width: ${theme.breakpointM}){
-        font-size: 2rem;
+export const A = styled.a`
+    color: ${theme.link};
+    &:hover{
+        text-decoration: none
+    }
+    &:focus{
+        background: ${theme.focus};
+        outline: 3px solid ${theme.focus};
+    }
+    &:active{
+        color: ${theme.text};
     }
 `
 
@@ -72,11 +62,12 @@ export const Tag = styled.span`
 `
 
 export const Location = styled.section`
-    position: relative;
-    padding: 30px;
+    display: none;
+    padding: 45px;
     min-height: 250px;
+    position: relative;
     @media screen and (min-width: ${theme.breakpointM}) {
-        padding: 45px;
+        display: block;
     }
 `
 
@@ -87,6 +78,7 @@ export const LocationInner = styled.div`
     padding: 25px;
     width: 100%;
     max-width: 270px;
+
 `
 
 export const Crosshead = styled.h3`
@@ -94,45 +86,26 @@ export const Crosshead = styled.h3`
     color: ${theme.text};
 `
 
-export const Link = styled.a`
-    color: ${theme.link};
-    &:hover{
-        text-decoration: none
-    }
-    &:focus{
-        background: ${theme.focus};
-        outline: 3px solid ${theme.focus};
-    }
-    &:active{
-        color: ${theme.text};
+export const SplitContent = styled.section`
+    @media screen and (min-width: ${theme.breakpointM}){
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 45px;
     }
 `
 
-export const SplitContent = styled.section``
-
-export const SplitContentSection = styled.aside``
+export const SplitContentSection = styled.aside`
+    margin-bottom: 25px;    
+    @media screen and (min-width: ${theme.breakpointM}){
+        margin-bottom: 0px;
+    }
+`
 
 export const Disclaimer = styled.footer`
-    padding: 30px;
+    padding: 25px;
     text-align: center;
-    @media screen and (${theme.breakpointM}){
-            padding: 45px;
-    }
     p{
         max-width: 550px;
         margin: 0 auto 10px auto;
-    }
-    a{
-        color: ${theme.link};
-        &:hover{
-            text-decoration: none;
-        }
-        &:focus{
-            background: ${theme.focus};
-            outline: 1px solid ${theme.focus};
-        }
-        &:active{
-            color: ${theme.text};
-        }
     }
 `

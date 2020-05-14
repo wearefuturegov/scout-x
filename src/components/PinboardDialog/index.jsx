@@ -1,21 +1,12 @@
 import React from "react"
 import styled from "styled-components"
 import theme from "../_theme"
-import Dialog from "../Dialog"
+import Dialog, { Header, Title } from "../Dialog"
 import { PinboardContextConsumer } from "../../contexts/pinboardContext"
 import ServiceCard from "../ServiceCard"
-import fetch from "isomorphic-unfetch"
 
-
-const Header = styled.header`
-    padding: 30px;
-    @media screen and (min-width: ${theme.breakpointM}){
-        padding: 45px;
-    }
-`
-
-const Body = styled.ul`
-    padding: 30px;
+export const Body = styled.ul`
+    padding: 25px;
     list-style: none;
     background: ${theme.pale};
     @media screen and (min-width: ${theme.breakpointM}){
@@ -26,18 +17,28 @@ const Body = styled.ul`
     }
 `
 
-const Title = styled.h1`
-    color: ${theme.text};
-    margin-bottom: 0px;
-    font-size: 1.5rem;
-    @media screen and (min-width: ${theme.breakpointM}){
-        font-size: 2rem;
+const A = styled.a`
+margin-top: 25px;
+    display: inline-block;
+    text-align: center;
+    padding: 10px 25px;
+    background:  ${theme.link};
+    color: ${theme.white};
+    font-weight: bold;
+    text-decoration: none;
+    &:hover{
+        background: ${theme.linkHover};
+    }
+    &:active{
+        background: ${theme.linkActive};
+    }
+    &:focus{
+        outline: 3px solid ${theme.focus};
     }
 `
 
 const Count = styled.span`
     font-weight: normal;
-    /* margin-left: 10px; */
 `
 
 const PinboardDialog = ({
@@ -50,14 +51,6 @@ const PinboardDialog = ({
         navigate(`/${location.search}`)
     }
 
-    const handleClick = async () => {
-        let res = await fetch("/.netlify/functions/send-email", {
-            method: "post",
-            body: JSON.stringify(pinboard)
-        })
-        await res.json()
-    }
-
     return (
         <Dialog handleDismiss={handleDismiss} dialogTitle="Pinboard">
             <Header>
@@ -65,7 +58,7 @@ const PinboardDialog = ({
                     Pinned services
                     <Count> ({pinboard.length})</Count>
                 </Title>
-                <button onClick={handleClick}>Call lambda</button>
+                <A href="/print" target="blank">Print list</A>
             </Header>
             <Body>
                 {pinboard.map(pin =>
