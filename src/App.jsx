@@ -55,7 +55,6 @@ const App = ({
 
   return(
     <>
-    {page}
       <Helmet>
         <title>{page > 1 ? `Page ${page}` : "Search in your area"} | Family information service | Buckinghamshire Council</title>}
       </Helmet>
