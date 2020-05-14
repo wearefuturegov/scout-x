@@ -93,7 +93,7 @@ const Title = styled.h1`
 `
 
 const Actions = styled.div`
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     a:first-of-type{
         margin-bottom: 25px;
     }
@@ -101,6 +101,7 @@ const Actions = styled.div`
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin-bottom: 40px;
         a:first-of-type{
             margin-bottom: 0px;
             margin-right: 30px;
@@ -123,6 +124,71 @@ const Tag = styled.span`
     margin-top: 7px;
 `
 
+const Location = styled.section`
+    position: relative;
+    padding: 30px;
+    min-height: 250px;
+    @media screen and (min-width: ${theme.breakpointM}) {
+        padding: 45px;
+    }
+`
+
+const LocationInner = styled.div`
+    display: block;
+    position: relative;
+    background: ${theme.white};
+    padding: 25px;
+    width: 100%;
+    max-width: 270px;
+`
+
+const Crosshead = styled.h3`
+    margin-bottom: 5px;
+    color: ${theme.text};
+`
+
+const Link = styled.a`
+    color: ${theme.link};
+    &:hover{
+        text-decoration: none
+    }
+    &:focus{
+        background: ${theme.focus};
+        outline: 3px solid ${theme.focus};
+    }
+    &:active{
+        color: ${theme.text};
+    }
+`
+
+const SplitContent = styled.section``
+
+const SplitContentSection = styled.aside``
+
+const Disclaimer = styled.footer`
+    padding: 30px;
+    text-align: center;
+    @media screen and (${theme.breakpointM}){
+            padding: 45px;
+    }
+    p{
+        margin-bottom: 10px;
+    }
+    a{
+        color: ${theme.link};
+        &:hover{
+            text-decoration: none;
+        }
+        &:focus{
+            background: ${theme.focus};
+            outline: 1px solid ${theme.focus};
+        }
+        &:active{
+            color: ${theme.text};
+        }
+    }
+`
+
 const DetailDialog = ({
     serviceId,
     location,
@@ -141,6 +207,8 @@ const DetailDialog = ({
             .then(data => setService(data.service))
     }, [serviceId])
 
+    console.log(service)
+
     return service ?
         <StyledDialog onDismiss={handleDismiss} aria-label={service.name}>
             <Helmet>
@@ -158,10 +226,21 @@ const DetailDialog = ({
                     )}
                 </Tags>
             </Header>
-            <Map
-                latitude={51.815606}
-                longitude={-0.8084017}
-            />
+
+            <Location>
+                <Map
+                    latitude={parseFloat(service.locations[0].latitude)}
+                    longitude={parseFloat(service.locations[0].longitude)}
+                />
+                <LocationInner>
+                    <Crosshead>Where</Crosshead>
+                    <p>{service.locations[0].address_1}</p>
+                    <p>{service.locations[0].city}</p>
+                    <p>{service.locations[0].postal_code}</p>
+                    <p><Link href={`https://maps.google.com/maps/search/${service.locations[0].postal_code}`}>Get directions</Link></p>
+                </LocationInner>
+            </Location>
+
             <Body>
                 <Actions>
                     {service.url ?
@@ -173,7 +252,26 @@ const DetailDialog = ({
                     <PinboardButton service={service}/>
                 </Actions>
                 {service.description && <Description description={service.description}/>}
+
+                <SplitContent>
+                    <SplitContentSection>
+                        <Crosshead>Contact</Crosshead>
+                        <p>{service.email}</p>
+
+                        <p>{service.contacts[0].name}</p>
+                        <p>{service.contacts[0].title}</p>
+                        <p>{service.contacts[0].phones[0].number}</p>
+
+                    </SplitContentSection>
+                </SplitContent>
+
+
             </Body>
+            <Disclaimer>
+                <p>We regularly check and update these community services, but can’t guarantee that they will always be accurate.</p>
+                <p>If anything here is out of date or missing, please <a href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>suggest an edit</a>.</p>
+                <p>You may need a referral for some activities and groups. Contact the organiser if unsure.</p>
+            </Disclaimer>
         </StyledDialog>
         :
         <Loader/>

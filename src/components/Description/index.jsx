@@ -6,7 +6,7 @@ import upArrow from "./up-arrow.svg"
 import downArrow from "./down-arrow.svg"
 
 const Outer = styled.article`
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     color: ${theme.text};
     p{
         line-height: 1.4;

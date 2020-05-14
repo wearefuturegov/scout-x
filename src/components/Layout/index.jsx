@@ -21,6 +21,11 @@ const GlobalStyle = createGlobalStyle`
   *::-moz-focusring {
     border: 0 !important;
   }
+
+  p{
+    line-height: 1.5;
+    color: ${theme.text};
+  }
 `
 
 export const PageHeader = styled.header`
