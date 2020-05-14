@@ -85,7 +85,7 @@ const DetailDialog = ({
                 <SplitContent>
                     <SplitContentSection>
                         <Crosshead>When</Crosshead>
-                        <p>Schedule info goes here</p>
+                        <p>Content goes here</p>
                     </SplitContentSection>
                     <SplitContentSection>
                         <Crosshead>Contact</Crosshead>
@@ -96,7 +96,16 @@ const DetailDialog = ({
                 </SplitContent>
             </Body>
             <DarkBody>
-
+            <SplitContent>
+                    <SplitContentSection>
+                        <Crosshead>Accessibility</Crosshead>
+                        <p>Content here</p>
+                    </SplitContentSection>
+                    <SplitContentSection>
+                        <Crosshead>SEND Needs</Crosshead>
+                        <p>Content here</p>
+                    </SplitContentSection>
+                </SplitContent>
             </DarkBody>
             <Disclaimer>
                 <p>We regularly check and update these community services, but can’t guarantee that they will always be accurate.</p>

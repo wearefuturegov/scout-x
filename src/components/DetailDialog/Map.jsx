@@ -11,7 +11,7 @@ const Outer = styled.section`
     left: 0px;
     height: 100%;
     width: 100%;
-    pointer-events: none;
+    /* pointer-events: none; */
     background: ${theme.pale};
     .map{
         height: 100%;
@@ -25,14 +25,16 @@ const Map = React.memo(({
 }) => {
 
     return isLoaded ? 
-        <Outer aria-hidden="true">
+        <Outer>
             <GoogleMap 
                 mapContainerClassName="map"
                 options={{
                     mapTypeControl: false,
                     streetViewControl: false,
                     fullscreenControl: false,
-                    zoomControl: false
+                    zoomControl: false,
+                    draggable: false,
+                    scrollwheel: false
                 }}
                 center={{
                     lat: latitude,

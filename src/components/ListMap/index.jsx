@@ -9,7 +9,6 @@ const Outer = styled.section`
     height: 450px;
     border: 1px solid ${theme.cardShadow};
     margin-bottom: 25px;
-
     .list-map{
         height: 100%;
     }
