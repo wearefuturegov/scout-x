@@ -3,6 +3,7 @@ import styled from "styled-components"
 import fetch from "isomorphic-unfetch"
 import { Dialog } from "@reach/dialog"
 import PinboardButton from "../PinboardButton"
+import { Helmet } from "react-helmet"
 import Description from "../Description"
 import "@reach/dialog/styles.css"
 import Loader from "../Loader"
@@ -142,6 +143,9 @@ const DetailDialog = ({
 
     return service ?
         <StyledDialog onDismiss={handleDismiss} aria-label={service.name}>
+            <Helmet>
+                <title>{service.name} | Family information service | Buckinghamshire Council</title>
+            </Helmet>
             <CloseButton onClick={handleDismiss}>
                 <Icon src={close} alt="Close dialog"/>
             </CloseButton>

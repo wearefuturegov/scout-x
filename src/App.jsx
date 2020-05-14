@@ -1,5 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from "react"
+import { Helmet } from "react-helmet"
+import config from "./data/_config"
+import useQuery from "./hooks/useQuery"
+import { fetchResultsByQuery } from "./lib/api"
+
 import Layout, { ResultsHeader, ResultsList, Count, NoResults } from "./components/Layout"
 import Switch from "./components/Switch"
 import SearchBar from "./components/SearchBar"
@@ -11,9 +16,6 @@ import KeywordFilter from "./components/Filter/KeywordFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
-import config from "./data/_config"
-import useQuery from "./hooks/useQuery"
-import { fetchResultsByQuery } from "./lib/api"
 
 const App = ({
   children,
@@ -53,6 +55,10 @@ const App = ({
 
   return(
     <>
+    {page}
+      <Helmet>
+        <title>{page > 1 ? `Page ${page}` : "Search in your area"} | Family information service | Buckinghamshire Council</title>}
+      </Helmet>
       <Layout
         scrollRef={scrollTarget}
         headerComponents={
