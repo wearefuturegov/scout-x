@@ -18,7 +18,7 @@ ReactDOM.render(
       <AlertContextProvider>
         <GoogleContextProvider>
           <Router>
-            <App path="/">
+            <App path="/" default>
               <DetailDialog path="service/:serviceId"/>
               <PinboardDialog path="pinboard"/>
             </App>
