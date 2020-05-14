@@ -51,6 +51,10 @@ const Body = styled.div`
     }
 `
 
+const DarkBody = styled(Body)`
+    background: ${theme.pale};
+`
+
 const CloseButton = styled.button`
     position: absolute;
     right: 5px;
@@ -172,7 +176,8 @@ const Disclaimer = styled.footer`
             padding: 45px;
     }
     p{
-        margin-bottom: 10px;
+        max-width: 550px;
+        margin: 0 auto 10px auto;
     }
     a{
         color: ${theme.link};
@@ -264,9 +269,10 @@ const DetailDialog = ({
 
                     </SplitContentSection>
                 </SplitContent>
-
-
             </Body>
+            <DarkBody>
+
+            </DarkBody>
             <Disclaimer>
                 <p>We regularly check and update these community services, but can’t guarantee that they will always be accurate.</p>
                 <p>If anything here is out of date or missing, please <a href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>suggest an edit</a>.</p>
