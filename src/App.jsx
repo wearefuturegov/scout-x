@@ -35,8 +35,8 @@ const App = ({
 
   const [keywords, setKeywords] = useQuery("keywords", "")
 
-  const [results, setResults] = useState(false)
   const [mapVisible, setMapVisible ] = useState(false)
+  const [results, setResults] = useState([])
   const [loading, setLoading] = useState(true)
 
   const [page, setPage] = useQuery("page", 1, {numerical: true})
@@ -114,7 +114,13 @@ const App = ({
                 label="Show map?"
               />
             </ResultsHeader>
-            {mapVisible && <ListMap results={results}/>}
+            {mapVisible && 
+              <ListMap 
+                results={results}
+                navigate={navigate}
+                location={location}
+              />
+            }
             <PinboardLink location={location}/>
             <ResultsList aria-live="polite">
               {loading ?

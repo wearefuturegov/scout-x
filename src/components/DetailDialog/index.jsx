@@ -168,7 +168,7 @@ const DetailDialog = ({
                     }
                     <PinboardButton service={service}/>
                 </Actions>
-                <Description description={service.description}/>
+                {service.description && <Description description={service.description}/>}
             </Body>
         </StyledDialog>
         :

@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react"
-import { GoogleMap } from "@react-google-maps/api"
+import React, { useEffect } from "react"
+import { GoogleMap, useGoogleMap } from "@react-google-maps/api"
 import Marker from "./Marker"
 import { GoogleContextConsumer } from "../../contexts/googleContext"
 import styled from "styled-components"
@@ -15,57 +15,61 @@ const Outer = styled.section`
     }
 `
 
-const ListMap = ({
-    results,
-    isLoaded
+const BoundSetter = ({
+    results
 }) => {
-
-    const mapInstance = useRef(false)
-
+    const map = useGoogleMap()
     useEffect(()=>{
-        if(isLoaded && results.length > 0){
-            // const bounds = new window.google.maps.LatLngBounds()
-            // results.map(service => {
-            //     return bounds.extend(new window.google.maps.LatLng(
-            //         service.geo.coordinates[1],
-            //         service.geo.coordinates[0]
-            //     ))
-            // })
-            // mapInstance.current.state.map.fitBounds(bounds)
+        const bounds = new window.google.maps.LatLngBounds()
+        if(results.length > 0){
+            results.map(result => bounds.extend({
+                lat: parseFloat(result.location.latitude),
+                lng: parseFloat(result.location.longitude)
+            })) 
+            map.fitBounds(bounds)
         }
-    // eslint-disable-next-line
-    }, [results])
-
-    return isLoaded ? 
-    <Outer>
-        <GoogleMap 
-            mapContainerClassName="list-map"
-            ref={mapInstance}
-            center={{lat: 51.8152889, lng: -0.810456}}
-            options={{
-                mapTypeControl: false,
-                streetViewControl: false,
-                fullscreenControl: false
-            }}
-            zoom={13}
-        > 
-            {results.map(service=>
-                <Marker
-                    key={service.assetId} 
-                    service={service} 
-                />    
-            )}
-        </GoogleMap>
-    </Outer>
-: 
-    <p>Map loading...</p>
+    })
+    return null
 }
 
-const WrappedMap = props =>
+const ListMap = React.memo(({
+    results,
+    isLoaded,
+    location,
+    navigate
+}) => {
+
+    let plottableResults = results.filter(result => (result.location.latitude && result.location.longitude))
+
+    return isLoaded ? 
+        <Outer>
+            <GoogleMap 
+                mapContainerClassName="list-map"
+                options={{
+                    mapTypeControl: false,
+                    streetViewControl: false,
+                    fullscreenControl: false
+                }}
+                zoom={13}
+            > 
+                <BoundSetter results={plottableResults}/>
+                {plottableResults && plottableResults.map(service =>
+                    <Marker
+                        key={service.id} 
+                        service={service} 
+                        navigate={navigate}
+                        location={location}
+                    />    
+                )}
+            </GoogleMap>
+        </Outer>
+        : 
+        <p>Map loading...</p>
+})
+
+export default props =>
     <GoogleContextConsumer>
         {context =>
             <ListMap isLoaded={context.isLoaded} {...props}/>
         }
     </GoogleContextConsumer>
-
-export default WrappedMap
