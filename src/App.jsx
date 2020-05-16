@@ -12,6 +12,7 @@ import ServiceCard from "./components/ServiceCard"
 import Skeleton from "./components/ServiceCard/Skeleton"
 import Filters from "./components/Filters"
 import Filter from "./components/Filter"
+import RadioFilter from "./components/Filter/RadioFilter"
 import KeywordFilter from "./components/Filter/KeywordFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
@@ -30,7 +31,7 @@ const App = ({
   const [lat, setLat] = useQuery("lat", "")
   const [lng, setLng] = useQuery("lng", "")
 
-  const [categories, setCategories] = useQuery("taxonomies", [], {array: true})
+  const [categories, setCategories] = useQuery("taxonomies", false)
 
   const [only, setOnly] = useQuery("only", [], {array: true})
   const [accessibility, setAccessibility] = useQuery("accessibility", [], {array: true})
@@ -73,7 +74,7 @@ const App = ({
         }
         sidebarComponents={<>
           <Filters>
-            <Filter
+            <RadioFilter
               legend="Categories"
               options={config.categories}
               selection={categories}

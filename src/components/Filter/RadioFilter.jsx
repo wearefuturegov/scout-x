@@ -1,31 +1,47 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import theme from "../_theme"
 import { Outer, Legend, Label, Field, Header, UnfoldButton, ClearButton, Content } from "./layout"
-import tick from "./tick.svg"
 
 const Input = styled.input`
     position: absolute;
     left: 0px;
     top: 0px;
     width: 29px;
+    border-radius: 100%;
     height: 29px;
     opacity: 0;
     &:checked + label:after{
         position: absolute;
         content: "";
         display: block;
+        border-radius: 100%;
+        background: ${theme.text};
         height: 19px;
         width: 19px;
         left: 5px;
         top: 5px;
-        background-image: url(${tick});
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
     }
 `
 
-const Filter = ({
+export const StyledField = styled(Field)`
+    &:focus-within label:before{
+        outline: none;
+        box-shadow: 0px 0px 0px 3px ${theme.focus};
+    }
+`
+
+export const StyledLabel = styled(Label)`
+    &:before{
+        border-radius: 100%;
+    }
+`
+
+
+const RadioFilter = ({
     legend,
     options,
     selection,
@@ -37,12 +53,7 @@ const Filter = ({
     const [unfolded, setUnfolded] = useState(selection.length > 0 ? true : false)
 
     const handleChange = e => {
-        let {checked, value} = e.target
-        if(checked){
-            setSelection([...selection, value]  )
-        } else {
-            setSelection(selection.filter(el=> el !== value))
-        }
+        setSelection(e.target.value)
         setPage(1)
     }
 
@@ -71,13 +82,13 @@ const Filter = ({
                     {options.map(o =>
                         <Field key={o.value}>
                             <Input 
-                                type="checkbox" 
+                                type="radio" 
                                 id={o.value}
                                 value={o.value}
                                 onChange={handleChange} 
-                                checked={selection.includes(o.value)}
+                                checked={selection === o.value}
                             />
-                            <Label htmlFor={o.value}>{o.label}</Label>
+                            <StyledLabel htmlFor={o.value}>{o.label}</StyledLabel>
                         </Field>
                     )}
                 </Content>
@@ -86,4 +97,4 @@ const Filter = ({
     )
 }
 
-export default Filter
+export default RadioFilter
