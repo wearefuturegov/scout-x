@@ -30,12 +30,12 @@ const StyledDialog = styled(Dialog)`
     }
 `
 
-const Icon = styled.img`
+export const Icon = styled.img`
     width: 30px;
     height: 30px;
 `
 
-const CloseButton = styled.button`
+export const CloseButton = styled.button`
     position: absolute;
     right: 5px;
     top: 5px;

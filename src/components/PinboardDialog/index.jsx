@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import theme from "../_theme"
 import Dialog, { Header, Title } from "../Dialog"
 import { PinboardContextConsumer } from "../../contexts/pinboardContext"
 import ServiceCard from "../ServiceCard"
+import ShareDialog from "../ShareDialog"
 
 export const Body = styled.ul`
     padding: 25px;
@@ -18,7 +19,7 @@ export const Body = styled.ul`
 `
 
 const A = styled.a`
-    margin-top: 15px;
+    margin-top: 25px;
     display: block;
     text-align: center;
     padding: 10px 25px;
@@ -27,9 +28,6 @@ const A = styled.a`
     font-weight: bold;
     text-decoration: none;
     border: 3px solid ${theme.link};
-    &:first-of-type{
-        margin-top: 25px;
-    }
     &:hover{
         background: ${theme.linkHover};
         border-color: ${theme.linkHover}
@@ -41,22 +39,40 @@ const A = styled.a`
     &:focus{
         outline: 3px solid ${theme.focus};
     }
-    @media screen and (min-width: ${theme.breakpointM}){
+    @media screen and (min-width: ${theme.breakpointS}){
         display: inline-block;
         margin-right: 15px;
     }
 `
 
-const SkeletonA = styled(A)`
+const EmailButton = styled.button`
+    margin-top: 15px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 25px;
+    background:  ${theme.white};
+    font-size: 1rem;
+    cursor: pointer;
     color: ${theme.link};
-    background: none;
+    font-weight: bold;
+    text-decoration: none;
+    border: 3px solid ${theme.link};
     &:hover{
-        background: none;
         color: ${theme.linkHover};
+        border-color: ${theme.linkHover}
     }
     &:active{
-        background: none;
         color: ${theme.linkActive};
+        border-color: ${theme.linkActive}
+    }
+    &:focus{
+        outline: 3px solid ${theme.focus};
+    }
+    @media screen and (min-width: ${theme.breakpointS}){
+        display: inline-block;
+        margin-right: 15px;
+        width: inherit;
     }
 `
 
@@ -70,6 +86,8 @@ const PinboardDialog = ({
     navigate,
     pinboard
 }) => {
+
+    const [dialogOpen, setDialogOpen] = useState(false)
     
     const handleDismiss = () => {
         navigate(`/${location.search}`)
@@ -83,13 +101,18 @@ const PinboardDialog = ({
                     <Count> ({pinboard.length})</Count>
                 </Title>
                 <A href="/print" target="blank">Print list</A>
-                <SkeletonA href="/print" target="blank">Email list</SkeletonA>
+                <EmailButton onClick={() => setDialogOpen(true)}>Email list</EmailButton>
             </Header>
             <Body>
                 {pinboard.map(pin =>
                     <ServiceCard key={pin.id} {...pin}/>    
                 )}
             </Body>
+            <ShareDialog 
+                isOpen={dialogOpen} 
+                handleDismiss={() => setDialogOpen(false)}
+                pinboard={pinboard}
+            />
         </Dialog>
     )
 }
