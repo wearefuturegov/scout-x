@@ -27,6 +27,11 @@ let styles = `
     @media screen and (min-width: ${theme.breakpointM}){
         width: inherit;
     }
+    &:disabled{
+        background: ${theme.text};
+        pointer-events: none;
+        border-color: ${theme.text};
+    }
 `
 
 const Button = styled.button`${styles}`
