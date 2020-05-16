@@ -18,24 +18,48 @@ export const Body = styled.ul`
 `
 
 const A = styled.a`
-margin-top: 25px;
-    display: inline-block;
+    margin-top: 15px;
+    display: block;
     text-align: center;
     padding: 10px 25px;
     background:  ${theme.link};
     color: ${theme.white};
     font-weight: bold;
     text-decoration: none;
+    border: 3px solid ${theme.link};
+    &:first-of-type{
+        margin-top: 25px;
+    }
     &:hover{
         background: ${theme.linkHover};
+        border-color: ${theme.linkHover}
     }
     &:active{
         background: ${theme.linkActive};
+        border-color: ${theme.linkActive}
     }
     &:focus{
         outline: 3px solid ${theme.focus};
     }
+    @media screen and (min-width: ${theme.breakpointM}){
+        display: inline-block;
+        margin-right: 15px;
+    }
 `
+
+const SkeletonA = styled(A)`
+    color: ${theme.link};
+    background: none;
+    &:hover{
+        background: none;
+        color: ${theme.linkHover};
+    }
+    &:active{
+        background: none;
+        color: ${theme.linkActive};
+    }
+`
+
 
 const Count = styled.span`
     font-weight: normal;
@@ -59,6 +83,7 @@ const PinboardDialog = ({
                     <Count> ({pinboard.length})</Count>
                 </Title>
                 <A href="/print" target="blank">Print list</A>
+                <SkeletonA href="/print" target="blank">Email list</SkeletonA>
             </Header>
             <Body>
                 {pinboard.map(pin =>
