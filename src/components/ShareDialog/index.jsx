@@ -70,11 +70,17 @@ const ShareDialog = ({
         e.preventDefault()
         setSending(true)
         try{
-            console.log(email)
-            console.log(pinboard)
-            const res = await fetch("/.netlify/functions/send-email")
-            const data = await res.json()
+            const res = await fetch("/.netlify/functions/send-email", {
+                method: "post",
+                body: JSON.stringify({
+                    email: email,
+                    pins: pinboard
+                })
+            })
+            if (!res.ok) throw Error(res.statusText)
             triggerAlert(`Sent to ${email}`)
+            setSending(false)
+            handleDismiss()
         } catch(e) {
             triggerAlert("Couldn't send email. Please try again later.")
         }
