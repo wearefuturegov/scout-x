@@ -17,6 +17,13 @@ const DesktopOuter = styled.section`
     display: none;
     @media screen and (min-width: ${theme.breakpointM}){
         display: block;
+        @supports (height: 100vh) and (position:sticky){
+            position: sticky;
+            top: 20px;
+            overflow-y: scroll;
+            height: calc(100vh - 40px);
+            bottom: 20px;
+        }
     }
 `
 
