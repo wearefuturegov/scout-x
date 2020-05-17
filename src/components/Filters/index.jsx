@@ -21,6 +21,7 @@ const DesktopOuter = styled.section`
             position: sticky;
             top: 30px;
             overflow-y: auto;
+            padding-left: 3px;
             height: calc(100vh - 60px);
         }
     }
