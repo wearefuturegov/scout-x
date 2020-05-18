@@ -27,8 +27,28 @@ let styles = `
     @media screen and (min-width: ${theme.breakpointM}){
         width: inherit;
     }
+    &:disabled{
+        background: ${theme.text};
+        pointer-events: none;
+        border-color: ${theme.text};
+    }
 `
 
-export default styled.button`${styles}`
+const Button = styled.button`${styles}`
+
+export default Button
+
+export const SolidButton = styled(Button)`
+    background: ${theme.link};
+    color: ${theme.white};
+    &:hover{
+        color: ${theme.white};
+        background: ${theme.linkHover}
+    }
+    &:active{
+        color: ${theme.white};
+        background: ${theme.linkActive}
+    }
+`
 
 export const ButtonLink = styled.a`${styles}`

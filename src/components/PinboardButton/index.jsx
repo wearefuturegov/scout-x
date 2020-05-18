@@ -99,7 +99,7 @@ const PinboardButton = ({
                 <AddButton onClick={() => {
                     setJustPinned(true)
                     addToPinboard(service)
-                    triggerAlert("Added to pinboard")
+                    triggerAlert("Added to pinned services")
                 }}>Add to pins</AddButton>
             }
         </div>

@@ -1,46 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
-import { Dialog } from "@reach/dialog"
-import "@reach/dialog/styles.css"
-import close from "./close.svg"
 import theme from "../_theme"
+import Dialog, { Header, Title } from "../Dialog"
 import { PinboardContextConsumer } from "../../contexts/pinboardContext"
 import ServiceCard from "../ServiceCard"
+import ShareDialog from "../ShareDialog"
 
-const StyledDialog = styled(Dialog)`
-    position: relative;
-    padding: 0px;
-    margin: 20px auto;
-    width: 90vw;
-    max-width: 700px;
-    &:hover{
-        box-shadow: 0px 2px 12px rgba(0,0,0,0.1);
-    }
-    @media screen and (min-width: ${theme.breakpointM}){
-        margin: 60px auto;
-    }
-    animation: splat 0.15s ease-out;
-    @keyframes splat{
-        from{
-            opacity: 0;
-            transform: scale(0.99);
-        }
-        to{
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-`
-
-const Header = styled.header`
-    padding: 30px;
-    @media screen and (min-width: ${theme.breakpointM}){
-        padding: 45px;
-    }
-`
-
-const Body = styled.ul`
-    padding: 30px;
+export const Body = styled.ul`
+    padding: 25px;
     list-style: none;
     background: ${theme.pale};
     @media screen and (min-width: ${theme.breakpointM}){
@@ -51,41 +18,67 @@ const Body = styled.ul`
     }
 `
 
-const Icon = styled.img`
-    width: 30px;
-    height: 30px;
-`
-
-const CloseButton = styled.button`
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    border: none;
-    cursor: pointer;
+const A = styled.a`
+    margin-top: 25px;
+    display: block;
+    text-align: center;
+    padding: 10px 25px;
+    background:  ${theme.link};
+    color: ${theme.white};
+    font-weight: bold;
+    text-decoration: none;
+    border: 3px solid ${theme.link};
     &:hover{
-        background: ${theme.pale};
+        background: ${theme.linkHover};
+        border-color: ${theme.linkHover}
+    }
+    &:active{
+        background: ${theme.linkActive};
+        border-color: ${theme.linkActive}
     }
     &:focus{
         outline: 3px solid ${theme.focus};
     }
-`
-
-const Title = styled.h1`
-    color: ${theme.text};
-    margin-bottom: 0px;
-    font-size: 1.5rem;
-    @media screen and (min-width: ${theme.breakpointM}){
-        font-size: 2rem;
+    @media screen and (min-width: ${theme.breakpointS}){
+        display: inline-block;
+        margin-right: 15px;
     }
 `
 
+const EmailButton = styled.button`
+    margin-top: 15px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 25px;
+    background:  ${theme.white};
+    font-size: 1rem;
+    cursor: pointer;
+    color: ${theme.link};
+    font-weight: bold;
+    text-decoration: none;
+    border: 3px solid ${theme.link};
+    &:hover{
+        color: ${theme.linkHover};
+        border-color: ${theme.linkHover}
+    }
+    &:active{
+        color: ${theme.linkActive};
+        border-color: ${theme.linkActive}
+    }
+    &:focus{
+        outline: 3px solid ${theme.focus};
+    }
+    @media screen and (min-width: ${theme.breakpointS}){
+        display: inline-block;
+        margin-right: 15px;
+        width: inherit;
+    }
+`
+
+
 const Count = styled.span`
     font-weight: normal;
-    /* margin-left: 10px; */
 `
 
 const PinboardDialog = ({
@@ -93,28 +86,34 @@ const PinboardDialog = ({
     navigate,
     pinboard
 }) => {
+
+    const [dialogOpen, setDialogOpen] = useState(false)
     
     const handleDismiss = () => {
         navigate(`/${location.search}`)
     }
 
     return (
-        <StyledDialog onDismiss={handleDismiss} aria-label="Pinboard">
-            <CloseButton onClick={handleDismiss}>
-                <Icon src={close} alt="Close dialog"/>
-            </CloseButton>
+        <Dialog handleDismiss={handleDismiss} dialogTitle="Pinboard">
             <Header>
                 <Title>
                     Pinned services
                     <Count> ({pinboard.length})</Count>
                 </Title>
+                <A href="/print" target="blank">Print list</A>
+                <EmailButton onClick={() => setDialogOpen(true)}>Email list</EmailButton>
             </Header>
             <Body>
                 {pinboard.map(pin =>
                     <ServiceCard key={pin.id} {...pin}/>    
                 )}
             </Body>
-        </StyledDialog>
+            <ShareDialog 
+                isOpen={dialogOpen} 
+                handleDismiss={() => setDialogOpen(false)}
+                pinboard={pinboard}
+            />
+        </Dialog>
     )
 }
 

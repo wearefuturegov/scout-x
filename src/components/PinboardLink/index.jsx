@@ -8,8 +8,7 @@ const StyledLink = styled(Link)`
     display: block;
     text-align: center;
     padding: 10px;
-    /* background: ${theme.cardShadow}; */
-    border: 2px solid ${theme.link};
+    border: 3px solid ${theme.link};
     margin-bottom: 25px;
     color: ${theme.link};
     font-weight: bold;

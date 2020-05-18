@@ -1,5 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from "react"
+import { Helmet } from "react-helmet"
+import config from "./data/_config"
+import useQuery from "./hooks/useQuery"
+import { fetchResultsByQuery } from "./lib/api"
+
 import Layout, { ResultsHeader, ResultsList, Count, NoResults } from "./components/Layout"
 import Switch from "./components/Switch"
 import SearchBar from "./components/SearchBar"
@@ -7,13 +12,11 @@ import ServiceCard from "./components/ServiceCard"
 import Skeleton from "./components/ServiceCard/Skeleton"
 import Filters from "./components/Filters"
 import Filter from "./components/Filter"
+import RadioFilter from "./components/Filter/RadioFilter"
 import KeywordFilter from "./components/Filter/KeywordFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
-import config from "./data/_config"
-import useQuery from "./hooks/useQuery"
-import { fetchResultsByQuery } from "./lib/api"
 
 const App = ({
   children,
@@ -23,20 +26,20 @@ const App = ({
 
   const scrollTarget = useRef(null)
 
-  const [collection, setCollection] = useQuery("collection", "services")
+  const [collection, setCollection] = useQuery("service_type", "services")
   const [coverage, setCoverage] = useQuery("coverage", "")
   const [lat, setLat] = useQuery("lat", "")
   const [lng, setLng] = useQuery("lng", "")
 
-  const [categories, setCategories] = useQuery("categories", [], {array: true})
+  const [categories, setCategories] = useQuery("taxonomies", false)
 
   const [only, setOnly] = useQuery("only", [], {array: true})
   const [accessibility, setAccessibility] = useQuery("accessibility", [], {array: true})
 
   const [keywords, setKeywords] = useQuery("keywords", "")
 
-  const [results, setResults] = useState(false)
   const [mapVisible, setMapVisible ] = useState(false)
+  const [results, setResults] = useState([])
   const [loading, setLoading] = useState(true)
 
   const [page, setPage] = useQuery("page", 1, {numerical: true})
@@ -53,6 +56,9 @@ const App = ({
 
   return(
     <>
+      <Helmet>
+        <title>{page > 1 ? `Page ${page}` : "Search in your area"} | Family information service | Buckinghamshire Council</title>}
+      </Helmet>
       <Layout
         scrollRef={scrollTarget}
         headerComponents={
@@ -68,7 +74,7 @@ const App = ({
         }
         sidebarComponents={<>
           <Filters>
-            <Filter
+            <RadioFilter
               legend="Categories"
               options={config.categories}
               selection={categories}
@@ -114,7 +120,13 @@ const App = ({
                 label="Show map?"
               />
             </ResultsHeader>
-            {mapVisible && <ListMap results={results}/>}
+            {mapVisible && 
+              <ListMap 
+                results={results}
+                navigate={navigate}
+                location={location}
+              />
+            }
             <PinboardLink location={location}/>
             <ResultsList aria-live="polite">
               {loading ?

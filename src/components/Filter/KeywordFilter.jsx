@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Header, UnfoldButton, ClearButton, Content } from "./index"
+import { Header, UnfoldButton, ClearButton, Content } from "./layout"
 import theme from "../_theme"
 
 const Form = styled.form`

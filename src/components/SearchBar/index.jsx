@@ -142,7 +142,6 @@ const SearchBar = ({
             setLocalLng(longitude)
             setFinding(false)
         }, error => {
-            console.log(error)
             triggerAlert("Couldn't find your current location. Please enter it another way.")
             setFinding(false)
         })

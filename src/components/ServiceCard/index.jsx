@@ -1,7 +1,7 @@
 import React from "react"
 import theme from "../_theme"
 import styled from "styled-components"
-import { truncate } from "../../lib/utils"
+import { truncate, prettyDistance } from "../../lib/utils"
 import { Link, useLocation } from "@reach/router"
 
 const Outer = styled.li`
@@ -85,7 +85,9 @@ const Distance = styled.p`
 const ServiceCard = ({
     id,
     name,
-    description
+    description,
+    distance_away,
+    taxonomies
 }) => {
     const { search } = useLocation()
     return(
@@ -95,8 +97,10 @@ const ServiceCard = ({
             </StyledLink>
             <Description>{truncate(description, 18)}</Description>
             <Footer>
-                <CategoryTag>Category</CategoryTag>
-                <Distance>About X miles away</Distance>
+                {taxonomies.filter(taxonomy => taxonomy.parent_id === null).map(taxonomy =>
+                     <CategoryTag key={taxonomy.id}>{taxonomy.name}</CategoryTag>
+                )}
+                {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
             </Footer>
         </Outer>
     )
