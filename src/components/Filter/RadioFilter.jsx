@@ -84,6 +84,7 @@ const RadioFilter = ({
                             <Input 
                                 type="radio" 
                                 id={o.value}
+                                name={legend}
                                 value={o.value}
                                 onChange={handleChange} 
                                 checked={selection === o.value}
