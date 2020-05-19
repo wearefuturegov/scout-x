@@ -80,16 +80,17 @@ const RadioFilter = ({
             {(!foldable || unfolded) && 
                 <Content>
                     {options.map(o =>
-                        <Field key={o.value}>
+                        <StyledField key={o.value}>
                             <Input 
                                 type="radio" 
                                 id={o.value}
+                                name={legend}
                                 value={o.value}
                                 onChange={handleChange} 
                                 checked={selection === o.value}
                             />
                             <StyledLabel htmlFor={o.value}>{o.label}</StyledLabel>
-                        </Field>
+                        </StyledField>
                     )}
                 </Content>
             }

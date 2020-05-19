@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "chalk": "^4.0.0",
+    "dotenv": "^8.2.0",
     "progress-bar-webpack-plugin": "^2.1.0",
     "webpack": "4.42.0",
     "webpack-bundle-analyzer": "^3.7.0"
@@ -28,7 +29,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "analyse": "node analyse"
+    "analyse": "node jobs/analyse",
+    "postinstall": "node jobs/get-taxonomies"
   },
   "eslintConfig": {
     "extends": "react-app"

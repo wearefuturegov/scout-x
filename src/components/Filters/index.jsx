@@ -20,7 +20,8 @@ const DesktopOuter = styled.section`
         @supports (height: 100vh) and (position:sticky){
             position: sticky;
             top: 30px;
-            overflow-y: scroll;
+            overflow-y: auto;
+            padding-left: 3px;
             height: calc(100vh - 60px);
         }
     }
