@@ -15,7 +15,8 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "react-scripts": "3.4.1",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "@sendgrid/mail": "^7.1.1"
   },
   "devDependencies": {
     "chalk": "^4.0.0",
