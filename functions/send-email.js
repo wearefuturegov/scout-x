@@ -25,6 +25,7 @@ exports.handler = async (event, context, callback) => {
                 )
             }
         }
+        console.log(msg)
         mail.send(msg)
         return {
             statusCode: 200,
