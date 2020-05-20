@@ -37,13 +37,13 @@ const PrintablePinboard = ({
 }) => {
 
     useEffect(() => {
-        window.print()
-
+        if(pinboard.length > 0) {
+            window.print()
+        }
         window.addEventListener("afterprint", () => {
             window.close()
         })
-
-    }, [])
+    }, [pinboard])
 
     return(
         <>
