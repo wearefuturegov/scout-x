@@ -113,7 +113,7 @@ const DetailDialog = ({
             </DarkBody>
             <Disclaimer>
                 <p>We regularly check and update these community services, but can’t guarantee that they will always be accurate.</p>
-                <p>If anything here is out of date or missing, please <A target="blank" href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>suggest an edit</A>.</p>
+                <p>If anything here is out of date or missing, please <A target="_blank" href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>suggest an edit</A>.</p>
                 <p>You may need a referral for some activities and groups. Contact the organiser if unsure.</p>
             </Disclaimer>
         </Dialog>
