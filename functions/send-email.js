@@ -6,6 +6,7 @@ exports.handler = async (event, context, callback) => {
 
         let host = process.env.EMAIL_HOST || "https://scout-x.netlify.app/service/"
 
+        console.log("API KEY: ", process.env.SENDGRID_API_KEY)
         mail.setApiKey(process.env.SENDGRID_API_KEY)
         const msg = {
             to: email,
