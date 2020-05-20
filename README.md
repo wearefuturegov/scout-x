@@ -45,16 +45,11 @@ Run the `npm run build` command and then serve the `/build` folder.
 ## Configuration
 
 - `REACT_APP_API_HOST`: the location of the API where service data can be read
-
 - `REACT_APP_GOOGLE_CLIENT_KEY`: with the Google Places, Maps Javascript and Maps Static APIs enabled
-
 
 And for the email sending function:
 
 - `SENDGRID_API_KEY`: needed to send pinned services by email
-
-- `SENDGRID_TEMPLATE_ID`: the id of a [dynamic Sendgrid template](https://sendgrid.com/docs/ui/sending-email/how-to-send-an-email-with-dynamic-transactional-templates/)
-
+- `SENDGRID_TEMPLATE_ID`: the id of a [dynamic Sendgrid template](https://sendgrid.com/docs/ui/sending-email/how-to-send-an-email-with-dynamic-transactional-templates/) that expects a {{{pins}}} data variable.
 - `EMAIL_FROM`: the "from" address for emails. Needs to be a verified Sendgrid sender
-
 - `EMAIL_HOST`: URLs in emails will be built using this host
