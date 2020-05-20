@@ -53,5 +53,5 @@ And for the email sending function:
 
 - `SENDGRID_API_KEY`: needed to send pinned services by email
 - `SENDGRID_TEMPLATE_ID`: the ID of a [dynamic Sendgrid template](https://sendgrid.com/docs/ui/sending-email/how-to-send-an-email-with-dynamic-transactional-templates/) that expects a `{{{pins}}}` data variable.
-- `EMAIL_FROM`: the "from" address for emails. Should be a verified Sendgrid sender. Defaults to CHANGEME@CHANGEME.com if not given.
+- `EMAIL_FROM`: the "from" address for emails. Should be a verified Sendgrid sender.
 - `EMAIL_HOST`: URLs in emails will be built using this host.
