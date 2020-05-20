@@ -89,9 +89,13 @@ const DetailDialog = ({
                     </SplitContentSection>
                     <SplitContentSection>
                         <Crosshead>Contact</Crosshead>
-                        <p><A href="mailto:{service.email}">{service.email}</A></p>
-                        <p><em>{service.contacts[0].name}, {service.contacts[0].title}</em></p>
-                        <p>{service.contacts[0].phones[0].number}</p>
+                        {service.contacts.length > 0 &&
+                            <>
+                                <p><A href="mailto:{service.email}">{service.email}</A></p>
+                                <p><em>{service.contacts[0].name}, {service.contacts[0].title}</em></p>
+                                <p>{service.contacts[0].phones[0].number}</p>
+                            </>
+                        }
                     </SplitContentSection>
                 </SplitContent>
             </Body>
