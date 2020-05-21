@@ -28,7 +28,6 @@ exports.handler = async (event, context, callback) => {
         }
         console.log(msg)
         mail.send(msg)
-        .send(msg)
             .then(() => {
             // Celebrate
             })
