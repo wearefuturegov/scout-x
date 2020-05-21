@@ -27,7 +27,12 @@ exports.handler = async (event, context, callback) => {
             }
         }
         console.log(msg)
-        mail.send(msg)
+        mail.send(msg).then(() => {}, error => {
+            console.error(error);
+            if (error.response) {
+              console.error(error.response.body)
+            }
+          });
         return {
             statusCode: 200,
             body: JSON.stringify({
