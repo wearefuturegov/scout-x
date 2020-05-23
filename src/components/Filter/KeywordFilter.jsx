@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Header, UnfoldButton, ClearButton, Content } from "./layout"
+import { Header, UnfoldButton, Content } from "./layout"
 import theme from "../_theme"
 
 const Form = styled.form`
@@ -91,9 +91,6 @@ const KeywordFilter = ({
                 >
                     <Label>Keywords</Label>
                 </UnfoldButton>
-                {value.length > 0 && 
-                    <ClearButton type="button" onClick={clear}>Clear</ClearButton>
-                }
             </Header>
             {unfolded &&
                 <Content>

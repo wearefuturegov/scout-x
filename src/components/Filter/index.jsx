@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Outer, Legend, Label, Field, Header, UnfoldButton, ClearButton, Content } from "./layout"
+import { Outer, Legend, Label, Field, Header, UnfoldButton, Content } from "./layout"
 import tick from "./tick.svg"
 
 const Input = styled.input`
@@ -46,8 +46,6 @@ const Filter = ({
         setPage(1)
     }
 
-    const clear = () => setSelection([])
-
     return(
         <Outer>
             <Header>
@@ -61,9 +59,6 @@ const Filter = ({
                     </UnfoldButton>
                     :
                     <Legend>{legend}</Legend>
-                }
-                {selection.length > 0 && 
-                    <ClearButton onClick={clear}>Clear</ClearButton>
                 }
             </Header>
             {(!foldable || unfolded) && 

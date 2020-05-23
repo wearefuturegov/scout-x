@@ -4,26 +4,20 @@ import theme from "../_theme"
 import downArrow from "./down-arrow.svg";
 import upArrow from "./up-arrow.svg";
 
-const MobileOuter = styled.section`
-    @media screen and (min-width: ${theme.breakpointM}){
-        display: none;
-    }
+const Outer = styled.section`
     margin-bottom: 35px;
     fieldset:first-of-type{
         margin-top: 20px;
+        @media screen and (min-width: ${theme.breakpointM}){
+            margin-top: 0px;
+        }
     }
 `
-const DesktopOuter = styled.section`
-    display: none;
+
+const Inner = styled.div`
+    display: ${props => props.open ? "block": "none"};
     @media screen and (min-width: ${theme.breakpointM}){
         display: block;
-        @supports (height: 100vh) and (position:sticky){
-            position: sticky;
-            top: 30px;
-            overflow-y: auto;
-            padding-left: 3px;
-            height: calc(100vh - 60px);
-        }
     }
 `
 
@@ -62,6 +56,9 @@ const Button = styled.button`
     &[aria-expanded=true]:after{
         background-image: url(${upArrow});
     }
+    @media screen and (min-width: ${theme.breakpointM}){
+        display: none;
+    }
 `
 
 const Filters = ({
@@ -72,20 +69,17 @@ const Filters = ({
     const [open, setOpen] = useState(false)
 
     return(
-        <>
-            <MobileOuter open>
-                <Button 
-                    onClick={() => setOpen(!open)}
-                    aria-expanded={open ? "true" : "false"}
-                >
-                    {open ? "Hide filters" : "Show filters"}
-                </Button>
-                {open && children}
-            </MobileOuter>
-            <DesktopOuter>
+        <Outer>
+            <Button
+                onClick={() => setOpen(!open)}
+                aria-expanded={open ? "true" : "false"}
+            >
+                {open ? "Hide filters" : "Show filters"}
+            </Button>
+            <Inner open={open}>
                 {children}
-            </DesktopOuter>
-        </>
+            </Inner>
+        </Outer>
     )
 }
 

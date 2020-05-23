@@ -4,6 +4,9 @@ import styled from "styled-components"
 import search from "./search.svg"
 import location from "./location.svg"
 import config from "../../data/_config"
+
+import { collections } from "../../lib/transform-taxonomies"
+
 import AutocompletePlaceInput from "../AutocompletePlaceInput"
 import Spinner from "../Spinner"
 import { AlertContextConsumer } from "../../contexts/alertContext"
@@ -103,9 +106,25 @@ const Button = styled.button`
     }
 `
 
+const Input = styled.input`
+    font-size: 1rem;
+    padding: 10px;
+    border: 2px solid ${theme.text};
+    display: block;
+    width: 100%;
+    height: 45px;
+    padding-right: 45px;
+    &:focus{
+        outline: 3px solid ${theme.focus};
+    }
+    &::placeholder{
+        opacity: 0.3;
+    }
+`
+
 const SearchBar = ({
-    type,
-    setType,
+    keywords,
+    setKeywords,
     coverage,
     setCoverage,
     setLat,
@@ -116,14 +135,14 @@ const SearchBar = ({
 
     const [finding, setFinding] = useState(false)
     
-    const [localType, setLocalType] = useState(type)
+    const [localKeywords, setLocalKeywords] = useState(keywords)
     const [localCoverage, setLocalCoverage] = useState(coverage)
     const [localLat, setLocalLat] = useState("")
     const [localLng, setLocalLng] = useState("")
 
     const handleSubmit = e => {
         e.preventDefault()
-        setType(localType)
+        setKeywords(localKeywords)
         setCoverage(localCoverage)
         setLat(localLat)
         setLng(localLng)
@@ -150,20 +169,14 @@ const SearchBar = ({
     return(
         <Form onSubmit={handleSubmit}>
             <Field>
-                <Label htmlFor="collection">What</Label>
-                <Select 
-                    name="collection" 
-                    id="collection"
-                    value={localType}
-                    onChange={e => setLocalType(e.target.value)}
-                >
-                    {config.collections.map(col =>
-                        <option 
-                            key={col.value} 
-                            value={col.value}
-                        >{col.label}</option>
-                    )}
-                </Select>
+                <Label htmlFor="query">Search</Label>
+                <Input
+                    name="query" 
+                    id="query"
+                    placeholder="Enter a search.."
+                    value={localKeywords}
+                    onChange={e => setLocalKeywords(e.target.value)}
+                />
             </Field>
             <Field>
                 <Label htmlFor="location">Where</Label>

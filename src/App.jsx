@@ -18,6 +18,8 @@ import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
 
+import { collectionOptions, sendOptions, ageOptions, subcategoriesOf } from "./lib/transform-taxonomies"
+
 const App = ({
   children,
   location,
@@ -26,17 +28,19 @@ const App = ({
 
   const scrollTarget = useRef(null)
 
-  const [collection, setCollection] = useQuery("service_type", "services")
+  const [keywords, setKeywords] = useQuery("keywords", "")
+
   const [coverage, setCoverage] = useQuery("coverage", "")
   const [lat, setLat] = useQuery("lat", "")
   const [lng, setLng] = useQuery("lng", "")
 
-  const [categories, setCategories] = useQuery("taxonomies", false)
+  const [collection, setCollection] = useQuery("collection", "things-to-do")
 
-  const [only, setOnly] = useQuery("only", [], {array: true})
-  const [accessibility, setAccessibility] = useQuery("accessibility", [], {array: true})
+  console.log(collection)
 
-  const [keywords, setKeywords] = useQuery("keywords", "")
+  const [taxonomies, setTaxonomies] = useQuery("taxonomies", [], {array: true})
+  const [ages, setAges] = useQuery("ages", [], {array: true})
+  const [needs, setNeeds] = useQuery("needs", [], {array: true})
 
   const [mapVisible, setMapVisible ] = useState(false)
   const [results, setResults] = useState([])
@@ -63,8 +67,8 @@ const App = ({
         scrollRef={scrollTarget}
         headerComponents={
           <SearchBar
-            type={collection}
-            setType={setCollection}
+            keywords={keywords}
+            setKeywords={setKeywords}
             coverage={coverage}
             setCoverage={setCoverage}
             setLat={setLat}
@@ -75,31 +79,35 @@ const App = ({
         sidebarComponents={<>
           <Filters>
             <RadioFilter
+              name="collection"
+              options={collectionOptions}
+              selection={collection}
+              setSelection={setCollection}
+              setPage={setPage}
+            />
+            <Filter
               legend="Categories"
-              options={config.categories}
-              selection={categories}
-              setSelection={setCategories}
-              setPage={setPage}
-            />
-            <Filter
-              legend="Only show"
-              options={config.only}
-              selection={only}
-              setSelection={setOnly}
-              setPage={setPage}
-            />
-            <Filter
-              legend="Accessibility"
-              options={config.accessibility}
-              selection={accessibility}
-              setSelection={setAccessibility}
+              options={subcategoriesOf(collection)}
+              selection={taxonomies}
+              setSelection={setTaxonomies}
               setPage={setPage}
               foldable
             />
-            <KeywordFilter
-              value={keywords}
-              setValue={setKeywords}
+            <Filter
+              legend="Age group"
+              options={ageOptions}
+              selection={ages}
+              setSelection={setAges}
               setPage={setPage}
+              foldable
+            />
+            <Filter
+              legend="SEND Needs"
+              options={sendOptions}
+              selection={needs}
+              setSelection={setNeeds}
+              setPage={setPage}
+              foldable
             />
           </Filters>
         </>}
@@ -137,12 +145,14 @@ const App = ({
                 )
               }
             </ResultsList>
-            <Pagination
-              totalPages={totalPages}
-              page={page}
-              setPage={setPage}
-              scrollTarget={scrollTarget}
-            />
+            {!loading &&
+              <Pagination
+                totalPages={totalPages}
+                page={page}
+                setPage={setPage}
+                scrollTarget={scrollTarget}
+              />
+            }
           </>
         }
       />

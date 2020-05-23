@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import theme from "../_theme"
-import { Outer, Legend, Label, Field, Header, UnfoldButton, ClearButton, Content } from "./layout"
+import { Outer, Label, Field } from "./layout"
 
 const Input = styled.input`
     position: absolute;
@@ -27,6 +27,12 @@ const Input = styled.input`
     }
 `
 
+export const Content = styled.div`
+    padding: 25px 0px;
+    border-top: 1px solid ${theme.cardShadow};
+    border-bottom: 1px solid ${theme.cardShadow};
+`
+
 export const StyledField = styled(Field)`
     &:focus-within label:before{
         outline: none;
@@ -42,7 +48,7 @@ export const StyledLabel = styled(Label)`
 
 
 const RadioFilter = ({
-    legend,
+    name,
     options,
     selection,
     setSelection,
@@ -50,41 +56,20 @@ const RadioFilter = ({
     foldable
 }) => {
 
-    const [unfolded, setUnfolded] = useState(selection.length > 0 ? true : false)
-
     const handleChange = e => {
         setSelection(e.target.value)
         setPage(1)
     }
 
-    const clear = () => setSelection([])
-
     return(
         <Outer>
-            <Header>
-                {foldable ?
-                    <UnfoldButton 
-                        type="button"
-                        aria-expanded={unfolded ? "true" : "false"} 
-                        onClick={() => setUnfolded(!unfolded)}
-                    >
-                        <Legend>{legend}</Legend>
-                    </UnfoldButton>
-                    :
-                    <Legend>{legend}</Legend>
-                }
-                {selection.length > 0 && 
-                    <ClearButton onClick={clear}>Clear</ClearButton>
-                }
-            </Header>
-            {(!foldable || unfolded) && 
                 <Content>
                     {options.map(o =>
                         <StyledField key={o.value}>
                             <Input 
                                 type="radio" 
                                 id={o.value}
-                                name={legend}
+                                name={name}
                                 value={o.value}
                                 onChange={handleChange} 
                                 checked={selection === o.value}
@@ -93,7 +78,6 @@ const RadioFilter = ({
                         </StyledField>
                     )}
                 </Content>
-            }
         </Outer>
     )
 }
