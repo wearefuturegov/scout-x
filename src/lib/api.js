@@ -6,6 +6,6 @@ export const fetchResultsByQuery = async query => {
     const {collection, taxonomies, needs, ages} = newQuery
     newQuery.taxonomies = [].concat(collection, taxonomies, needs, ages)
 
-    const res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery)}`)
+    const res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify(newQuery, {arrayFormat: 'comma'})}`)
     return await res.json()
 }
