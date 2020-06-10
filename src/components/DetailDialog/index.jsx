@@ -38,7 +38,7 @@ const DetailDialog = ({
     useEffect(()=>{
         fetch(`${process.env.REACT_APP_API_HOST}/services/${serviceId}`)
             .then(res => res.json())
-            .then(data => setService(data.service))
+            .then(data => setService(data))
     }, [serviceId])
 
     return service ?
