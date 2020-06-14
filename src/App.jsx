@@ -30,13 +30,11 @@ const App = ({
 
   const [keywords, setKeywords] = useQuery("keywords", "")
 
-  const [coverage, setCoverage] = useQuery("coverage", "")
+  const [coverage, setCoverage] = useQuery("location", "")
   const [lat, setLat] = useQuery("lat", "")
   const [lng, setLng] = useQuery("lng", "")
 
   const [collection, setCollection] = useQuery("collection", "things-to-do")
-
-  console.log(collection)
 
   const [taxonomies, setTaxonomies] = useQuery("taxonomies", [], {array: true})
   const [ages, setAges] = useQuery("ages", [], {array: true})
