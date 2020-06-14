@@ -58,26 +58,22 @@ const DetailDialog = ({
 
             <Location>
                 <Map
-                    latitude={parseFloat(service.locations[0].latitude)}
-                    longitude={parseFloat(service.locations[0].longitude)}
+                    latitude={parseFloat(service.location.latitude)}
+                    longitude={parseFloat(service.location.longitude)}
                 />
                 <LocationInner>
                     <Crosshead>Where</Crosshead>
-                    <p>{service.locations[0].address_1}</p>
-                    <p>{service.locations[0].city}</p>
-                    <p>{service.locations[0].postal_code}</p>
-                    <p><A href={`https://maps.google.com/maps/search/${service.locations[0].postal_code}`}>Get directions</A></p>
+                    <p>{service.location.address_1}</p>
+                    <p>{service.location.city}</p>
+                    <p>{service.location.postal_code}</p>
+                    <p><A href={`https://maps.google.com/maps/search/${service.location.postal_code}`}>Get directions</A></p>
                 </LocationInner>
             </Location>
 
+            
             <Body>
                 <Actions>
-                    {service.url ?
-                        <ButtonLink href={service.url}>Visit website</ButtonLink>
-                        :
-                        service.email &&
-                            <ButtonLink href={`mailto:${service.email}`}>Send email</ButtonLink>
-                    }
+                    {service.url && <ButtonLink href={service.url}>Visit website</ButtonLink>}
                     <PinboardButton service={service}/>
                 </Actions>
                 {service.description && <Description description={service.description}/>}
@@ -89,13 +85,13 @@ const DetailDialog = ({
                     </SplitContentSection>
                     <SplitContentSection>
                         <Crosshead>Contact</Crosshead>
-                        {service.contacts.length > 0 &&
+                        {/* {service.contacts.length > 0 &&
                             <>
                                 <p><A href="mailto:{service.email}">{service.email}</A></p>
                                 <p><em>{service.contacts[0].name}, {service.contacts[0].title}</em></p>
                                 <p>{service.contacts[0].phones[0].number}</p>
                             </>
-                        }
+                        } */}
                     </SplitContentSection>
                 </SplitContent>
             </Body>
