@@ -75,11 +75,11 @@ const KeywordFilter = ({
         setPage(1)
     }
 
-    const clear = () => {
-        setLocalKeywords("")
-        setValue("")
-        setPage(1)
-    }
+    // const clear = () => {
+    //     setLocalKeywords("")
+    //     setValue("")
+    //     setPage(1)
+    // }
 
     return(
         <Form onSubmit={handleSubmit}>
