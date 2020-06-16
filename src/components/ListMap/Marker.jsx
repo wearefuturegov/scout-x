@@ -14,8 +14,8 @@ const ResultMarker = ({
             }}
             animation={window.google.maps.Animation.DROP}
             position={{
-                lat: parseFloat(service.location.latitude),
-                lng: parseFloat(service.location.longitude)
+                lat: parseFloat(service.locations[0].latitude),
+                lng: parseFloat(service.locations[0].longitude)
             }}
             title={service.name}
             icon={{

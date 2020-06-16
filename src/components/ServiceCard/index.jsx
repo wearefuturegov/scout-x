@@ -97,7 +97,10 @@ const ServiceCard = ({
             </StyledLink>
             <Description>{truncate(description, 18)}</Description>
             <Footer>
-                {taxonomies.filter(taxonomy => taxonomy.parent_id !== null).slice(0,2).map(taxonomy =>
+                {taxonomies.filter(taxonomy => {
+                    console.log(taxonomy)
+                    if(taxonomy.depth === 2) return taxonomy
+                }).map(taxonomy =>
                      <CategoryTag key={taxonomy.id}>{taxonomy.name}</CategoryTag>
                 )}
                 {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}

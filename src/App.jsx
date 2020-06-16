@@ -17,8 +17,12 @@ import KeywordFilter from "./components/Filter/KeywordFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
-
-import { collectionOptions, sendOptions, ageOptions, subcategoriesOf } from "./lib/transform-taxonomies"
+import { 
+  collectionOptions, 
+  sendOptions, 
+  ageOptions, 
+  subcategoriesOf 
+} from "./lib/transform-taxonomies"
 
 const App = ({
   children,
@@ -36,7 +40,7 @@ const App = ({
 
   const [collection, setCollection] = useQuery("collection", "things-to-do")
 
-  const [taxonomies, setTaxonomies] = useQuery("taxonomies", [], {array: true})
+  const [categories, setCategories] = useQuery("categories", [], {array: true})
   const [ages, setAges] = useQuery("ages", [], {array: true})
   const [needs, setNeeds] = useQuery("needs", [], {array: true})
 
@@ -81,13 +85,14 @@ const App = ({
               options={collectionOptions}
               selection={collection}
               setSelection={setCollection}
+              clearThis={setCategories}
               setPage={setPage}
             />
             <Filter
               legend="Categories"
               options={subcategoriesOf(collection)}
-              selection={taxonomies}
-              setSelection={setTaxonomies}
+              selection={categories}
+              setSelection={setCategories}
               setPage={setPage}
               foldable
             />

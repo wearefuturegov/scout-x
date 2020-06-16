@@ -22,8 +22,8 @@ const BoundSetter = ({
         const bounds = new window.google.maps.LatLngBounds()
         if(results.length > 0){
             results.map(result => bounds.extend({
-                lat: parseFloat(result.location.latitude),
-                lng: parseFloat(result.location.longitude)
+                lat: parseFloat(result.locations[0].latitude),
+                lng: parseFloat(result.locations[0].longitude)
             })) 
             map.fitBounds(bounds)
         }
@@ -38,7 +38,7 @@ const ListMap = React.memo(({
     navigate
 }) => {
 
-    let plottableResults = results.filter(result => (result.location.latitude && result.location.longitude))
+    let plottableResults = results.filter(result => (result.locations[0].latitude && result.locations[0].longitude))
 
     return isLoaded ? 
         <Outer>

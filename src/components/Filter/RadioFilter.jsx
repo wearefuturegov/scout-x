@@ -53,12 +53,14 @@ const RadioFilter = ({
     selection,
     setSelection,
     setPage,
+    clearThis,
     foldable
 }) => {
 
     const handleChange = e => {
         setSelection(e.target.value)
         setPage(1)
+        clearThis([])
     }
 
     return(

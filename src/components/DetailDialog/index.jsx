@@ -58,15 +58,15 @@ const DetailDialog = ({
 
             <Location>
                 <Map
-                    latitude={parseFloat(service.location.latitude)}
-                    longitude={parseFloat(service.location.longitude)}
+                    latitude={parseFloat(service.locations[0].latitude)}
+                    longitude={parseFloat(service.locations[0].longitude)}
                 />
                 <LocationInner>
                     <Crosshead>Where</Crosshead>
-                    <p>{service.location.address_1}</p>
-                    <p>{service.location.city}</p>
-                    <p>{service.location.postal_code}</p>
-                    <p><A href={`https://maps.google.com/maps/search/${service.location.postal_code}`}>Get directions</A></p>
+                    <p>{service.locations[0].address_1}</p>
+                    <p>{service.locations[0].city}</p>
+                    <p>{service.locations[0].postal_code}</p>
+                    <p><A href={`https://maps.google.com/maps/search/${service.locations[0].postal_code}`}>Get directions</A></p>
                 </LocationInner>
             </Location>
 
