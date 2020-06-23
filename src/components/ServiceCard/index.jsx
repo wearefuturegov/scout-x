@@ -98,7 +98,6 @@ const ServiceCard = ({
             <Description>{truncate(description, 18)}</Description>
             <Footer>
                 {taxonomies.filter(taxonomy => {
-                    console.log(taxonomy)
                     if(taxonomy.depth === 2) return taxonomy
                 }).map(taxonomy =>
                      <CategoryTag key={taxonomy.id}>{taxonomy.name}</CategoryTag>

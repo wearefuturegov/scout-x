@@ -12,7 +12,6 @@ export const fetchResultsByQuery = async query => {
     if(categories) taxonomies.push([].concat(categories).join(","))
     if(needs) taxonomies.push([].concat(needs).join(","))
     if(ages) taxonomies.push([].concat(ages).join(","))
-    console.log(taxonomies)
 
     newQuery.taxonomies = taxonomies
    
