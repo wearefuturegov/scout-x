@@ -61,6 +61,7 @@ const Footer = styled.footer`
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 `
 
 const CategoryTag = styled.span`
@@ -97,9 +98,7 @@ const ServiceCard = ({
             </StyledLink>
             <Description>{truncate(description, 18)}</Description>
             <Footer>
-                {taxonomies.filter(taxonomy => {
-                    if(taxonomy.depth === 2) return taxonomy
-                }).map(taxonomy =>
+                {taxonomies.map(taxonomy =>
                      <CategoryTag key={taxonomy.id}>{taxonomy.name}</CategoryTag>
                 )}
                 {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}

@@ -46,7 +46,6 @@ export const StyledLabel = styled(Label)`
     }
 `
 
-
 const RadioFilter = ({
     name,
     options,
@@ -65,21 +64,21 @@ const RadioFilter = ({
 
     return(
         <Outer>
-                <Content>
-                    {options.map(o =>
-                        <StyledField key={o.value}>
-                            <Input 
-                                type="radio" 
-                                id={o.value}
-                                name={name}
-                                value={o.value}
-                                onChange={handleChange} 
-                                checked={selection === o.value}
-                            />
-                            <StyledLabel htmlFor={o.value}>{o.label}</StyledLabel>
-                        </StyledField>
-                    )}
-                </Content>
+            <Content>
+                {options.map(o =>
+                    <StyledField key={o.slug}>
+                        <Input 
+                            type="radio" 
+                            id={o.slug}
+                            name={name}
+                            value={o.slug}
+                            onChange={handleChange} 
+                            checked={selection === o.slug}
+                        />
+                        <StyledLabel htmlFor={o.slug}>{o.label}</StyledLabel>
+                    </StyledField>
+                )}
+            </Content>
         </Outer>
     )
 }

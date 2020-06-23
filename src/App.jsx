@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from "react"
 import { Helmet } from "react-helmet"
-import config from "./data/_config"
 import useQuery from "./hooks/useQuery"
 import { fetchResultsByQuery } from "./lib/api"
 

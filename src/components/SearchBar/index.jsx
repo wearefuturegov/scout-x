@@ -3,9 +3,6 @@ import theme from "../_theme"
 import styled from "styled-components"
 import search from "./search.svg"
 import location from "./location.svg"
-// import config from "../../data/_config"
-
-// import { collections } from "../../lib/transform-taxonomies"
 
 import AutocompletePlaceInput from "../AutocompletePlaceInput"
 import Spinner from "../Spinner"

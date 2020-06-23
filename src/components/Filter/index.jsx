@@ -64,15 +64,15 @@ const Filter = ({
             {(!foldable || unfolded) && 
                 <Content>
                     {options.map(o =>
-                        <Field key={o.value}>
+                        <Field key={`${o.slug}`}>
                             <Input 
                                 type="checkbox" 
-                                id={o.value}
-                                value={o.value}
+                                id={o.slug}
+                                value={o.slug}
                                 onChange={handleChange} 
-                                checked={selection.includes(o.value)}
+                                checked={selection.includes(o.slug)}
                             />
-                            <Label htmlFor={o.value}>{o.label}</Label>
+                            <Label htmlFor={o.slug}>{o.label}</Label>
                         </Field>
                     )}
                 </Content>

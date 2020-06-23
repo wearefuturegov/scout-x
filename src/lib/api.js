@@ -5,7 +5,6 @@ export const fetchResultsByQuery = async query => {
     const newQuery = queryString.parse(query)
     const {collection, categories, needs, ages} = newQuery
 
-    
     // api expects everything to be a "taxonomy" parameter
     let taxonomies = []
     if(collection) taxonomies.push([].concat(collection))
