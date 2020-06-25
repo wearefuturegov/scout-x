@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
 import { fetchResultsByQuery } from "./lib/api"
+import { only as onlyOptions } from "./data/_config"
 
 import Layout, { ResultsHeader, ResultsList, Count, NoResults } from "./components/Layout"
 import Switch from "./components/Switch"
@@ -42,6 +43,7 @@ const App = ({
   const [categories, setCategories] = useQuery("categories", [], {array: true})
   const [ages, setAges] = useQuery("ages", [], {array: true})
   const [needs, setNeeds] = useQuery("needs", [], {array: true})
+  const [only, setOnly] = useQuery("only", [], {array: true})
 
   const [mapVisible, setMapVisible ] = useState(false)
   const [results, setResults] = useState([])
@@ -96,7 +98,7 @@ const App = ({
               foldable
             />
             <Filter
-              legend="Age group"
+              legend="Age groups"
               options={ageOptions}
               selection={ages}
               setSelection={setAges}
@@ -104,10 +106,18 @@ const App = ({
               foldable
             />
             <Filter
-              legend="SEND Needs"
+              legend="SEND needs"
               options={sendOptions}
               selection={needs}
               setSelection={setNeeds}
+              setPage={setPage}
+              foldable
+            />
+            <Filter
+              legend="Only show"
+              options={onlyOptions}
+              selection={only}
+              setSelection={setOnly}
               setPage={setPage}
               foldable
             />
