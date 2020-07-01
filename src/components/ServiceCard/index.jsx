@@ -1,8 +1,9 @@
 import React from "react"
 import theme from "../_theme"
 import styled from "styled-components"
-import { truncate, prettyDistance } from "../../lib/utils"
+import { truncate } from "../../lib/utils"
 import { Link, useLocation } from "@reach/router"
+import Footer from "../ServiceCardFooter"
 
 const Outer = styled.li`
     padding: 25px;
@@ -53,42 +54,15 @@ const Name = styled.h3`
 const Description = styled.p`
     color: ${theme.text};
     font-size: 0.9rem;
-    margin-bottom: 15px;
+    margin-bottom: 17px;
     line-height: 1.5;
-`
-
-const Footer = styled.footer`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-`
-
-const CategoryTag = styled.span`
-    display: inline-block;
-    padding: 5px;
-    font-size: 0.8rem;
-    color: ${theme.link};
-    background: ${theme.linkBackground};
-    border-radius: 2px;
-    margin-right: 7px;
-    &:last-of-type{
-        margin-right: 15px;
-    }
-`
-
-const Distance = styled.p`
-    display: inline-block;
-    font-size: 0.8rem;
-    color: ${theme.grey};
 `
 
 const ServiceCard = ({
     id,
     name,
     description,
-    distance_away,
-    taxonomies
+    ...service
 }) => {
     const { search } = useLocation()
     return(
@@ -97,12 +71,7 @@ const ServiceCard = ({
                 <Name>{name}</Name>
             </StyledLink>
             <Description>{truncate(description, 18)}</Description>
-            <Footer>
-                {taxonomies.map(taxonomy =>
-                     <CategoryTag key={taxonomy.id}>{taxonomy.name}</CategoryTag>
-                )}
-                {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
-            </Footer>
+            <Footer {...service}/>
         </Outer>
     )
 }

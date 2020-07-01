@@ -71,9 +71,8 @@ const ResultsAreaInner = styled.div`
 
 const Sidebar = styled.aside`
     @media screen and (min-width: ${theme.breakpointM}){
-      width: 25%;
+      width: 300px;
       margin-right: 40px;
-      flex: 1;
     }
     @media screen and (min-width: ${theme.breakpointL}){
       margin-right: 60px;
@@ -81,8 +80,7 @@ const Sidebar = styled.aside`
 `
 
 const MainArea = styled.div`
-  width: 1;
-  flex: 2;
+  flex: 1;
 `
 
 export const ResultsHeader = styled.header`
