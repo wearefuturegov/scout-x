@@ -39,7 +39,7 @@ export const buildServiceCardFooter = ({
 
     if(wheelchairAccessible) keyPoints.push("Wheelchair accessible")
     if(pick_up_drop_off_service) keyPoints.push("Pick-up/drop-off service")
-    if(current_vacancies) keyPoints.push("Vacancies for new children")
+    if(current_vacancies) keyPoints.push("Spaces for new children")
     if(free) keyPoints.push("Free")
     if(needs_referral) keyPoints.push("Needs referral")
     if(daysSince(updated_at) < 30) keyPoints.push("Recently updated")

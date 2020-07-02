@@ -10,5 +10,9 @@ export const only = [
         {
             label: "Free",
             slug: "free"
+        },
+        {
+            label: "Spaces for new children",
+            slug: "vacancies"
         }
     ]
