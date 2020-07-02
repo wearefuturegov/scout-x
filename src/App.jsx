@@ -98,14 +98,6 @@ const App = ({
               foldable
             />
             <Filter
-              legend="Age groups"
-              options={ageOptions}
-              selection={ages}
-              setSelection={setAges}
-              setPage={setPage}
-              foldable
-            />
-            <Filter
               legend="SEND needs"
               options={sendOptions}
               selection={needs}

@@ -63,16 +63,16 @@ const Filter = ({
             </Header>
             {(!foldable || unfolded) && 
                 <Content>
-                    {options.map(o =>
-                        <Field key={`${o.slug}`}>
+                    {options.map((o, i) =>
+                        <Field key={`${o.slug}-${i}`}>
                             <Input 
                                 type="checkbox" 
-                                id={o.slug}
+                                id={`${o.slug}-${i}`}
                                 value={o.slug}
                                 onChange={handleChange} 
                                 checked={selection.includes(o.slug)}
                             />
-                            <Label htmlFor={o.slug}>{o.label}</Label>
+                            <Label htmlFor={`${o.slug}-${i}`}>{o.label}</Label>
                         </Field>
                     )}
                 </Content>
