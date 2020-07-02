@@ -23,7 +23,7 @@ const daysSince = date => {
 }
 
 export const buildServiceCardFooter = ({
-    pick_up_drop_off,
+    pick_up_drop_off_service,
     needs_referral,
     current_vacancies,
     free,
@@ -38,7 +38,7 @@ export const buildServiceCardFooter = ({
     })
 
     if(wheelchairAccessible) keyPoints.push("Wheelchair accessible")
-    if(pick_up_drop_off) keyPoints.push("Pick-up/drop-off service")
+    if(pick_up_drop_off_service) keyPoints.push("Pick-up/drop-off service")
     if(current_vacancies) keyPoints.push("Vacancies for new children")
     if(free) keyPoints.push("Free")
     if(needs_referral) keyPoints.push("Needs referral")

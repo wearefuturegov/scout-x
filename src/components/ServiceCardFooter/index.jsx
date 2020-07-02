@@ -11,13 +11,14 @@ const Footer = styled.footer`
     flex-wrap: wrap;
     font-size: 0.9rem;
     color: ${theme.grey};
+    line-height: 1.7;
 `
 
 const LocalOfferTag = styled.strong`
     margin-right: 15px;
     background: ${theme.focus};
     border-radius: 2px;
-    padding: 3px 8px;
+    padding: 0px 8px;
     &:before{
         content: "";
         display: inline-block;
@@ -27,6 +28,13 @@ const LocalOfferTag = styled.strong`
         background-image: url(${localOfferIcon});
         background-size: cover;
         background-position: center;
+    }
+`
+
+const SpacesTag = styled(LocalOfferTag)`
+    background: ${theme.green};
+    &:before{
+        content: none;
     }
 `
 
@@ -51,7 +59,7 @@ const ServiceCardFooter = ({
     ...service
 }) => 
     <Footer>
-        {local_offer && <LocalOfferTag>Part of local offer</LocalOfferTag>}
+        {local_offer && <SpacesTag>Has spaces</SpacesTag>}
         {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
         {buildServiceCardFooter(service).map(point =>
             <Point>{point}</Point>    
