@@ -39,7 +39,7 @@ const App = ({
   const [lat, setLat] = useQuery("lat", "")
   const [lng, setLng] = useQuery("lng", "")
 
-  const [collection, setCollection] = useQuery("collection", "things-to-do")
+  const [collection, setCollection] = useQuery("collection", false)
 
   const [categories, setCategories] = useQuery("categories", [], {array: true})
   const [ages, setAges] = useQuery("ages", [], {array: true})
@@ -92,14 +92,16 @@ const App = ({
               clearThis={setCategories}
               setPage={setPage}
             />
-            <Filter
-              legend="Categories"
-              options={subcategoriesOf(collection)}
-              selection={categories}
-              setSelection={setCategories}
-              setPage={setPage}
-              foldable
-            />
+            {collection &&
+              <Filter
+                legend="Categories"
+                options={subcategoriesOf(collection)}
+                selection={categories}
+                setSelection={setCategories}
+                setPage={setPage}
+                foldable
+              />
+            }
             <Filter
               legend="SEND needs"
               options={sendOptions}

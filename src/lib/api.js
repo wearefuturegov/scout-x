@@ -16,9 +16,6 @@ export const fetchResultsByQuery = async query => {
         only
     } = queryString.parse(query)
 
-    // make sure results are correct on initial load
-    if(!collection) collection = "things-to-do"
-
     // api expects everything to be a "taxonomy" parameter
     let taxonomies = []
     if(collection) taxonomies.push([].concat(collection))
