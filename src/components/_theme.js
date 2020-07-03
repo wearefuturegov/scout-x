@@ -18,7 +18,7 @@ export default {
     focus: "#FFB81C",
     error: "#d51010",
     
-    maxWidth: "1050px",
+    maxWidth: "1000px",
     outerSpacing: "20px",
 
     breakpointS: "350px",

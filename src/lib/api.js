@@ -3,7 +3,8 @@ import queryString from "query-string"
 
 export const fetchResultsByQuery = async query => {
 
-    const {collection, categories, needs, ages, location, keywords, lat, lng, only, min_age, max_age} = queryString.parse(query)
+    let {collection, categories, needs, ages, location, keywords, lat, lng, only, min_age, max_age} = queryString.parse(query).filter()
+    if(!collection) collection = "things-to-do"
 
     // api expects everything to be a "taxonomy" parameter
     let taxonomies = []
@@ -16,13 +17,16 @@ export const fetchResultsByQuery = async query => {
     // if(!newQuery.lng) delete newQuery.lng
     // if(!newQuery.lat) delete newQuery.lat
 
+    console.log(lat, lng)
+
     const res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify({
         taxonomies,
         location,
         keywords,
-        lat,
-        lng,
-        only
+
+        only,
+        min_age,
+        max_age
     })}`)
     return await res.json()
 }

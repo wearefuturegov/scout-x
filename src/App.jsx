@@ -14,6 +14,7 @@ import Filters from "./components/Filters"
 import Filter from "./components/Filter"
 import RadioFilter from "./components/Filter/RadioFilter"
 import KeywordFilter from "./components/Filter/KeywordFilter"
+import AgeFilter from "./components/Filter/AgeFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
@@ -43,6 +44,8 @@ const App = ({
   const [categories, setCategories] = useQuery("categories", [], {array: true})
   const [ages, setAges] = useQuery("ages", [], {array: true})
   const [needs, setNeeds] = useQuery("needs", [], {array: true})
+  const [minAge, setMinAge] = useQuery("min_age", false, {numerical: true})
+  const [maxAge, setMaxAge] = useQuery("max_age", false, {numerical: true})
   const [only, setOnly] = useQuery("only", [], {array: true})
 
   const [mapVisible, setMapVisible ] = useState(false)
@@ -53,6 +56,7 @@ const App = ({
   const [totalPages, setTotalPages] = useState(false)
 
   useEffect(() => {
+    console.log(minAge, maxAge)
     setLoading(true)
     fetchResultsByQuery(location.search).then(data => {
       setResults(data.content)
@@ -102,6 +106,15 @@ const App = ({
               options={sendOptions}
               selection={needs}
               setSelection={setNeeds}
+              setPage={setPage}
+              foldable
+            />
+            <AgeFilter
+              legend="Ages"
+              maxAge={maxAge}
+              setMaxAge={setMaxAge}
+              minAge={minAge}
+              setMinAge={setMinAge}
               setPage={setPage}
               foldable
             />
