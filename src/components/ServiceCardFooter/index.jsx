@@ -55,15 +55,17 @@ const Distance = styled(Point)`
 
 const ServiceCardFooter = ({
     local_offer,
+    current_vacancies,
     distance_away,
     ...service
 }) => 
     <Footer>
-        {local_offer && <SpacesTag>Has spaces</SpacesTag>}
-        {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
+        {local_offer && <LocalOfferTag>Part of local offer</LocalOfferTag>}
+        {current_vacancies && <SpacesTag>Has spaces</SpacesTag>}
         {buildServiceCardFooter(service).map(point =>
-            <Point>{point}</Point>    
+            <Point key={point}>{point}</Point>    
         )}
+        {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
     </Footer>
 
 export default ServiceCardFooter
