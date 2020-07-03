@@ -38,16 +38,16 @@ const ListMap = React.memo(({
     navigate
 }) => {
 
-
     let plottableResults = []
-    
     results.map(result => result.locations.map(location => {
         if(location.geometry.coordinates[0] && location.geometry.coordinates[1]){
             plottableResults.push({
                 id: result.id,
+                name: result.name,
                 location: location
             })
         }
+        return null
     }))
 
     return isLoaded ? 

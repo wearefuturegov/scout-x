@@ -56,7 +56,6 @@ const App = ({
   const [totalPages, setTotalPages] = useState(false)
 
   useEffect(() => {
-    console.log(minAge, maxAge)
     setLoading(true)
     fetchResultsByQuery(location.search).then(data => {
       setResults(data.content)
