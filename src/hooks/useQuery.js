@@ -22,10 +22,12 @@ const useQuery = (key, initialValue, options = {}) => {
         query
      ) => {
         const parsedValues = queryString.parse(query)
-        const newString = queryString.stringify({
+        let newObject = {
             ...parsedValues,
             [key]: value
-        })
+        }
+        if(!value) delete newObject[key]
+        const newString = queryString.stringify(newObject)
         applyQueryString(`?${newString}`)
     }
 
