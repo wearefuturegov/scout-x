@@ -9,7 +9,12 @@ const ColumnContent = styled(Content)`
     grid-gap: 25px;
 `
 
-const Field = styled.div``
+const Field = styled.div`
+    margin-bottom: 25px;
+    @supports (display: grid){
+        margin-bottom: 0px;
+    }
+`
 
 const LabelWithMargin = styled(Label)`
     display: block;
@@ -60,7 +65,7 @@ const AgeFilter = ({
             {(!foldable || unfolded) && 
                 <ColumnContent>
                     <Field>
-                        <LabelWithMargin htmlFor="min_age">Minimum age</LabelWithMargin>
+                        <LabelWithMargin htmlFor="min_age">Minimum</LabelWithMargin>
                         <Input 
                             id="min_age" 
                             value={minAge} 
@@ -71,7 +76,7 @@ const AgeFilter = ({
                         />
                     </Field>
                     <Field>
-                        <LabelWithMargin htmlFor="max_age">Maximum age</LabelWithMargin>
+                        <LabelWithMargin htmlFor="max_age">Maximum</LabelWithMargin>
                         <Input 
                             id="max_age" 
                             value={maxAge} 

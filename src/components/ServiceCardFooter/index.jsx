@@ -3,11 +3,12 @@ import theme from "../_theme"
 import styled from "styled-components"
 import { buildServiceCardFooter, prettyDistance } from "../../lib/utils"
 import localOfferIcon from "./local-offer.svg"
+import tick from "./tick.svg"
 
 const Footer = styled.footer`
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     font-size: 0.9rem;
     color: ${theme.grey};
@@ -16,9 +17,11 @@ const Footer = styled.footer`
 
 const LocalOfferTag = styled.strong`
     margin-right: 15px;
+    margin-bottom: 2px;
     background: ${theme.focus};
+    color: ${theme.darkYellow};
     border-radius: 2px;
-    padding: 0px 8px;
+    padding: 0px 6px;
     &:before{
         content: "";
         display: inline-block;
@@ -33,12 +36,15 @@ const LocalOfferTag = styled.strong`
 
 const SpacesTag = styled(LocalOfferTag)`
     background: ${theme.green};
+    color: ${theme.darkGreen};
     &:before{
-        content: none;
+        background-image: url(${tick});
+        width: 13px;
     }
 `
 
 const Point = styled.span`
+color: ${theme.grey};
     &:after{
         margin-left: 7px;
         content: "•";
@@ -53,19 +59,31 @@ const Distance = styled(Point)`
     font-weight: bold;
 `
 
-const ServiceCardFooter = ({
-    local_offer,
-    current_vacancies,
-    distance_away,
-    ...service
-}) => 
-    <Footer>
-        {local_offer && <LocalOfferTag>Part of local offer</LocalOfferTag>}
-        {current_vacancies && <SpacesTag>Has spaces</SpacesTag>}
-        {buildServiceCardFooter(service).map(point =>
-            <Point key={point}>{point}</Point>    
-        )}
-        {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
-    </Footer>
+const ServiceCardFooter = props => {
+
+    let { local_offer, current_vacancies, distance_away } = props
+
+    let points
+
+    if(current_vacancies && !local_offer) {
+        points = buildServiceCardFooter({...props, current_vacancies: false})
+    } else {
+        points = buildServiceCardFooter(props)
+    }
+
+    return(
+        <Footer>
+            {local_offer ? 
+                <LocalOfferTag>Part of local offer</LocalOfferTag>
+                :
+                current_vacancies && <SpacesTag>Has spaces</SpacesTag>
+            }
+            {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
+            {points.slice(0, distance_away ? 2 : 3).map(point =>
+                <Point key={point}>{point}</Point>    
+            )}
+        </Footer>
+    )
+}
 
 export default ServiceCardFooter

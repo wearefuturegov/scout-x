@@ -4,6 +4,7 @@ export default {
     linkActive: "#131338",
 
     linkBackground: "rgba(44, 45, 132, 0.1)",
+
     textBackground: "rgba(33, 33, 33, 0.1)",
 
     text: "#212121",
@@ -11,16 +12,17 @@ export default {
     pale: "#f7f6f2",
     white: "#ffffff",
 
-    green: "#9fc63b",
-
     cardShadow: "rgba(225,223,210, 0.5)",
 
+    green: "#9fc63b",
     focus: "#FFB81C",
     error: "#d51010",
     
+    darkGreen: "#29330F",
+    darkYellow: "#413402",
+
     maxWidth: "1000px",
     outerSpacing: "20px",
-
     breakpointS: "350px",
     breakpointM: "750px",
     breakpointL: "1000px"

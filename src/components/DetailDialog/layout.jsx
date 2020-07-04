@@ -55,7 +55,7 @@ export const Tag = styled.span`
     padding: 5px;
     font-size: 0.8rem;
     color: ${theme.link};
-    background: ${theme.linkBackground};
+    /* background: ${theme.linkBackground}; */
     border-radius: 2px;
     margin-right: 7px;
     margin-top: 7px;

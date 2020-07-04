@@ -13,7 +13,8 @@ const Outer = styled.li`
     position: relative;
     animation: fadeIn 0.2s ease-out;
     &:hover{
-        box-shadow: 0px 4px 5px ${theme.cardShadow};
+        /* box-shadow: 0px 4px 5px ${theme.cardShadow}; */
+        box-shadow: 0px 22px 24px 0px ${theme.cardShadow};
     }
     &:focus-within{
         outline: 3px solid ${theme.focus};
