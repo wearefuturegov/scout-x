@@ -18,7 +18,7 @@ export const prettyDistance = miles => {
 }
 
 
-const daysSince = date => {
+export const daysSince = date => {
     return (new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24.0)    
 }
 

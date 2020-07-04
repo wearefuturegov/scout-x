@@ -4,6 +4,12 @@ import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
 import { fetchResultsByQuery } from "./lib/api"
 import { only as onlyOptions } from "./data/_config"
+import { 
+  collectionOptions, 
+  sendOptions, 
+  ageOptions, 
+  subcategoriesOf 
+} from "./lib/transform-taxonomies"
 
 import Layout, { ResultsHeader, ResultsList, Count, NoResults } from "./components/Layout"
 import Switch from "./components/Switch"
@@ -18,12 +24,6 @@ import AgeFilter from "./components/Filter/AgeFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
-import { 
-  collectionOptions, 
-  sendOptions, 
-  ageOptions, 
-  subcategoriesOf 
-} from "./lib/transform-taxonomies"
 
 const App = ({
   children,

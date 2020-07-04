@@ -1,27 +1,59 @@
 import React, { useState, useEffect } from "react"
+import styled from "styled-components"
+import theme from "../_theme"
 import fetch from "isomorphic-unfetch"
-import PinboardButton from "../PinboardButton"
+import { daysSince } from "../../lib/utils"
 import { Helmet } from "react-helmet"
-import Description from "../Description"
 import "@reach/dialog/styles.css"
+
+import PinboardButton from "../PinboardButton"
+import Description from "../Description"
 import Loader from "../Loader"
 import { ButtonLink } from "../Button"
 import Dialog, { Body, Header, Title } from "../Dialog"
-import Map from "./Map"
-import {
-    Tags,
-    Tag,
-    Caption,
-    Location,
-    LocationInner,
-    Crosshead,
-    DarkBody,
-    A,
-    Actions,
-    SplitContent,
-    SplitContentSection,
-    Disclaimer
-} from "./layout"
+import SingleLocation from "./SingleLocation"
+import LocationAccordion from "./LocationAccordion"
+
+const Banner = styled.p`
+  background: ${theme.pale};
+  padding: 10px 50px;
+  font-size: 0.9rem;
+  color: ${theme.grey};
+  text-align: center;
+`
+
+const Caption = styled.p`
+    color: ${theme.grey};
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    @media screen and (min-width: ${theme.breakpointM}){
+        font-size: 1.2rem;
+    }
+`
+
+const FirstBody = styled(Body)`
+    padding-top: 0px;
+    @media screen and (min-width: ${theme.breakpointM}) {
+        padding-top: 0px;
+    }     
+`
+
+const Actions = styled.div`
+    margin-bottom: 30px;
+    a:first-of-type{
+        margin-bottom: 25px;
+    }
+    @media screen and (min-width: ${theme.breakpointM}) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 40px;
+        a:first-of-type{
+            margin-bottom: 0px;
+            margin-right: 30px;
+        }
+    }
+`
 
 const DetailDialog = ({
     serviceId,
@@ -44,32 +76,27 @@ const DetailDialog = ({
     return service ?
         <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>
             <Helmet>
-                <title>{service.name} | Family information service | Buckinghamshire Council</title>}
+                <title>{service.name} | Family information service | Buckinghamshire Council</title>
             </Helmet>
+
+            {daysSince(service.updated_at) > 180 && <Banner>Last updated more than six months ago</Banner>}
+
             <Header>
                 {service.organisation.name && <Caption>{service.organisation.name}</Caption>}
                 <Title>{service.name}</Title>
             </Header>
-            {/* <Location>
-                <Map
-                    latitude={parseFloat(service.locations[0].latitude)}
-                    longitude={parseFloat(service.locations[0].longitude)}
-                />
-                <LocationInner>
-                    <Crosshead>Where</Crosshead>
-                    <p>{service.locations[0].address_1}</p>
-                    <p>{service.locations[0].city}</p>
-                    <p>{service.locations[0].postal_code}</p>
-                    <p><A href={`https://maps.google.com/maps/search/${service.locations[0].postal_code}`}>Get directions</A></p>
-                </LocationInner>
-            </Location> */}
-            <Body>
+
+            {service.locations.length === 1 &&  <SingleLocation {...service.locations[0]}/>}
+
+            <FirstBody>
                 <Actions>
                     {service.url && <ButtonLink href={service.url}>Visit website</ButtonLink>}
                     <PinboardButton service={service}/>
                 </Actions>
                 {service.description && <Description description={service.description}/>}
-            </Body>
+                {service.locations.length > 1 && <LocationAccordion locations={service.locations}/>}
+            </FirstBody>
+
         </Dialog>
         :
         <Loader/>
