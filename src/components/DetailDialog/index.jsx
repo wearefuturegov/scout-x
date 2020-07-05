@@ -13,6 +13,7 @@ import { ButtonLink } from "../Button"
 import Dialog, { Body, Header, Title } from "../Dialog"
 import SingleLocation from "./SingleLocation"
 import LocationAccordion from "./LocationAccordion"
+import GoodToKnow from "./GoodToKnow"
 
 const Banner = styled.p`
   background: ${theme.pale};
@@ -112,6 +113,7 @@ const DetailDialog = ({
 
             <SecondBody>
                 <Crosshead>Good to know</Crosshead>
+                <GoodToKnow {...service}/>
             </SecondBody>
 
         </Dialog>

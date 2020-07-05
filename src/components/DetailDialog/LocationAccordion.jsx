@@ -80,8 +80,8 @@ const Panel = styled.div`
         grid-template-columns: 1fr 1fr;
         column-gap: 35px;
         div:first-child{
-        margin-bottom: 0px;
-    }
+            margin-bottom: 0px;
+        }
     }
 `
 
@@ -100,10 +100,12 @@ const AccessList = styled.ul`
 `
 
 const AccessItem = styled.li`
+    position: relative;
+    line-height: 1.5;
+    padding-left: 30px;
     margin-bottom: 10px;
     &:before{
         content: "";
-        display: block;
         display: inline-block;
         width: 15px;
         height: 12px;
@@ -111,8 +113,12 @@ const AccessItem = styled.li`
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        margin-right: 15px;
-        /* border: 1px solid red; */
+        position: absolute;
+        left: 0px;
+        top: 5px;
+    }
+    &:last-of-type{
+        margin-bottom: 0px;
     }
     &:last-of-type{
         margin-bottom: 0px;

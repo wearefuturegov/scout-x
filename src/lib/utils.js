@@ -23,15 +23,15 @@ export const daysSince = date => {
 
 export const wheelchairAccessible = locations => locations
     .reduce((accumulator, loc) => accumulator.concat(loc.accessibilities), [])
-    .filter(access => access.name === "Hearing loop")
+    .filter(access => access.name === "Partial wheelchair access")
     .length > 0
 
 export const openWeekends = schedules => schedules
     .filter(sched => sched.weekday === "Saturday" || "Sunday")
     .length > 0
 
-export const openAfterSix = schedules => null
-    .filter(sched => parseInt(sched.closes_at) >= "18:00")
+export const openAfterSix = schedules => schedules
+    .filter(sched => sched.closes_at >= "18:00")
     .length > 0
 
 export const buildServiceCardFooter = ({
