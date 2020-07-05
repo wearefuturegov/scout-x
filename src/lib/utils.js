@@ -17,28 +17,33 @@ export const prettyDistance = miles => {
     }
 }
 
-
 export const daysSince = date => {
     return (new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24.0)    
 }
 
+export const wheelchairAccessible = locations => locations
+    .reduce((accumulator, loc) => accumulator.concat(loc.accessibilities), [])
+    .filter(access => access.name === "Hearing loop")
+    .length > 0
+
+export const openWeekends = schedules => schedules
+    .filter(sched => sched.weekday === "Saturday" || "Sunday")
+    .length > 0
+
+export const openAfterSix = schedules => null
+    .filter(sched => parseInt(sched.closes_at) >= "18:00")
+    .length > 0
+
 export const buildServiceCardFooter = ({
     pick_up_drop_off_service,
     needs_referral,
-    local_offer,
     current_vacancies,
     free,
     locations,
     updated_at
 }) => {
     let keyPoints = []
-
-    let wheelchairAccessible = locations
-        .reduce((accumulator, loc) => accumulator.concat(loc.accessibilities), [])
-        .filter(access => access.name === "Hearing loop")
-        .length > 0
-
-    if(wheelchairAccessible) keyPoints.push("Wheelchair accessible")
+    if(wheelchairAccessible(locations)) keyPoints.push("Wheelchair accessible")
     if(pick_up_drop_off_service) keyPoints.push("Pick-up/drop-off service")
     if(current_vacancies) keyPoints.push("Spaces for new children")
     if(free) keyPoints.push("Free")
