@@ -32,9 +32,12 @@ export const buildServiceCardFooter = ({
     updated_at
 }) => {
     let keyPoints = []
-    let wheelchairAccessible = locations && locations.length > 0 && locations.reduce((wheelchairAccessible, location) => {
-        return location.accessibilities.includes({name: "Partial wheelchair access"}) ? true : false
-    })
+
+    let wheelchairAccessible = locations
+        .reduce((accumulator, loc) => accumulator.concat(loc.accessibilities), [])
+        .filter(access => access.name === "Hearing loop")
+        .length > 0
+
     if(wheelchairAccessible) keyPoints.push("Wheelchair accessible")
     if(pick_up_drop_off_service) keyPoints.push("Pick-up/drop-off service")
     if(current_vacancies) keyPoints.push("Spaces for new children")
