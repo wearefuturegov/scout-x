@@ -61,7 +61,6 @@ const Button = styled.button`
         top: 20px;
     }
     &[aria-expanded=true]{
-        cursor: initial;
         &:after{
             background-image: url(${upArrow});
         }
@@ -132,7 +131,7 @@ const LocationAccordion = ({
             {locations.map((location, i) => 
                 <>
                     <Button 
-                        onClick={e => setActive(i)} 
+                        onClick={e => active === i ? setActive(false) : setActive(i)} 
                         aria-expanded={active === i}
                     >
                         <h3>{location.name}</h3>

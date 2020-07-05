@@ -19,7 +19,8 @@ const Map = React.memo(({
                 fullscreenControl: false,
                 zoomControl: false,
                 draggable: false,
-                scrollwheel: false
+                scrollwheel: false,
+                clickableIcons: false
             }}
             center={{
                 lat: latitude,

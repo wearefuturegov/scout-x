@@ -57,7 +57,8 @@ const ListMap = React.memo(({
                 options={{
                     mapTypeControl: false,
                     streetViewControl: false,
-                    fullscreenControl: false
+                    fullscreenControl: false,
+                    clickableIcons: false
                 }}
                 zoom={13}
             > 

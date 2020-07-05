@@ -55,6 +55,15 @@ const Actions = styled.div`
     }
 `
 
+export const SecondBody = styled(Body)`
+    background: ${theme.pale};
+`
+
+const Crosshead = styled.h2`
+    margin-bottom: 5px;
+    color: ${theme.text};
+`
+
 const DetailDialog = ({
     serviceId,
     location,
@@ -90,12 +99,20 @@ const DetailDialog = ({
 
             <FirstBody>
                 <Actions>
-                    {service.url && <ButtonLink href={service.url}>Visit website</ButtonLink>}
+                    {service.url ? 
+                        <ButtonLink href={service.url}>Visit website</ButtonLink>
+                        :
+                        (service.contacts.length === 1 && service.contacts[0].email) && <ButtonLink href={`mailto:${service.contacts[0].email}`}>Send email</ButtonLink>
+                    }
                     <PinboardButton service={service}/>
                 </Actions>
                 {service.description && <Description description={service.description}/>}
                 {service.locations.length > 1 && <LocationAccordion locations={service.locations}/>}
             </FirstBody>
+
+            <SecondBody>
+                <Crosshead>Good to know</Crosshead>
+            </SecondBody>
 
         </Dialog>
         :
