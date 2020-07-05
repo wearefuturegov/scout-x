@@ -4,8 +4,8 @@ import theme from "../_theme"
 import Map from "./Map"
 import A from "../A"
 
-const Outer = styled.section`
-    display: none;
+const Outer = styled.div`
+    /* display: none; */
     padding: 45px;
     min-height: 250px;
     position: relative;

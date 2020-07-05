@@ -1,12 +1,11 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import theme from "../_theme"
-import { truncate } from "../../lib/utils"
+import { truncate, getChildTaxa } from "../../lib/utils"
 import upArrow from "./up-arrow.svg"
 import downArrow from "./down-arrow.svg"
 import A from "../A"
 import { TickList, TickListItem } from "../TickList"
-import taxonomyData from "../../data/_taxonomies.json"
 
 const Outer = styled.article`
     color: ${theme.text};
@@ -94,11 +93,10 @@ const LocalOffer = ({
     taxonomies
  }) => {
     const wordLimit = 30
-    const [expanded, setExpanded] = useState(true)
+    const [expanded, setExpanded] = useState(false)
     let paragraphs = description.split("\n").filter(paragraph => paragraph )
 
-    let sendNeedsId = taxonomyData.reduce((accumulator, taxon) => taxon.label === "SEND needs" ? taxon.id : accumulator, false)
-    let sendNeeds = taxonomies.filter(taxon => taxon.parent_id === sendNeedsId)
+    let sendNeeds = getChildTaxa(taxonomies, "SEND needs")
 
     return(
         <Outer>
@@ -108,14 +106,16 @@ const LocalOffer = ({
                         <p key={i}>{paragraph}</p>
                     )}
                     {link && <Link href={link}>See latest SEND report</Link>}
-
-                    <Subheading>SEND needs met</Subheading>
-                    <List>
-                        {sendNeeds.map(need =>
-                            <TickListItem key={need.id}>{need.name}</TickListItem>
-                        )}
-                    </List>
-
+                    {sendNeeds.length > 0 &&
+                        <>
+                            <Subheading>SEND needs met</Subheading>
+                            <List>
+                                {sendNeeds.map(need =>
+                                    <TickListItem key={need.id}>{need.name}</TickListItem>
+                                )}
+                            </List>
+                        </>
+                    }
                     <Subheading>Survey answers</Subheading>
                     {survey_answers.map(response => 
                         response.answer &&

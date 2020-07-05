@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import theme from "../_theme"
 import fetch from "isomorphic-unfetch"
-import { daysSince } from "../../lib/utils"
+import { daysSince, buildGoodToKnow, getChildTaxa } from "../../lib/utils"
 import { Helmet } from "react-helmet"
 import "@reach/dialog/styles.css"
 
@@ -12,10 +12,16 @@ import Description from "../Description"
 import LocalOffer from "../LocalOffer"
 import Loader from "../Loader"
 import { ButtonLink } from "../Button"
-import Dialog, { Body, Header, Title } from "../Dialog"
+import Dialog, { Body as UnstyledBody, Header, Title } from "../Dialog"
 import SingleLocation from "./SingleLocation"
 import LocationAccordion from "./LocationAccordion"
-import GoodToKnow from "./GoodToKnow"
+import { TickList as List, TickListItem } from "../TickList"
+
+const Body = styled(UnstyledBody)`
+    &:first-of-type{
+        padding-top: 0px;
+    }
+`
 
 const Banner = styled.p`
   background: ${theme.pale};
@@ -32,13 +38,6 @@ const Caption = styled.p`
     @media screen and (min-width: ${theme.breakpointM}){
         font-size: 1.2rem;
     }
-`
-
-const FirstBody = styled(Body)`
-    padding-top: 0px;
-    @media screen and (min-width: ${theme.breakpointM}) {
-        padding-top: 0px;
-    }     
 `
 
 const Actions = styled.div`
@@ -58,14 +57,28 @@ const Actions = styled.div`
     }
 `
 
+const TickList = styled(List)`
+    margin-top: 25px;
+    list-style: none;
+    @media screen and (min-width: ${theme.breakpointM}) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 35px;
+    }
+`
+
 const Crosshead = styled.h2`
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: ${theme.text};
 `
 
-const ContactsList = styled.div`
+const Columns = styled.div`
+    margin-bottom: 25px;
+    &:last-of-type{
+        margin-bottom: 0px;
+    }
     div{
-        margin-bottom: 25px;
+        margin-bottom: 20px;
         &:last-of-type{
             margin-bottom: 0px;
         }
@@ -81,14 +94,62 @@ const ContactsList = styled.div`
 `
 
 const ContactName = styled.h3`
-    /* margin-bottom: 5px; */
     line-height: 1.5;
-    color; ${theme.text};
+    color: ${theme.text};
 `
 
 const ContactRole = styled.p`
     margin-bottom: 5px;
     font-style: italic;
+`
+
+const Table = styled.table`
+    width: 100%;
+    td{
+        width: 50%;
+    }
+`
+
+const Footer = styled.footer`
+    background: ${theme.pale};
+    text-align: center;
+    padding: 25px;
+    @media screen and (min-width: ${theme.breakpointM}){
+        padding: 45px;
+    }
+    p{
+        margin-bottom: 10px;
+        &::last-of-type{
+            margin-bottom: 0px;
+        }
+    }
+`
+
+const SuggestEditLink = styled.a`
+    display: inline-block;
+    text-decoration: none;
+    color: ${theme.link};
+    padding: 7px 25px;
+    text-align: center;
+    border: 3px solid ${theme.link};
+    font-size: 1rem;
+    background: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 200px;
+    margin-bottom: 20px;
+    &:focus{
+        outline: none;
+        box-shadow: 0px 0px 0px 3px ${theme.focus};
+    }
+    &:hover{
+        color: ${theme.linkHover};
+        border-color: ${theme.linkHover};
+    }
+    &:active{
+        color: ${theme.linkActive};
+        border-color: ${theme.linkActive};
+    }
 `
 
 const DetailDialog = ({
@@ -109,6 +170,7 @@ const DetailDialog = ({
             .then(data => setService(data))
     }, [serviceId])
 
+
     return service ?
         <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>
             <Helmet>
@@ -126,7 +188,7 @@ const DetailDialog = ({
             {service.locations.length === 1 &&  
                 <SingleLocation {...service.locations[0]}/>
             }
-            <FirstBody>
+            <Body>
                 <Actions>
                     {service.url ? 
                         <ButtonLink href={service.url}>Visit website</ButtonLink>
@@ -138,16 +200,26 @@ const DetailDialog = ({
                 </Actions>
                 {service.description && <Description description={service.description}/>}
                 {service.locations.length > 1 && <LocationAccordion locations={service.locations}/>}
-            </FirstBody>
-            <Body>
-                <Crosshead>Good to know</Crosshead>
-                <GoodToKnow {...service}/>
             </Body>
-
+            {buildGoodToKnow(service).length > 0 &&
+                <Body>
+                    <Crosshead>Good to know</Crosshead>
+                    <TickList>
+                        {buildGoodToKnow(service).map(point =>
+                            <TickListItem>
+                                {point}<br/>
+                                {point === "Needs a referral" && service.referral_url &&
+                                    <A href={service.referral_url}>Details</A>
+                                }
+                            </TickListItem>
+                        )}
+                    </TickList>
+                </Body>
+            }
             {service.contacts.length > 0 &&
                 <Body>
                     <Crosshead>Who to contact</Crosshead>
-                    <ContactsList>
+                    <Columns>
                         {service.contacts.map(contact =>
                             <div key={contact.id}>
                                 <ContactName>{contact.name || service.name}</ContactName>
@@ -156,7 +228,7 @@ const DetailDialog = ({
                                 {contact.email && <p><A href={`mailto:${contact.email}`}>{contact.email}</A></p>}
                             </div>
                         )}
-                    </ContactsList>
+                    </Columns>
                 </Body>
             }
             {service.local_offer &&
@@ -168,6 +240,60 @@ const DetailDialog = ({
                     />
                 </Body>
             }
+            <Body>
+                {service.regular_schedules.length > 0 &&
+                    <Columns>
+                        <Crosshead>Hours</Crosshead>
+                        <Table>
+                            <tbody>
+                                {service.regular_schedules.map((sched, i) =>
+                                    <tr key={i}>
+                                        <td><strong>{sched.weekday}s</strong></td>
+                                        <td>{sched.opens_at}—{sched.closes_at}</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </Table>
+                    </Columns>
+                }
+                {service.cost_options.length > 0 &&
+                    <Columns>
+                        <Crosshead>Fees</Crosshead>
+                        <Table>
+                            <tbody>
+                                {service.cost_options.map((fee, i) =>
+                                    <tr key={i}>
+                                        <td><strong>{fee.option}</strong></td>
+                                        <td>£{fee.amount}</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </Table>
+                    </Columns>
+                }
+                {(service.facebook_url || service.twitter_url || service.youtube_url || service.instagram_url || service.linkedin_url) &&
+                    <Columns>
+                        <Crosshead>Social links</Crosshead>
+                        <div>
+                            {service.facebook_url && <p><A href={service.facebook_url}>Facebook</A></p>}
+                            {service.twitter_url && <p><A href={service.twitter_url}>Twitter</A></p>}                        
+                            {service.youtube_url && <p><A href={service.youtube_url}>YouTube</A></p>}                        
+                            {service.instagram_url && <p><A href={service.instagram_url}>Instagram</A></p>}                        
+                            {service.linkedin_url && <p><A href={service.linkedin_url}>LinkedIn</A></p>}
+                        </div>
+                    </Columns>
+                }
+                <Columns>
+                    <Crosshead>Categories</Crosshead>
+                    <p>{getChildTaxa(service.taxonomies, "Categories", true).map(taxon => taxon.name).join(", ")}</p>
+                </Columns>
+            </Body>
+            <Footer>
+                <SuggestEditLink href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>Suggest an edit</SuggestEditLink>
+                <p>We regularly check and update these community services, but can’t guarantee that they will always be accurate.</p>
+                <p>If anything here is out of date or missing, please <A target="_blank" href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>suggest an edit</A>.</p>
+                <p>You may need a referral for some activities and groups. Contact the organiser if unsure.</p>
+            </Footer>
         </Dialog>
         :
         <Loader/>

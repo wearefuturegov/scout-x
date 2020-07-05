@@ -1,3 +1,5 @@
+import taxonomyData from "../data/_taxonomies.json"
+
 export const truncate = (str, noWords) => {
     if(str && (noWords > 1)){
         if(str.split(" ").length > noWords){
@@ -50,4 +52,43 @@ export const buildServiceCardFooter = ({
     if(needs_referral) keyPoints.push("Needs referral")
     if(daysSince(updated_at) < 30) keyPoints.push("Recently updated")
     return keyPoints
+}
+
+export const getChildTaxa = (taxonomies, parentName, includeGrandchildren) => {
+    let results = []
+    let parentId = taxonomyData.reduce((accumulator, taxon) => taxon.label === parentName ? taxon.id : accumulator, false)
+    let children = taxonomies.filter(taxon => taxon.parent_id === parentId)
+    results = results.concat(children)
+    if(includeGrandchildren){
+        let childrenIds = children.map(child => child.id)
+        let grandchildren = taxonomies.filter(taxon => childrenIds.includes(taxon.parent_id))
+        results = results.concat(grandchildren)
+    }
+    return results
+}
+
+export const buildGoodToKnow = ({
+    pick_up_drop_off_service,
+    needs_referral,
+    referral_url,
+    local_offer,
+    current_vacancies,
+    free,
+    locations,
+    regular_schedules,
+    updated_at
+}) => {
+    let goodToKnow = []
+
+    local_offer && goodToKnow.push("Part of the Buckinghamshire local offer for SEND")
+    pick_up_drop_off_service && goodToKnow.push("Offers pick-up/drop-off service from nearby schools")
+    needs_referral && goodToKnow.push("Needs a referral")
+    wheelchairAccessible(locations) && goodToKnow.push("Wheelchair accessible")
+    current_vacancies && goodToKnow.push("Spaces for new children")
+    free && goodToKnow.push("Free")
+    daysSince(updated_at) < 30 && goodToKnow.push("Recently updated")
+    openWeekends(regular_schedules) && goodToKnow.push("Open weekends")
+    openAfterSix(regular_schedules) && goodToKnow.push("Open after 6pm")
+    
+    return goodToKnow
 }
