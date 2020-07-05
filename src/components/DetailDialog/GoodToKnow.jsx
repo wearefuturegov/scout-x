@@ -1,58 +1,25 @@
 import React from "react"
 import styled from "styled-components"
 import theme from "../_theme"
-import tick from "./tick.svg"
+import A from "../A"
 import { 
     daysSince, 
     openWeekends, 
     wheelchairAccessible, 
     openAfterSix 
 } from "../../lib/utils"
+import { 
+    TickList, 
+    TickListItem as Item 
+} from "../TickList"
 
-const List = styled.ul`
+const List = styled(TickList)`
     margin-top: 25px;
     list-style: none;
     @media screen and (min-width: ${theme.breakpointM}) {
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: 35px;
-    }
-`
-
-const Item = styled.li`
-    position: relative;
-    line-height: 1.5;
-    padding-left: 30px;
-    margin-bottom: 10px;
-    &:before{
-        content: "";
-        display: inline-block;
-        width: 15px;
-        height: 12px;
-        background-image: url(${tick});
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: absolute;
-        left: 0px;
-        top: 5px;
-    }
-    &:last-of-type{
-        margin-bottom: 0px;
-    }
-`
-
-export const A = styled.a`
-    color: ${theme.link};
-    &:hover{
-        text-decoration: none;
-    }
-    &:focus{
-        background: ${theme.focus};
-        outline: 3px solid ${theme.focus};
-    }
-    &:active{
-        color: ${theme.text};
     }
 `
 

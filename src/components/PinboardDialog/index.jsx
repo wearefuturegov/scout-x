@@ -18,7 +18,7 @@ export const Body = styled.ul`
     }
 `
 
-const A = styled.a`
+const PrintLink = styled.a`
     margin-top: 25px;
     display: block;
     text-align: center;
@@ -100,7 +100,7 @@ const PinboardDialog = ({
                     Pinned services
                     <Count> ({pinboard.length})</Count>
                 </Title>
-                <A href="/print" target="blank">Print list</A>
+                <PrintLink href="/print" target="blank">Print list</PrintLink>
                 <EmailButton onClick={() => setDialogOpen(true)}>Email list</EmailButton>
             </Header>
             <Body>

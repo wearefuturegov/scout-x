@@ -4,7 +4,8 @@ import theme from "../_theme"
 import Map from "./Map"
 import downArrow from "./down-arrow.svg"
 import upArrow from "./up-arrow.svg"
-import tick from "./tick.svg"
+import A from "../A"
+import { TickList, TickListItem } from "../TickList"
 
 const Outer = styled.div`
     margin-top: 30px;
@@ -16,20 +17,6 @@ const Outer = styled.div`
 const Crosshead = styled.h2`
     margin-bottom: 5px;
     color: ${theme.text};
-`
-
-export const A = styled.a`
-    color: ${theme.link};
-    &:hover{
-        text-decoration: none;
-    }
-    &:focus{
-        background: ${theme.focus};
-        outline: 3px solid ${theme.focus};
-    }
-    &:active{
-        color: ${theme.text};
-    }
 `
 
 const Button = styled.button`
@@ -94,37 +81,6 @@ const MapContainer = styled.section`
     }
 `
 
-const AccessList = styled.ul`
-    margin-top: 25px;
-    list-style: none;
-`
-
-const AccessItem = styled.li`
-    position: relative;
-    line-height: 1.5;
-    padding-left: 30px;
-    margin-bottom: 10px;
-    &:before{
-        content: "";
-        display: inline-block;
-        width: 15px;
-        height: 12px;
-        background-image: url(${tick});
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: absolute;
-        left: 0px;
-        top: 5px;
-    }
-    &:last-of-type{
-        margin-bottom: 0px;
-    }
-    &:last-of-type{
-        margin-bottom: 0px;
-    }
-`
-
 const LocationAccordion = ({
     locations
 }) => {
@@ -135,12 +91,12 @@ const LocationAccordion = ({
         <Outer>
             <Crosshead>Locations</Crosshead>
             {locations.map((location, i) => 
-                <>
+                <div key={location.id}>
                     <Button 
                         onClick={e => active === i ? setActive(false) : setActive(i)} 
                         aria-expanded={active === i}
                     >
-                        <h3>{location.name}</h3>
+                        <h3>{location.name || location.address_1 || `Location ${i + 1}`}</h3>
                     </Button>
                     <Panel hidden={active !== i}>
                         <div>
@@ -158,11 +114,11 @@ const LocationAccordion = ({
                                     <p><A href={`https://maps.google.com/maps/search/${location.postal_code}`}>Get directions</A></p>
                                 </>
                             }
-                            <AccessList>
-                            {location.accessibilities.map(point =>
-                                <AccessItem key={point.name}>{point.name}</AccessItem>    
-                            )}
-                            </AccessList>
+                            <TickList>
+                                {location.accessibilities.map(point =>
+                                    <TickListItem key={point.name}>{point.name}</TickListItem>    
+                                )}
+                            </TickList>
                         </div>
                         <MapContainer>
                             <Map
@@ -171,8 +127,7 @@ const LocationAccordion = ({
                             />
                         </MapContainer>
                     </Panel>
-                    
-                </>
+                </div>
             )}
         </Outer>
     )

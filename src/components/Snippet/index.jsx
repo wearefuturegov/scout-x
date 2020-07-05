@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import theme from "../_theme"
+import A from "../A"
 
 const Outer = styled.div`
     margin-bottom: 15px;
@@ -13,17 +14,6 @@ const Outer = styled.div`
 
 const Headline = styled.h3`
     margin-bottom: 10px;
-`
-
-const A = styled.a`
-    &:hover{
-        text-decoration: none;
-    }
-    &:focus{
-        color: ${theme.text};
-        background: ${theme.focus};
-        outline: 3px solid ${theme.focus};
-    }
 `
 
 const Snippet = ({

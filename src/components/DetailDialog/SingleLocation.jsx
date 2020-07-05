@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import theme from "../_theme"
 import Map from "./Map"
+import A from "../A"
 
 const Outer = styled.section`
     display: none;
@@ -28,20 +29,6 @@ const Inner = styled.div`
 const Crosshead = styled.h2`
     margin-bottom: 5px;
     color: ${theme.text};
-`
-
-export const A = styled.a`
-    color: ${theme.link};
-    &:hover{
-        text-decoration: none
-    }
-    &:focus{
-        background: ${theme.focus};
-        outline: 3px solid ${theme.focus};
-    }
-    &:active{
-        color: ${theme.text};
-    }
 `
 
 const MapContainer = styled.section`

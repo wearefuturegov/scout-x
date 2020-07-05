@@ -73,10 +73,13 @@ export const Header = styled.header`
     }
 `
 
-export const Body = styled.div`
+export const Body = styled.section`
     padding: 25px;
     @media screen and (min-width: ${theme.breakpointM}){
         padding: 45px;
+    }
+    &:nth-of-type(even){
+        background: ${theme.pale};
     }
 `
 

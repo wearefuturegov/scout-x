@@ -70,7 +70,7 @@ const Description = ({
                         :
                         <p>{truncate(description, wordLimit)}</p>
                     }
-                    <Button aria-expanded={expanded ? "true" : "false"}onClick={() => setExpanded(!expanded)}>
+                    <Button aria-expanded={expanded ? "true" : "false"} onClick={() => setExpanded(!expanded)}>
                         {expanded ? "Less" : "More" }
                     </Button>
                 </>
