@@ -83,14 +83,17 @@ const Columns = styled.div`
             margin-bottom: 0px;
         }
     }
-    @media screen and (min-width: ${theme.breakpointM}) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 35px;
-        div{
-            margin-bottom: 0px;
+    @supports (display: grid){
+        @media screen and (min-width: ${theme.breakpointM}) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 35px;
+            div{
+                margin-bottom: 0px;
+            }
         }
     }
+
 `
 
 const ContactName = styled.h3`

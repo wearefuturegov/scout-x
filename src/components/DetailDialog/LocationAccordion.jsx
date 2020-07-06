@@ -30,6 +30,7 @@ const Button = styled.button`
     background: none;
     padding: 15px 0px;
     padding-right: 30px;
+    color: ${theme.text};
     cursor: pointer;
     &:focus{
         outline: 3px solid ${theme.focus};
