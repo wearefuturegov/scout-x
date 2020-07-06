@@ -76,7 +76,9 @@ export const buildGoodToKnow = ({
     free,
     locations,
     regular_schedules,
-    updated_at
+    updated_at,
+    min_age,
+    max_age
 }) => {
     let goodToKnow = []
 
@@ -89,6 +91,16 @@ export const buildGoodToKnow = ({
     daysSince(updated_at) < 30 && goodToKnow.push("Recently updated")
     openWeekends(regular_schedules) && goodToKnow.push("Open weekends")
     openAfterSix(regular_schedules) && goodToKnow.push("Open after 6pm")
-    
+
+    if(min_age && max_age){
+        goodToKnow.push(`Suitable for ${min_age}-${max_age} year olds`)
+    } else if (min_age){
+        goodToKnow.push(`Suitable for ${min_age} year olds up`)
+    } else if (max_age){
+        goodToKnow.push(`>Suitable up to ${max_age} year olds`)
+    } else {
+        goodToKnow.push(`Suitable for all ages`)
+    }
+
     return goodToKnow
 }
