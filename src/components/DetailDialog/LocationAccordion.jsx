@@ -63,14 +63,17 @@ const Panel = styled.div`
     &[hidden]{
         display: none;
     }
-    @media screen and (min-width: ${theme.breakpointM}) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 35px;
-        div:first-child{
-            margin-bottom: 0px;
+    @supports(display: grid){
+        @media screen and (min-width: ${theme.breakpointM}) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 35px;
+            div:first-child{
+                margin-bottom: 0px;
+            }
         }
     }
+
 `
 
 const MapContainer = styled.section`
@@ -80,6 +83,10 @@ const MapContainer = styled.section`
     .map{
         height: 100%;
     }
+`
+
+const TickListWithTopMargin = styled(TickList)`
+    margin-top: 25px;
 `
 
 const LocationAccordion = ({
@@ -115,11 +122,11 @@ const LocationAccordion = ({
                                     <p><A href={`https://maps.google.com/maps/search/${location.postal_code}`}>Get directions</A></p>
                                 </>
                             }
-                            <TickList>
+                            <TickListWithTopMargin>
                                 {location.accessibilities.map(point =>
                                     <TickListItem key={point.name}>{point.name}</TickListItem>    
                                 )}
-                            </TickList>
+                            </TickListWithTopMargin>
                         </div>
                         <MapContainer>
                             <Map

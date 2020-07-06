@@ -73,7 +73,7 @@ const Crosshead = styled.h2`
 `
 
 const Columns = styled.div`
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     &:last-of-type{
         margin-bottom: 0px;
     }
@@ -108,6 +108,7 @@ const ContactRole = styled.p`
 
 const Table = styled.table`
     width: 100%;
+    color: ${theme.text};
     td{
         width: 50%;
     }
@@ -243,7 +244,7 @@ const DetailDialog = ({
                 </Body>
             }
             <Body>
-                {service.locations.length === 1 && 
+                {service.locations.length === 1 && service.locations[0].accessibilities.length > 0 && 
                     <Columns>
                         <Crosshead>Accessibility</Crosshead>
                         <TickList>
@@ -295,10 +296,12 @@ const DetailDialog = ({
                         </div>
                     </Columns>
                 }
-                <Columns>
-                    <Crosshead>Categories</Crosshead>
-                    <p>{getChildTaxa(service.taxonomies, "Categories", true).map(taxon => taxon.name).join(", ")}</p>
-                </Columns>
+                {getChildTaxa(service.taxonomies, "Categories", true).length > 0 &&
+                    <Columns>
+                        <Crosshead>Categories</Crosshead>
+                        <p>{getChildTaxa(service.taxonomies, "Categories", true).map(taxon => taxon.name).join(", ")}</p>
+                    </Columns>
+                }
             </Body>
             <Footer>
                 <SuggestEditLink href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>Suggest an edit</SuggestEditLink>
