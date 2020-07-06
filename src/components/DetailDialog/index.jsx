@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import theme from "../_theme"
 import fetch from "isomorphic-unfetch"
-import { daysSince, buildGoodToKnow, getChildTaxa } from "../../lib/utils"
+import { daysSince, buildGoodToKnow, getChildTaxa, truncate } from "../../lib/utils"
 import { Helmet } from "react-helmet"
 import "@reach/dialog/styles.css"
 
@@ -182,6 +182,7 @@ const DetailDialog = ({
             <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>
                 <Helmet>
                     <title>{service.name} | Family information service | Buckinghamshire Council</title>
+                    {service.description && <meta content={truncate(service.description, 30)} name="description"/>}
                 </Helmet>
                 {daysSince(service.updated_at) > 180 && 
                     <Banner>Last updated more than six months ago</Banner>
