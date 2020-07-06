@@ -2,7 +2,6 @@ import styled from "styled-components"
 import tick from "./tick.svg"
 
 export const TickList = styled.ul`
-    margin-top: 25px;
     list-style: none;
 `
 

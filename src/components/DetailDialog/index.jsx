@@ -15,7 +15,7 @@ import { ButtonLink } from "../Button"
 import Dialog, { Body as UnstyledBody, Header, Title } from "../Dialog"
 import SingleLocation from "./SingleLocation"
 import LocationAccordion from "./LocationAccordion"
-import { TickList as List, TickListItem } from "../TickList"
+import { TickList, TickListItem } from "../TickList"
 
 const Body = styled(UnstyledBody)`
     &:first-of-type{
@@ -57,7 +57,7 @@ const Actions = styled.div`
     }
 `
 
-const TickList = styled(List)`
+const TwoColumnTickList = styled(TickList)`
     margin-top: 25px;
     list-style: none;
     @media screen and (min-width: ${theme.breakpointM}) {
@@ -204,7 +204,7 @@ const DetailDialog = ({
             {buildGoodToKnow(service).length > 0 &&
                 <Body>
                     <Crosshead>Good to know</Crosshead>
-                    <TickList>
+                    <TwoColumnTickList>
                         {buildGoodToKnow(service).map(point =>
                             <TickListItem>
                                 {point}<br/>
@@ -213,7 +213,7 @@ const DetailDialog = ({
                                 }
                             </TickListItem>
                         )}
-                    </TickList>
+                    </TwoColumnTickList>
                 </Body>
             }
             {service.contacts.length > 0 &&
@@ -241,6 +241,16 @@ const DetailDialog = ({
                 </Body>
             }
             <Body>
+                {service.locations.length === 1 && 
+                    <Columns>
+                        <Crosshead>Accessibility</Crosshead>
+                        <TickList>
+                            {service.locations[0].accessibilities.map(point =>
+                                <TickListItem key={point.name}>{point.name}</TickListItem>    
+                            )}
+                        </TickList>
+                    </Columns>
+                }
                 {service.regular_schedules.length > 0 &&
                     <Columns>
                         <Crosshead>Hours</Crosshead>
