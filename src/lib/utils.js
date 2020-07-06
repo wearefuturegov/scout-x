@@ -45,7 +45,7 @@ export const buildServiceCardFooter = ({
     updated_at
 }) => {
     let keyPoints = []
-    if(wheelchairAccessible(locations)) keyPoints.push("Wheelchair accessible")
+    if(locations && wheelchairAccessible(locations)) keyPoints.push("Wheelchair accessible")
     if(pick_up_drop_off_service) keyPoints.push("Pick-up/drop-off service")
     if(current_vacancies) keyPoints.push("Spaces for new children")
     if(free) keyPoints.push("Free")

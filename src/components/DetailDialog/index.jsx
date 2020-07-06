@@ -12,12 +12,12 @@ import Description from "../Description"
 import LocalOffer from "../LocalOffer"
 import Loader from "../Loader"
 import { ButtonLink } from "../Button"
-import Dialog, { Body as UnstyledBody, Header, Title } from "../Dialog"
+import Dialog, { Body as InheritedBody, Header, Title } from "../Dialog"
 import SingleLocation from "./SingleLocation"
 import LocationAccordion from "./LocationAccordion"
 import { TickList, TickListItem } from "../TickList"
 
-const Body = styled(UnstyledBody)`
+const Body = styled(InheritedBody)`
     &:first-of-type{
         padding-top: 0px;
     }
@@ -83,14 +83,17 @@ const Columns = styled.div`
             margin-bottom: 0px;
         }
     }
-    @media screen and (min-width: ${theme.breakpointM}) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 35px;
-        div{
-            margin-bottom: 0px;
+    @supports (display: grid){
+        @media screen and (min-width: ${theme.breakpointM}) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 35px;
+            div{
+                margin-bottom: 0px;
+            }
         }
     }
+
 `
 
 const ContactName = styled.h3`
@@ -110,8 +113,7 @@ const Table = styled.table`
     }
 `
 
-const Footer = styled.footer`
-    background: ${theme.pale};
+const Footer = styled(Body)`
     text-align: center;
     padding: 25px;
     @media screen and (min-width: ${theme.breakpointM}){
@@ -304,6 +306,7 @@ const DetailDialog = ({
                 <p>If anything here is out of date or missing, please <A target="_blank" href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>suggest an edit</A>.</p>
                 <p>You may need a referral for some activities and groups. Contact the organiser if unsure.</p>
             </Footer>
+
         </Dialog>
         :
         <Loader/>
