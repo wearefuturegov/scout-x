@@ -16,7 +16,9 @@ const Field = styled.div`
     }
 `
 
-const LabelWithMargin = styled(Label)`
+const LabelWithMargin = styled.label`
+    color: ${theme.text};
+    cursor: pointer;
     display: block;
     margin-bottom: 7px;
 `
