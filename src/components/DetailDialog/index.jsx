@@ -12,12 +12,12 @@ import Description from "../Description"
 import LocalOffer from "../LocalOffer"
 import Loader from "../Loader"
 import { ButtonLink } from "../Button"
-import Dialog, { Body as UnstyledBody, Header, Title } from "../Dialog"
+import Dialog, { Body as InheritedBody, Header, Title } from "../Dialog"
 import SingleLocation from "./SingleLocation"
 import LocationAccordion from "./LocationAccordion"
 import { TickList as List, TickListItem } from "../TickList"
 
-const Body = styled(UnstyledBody)`
+const Body = styled(InheritedBody)`
     &:first-of-type{
         padding-top: 0px;
     }
@@ -110,8 +110,7 @@ const Table = styled.table`
     }
 `
 
-const Footer = styled.footer`
-    background: ${theme.pale};
+const Footer = styled(Body)`
     text-align: center;
     padding: 25px;
     @media screen and (min-width: ${theme.breakpointM}){
@@ -294,6 +293,7 @@ const DetailDialog = ({
                 <p>If anything here is out of date or missing, please <A target="_blank" href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedbacks`}>suggest an edit</A>.</p>
                 <p>You may need a referral for some activities and groups. Contact the organiser if unsure.</p>
             </Footer>
+
         </Dialog>
         :
         <Loader/>
