@@ -90,7 +90,7 @@ const Input = styled.input`
         outline: 3px solid ${theme.focus};
     }
     &::placeholder{
-        opacity: 0.3;
+        color: rgb(33, 33, 33, 0.3)
     }
 `
 
