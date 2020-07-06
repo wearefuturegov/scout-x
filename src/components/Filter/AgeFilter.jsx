@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Outer, Legend, Label, Header, UnfoldButton, Content } from "./layout"
+import { Outer, Legend, Header, UnfoldButton, Content } from "./layout"
 import theme from "../_theme"
 
 const ColumnContent = styled(Content)`
