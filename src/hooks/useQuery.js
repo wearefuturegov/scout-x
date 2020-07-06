@@ -41,7 +41,6 @@ const useQuery = (key, initialValue, options = {}) => {
     const [value, setValue] = useState(getQueryStringValue(key, window.location.search) || initialValue)
 
     const onSetValue = useCallback(newValue => {
-        console.log("onsetvalue")
         setValue(newValue)
         setQueryStringValue(key, newValue, window.location.search)
     // eslint-disable-next-line react-hooks/exhaustive-deps
