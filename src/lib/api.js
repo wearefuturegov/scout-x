@@ -13,7 +13,8 @@ export const fetchResultsByQuery = async query => {
         needs, 
         min_age, 
         max_age,
-        only
+        only,
+        page
     } = queryString.parse(query)
 
     // api expects everything to be a "taxonomy" parameter
@@ -30,7 +31,8 @@ export const fetchResultsByQuery = async query => {
         taxonomies,
         min_age,
         max_age,
-        only
+        only,
+        page
     })}`)
     return await res.json()
 }
