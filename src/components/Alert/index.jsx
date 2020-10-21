@@ -51,6 +51,10 @@ const StyledLink = styled(Link)`
     &:hover{
         text-decoration: none;
     }
+    &:focus{
+        outline: 3px solid ${theme.focus};
+        background: ${theme.focus};
+    }
 `
 
 export default ({

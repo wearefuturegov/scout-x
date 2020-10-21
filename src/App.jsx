@@ -136,8 +136,10 @@ const App = ({
           <>
             <ResultsHeader>
               <Count>
-                {results.length > 0 && 
-                  <>Showing {page === 1 && "first "}{results.length} results</>
+                {results.length > 0 && (keywords || coverage) &&
+                  <>
+                    Showing results {keywords && <>for <strong>{keywords}</strong></>} {coverage && <>near <strong>{coverage}</strong></>}
+                  </>
                 }
               </Count>
               <Switch

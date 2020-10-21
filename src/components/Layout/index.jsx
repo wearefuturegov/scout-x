@@ -104,6 +104,8 @@ export const Count = styled.p`
   color: ${theme.grey};
   font-size: 0.9rem;
   margin-bottom: 0px;
+  margin-right: 45px;
+  flex: 1;
 `
 
 export const NoResults = styled.p`
