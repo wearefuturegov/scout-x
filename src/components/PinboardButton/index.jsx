@@ -64,6 +64,7 @@ const RemoveButton = styled(BaseButton)`
 
 const PinboardButton = ({
     service,
+    location,
     isInPinboard,
     addToPinboard,
     removeFromPinboard,
@@ -99,7 +100,10 @@ const PinboardButton = ({
                 <AddButton onClick={() => {
                     setJustPinned(true)
                     addToPinboard(service)
-                    triggerAlert("Added to pinned services")
+                    triggerAlert("Added to pinned services", {
+                        linkText: "See pinboard",
+                        link: `/pinboard${location.search}`
+                    })
                 }}>Add to pins</AddButton>
             }
         </div>

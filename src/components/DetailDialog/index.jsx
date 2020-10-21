@@ -204,7 +204,7 @@ const DetailDialog = ({
                             (service.contacts.length === 1 && service.contacts[0].email) && 
                                 <ButtonLink href={`mailto:${service.contacts[0].email}`}>Send email</ButtonLink>
                         }
-                        <PinboardButton service={service}/>
+                        <PinboardButton service={service} location={location}/>
                     </Actions>
                     {service.description && <Description description={service.description}/>}
                     {service.locations.length > 1 && <LocationAccordion locations={service.locations}/>}

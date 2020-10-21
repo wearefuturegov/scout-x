@@ -1,5 +1,6 @@
 import React from "react"
 import Alert from "@reach/alert"
+import { Link }  from "@reach/router"
 import styled from "styled-components"
 import theme from "../_theme"
 
@@ -11,10 +12,12 @@ const StyledAlert = styled(Alert)`
     background: ${theme.text};
     padding: 20px;
     color: ${theme.white};
-    font-weight: bold;
-    pointer-events: none;
+    /* pointer-events: none; */
     box-shadow: 0px 2px 12px rgba(0,0,0,0.1);
     animation: popIn 5s ease-out;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     text-align: center;
     @media screen and (min-width: ${theme.breakpointM}){
         max-width: 400px;
@@ -41,9 +44,21 @@ const StyledAlert = styled(Alert)`
     }
 `
 
+const StyledLink = styled(Link)`
+    font-weight: bold;
+    color: ${theme.white};
+    text-decoration: underline;
+    &:hover{
+        text-decoration: none;
+    }
+`
+
 export default ({
-    children
+    children,
+    link,
+    linkText
 }) => 
     <StyledAlert>
         {children}
+        {link && <StyledLink to={link}>{linkText}</StyledLink>}
     </StyledAlert>

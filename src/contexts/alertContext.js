@@ -12,22 +12,22 @@ export const AlertContextProvider = ({
     return (
         <AlertContext.Provider
             value={{
-                triggerAlert: (message, link) => {
+                triggerAlert: (message, options) => {
                     // Add the new message
                     setAlert({
                         message,
-                        link
+                        ...options
                     })
                     // Remove the last message after 5 seconds
                     setTimeout(() => {
                         setAlert(false)
-                    }, 5000)
+                    }, 6000)
                 }
             }}
         >
             {children}
             {alert &&
-                <Alert link={alert.link}>{alert.message}</Alert>
+                <Alert link={alert.link} linkText={alert.linkText}>{alert.message}</Alert>
             }
         </AlertContext.Provider>
     )
