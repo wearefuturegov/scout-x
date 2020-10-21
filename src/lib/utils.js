@@ -97,7 +97,7 @@ export const buildGoodToKnow = ({
     } else if (min_age){
         goodToKnow.push(`Suitable for ${min_age} year olds up`)
     } else if (max_age){
-        goodToKnow.push(`>Suitable up to ${max_age} year olds`)
+        goodToKnow.push(`Suitable up to ${max_age} year olds`)
     } else {
         goodToKnow.push(`Suitable for all ages`)
     }
