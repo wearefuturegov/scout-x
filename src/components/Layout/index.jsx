@@ -159,7 +159,7 @@ const Layout = ({
         <PageHeader>
             <PageHeaderInner>
                 <Breadcrumbs/>
-                <PageTitle>Search in your area</PageTitle>
+                <PageTitle>Find activities and organisations near you</PageTitle>
                 <div id="main-content">
 
                 {headerComponents}

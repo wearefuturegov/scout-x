@@ -67,7 +67,7 @@ const App = ({
   return(
     <>
       <Helmet>
-        <title>{page > 1 ? `Page ${page}` : "Search in your area"} | Family information service | Buckinghamshire Council</title>}
+        <title>{page > 1 ? `Page ${page}` : "Find activities and organisations near you"} | Family information service | Buckinghamshire Council</title>}
       </Helmet>
       <Layout
         scrollRef={scrollTarget}
