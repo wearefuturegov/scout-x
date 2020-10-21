@@ -48,6 +48,7 @@ export const PageTitle = styled.h1`
   @media screen and (min-width: ${theme.breakpointM}){
     font-size: 2.625rem;
     margin-bottom: 40px;
+    max-width: 60%;
   }
 `
 

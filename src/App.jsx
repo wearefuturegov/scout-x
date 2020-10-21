@@ -48,7 +48,8 @@ const App = ({
   const [maxAge, setMaxAge] = useQuery("max_age", false, {numerical: true})
   const [only, setOnly] = useQuery("only", [], {array: true})
 
-  const [mapVisible, setMapVisible ] = useState(false)
+  const [mapVisible, setMapVisible ] = useQuery("map", false)
+
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(true)
 
