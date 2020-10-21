@@ -6,7 +6,7 @@ import { ResultsFooter} from "../Layout"
 
 const SecondaryButton = styled.button`
     font-size: 1rem;
-    color: ${theme.grey};
+    color: ${theme.link};
     background: none;
     border: none;
     cursor: pointer;
@@ -19,7 +19,7 @@ const SecondaryButton = styled.button`
         background: ${theme.focus};
     }
     &:active{
-        color: ${theme.text};
+        color: ${theme.linkActive};
     }
 `
 
@@ -28,17 +28,23 @@ const Pagination = ({
     page,
     setPage,
     scrollTarget
-}) => totalPages > page &&
+}) => totalPages > 0 &&
     <ResultsFooter>
-        <Button onClick={() => {
-            scrollTarget.current.scrollIntoView()
-            setPage(page + 1)
-            }}>Next page</Button>
+        {totalPages > page &&
+            <Button onClick={() => {
+                scrollTarget.current.scrollIntoView()
+                setPage(page + 1)
+                }}>
+                Next page
+            </Button>
+        }
         {page > 1 && 
             <SecondaryButton onClick={() => {
             scrollTarget.current.scrollIntoView()
             setPage(page - 1)
-            }}>Previous page</SecondaryButton>
+            }}>
+                Previous page
+            </SecondaryButton>
         }
     </ResultsFooter>
 
