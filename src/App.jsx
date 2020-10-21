@@ -119,14 +119,14 @@ const App = ({
               setPage={setPage}
               foldable
             />
-            <Filter
+            {/* <Filter
               legend="Only show"
               options={onlyOptions}
               selection={only}
               setSelection={setOnly}
               setPage={setPage}
               foldable
-            />
+            /> */}
           </Filters>
         </>}
         mainContentComponents={!loading && results.length === 0 ?
