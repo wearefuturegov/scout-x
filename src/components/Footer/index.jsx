@@ -1,13 +1,33 @@
 import React from "react"
 import styled from "styled-components"
 import theme from "../_theme"
+import ogl from "./ogl.svg"
 
 const Outer = styled.footer`
     background: ${theme.text};
-    color: ${theme.white};
-    padding: 60px ${theme.outerSpacing};
+    padding: 30px ${theme.outerSpacing} 50px ${theme.outerSpacing};
     @media screen and (min-width: ${theme.breakpointM}){
-        padding: 80px ${theme.outerSpacing};
+        padding: 30px ${theme.outerSpacing} 60px ${theme.outerSpacing};
+        font-size: 1rem;
+    }
+
+    *{
+        color: ${theme.white};
+    }
+
+    a{
+        text-decoration: underline;
+        &:hover{
+            text-decoration: none;
+        }
+        &:focus{
+            outline: 3px solid ${theme.focus};
+            background: ${theme.focus};
+            color: ${theme.text};
+        }
+        &:active{
+            color: ${theme.text};
+        }
     }
 `
 
@@ -17,13 +37,59 @@ const Inner = styled.div`
     margin-right: auto;
 `
 
+const Nav = styled.nav`
+    line-height: 2;
+`
+
+const NavLink = styled.a`
+    display: inline-block;
+    margin-right: 15px;
+`
+
+const License = styled.p`
+    margin: 40px 0px;
+    img{
+        display: block;
+        margin-bottom: 10px;
+    }
+`
+
+const Copyright = styled.p`
+
+`
+
+
+
+
 const Footer = ({
     children
 }) =>
     <Outer>
         <Inner>
-            © 2020 Buckinghamshire Council
+            <Nav>
+                <NavLink href="https://www.buckinghamshire.gov.uk/about/">About</NavLink>
+                <NavLink href="https://www.buckinghamshire.gov.uk/about/accessibility/">Accessibility</NavLink>
+                <NavLink href="https://www.buckinghamshire.gov.uk/about/cookies/">Cookies</NavLink>
+                <NavLink href="https://www.buckinghamshire.gov.uk/your-council/contact-us/">Contact us</NavLink>
+                <NavLink href="https://www.buckinghamshire.gov.uk/community-and-safety/modern-slavery-statement/">Modern slavery statement</NavLink>
+                <NavLink href="https://jobs.buckinghamshire.gov.uk/">Jobs</NavLink>
+                <NavLink href="https://www.buckinghamshire.gov.uk/coronavirus/martin-tett-coronavirus-update/subscribe-our-newsletter/">Newsletter</NavLink>
+            </Nav>
+            <License>
+                <img src={ogl} alt="Open Government License"/>
+                All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v.30</a>, except where otherwise stated
+            </License>
+            <Copyright>© 2020 Buckinghamshire Council</Copyright>
         </Inner>
     </Outer>
+
+
+
+
+
+
+
+
+
 
 export default Footer

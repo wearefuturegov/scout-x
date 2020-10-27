@@ -128,6 +128,62 @@ export const ResultsFooter = styled.footer`
   justify-content: center;
 `
 
+const Prefooter = styled.div`
+  padding: 30px ${theme.outerSpacing};
+  color: ${theme.text};
+  @media screen and (min-width: ${theme.breakpointM}){
+    padding: 60px ${theme.outerSpacing};
+  }
+`
+
+const PrefooterInner = styled.div`
+  max-width: ${theme.maxWidth};
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: ${theme.breakpointM}){
+    display: flex;
+    flex-direction: row;
+  }
+`
+
+const PrefooterColumn = styled.div`
+  @media screen and (min-width: ${theme.breakpointM}){
+    flex: 1;
+    width: 50%;
+  }
+  &:first-of-type{
+    margin-bottom: 35px;
+    @media screen and (min-width: ${theme.breakpointM}){
+      margin-bottom: 0px;
+      padding-right: 35px;
+      border-right: 1px solid ${theme.grey2};
+      margin-right: 35px;
+    }
+  }
+
+  h2{
+    margin-bottom: 10px;
+  }
+`
+
+const PrefooterLink = styled.a`
+  color: ${theme.link};
+  font-weight: bold;
+  margin-top: 15px;
+  display: inline-block;
+  &:hover{
+      text-decoration: none;
+  }
+  &:focus{
+      outline: 3px solid ${theme.focus};
+      background: ${theme.focus};
+  }
+  &:active{
+      color: ${theme.text};
+  }
+`
+
+
 const SkipLink = styled.a`
   position: absolute;
   font-size: 1rem;
@@ -179,6 +235,20 @@ const Layout = ({
                 </MainArea>
             </ResultsAreaInner>
         </ResultsArea>
+        <Prefooter>
+          <PrefooterInner>
+            <PrefooterColumn>
+              <h2>List your own service here</h2>
+              <p>If you offer an activity or service in Buckinghamshire, you can advertise it in our directory for free.</p>
+              <PrefooterLink href="https://outpost-staging.herokuapp.com/register">List a service</PrefooterLink>
+            </PrefooterColumn>
+            <PrefooterColumn>
+              <h2>Give feedback on this website</h2>
+              <p>This is a brand new website. Your feedback helps us improve it.</p>
+              <PrefooterLink href="#">Give feedback</PrefooterLink>
+            </PrefooterColumn>
+          </PrefooterInner>
+        </Prefooter>
         <Footer/>
     </>
 

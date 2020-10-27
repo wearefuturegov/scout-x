@@ -149,6 +149,10 @@ const SearchBar = ({
                     value={localKeywords}
                     onChange={e => setLocalKeywords(e.target.value)}
                 />
+                {localKeywords && <button onClick={e => {
+                    setLocalKeywords("")
+                    handleSubmit(e)
+                }}>Clear</button>}
             </Field>
             <Field>
                 <Label htmlFor="location">Where</Label>
