@@ -149,7 +149,7 @@ const SearchBar = ({
                     value={localKeywords}
                     onChange={e => setLocalKeywords(e.target.value)}
                 />
-                {localKeywords && <button onClick={e => {
+                {localKeywords && <button type="button" onClick={e => {
                     setLocalKeywords("")
                     handleSubmit(e)
                 }}>Clear</button>}
