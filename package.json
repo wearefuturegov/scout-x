@@ -29,7 +29,7 @@
   "scripts": {
     "dev": "run-s get-taxonomies dev:app",
     "dev:app": "react-scripts start",
-    "build": "run-s gettaxonomies build:app",
+    "build": "run-s get-taxonomies build:app",
     "build:app": "react-scripts build",
     "get-taxonomies": "node jobs/get-taxonomies",
     "test": "react-scripts test",
