@@ -48,6 +48,7 @@ Run the `npm run build` command and then serve the `/build` folder.
 
 - `REACT_APP_API_HOST`: the location of the API where service data can be read
 - `REACT_APP_GOOGLE_CLIENT_KEY`: with the Google Places, Maps Javascript and Maps Static APIs enabled
+- `TAXONOMIES_DATASOURCE`: an API endpoint to grab data to populate filters
 
 And for the email sending function:
 

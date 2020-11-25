@@ -113,7 +113,7 @@ const SearchBar = ({
     const [localLng, setLocalLng] = useState("")
 
     const handleSubmit = e => {
-        e.preventDefault()
+        e && e.preventDefault()
         setKeywords(localKeywords)
         setCoverage(localCoverage)
         setLat(localLat)
@@ -151,7 +151,8 @@ const SearchBar = ({
                 />
                 {localKeywords && <button type="button" onClick={e => {
                     setLocalKeywords("")
-                    handleSubmit(e)
+                    setKeywords(localKeywords)
+                    handleSubmit()
                 }}>Clear</button>}
             </Field>
             <Field>
