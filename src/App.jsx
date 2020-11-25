@@ -3,11 +3,12 @@ import React, { useState, useEffect, useRef } from "react"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
 import { fetchResultsByQuery } from "./lib/api"
-import { only as onlyOptions } from "./data/_config"
 import { 
-  collectionOptions, 
-  sendOptions, 
-  ageOptions, 
+  onlyOptions,
+  sendOptions
+ } from "./data/_config"
+import { 
+  collectionOptions,
   subcategoriesOf 
 } from "./lib/transform-taxonomies"
 
