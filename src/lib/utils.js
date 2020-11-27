@@ -54,19 +54,6 @@ export const buildServiceCardFooter = ({
     return keyPoints
 }
 
-export const getChildTaxa = (taxonomies, parentName, includeGrandchildren) => {
-    let results = []
-    let parentId = taxonomyData.reduce((accumulator, taxon) => taxon.label === parentName ? taxon.id : accumulator, false)
-    let children = taxonomies.filter(taxon => taxon.parent_id === parentId)
-    results = results.concat(children)
-    if(includeGrandchildren){
-        let childrenIds = children.map(child => child.id)
-        let grandchildren = taxonomies.filter(taxon => childrenIds.includes(taxon.parent_id))
-        results = results.concat(grandchildren)
-    }
-    return results
-}
-
 export const buildGoodToKnow = ({
     pick_up_drop_off_service,
     needs_referral,

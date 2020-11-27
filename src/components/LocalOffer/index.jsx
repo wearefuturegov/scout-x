@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import theme from "../_theme"
-import { truncate, getChildTaxa } from "../../lib/utils"
+import { truncate } from "../../lib/utils"
 import upArrow from "./up-arrow.svg"
 import downArrow from "./down-arrow.svg"
 import A from "../A"

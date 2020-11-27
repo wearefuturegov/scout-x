@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import theme from "../_theme"
 import fetch from "isomorphic-unfetch"
-import { daysSince, buildGoodToKnow, getChildTaxa, truncate } from "../../lib/utils"
+import { daysSince, buildGoodToKnow, truncate } from "../../lib/utils"
 import { Helmet } from "react-helmet"
 import "@reach/dialog/styles.css"
 
@@ -176,7 +176,7 @@ const DetailDialog = ({
     if(service){
 
         let goodToKnow = buildGoodToKnow(service)
-        let categories = getChildTaxa(service.taxonomies, "Categories", true)
+        let categories = service.taxonomies
 
         return(
             <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>
