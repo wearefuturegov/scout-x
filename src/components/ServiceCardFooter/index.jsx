@@ -2,7 +2,6 @@ import React from "react"
 import theme from "../_theme"
 import styled from "styled-components"
 import { buildServiceCardFooter, prettyDistance } from "../../lib/utils"
-import localOfferIcon from "./local-offer.svg"
 import tick from "./tick.svg"
 
 const Footer = styled.footer`
