@@ -35,17 +35,13 @@ export const openAfterSix = schedules => schedules
     .length > 0
 
 export const buildServiceCardFooter = ({
-    pick_up_drop_off_service,
     needs_referral,
-    current_vacancies,
     free,
     locations,
     updated_at
 }) => {
     let keyPoints = []
     if(locations && wheelchairAccessible(locations)) keyPoints.push("Wheelchair accessible")
-    if(pick_up_drop_off_service) keyPoints.push("Pick-up/drop-off service")
-    if(current_vacancies) keyPoints.push("Spaces for new children")
     if(free) keyPoints.push("Free")
     if(needs_referral) keyPoints.push("Needs referral")
     if(daysSince(updated_at) < 30) keyPoints.push("Recently updated")
@@ -53,11 +49,9 @@ export const buildServiceCardFooter = ({
 }
 
 export const buildGoodToKnow = ({
-    pick_up_drop_off_service,
     needs_referral,
     referral_url,
     local_offer,
-    current_vacancies,
     free,
     locations,
     regular_schedules,
@@ -68,10 +62,8 @@ export const buildGoodToKnow = ({
     let goodToKnow = []
 
     local_offer && goodToKnow.push("Part of the Buckinghamshire local offer for SEND")
-    pick_up_drop_off_service && goodToKnow.push("Offers pick-up/drop-off service from nearby schools")
     needs_referral && goodToKnow.push("Needs a referral")
     wheelchairAccessible(locations) && goodToKnow.push("Wheelchair accessible")
-    current_vacancies && goodToKnow.push("Spaces for new children")
     free && goodToKnow.push("Free")
     daysSince(updated_at) < 30 && goodToKnow.push("Recently updated")
     openWeekends(regular_schedules) && goodToKnow.push("Open weekends")
