@@ -26,25 +26,16 @@ const LocalOfferTag = styled.strong`
         content: "";
         display: inline-block;
         margin-right: 8px;
-        width: 10px;
+        width: 13px;
         height: 10px;
-        background-image: url(${localOfferIcon});
+        background-image: url(${tick});
         background-size: cover;
         background-position: center;
     }
 `
 
-const SpacesTag = styled(LocalOfferTag)`
-    background: ${theme.green};
-    color: ${theme.darkGreen};
-    &:before{
-        background-image: url(${tick});
-        width: 13px;
-    }
-`
-
 const Point = styled.span`
-color: ${theme.grey};
+    color: ${theme.grey};
     &:after{
         margin-left: 7px;
         content: "•";
@@ -73,11 +64,7 @@ const ServiceCardFooter = props => {
 
     return(
         <Footer>
-            {local_offer ? 
-                <LocalOfferTag>Part of local offer</LocalOfferTag>
-                :
-                current_vacancies && <SpacesTag>Has spaces</SpacesTag>
-            }
+            {local_offer && <LocalOfferTag>Part of local offer</LocalOfferTag>}
             {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
             {points.slice(0, distance_away ? 2 : 3).map(point =>
                 <Point key={point}>{point}</Point>    
