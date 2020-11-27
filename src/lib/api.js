@@ -17,11 +17,10 @@ export const fetchResultsByQuery = async query => {
         page
     } = queryString.parse(query)
 
-    // api expects everything to be a "taxonomy" parameter
+    // api expects collections and categories to both be a "taxonomy" parameter
     let taxonomies = []
     if(collection) taxonomies.push([].concat(collection))
     if(categories) taxonomies.push([].concat(categories).join(","))
-    if(needs) taxonomies.push([].concat(needs).join(","))
 
     const res = await fetch(`${process.env.REACT_APP_API_HOST}/services?${queryString.stringify({
         keywords,
@@ -29,6 +28,7 @@ export const fetchResultsByQuery = async query => {
         lat,
         lng,
         taxonomies,
+        needs,
         min_age,
         max_age,
         only,
