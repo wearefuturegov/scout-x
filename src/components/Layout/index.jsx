@@ -245,7 +245,7 @@ const Layout = ({
             <PrefooterColumn>
               <h2>Give feedback on this website</h2>
               <p>This is a brand new website. Your feedback helps us improve it.</p>
-              <PrefooterLink href="#">Give feedback</PrefooterLink>
+              <PrefooterLink href={process.env.REACT_APP_FEEDBACK_URL || "#"}>Give feedback</PrefooterLink>
             </PrefooterColumn>
           </PrefooterInner>
         </Prefooter>

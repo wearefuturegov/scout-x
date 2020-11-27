@@ -27,11 +27,11 @@
     "webpack-bundle-analyzer": "^3.7.0"
   },
   "scripts": {
-    "dev": "run-s get-taxonomies dev:app",
+    "dev": "run-s get-filters dev:app",
     "dev:app": "react-scripts start",
-    "build": "run-s get-taxonomies build:app",
+    "build": "run-s get-filters build:app",
     "build:app": "react-scripts build",
-    "get-taxonomies": "node jobs/get-taxonomies",
+    "get-filters": "node jobs/get-filters",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "analyse": "node jobs/analyse"
