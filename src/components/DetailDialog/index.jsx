@@ -244,7 +244,7 @@ const DetailDialog = ({
                         <Crosshead>Local offer and SEND</Crosshead>
                         <LocalOffer 
                             {...service.local_offer} 
-                            taxonomies={service.taxonomies}
+                            sendNeeds={service.send_needs}
                         />
                     </Body>
                 }

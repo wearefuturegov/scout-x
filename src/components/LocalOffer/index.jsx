@@ -90,13 +90,11 @@ const LocalOffer = ({
     description, 
     link, 
     survey_answers, 
-    taxonomies
+    sendNeeds
  }) => {
     const wordLimit = 30
     const [expanded, setExpanded] = useState(false)
     let paragraphs = description.split("\n").filter(paragraph => paragraph )
-
-    let sendNeeds = getChildTaxa(taxonomies, "SEND needs")
 
     return(
         <Outer>
