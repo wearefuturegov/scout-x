@@ -220,8 +220,7 @@ const Layout = ({
                 <Breadcrumbs/>
                 <PageTitle>Find activities and organisations near you</PageTitle>
                 <div id="main-content">
-
-                {headerComponents}
+                  {headerComponents}
                 </div>
             </PageHeaderInner>
         </PageHeader>
