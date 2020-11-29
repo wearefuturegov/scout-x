@@ -5,12 +5,17 @@ import downArrow from "./down-arrow.svg";
 import upArrow from "./up-arrow.svg";
 
 const Outer = styled.section`
-    margin-bottom: 35px;
     fieldset:first-of-type{
         margin-top: 20px;
         @media screen and (min-width: ${theme.breakpointM}){
             margin-top: 0px;
         }
+    }
+
+    @media screen and (min-width: ${theme.breakpointM}){
+        margin-bottom: 0px;
+        position: sticky;
+        top: 0;
     }
 `
 
