@@ -10,17 +10,30 @@
 
 ---
 
+<p align="center">
+   <img src="https://github.com/wearefuturegov/scout-x/raw/master/public/demo.jpg?raw=true" width="750px" />     
+</p>
+<p align="center">
+   <em>Example screens from the app</em>         
+</p>
+
+---
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/27801f71-59f2-4186-9587-9a2669e7edb2/deploy-status)](https://app.netlify.com/sites/hungry-wozniak-46471f/deploys)
 
-🚨 **This is ALPHA software and not ready for use yet** 🚨
+🚨 **This is ALPHA software. Please file an issue for any bugs** 🚨
 
 A simple API-driven front-end for local authority service directories and local offers.
 
-It's intended for use with [Outpost](https://github.com/wearefuturegov/outpost), but can consume any API that follows the [Open Community standard](https://opencommunity.org.uk/).
+It's intended for use with [Outpost](https://github.com/wearefuturegov/outpost), but, with some tweaks, could consume any API that follows the [Open Community standard](https://opencommunity.org.uk/).
 
-It's a React app under the hood.
+## 🧱 How it's made
 
-## Running it locally
+It's a client-rendered React app, built on [create-react-app](https://create-react-app.dev/).
+
+The pinboard feature uses localstorage, and it has one email-sending function that is intended to run on [Netlify functions](https://www.netlify.com/products/functions/).
+
+## 💻 Running it locally
 
 You need Node.js and `npm` installed, plus an API for Scout to consume data from.
 
@@ -35,7 +48,7 @@ Before building, it will attempt to grab the latest version of the collection, c
 
 It'll be on **localhost:3000**.
 
-## Running it on the web
+## 🌎 Running it on the web
 
 [![Deploy](https://www.netlify.com/img/deploy/button.svg)](
 https://app.netlify.com/start/deploy?repository=https://github.com/wearefuturegov/scout-x)
@@ -44,15 +57,18 @@ It's suitable for [any static host](https://facebook.github.io/create-react-app/
 
 Run the `npm run build` command and then serve the `/build` folder.
 
-## Configuration
+If you want to use the built-in email sending function, you'll _need_ to host it on Netlify.
 
-- `REACT_APP_API_HOST`: the location of the API where service data can be read
-- `REACT_APP_GOOGLE_CLIENT_KEY`: with the Google Places, Maps Javascript and Maps Static APIs enabled
-- `FILTERS_DATASOURCE`: a non-standard API endpoint, without a trailing slash, to grab data about taxonomies and SEND needs to populate filters
-- `REACT_APP_FEEDBACK_URL`: a URL where users can give feedback on the website
+## 🧬 Configuration
 
-And for the email sending function:
+You can configure it using a `.env` file locally. Run `cp .env.example .env` to make a fresh one.
 
-- `SENDGRID_API_KEY`: needed to send pinned services by email
-- `EMAIL_FROM`: the "from" address for emails. Should be a verified Sendgrid sender.
-- `EMAIL_HOST`: URLs in emails will be built using this host.
+| Variable                    | Description                                                                                               | Example                    | Required?                    |
+|-----------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------|------------------------------|
+| REACT_APP_API_HOST          | The location of the API where service data can be read                                                    | https://example.com/api/v1 | Yes                          |
+| REACT_APP_GOOGLE_CLIENT_KEY | Needs the Google Places, Maps Javascript and Maps Static APIs enabled                                     |                            | Yes, for map features        |
+| REACT_APP_FEEDBACK_URL      | The URL to a form where users can submit feedback about the service                                       | https://example.com        | Yes, for feedback form links |
+| FILTERS_DATASOURCE          | A non-standard API endpoint, to grab data about taxonomies and SEND needs to populate filters on app boot | https://example.com/api/v1 | No                           |
+| SENDGRID_API_KEY            | Your API key for [Sendgrid](https://sendgrid.com/docs/ui/account-and-settings/api-keys/)                  |                            | Yes, for email features      |
+| EMAIL_FROM                  | The "from" address for emails. Should be a verified Sendgrid sender.                                      | example@email.com          | Yes, for email features      |
+| EMAIL_HOST                  | URLs in emails will be built using this host.                                                             | https://example.com        | Yes, for email features      |
