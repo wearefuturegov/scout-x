@@ -3,6 +3,7 @@ import theme from "../_theme"
 import styled from "styled-components"
 import search from "./search.svg"
 import location from "./location.svg"
+import clearIcon from "./clear.svg"
 
 import AutocompletePlaceInput from "../AutocompletePlaceInput"
 import Spinner from "../Spinner"
@@ -112,6 +113,11 @@ const SearchBar = ({
     const [localLat, setLocalLat] = useState("")
     const [localLng, setLocalLng] = useState("")
 
+    const clear = () => {
+        setLocalKeywords("")
+        setKeywords("")
+    }
+
     const handleSubmit = e => {
         e && e.preventDefault()
         setKeywords(localKeywords)
@@ -149,11 +155,13 @@ const SearchBar = ({
                     value={localKeywords}
                     onChange={e => setLocalKeywords(e.target.value)}
                 />
-                {localKeywords && <button type="button" onClick={e => {
-                    setLocalKeywords("")
-                    setKeywords(localKeywords)
-                    handleSubmit()
-                }}>Clear</button>}
+                {localKeywords && 
+                    <Tooltip label="Clear your search">
+                        <GeolocateButton type="button" onClick={clear}>
+                            <img src={clearIcon} alt="Clear your search"/>
+                        </GeolocateButton>
+                    </Tooltip>
+                }
             </Field>
             <Field>
                 <Label htmlFor="location">Where</Label>
