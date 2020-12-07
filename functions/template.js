@@ -369,7 +369,7 @@ module.exports = (host, pins) => `
                         ${pins.map(pin => `
                             <tr>
                                 <td>
-                                    <h3 style="margin-bottom: 10px;"><a href="${host}${pin.id}">${pin.name}</a></h3>
+                                    <h3 style="margin-bottom: 10px;"><a href="${host}/service/${pin.id}">${pin.name}</a></h3>
                                     <p>${truncate(pin.description, 30)}<p>
                                 </td>
                             </tr>

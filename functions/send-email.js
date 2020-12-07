@@ -5,7 +5,7 @@ exports.handler = async (event, context, callback) => {
     try{
         let { email, pins } = JSON.parse(event.body)
 
-        let host = process.env.EMAIL_HOST || "https://scout-x.netlify.app/service/"
+        let host = process.env.EMAIL_HOST || "https://scout-x.netlify.app"
 
         let res = await fetch("https://api.sendgrid.com/v3/mail/send", {
             method: "POST",
