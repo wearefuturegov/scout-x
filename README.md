@@ -25,7 +25,7 @@
 
 A simple API-driven front-end for local authority service directories and local offers.
 
-It's intended for use with [Outpost](https://github.com/wearefuturegov/outpost), but, with some tweaks, could consume any API that follows the [Open Community standard](https://opencommunity.org.uk/).
+It's intended for use with [Outpost](https://github.com/wearefuturegov/outpost) and its [API service](github.com/wearefuturegov/outpost-api-service/), but, with some tweaks, could consume any API that follows the [Open Community standard](https://opencommunity.org.uk/).
 
 ## 🧱 How it's made
 
@@ -63,12 +63,12 @@ If you want to use the built-in email sending function, you'll _need_ to host it
 
 You can configure it using a `.env` file locally. Run `cp .env.example .env` to make a fresh one.
 
-| Variable                    | Description                                                                                               | Example                    | Required?                    |
-|-----------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------|------------------------------|
-| REACT_APP_API_HOST          | The location of the API where service data can be read                                                    | https://example.com/api/v1 | Yes                          |
-| REACT_APP_GOOGLE_CLIENT_KEY | Needs the Google Places, Maps Javascript and Maps Static APIs enabled                                     |                            | Yes, for map features        |
-| REACT_APP_FEEDBACK_URL      | The URL to a form where users can submit feedback about the service                                       | https://example.com        | Yes, for feedback form links |
-| FILTERS_DATASOURCE          | A non-standard API endpoint, to grab data about taxonomies and SEND needs to populate filters on app boot | https://example.com/api/v1 | No                           |
-| SENDGRID_API_KEY            | Your API key for [Sendgrid](https://sendgrid.com/docs/ui/account-and-settings/api-keys/)                  |                            | Yes, for email features      |
-| EMAIL_FROM                  | The "from" address for emails. Should be a verified Sendgrid sender.                                      | example@email.com          | Yes, for email features      |
-| EMAIL_HOST                  | URLs in emails will be built using this host.                                                             | https://example.com        | Yes, for email features      |
+| Variable                      | Description                                                                                               | Example                    | Required?                    |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------|------------------------------|
+| `REACT_APP_API_HOST`          | The location of the API where service data can be read                                                    | https://example.com/api/v1 | Yes                          |
+| `REACT_APP_GOOGLE_CLIENT_KEY` | Needs the Google Places, Maps Javascript and Maps Static APIs enabled                                     |                            | Yes, for map features        |
+| `REACT_APP_FEEDBACK_URL`      | The URL to a form where users can submit feedback about the service                                       | https://example.com        | Yes, for feedback form links |
+| `FILTERS_DATASOURCE`          | A non-standard API endpoint, to grab data about taxonomies and SEND needs to populate filters on app boot | https://example.com/api/v1 | No                           |
+| `SENDGRID_API_KEY`            | Your API key for [Sendgrid](https://sendgrid.com/docs/ui/account-and-settings/api-keys/)                  |                            | Yes, for email features      |
+| `EMAIL_FROM`                  | The "from" address for emails. Should be a verified Sendgrid sender.                                      | example@email.com          | Yes, for email features      |
+| `EMAIL_HOST`                  | URLs in emails will be built using this host.                                                             | https://example.com        | Yes, for email features      |
