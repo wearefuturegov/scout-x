@@ -25,7 +25,7 @@
 
 A simple API-driven front-end for local authority service directories and local offers.
 
-It's intended for use with [Outpost](https://github.com/wearefuturegov/outpost) and its [API service](github.com/wearefuturegov/outpost-api-service/), but, with some tweaks, could consume any API that follows the [Open Community standard](https://opencommunity.org.uk/).
+It's intended for use with [Outpost](https://github.com/wearefuturegov/outpost) and its [API service](https://github.com/wearefuturegov/outpost-api-service/), but, with some tweaks, could consume any API that follows the [Open Community standard](https://opencommunity.org.uk/).
 
 ## 🧱 How it's made
 
