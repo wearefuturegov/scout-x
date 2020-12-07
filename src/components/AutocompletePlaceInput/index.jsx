@@ -34,18 +34,36 @@ const AutocompletePlacesInput = ({
 
     let autocomplete = null
 
+    const handleEnterKey = e => {
+        const selectedItem = document.getElementsByClassName('pac-item-selected');
+        if (e.keyCode === 13 && selectedItem.length !== 0) {
+            e.preventDefault();
+        }
+    }
+
     useEffect(() => {
         if(isLoaded){
+
+            let input = inputRef.current
+
             // eslint-disable-next-line
             autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, { 
                 types: ["geocode"]
             })
             autocomplete.setComponentRestrictions({"country": ["gb"]})
+
             autocomplete.addListener("place_changed", handlePlaceChanged)
+            input.addEventListener("keydown", handleEnterKey)
+
+            return() => {
+                autocomplete.removeListener("place_changed", handlePlaceChanged)
+                input.removeEventListener(handleEnterKey)
+            }
         }
     }, [isLoaded])
 
     const handlePlaceChanged = () => {
+        console.log("handle place change function running")
         const place = autocomplete.getPlace()
         if(place.geometry){
             setLat(place.geometry.location.lat())
