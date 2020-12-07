@@ -5,6 +5,8 @@ import downArrow from "./down-arrow.svg";
 import upArrow from "./up-arrow.svg";
 
 const Outer = styled.section`
+    margin-bottom: 25px;
+
     fieldset:first-of-type{
         margin-top: 20px;
         @media screen and (min-width: ${theme.breakpointM}){
@@ -14,8 +16,6 @@ const Outer = styled.section`
 
     @media screen and (min-width: ${theme.breakpointM}){
         margin-bottom: 0px;
-        position: sticky;
-        top: 0;
     }
 `
 
@@ -53,13 +53,13 @@ const Button = styled.button`
         display: inline-block;
         width: 18px;
         height: 18px;
-        background-image: url(${downArrow});
+        background-image: url(${upArrow});
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
     }
     &[aria-expanded=true]:after{
-        background-image: url(${upArrow});
+        background-image: url(${downArrow});
     }
     @media screen and (min-width: ${theme.breakpointM}){
         display: none;

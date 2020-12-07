@@ -32,13 +32,13 @@ export const UnfoldButton = styled.button`
         height: 10px;
         width: 15px;
         margin-left: 10px;
-        background-image: url(${downArrow});
+        background-image: url(${upArrow});
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
     }
     &[aria-expanded=true]:after{
-        background-image: url(${upArrow});
+        background-image: url(${downArrow});
     }
     &:focus{
         outline: 3px solid ${theme.focus};
