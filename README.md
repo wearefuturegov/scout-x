@@ -11,7 +11,7 @@
 ---
 
 <p align="center">
-   <img src="https://github.com/wearefuturegov/scout-x/raw/master/public/demo.jpg?raw=true" width="750px" />     
+   <img src="https://github.com/wearefuturegov/scout-x/raw/master/public/examples.jpg?raw=true" width="750px" />     
 </p>
 <p align="center">
    <em>Example screens from the app</em>         
