@@ -182,7 +182,7 @@ const DetailDialog = ({
             <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>
                 <Helmet>
                     <title>{service.name} | Family information service | Buckinghamshire Council</title>
-                    {service.description && <meta content={truncate(service.description, 30)} name="description"/>}
+                    {service.description && <meta name="description" content={truncate(service.description, 30)} />}
                 </Helmet>
                 {daysSince(service.updated_at) > 180 && 
                     <Banner>Last updated more than six months ago</Banner>
