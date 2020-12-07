@@ -214,7 +214,7 @@ const DetailDialog = ({
                         <Crosshead>Good to know</Crosshead>
                         <TwoColumnTickList>
                             {goodToKnow.map(point =>
-                                <TickListItem>
+                                <TickListItem key={point}>
                                     {point}<br/>
                                     {point === "Needs a referral" && service.referral_url &&
                                         <A href={service.referral_url}>Details</A>
@@ -289,15 +289,13 @@ const DetailDialog = ({
                             </Table>
                         </Columns>
                     }
-                    {(service.facebook_url || service.twitter_url || service.youtube_url || service.instagram_url || service.linkedin_url) &&
+                    {service.links.length > 0 &&
                         <Columns>
-                            <Crosshead>Social links</Crosshead>
+                            <Crosshead>Links</Crosshead>
                             <div>
-                                {service.facebook_url && <p><A href={service.facebook_url}>Facebook</A></p>}
-                                {service.twitter_url && <p><A href={service.twitter_url}>Twitter</A></p>}                        
-                                {service.youtube_url && <p><A href={service.youtube_url}>YouTube</A></p>}                        
-                                {service.instagram_url && <p><A href={service.instagram_url}>Instagram</A></p>}                        
-                                {service.linkedin_url && <p><A href={service.linkedin_url}>LinkedIn</A></p>}
+                                {service.links.map(link =>
+                                    <p key={link.url}><A href={link.url}>{link.label}</A></p>
+                                )}
                             </div>
                         </Columns>
                     }
