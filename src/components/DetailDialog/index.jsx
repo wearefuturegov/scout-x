@@ -88,6 +88,7 @@ const Columns = styled.div`
             display: grid;
             grid-template-columns: 1fr 1fr;
             column-gap: 35px;
+            row-gap: 25px;
             div{
                 margin-bottom: 0px;
             }
