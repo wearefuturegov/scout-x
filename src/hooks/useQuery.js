@@ -46,8 +46,8 @@ const useQuery = (key, initialValue, options = {}) => {
     newValue => {
       setValue(newValue)
       setQueryStringValue(key, newValue, window.location.search)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [key]
   )
 
