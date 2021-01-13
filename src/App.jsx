@@ -75,7 +75,6 @@ const App = ({ children, location, navigate }) => {
             : "Find activities and organisations near you"}{" "}
           | Family information service | Buckinghamshire Council
         </title>
-        }
       </Helmet>
       <Layout
         scrollRef={scrollTarget}
