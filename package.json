@@ -40,7 +40,8 @@
     "get-filters": "node jobs/get-filters",
     "test": "jest",
     "eject": "react-scripts eject",
-    "analyse": "node jobs/analyse"
+    "analyse": "node jobs/analyse",
+    "lint": "prettier --check ."
   },
   "eslintConfig": {
     "extends": "react-app"
