@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import theme from "../_theme"
 import fetch from "isomorphic-unfetch"
-import { daysSince, buildGoodToKnow, truncate } from "../../lib/utils"
+import { daysSince, buildGoodToKnow, truncate, twelveHourTime } from "../../lib/utils"
 import { Helmet } from "react-helmet"
 import "@reach/dialog/styles.css"
 
@@ -268,7 +268,7 @@ const DetailDialog = ({
                                     {service.regular_schedules.map((sched, i) =>
                                         <tr key={i}>
                                             <td><strong>{sched.weekday}s</strong></td>
-                                            <td>{sched.opens_at}—{sched.closes_at}</td>
+                                            <td>{twelveHourTime(sched.opens_at)}—{twelveHourTime(sched.closes_at)}</td>
                                         </tr>
                                     )}
                                 </tbody>
