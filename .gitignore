@@ -28,3 +28,7 @@ yarn-error.log*
 .netlify
 
 /functions/node_modules
+
+/cypress/screenshots
+
+/cypress/videos

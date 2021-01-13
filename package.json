@@ -39,9 +39,9 @@
     "build": "run-s get-filters build:app",
     "build:app": "react-scripts build",
     "get-filters": "node jobs/get-filters",
-    "test": "run-s test:*",
-    "test:unit": "jest",
-    "test:cypress": "cypress open",
+    "test": "jest",
+    "cypress:ci": "cypress run",
+    "cypress:dev": "cypress open",
     "eject": "react-scripts eject",
     "analyse": "node jobs/analyse",
     "lint": "prettier --check ."
