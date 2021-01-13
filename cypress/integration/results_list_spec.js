@@ -2,9 +2,14 @@ describe("Results list page", () => {
   beforeEach(() => {
     cy.visit("/")
 
-    cy.intercept("/api/v1/services", {
-      fixture: "services",
-    })
+    cy.intercept(
+      {
+        pathname: "/api/v1/services",
+      },
+      {
+        fixture: "services",
+      }
+    )
   })
 
   it("renders a list of results", () => {
@@ -13,8 +18,8 @@ describe("Results list page", () => {
 
     // cy.get("ul li").should("have.length", 20)
 
-    // cy.get("ul")
-    //   .should("contain", "12th Aylesbury Brownies")
-    //   .should("contain", "Chepping View Primary Academy")
+    cy.get("ul")
+      .should("contain", "12th Aylesbury Brownies")
+      .should("contain", "Chepping View Primary Academy")
   })
 })
