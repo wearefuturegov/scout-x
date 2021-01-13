@@ -1,11 +1,11 @@
 const truncate = (str, noWords) => {
-    if(str && (noWords > 1)){
-        if(str.split(" ").length > noWords){
-            return str.split(" ").splice(0,noWords).join(" ") + "..."
-        } else {
-            return str
-        }
+  if (str && noWords > 1) {
+    if (str.split(" ").length > noWords) {
+      return str.split(" ").splice(0, noWords).join(" ") + "..."
+    } else {
+      return str
     }
+  }
 }
 
 module.exports = (host, pins) => `
@@ -365,14 +365,20 @@ module.exports = (host, pins) => `
                             </td>
                         </tr>
 
-                        ${pins.map(pin => `
+                        ${pins
+                          .map(
+                            pin => `
                             <tr>
                                 <td>
-                                    <h3 style="margin-bottom: 10px;"><a href="${host}/service/${pin.id}">${pin.name}</a></h3>
+                                    <h3 style="margin-bottom: 10px;"><a href="${host}/service/${
+                              pin.id
+                            }">${pin.name}</a></h3>
                                     <p>${truncate(pin.description, 30)}<p>
                                 </td>
                             </tr>
-                        `).join("")}
+                        `
+                          )
+                          .join("")}
 
                         <tr> 
                             <td height="20"></td> 

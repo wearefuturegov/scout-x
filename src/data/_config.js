@@ -1,6 +1,6 @@
 export const onlyOptions = [
-    {
-        label: "Free",
-        slug: "free"
-    }
+  {
+    label: "Free",
+    slug: "free",
+  },
 ]

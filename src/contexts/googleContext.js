@@ -5,25 +5,22 @@ const GoogleContext = React.createContext()
 
 const libs = ["places"]
 
-export const GoogleContextProvider = ({
-    children
-}) => {
+export const GoogleContextProvider = ({ children }) => {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_CLIENT_KEY,
+    libraries: libs,
+    preventGoogleFontsLoading: true,
+  })
 
-    const { isLoaded } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_CLIENT_KEY,
-        libraries: libs,
-        preventGoogleFontsLoading: true
-    })
-
-    return (
-        <GoogleContext.Provider
-            value={{
-                isLoaded: isLoaded
-            }}
-        >
-            {children}
-        </GoogleContext.Provider>
-    )
+  return (
+    <GoogleContext.Provider
+      value={{
+        isLoaded: isLoaded,
+      }}
+    >
+      {children}
+    </GoogleContext.Provider>
+  )
 }
 
 export const GoogleContextConsumer = GoogleContext.Consumer

@@ -4,13 +4,18 @@ import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
 import { fetchResultsByQuery } from "./lib/api"
 import { onlyOptions } from "./data/_config"
-import { 
+import {
   collectionOptions,
   subcategoriesOf,
-  sendOptions
+  sendOptions,
 } from "./lib/transform-taxonomies"
 
-import Layout, { ResultsHeader, ResultsList, Count, NoResults } from "./components/Layout"
+import Layout, {
+  ResultsHeader,
+  ResultsList,
+  Count,
+  NoResults,
+} from "./components/Layout"
 import Switch from "./components/Switch"
 import SearchBar from "./components/SearchBar"
 import ServiceCard from "./components/ServiceCard"
@@ -24,12 +29,7 @@ import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
 
-const App = ({
-  children,
-  location,
-  navigate
-}) => {
-
+const App = ({ children, location, navigate }) => {
   const scrollTarget = useRef(null)
 
   const [keywords, setKeywords] = useQuery("keywords", "")
@@ -40,19 +40,21 @@ const App = ({
 
   const [collection, setCollection] = useQuery("collection", false)
 
-  const [categories, setCategories] = useQuery("categories", [], {array: true})
-  const [ages, setAges] = useQuery("ages", [], {array: true})
-  const [needs, setNeeds] = useQuery("needs", [], {array: true})
-  const [minAge, setMinAge] = useQuery("min_age", false, {numerical: true})
-  const [maxAge, setMaxAge] = useQuery("max_age", false, {numerical: true})
-  const [only, setOnly] = useQuery("only", [], {array: true})
+  const [categories, setCategories] = useQuery("categories", [], {
+    array: true,
+  })
+  const [ages, setAges] = useQuery("ages", [], { array: true })
+  const [needs, setNeeds] = useQuery("needs", [], { array: true })
+  const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
+  const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
+  const [only, setOnly] = useQuery("only", [], { array: true })
 
-  const [mapVisible, setMapVisible ] = useQuery("map", false)
+  const [mapVisible, setMapVisible] = useQuery("map", false)
 
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const [page, setPage] = useQuery("page", 1, {numerical: true})
+  const [page, setPage] = useQuery("page", 1, { numerical: true })
   const [totalPages, setTotalPages] = useState(false)
 
   useEffect(() => {
@@ -64,10 +66,15 @@ const App = ({
     })
   }, [location.search])
 
-  return(
+  return (
     <>
       <Helmet>
-        <title>{page > 1 ? `Page ${page}` : "Find activities and organisations near you"} | Family information service | Buckinghamshire Council</title>}
+        <title>
+          {page > 1
+            ? `Page ${page}`
+            : "Find activities and organisations near you"}{" "}
+          | Family information service | Buckinghamshire Council
+        </title>
       </Helmet>
       <Layout
         scrollRef={scrollTarget}
@@ -82,98 +89,110 @@ const App = ({
             setPage={setPage}
           />
         }
-        sidebarComponents={<>
-          <Filters>
-            <RadioFilter
-              name="collection"
-              options={collectionOptions}
-              selection={collection}
-              setSelection={setCollection}
-              clearThis={setCategories}
-              setPage={setPage}
-            />
-            {collection &&
+        sidebarComponents={
+          <>
+            <Filters>
+              <RadioFilter
+                name="collection"
+                options={collectionOptions}
+                selection={collection}
+                setSelection={setCollection}
+                clearThis={setCategories}
+                setPage={setPage}
+              />
+              {collection && (
+                <Filter
+                  legend="Categories"
+                  options={subcategoriesOf(collection)}
+                  selection={categories}
+                  setSelection={setCategories}
+                  setPage={setPage}
+                  foldable
+                />
+              )}
               <Filter
-                legend="Categories"
-                options={subcategoriesOf(collection)}
-                selection={categories}
-                setSelection={setCategories}
+                legend="SEND needs"
+                options={sendOptions}
+                selection={needs}
+                setSelection={setNeeds}
                 setPage={setPage}
                 foldable
               />
-            }
-            <Filter
-              legend="SEND needs"
-              options={sendOptions}
-              selection={needs}
-              setSelection={setNeeds}
-              setPage={setPage}
-              foldable
-            />
-            <AgeFilter
-              legend="Ages"
-              maxAge={maxAge}
-              setMaxAge={setMaxAge}
-              minAge={minAge}
-              setMinAge={setMinAge}
-              setPage={setPage}
-              foldable
-            />
-            <Filter
-              legend="Only show"
-              options={onlyOptions}
-              selection={only}
-              setSelection={setOnly}
-              setPage={setPage}
-              foldable
-            />
-          </Filters>
-        </>}
-        mainContentComponents={!loading && results.length === 0 ?
-          <NoResults>No results to show. Try widening your search.</NoResults>
-          :
-          <>
-            <ResultsHeader>
-              <Count>
-                {results.length > 0 && (keywords || coverage) &&
-                  <>
-                    Showing results {keywords && <>for <strong>{keywords}</strong></>} {coverage && <>near <strong>{coverage}</strong></>}
-                  </>
-                }
-              </Count>
-              <Switch
-                id="map-toggle"
-                checked={mapVisible}
-                onChange={e => setMapVisible(e.target.checked)}
-                label="Show map?"
-              />
-            </ResultsHeader>
-            {mapVisible && 
-              <ListMap 
-                results={results}
-                navigate={navigate}
-                location={location}
-              />
-            }
-            <PinboardLink location={location}/>
-            <ResultsList aria-live="polite">
-              {loading ?
-                <Skeleton/>
-                :
-                results.map(s =>
-                  <ServiceCard key={s.id} {...s}/>  
-                )
-              }
-            </ResultsList>
-            {!loading &&
-              <Pagination
-                totalPages={totalPages}
-                page={page}
+              <AgeFilter
+                legend="Ages"
+                maxAge={maxAge}
+                setMaxAge={setMaxAge}
+                minAge={minAge}
+                setMinAge={setMinAge}
                 setPage={setPage}
-                scrollTarget={scrollTarget}
+                foldable
               />
-            }
+              <Filter
+                legend="Only show"
+                options={onlyOptions}
+                selection={only}
+                setSelection={setOnly}
+                setPage={setPage}
+                foldable
+              />
+            </Filters>
           </>
+        }
+        mainContentComponents={
+          !loading && results.length === 0 ? (
+            <NoResults>No results to show. Try widening your search.</NoResults>
+          ) : (
+            <>
+              <ResultsHeader>
+                <Count>
+                  {results.length > 0 && (keywords || coverage) && (
+                    <>
+                      Showing results{" "}
+                      {keywords && (
+                        <>
+                          for <strong>{keywords}</strong>
+                        </>
+                      )}{" "}
+                      {coverage && (
+                        <>
+                          near <strong>{coverage}</strong>
+                        </>
+                      )}
+                    </>
+                  )}
+                </Count>
+                <Switch
+                  id="map-toggle"
+                  checked={mapVisible}
+                  onChange={e => setMapVisible(e.target.checked)}
+                  label="Show map?"
+                />
+              </ResultsHeader>
+              {mapVisible && (
+                <ListMap
+                  results={results}
+                  navigate={navigate}
+                  location={location}
+                />
+              )}
+              <PinboardLink location={location} />
+              <ResultsList aria-live="polite">
+                {loading ? (
+                  <Skeleton />
+                ) : (
+                  results.map(s => <ServiceCard key={s.id} {...s} />)
+                )}
+              </ResultsList>
+              {!loading && (
+                <Pagination
+                  totalPages={totalPages}
+                  page={page}
+                  setPage={setPage}
+                  scrollTarget={scrollTarget}
+                />
+              )}
+            </>
+          )
         }
       />
       {children}
