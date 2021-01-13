@@ -4,7 +4,7 @@ describe("Results list page", () => {
 
     cy.intercept(
       {
-        pathname: "/api/v1/services",
+        pathname: "/services",
       },
       {
         fixture: "services",
