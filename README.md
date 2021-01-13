@@ -19,6 +19,8 @@
 
 ---
 
+![CI](https://github.com/wearefuturegov/scout-x/workflows/CI/badge.svg)
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/27801f71-59f2-4186-9587-9a2669e7edb2/deploy-status)](https://app.netlify.com/sites/hungry-wozniak-46471f/deploys)
 
 🚨 **This is ALPHA software. Please file an issue for any bugs** 🚨
