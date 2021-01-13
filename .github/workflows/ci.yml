@@ -16,7 +16,7 @@ jobs:
         run: npm test
 
       - name: Integration tests
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v2
         with:
           build: npm run build
           start: npm start
