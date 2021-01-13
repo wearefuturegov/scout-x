@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
 import { fetchResultsByQuery } from "./lib/api"
-import { onlyOptions } from "./data/_config"
+import {onlyOptions} from "./data/_config"
 import {
   collectionOptions,
   subcategoriesOf,
@@ -11,9 +11,6 @@ import {
 } from "./lib/transform-taxonomies"
 
 import Layout, {
-
-
-  
   ResultsHeader,
   ResultsList,
   Count,
