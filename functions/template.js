@@ -132,7 +132,6 @@ module.exports = (host, pins) => `
         font-size: 35px;
         font-weight: 300;
         text-align: center;
-        text-transform: capitalize; 
     }
 
     p,
