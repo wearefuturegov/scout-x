@@ -18,6 +18,6 @@ jobs:
       - name: Integration tests
         uses: cypress-io/github-action@v2
         with:
-          build: npm run build
-          start: npm start
+          # build: npm run build
+          start: npm run dev
           wait-on: http://localhost:3000
