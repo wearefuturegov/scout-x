@@ -34,21 +34,25 @@ let styles = `
     }
 `
 
-const Button = styled.button`${styles}`
+const Button = styled.button`
+  ${styles}
+`
 
 export default Button
 
 export const SolidButton = styled(Button)`
-    background: ${theme.link};
+  background: ${theme.link};
+  color: ${theme.white};
+  &:hover {
     color: ${theme.white};
-    &:hover{
-        color: ${theme.white};
-        background: ${theme.linkHover}
-    }
-    &:active{
-        color: ${theme.white};
-        background: ${theme.linkActive}
-    }
+    background: ${theme.linkHover};
+  }
+  &:active {
+    color: ${theme.white};
+    background: ${theme.linkActive};
+  }
 `
 
-export const ButtonLink = styled.a`${styles}`
+export const ButtonLink = styled.a`
+  ${styles}
+`

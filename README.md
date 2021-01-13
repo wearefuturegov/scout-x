@@ -50,8 +50,7 @@ It'll be on **localhost:3000**.
 
 ## 🌎 Running it on the web
 
-[![Deploy](https://www.netlify.com/img/deploy/button.svg)](
-https://app.netlify.com/start/deploy?repository=https://github.com/wearefuturegov/scout-x)
+[![Deploy](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/wearefuturegov/scout-x)
 
 It's suitable for [any static host](https://facebook.github.io/create-react-app/docs/deployment), such as Netlify.
 
@@ -64,7 +63,7 @@ If you want to use the built-in email sending function, you'll _need_ to host it
 You can configure it using a `.env` file locally. Run `cp .env.example .env` to make a fresh one.
 
 | Variable                      | Description                                                                                               | Example                    | Required?                    |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------|------------------------------|
+| ----------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------- |
 | `REACT_APP_API_HOST`          | The location of the API where service data can be read                                                    | https://example.com/api/v1 | Yes                          |
 | `REACT_APP_GOOGLE_CLIENT_KEY` | Needs the Google Places, Maps Javascript and Maps Static APIs enabled                                     |                            | Yes, for map features        |
 | `REACT_APP_FEEDBACK_URL`      | The URL to a form where users can submit feedback about the service                                       | https://example.com        | Yes, for feedback form links |

@@ -21,10 +21,10 @@ ReactDOM.render(
         <GoogleContextProvider>
           <Router>
             <App path="/" default>
-              <DetailDialog path="service/:serviceId"/>
-              <PinboardDialog path="pinboard"/>
+              <DetailDialog path="service/:serviceId" />
+              <PinboardDialog path="pinboard" />
             </App>
-            <PrintablePinboard path="print/"/>
+            <PrintablePinboard path="print/" />
           </Router>
         </GoogleContextProvider>
       </AlertContextProvider>

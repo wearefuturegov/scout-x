@@ -1,1 +1,25 @@
-[{"id":1,"label":"Autism","slug":"autism"},{"id":2,"label":"Social, emotional and mental health difficulties","slug":"social-emotional-and-mental-health-difficulties"},{"id":3,"label":"Hearing","slug":"hearing"},{"id":4,"label":"Communication and interaction","slug":"communication-and-interaction"},{"id":5,"label":"Sensory and physical needs","slug":"sensory-and-physical-needs"},{"id":6,"label":"Cognition and learning","slug":"cognition-and-learning"},{"id":7,"label":"Visual","slug":"visual"}]
+[
+  { "id": 1, "label": "Autism", "slug": "autism" },
+  {
+    "id": 2,
+    "label": "Social, emotional and mental health difficulties",
+    "slug": "social-emotional-and-mental-health-difficulties"
+  },
+  { "id": 3, "label": "Hearing", "slug": "hearing" },
+  {
+    "id": 4,
+    "label": "Communication and interaction",
+    "slug": "communication-and-interaction"
+  },
+  {
+    "id": 5,
+    "label": "Sensory and physical needs",
+    "slug": "sensory-and-physical-needs"
+  },
+  {
+    "id": 6,
+    "label": "Cognition and learning",
+    "slug": "cognition-and-learning"
+  },
+  { "id": 7, "label": "Visual", "slug": "visual" }
+]

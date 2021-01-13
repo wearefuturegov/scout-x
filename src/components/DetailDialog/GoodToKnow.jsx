@@ -2,15 +2,15 @@
 // import styled from "styled-components"
 // import theme from "../_theme"
 // import A from "../A"
-// import { 
-//     daysSince, 
-//     openWeekends, 
-//     wheelchairAccessible, 
-//     openAfterSix 
+// import {
+//     daysSince,
+//     openWeekends,
+//     wheelchairAccessible,
+//     openAfterSix
 // } from "../../lib/utils"
-// import { 
-//     TickList, 
-//     TickListItem as Item 
+// import {
+//     TickList,
+//     TickListItem as Item
 // } from "../TickList"
 
 // const List = styled(TickList)`
@@ -33,11 +33,11 @@
 //     locations,
 //     regular_schedules,
 //     updated_at
-// }) => 
+// }) =>
 //     <List>
 //         {local_offer && <Item>Part of the Buckinghamshire local offer for SEND</Item>}
 //         {pick_up_drop_off_service && <Item>Offers pick-up/drop-off service from nearby schools</Item>}
-//         {needs_referral && 
+//         {needs_referral &&
 //             <Item>
 //                 Needs a referral<br/>
 //                 {referral_url && <A href={referral_url}>Details</A>}

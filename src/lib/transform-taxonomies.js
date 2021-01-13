@@ -5,4 +5,7 @@ export const collectionOptions = taxa
 
 export const sendOptions = sendNeeds
 
-export const subcategoriesOf = parent => parent ? collectionOptions.filter(taxon => taxon.slug === parent)[0].children : []
+export const subcategoriesOf = parent =>
+  parent
+    ? collectionOptions.filter(taxon => taxon.slug === parent)[0].children
+    : []

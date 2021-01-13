@@ -30,22 +30,22 @@ const GlobalStyle = createGlobalStyle`
 
 export const PageHeader = styled.header`
   padding: 30px ${theme.outerSpacing};
-  @media screen and (min-width: ${theme.breakpointM}){
+  @media screen and (min-width: ${theme.breakpointM}) {
     padding: 40px ${theme.outerSpacing};
   }
 `
 
 const PageHeaderInner = styled.div`
-    max-width: ${theme.maxWidth};
-    margin-left: auto;
-    margin-right: auto;
+  max-width: ${theme.maxWidth};
+  margin-left: auto;
+  margin-right: auto;
 `
 
 export const PageTitle = styled.h1`
   color: ${theme.text};
   font-size: 1.75rem;
   margin-bottom: 30px;
-  @media screen and (min-width: ${theme.breakpointM}){
+  @media screen and (min-width: ${theme.breakpointM}) {
     font-size: 2.625rem;
     margin-bottom: 40px;
     max-width: 60%;
@@ -55,30 +55,30 @@ export const PageTitle = styled.h1`
 const ResultsArea = styled.div`
   padding: 30px ${theme.outerSpacing};
   background: ${theme.pale};
-  @media screen and (min-width: ${theme.breakpointM}){
+  @media screen and (min-width: ${theme.breakpointM}) {
     padding: 60px ${theme.outerSpacing};
   }
 `
 
 const ResultsAreaInner = styled.div`
-    max-width: ${theme.maxWidth};
-    margin-left: auto;
-    margin-right: auto;
-    @media screen and (min-width: ${theme.breakpointM}){
-      display: flex;
-      flex-direction: row;
-    }
+  max-width: ${theme.maxWidth};
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: ${theme.breakpointM}) {
+    display: flex;
+    flex-direction: row;
+  }
 `
 
 const Sidebar = styled.aside`
-    position: relative;
-    @media screen and (min-width: ${theme.breakpointM}){
-      width: 300px;
-      margin-right: 40px;
-    }
-    @media screen and (min-width: ${theme.breakpointL}){
-      margin-right: 60px;
-    }
+  position: relative;
+  @media screen and (min-width: ${theme.breakpointM}) {
+    width: 300px;
+    margin-right: 40px;
+  }
+  @media screen and (min-width: ${theme.breakpointL}) {
+    margin-right: 60px;
+  }
 `
 
 const MainArea = styled.div`
@@ -87,15 +87,15 @@ const MainArea = styled.div`
 
 export const ResultsHeader = styled.header`
   margin-bottom: 25px;
-  *:first-child{
+  *:first-child {
     margin-bottom: 15px;
   }
-  @media screen and (min-width: ${theme.breakpointS}){
+  @media screen and (min-width: ${theme.breakpointS}) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    *:first-child{
+    *:first-child {
       margin-bottom: 0px;
     }
   }
@@ -132,7 +132,7 @@ export const ResultsFooter = styled.footer`
 const Prefooter = styled.div`
   padding: 30px ${theme.outerSpacing};
   color: ${theme.text};
-  @media screen and (min-width: ${theme.breakpointM}){
+  @media screen and (min-width: ${theme.breakpointM}) {
     padding: 60px ${theme.outerSpacing};
   }
 `
@@ -141,20 +141,20 @@ const PrefooterInner = styled.div`
   max-width: ${theme.maxWidth};
   margin-left: auto;
   margin-right: auto;
-  @media screen and (min-width: ${theme.breakpointM}){
+  @media screen and (min-width: ${theme.breakpointM}) {
     display: flex;
     flex-direction: row;
   }
 `
 
 const PrefooterColumn = styled.div`
-  @media screen and (min-width: ${theme.breakpointM}){
+  @media screen and (min-width: ${theme.breakpointM}) {
     flex: 1;
     width: 50%;
   }
-  &:first-of-type{
+  &:first-of-type {
     margin-bottom: 35px;
-    @media screen and (min-width: ${theme.breakpointM}){
+    @media screen and (min-width: ${theme.breakpointM}) {
       margin-bottom: 0px;
       padding-right: 35px;
       border-right: 1px solid ${theme.grey2};
@@ -162,7 +162,7 @@ const PrefooterColumn = styled.div`
     }
   }
 
-  h2{
+  h2 {
     margin-bottom: 10px;
   }
 `
@@ -172,18 +172,17 @@ const PrefooterLink = styled.a`
   font-weight: bold;
   margin-top: 15px;
   display: inline-block;
-  &:hover{
-      text-decoration: none;
+  &:hover {
+    text-decoration: none;
   }
-  &:focus{
-      outline: 3px solid ${theme.focus};
-      background: ${theme.focus};
+  &:focus {
+    outline: 3px solid ${theme.focus};
+    background: ${theme.focus};
   }
-  &:active{
-      color: ${theme.text};
+  &:active {
+    color: ${theme.text};
   }
 `
-
 
 const SkipLink = styled.a`
   position: absolute;
@@ -196,60 +195,62 @@ const SkipLink = styled.a`
   text-decoration: none;
   font-weight: bold;
   transform: translateY(-500px);
-  @media screen and (min-width: ${theme.breakpointM}){
+  @media screen and (min-width: ${theme.breakpointM}) {
     top: 13px;
     left: 13px;
   }
-  &:focus{
+  &:focus {
     outline: 3px solid ${theme.focus};
     transform: translateY(0);
   }
 `
 
 const Layout = ({
-    headerComponents,
-    sidebarComponents,
-    mainContentComponents,
-    scrollRef
-}) =>
-    <>
-        <GlobalStyle/>
-        <SkipLink href="#main-content">Skip to main content</SkipLink>
-        <Header/>
-        <PageHeader>
-            <PageHeaderInner>
-                <Breadcrumbs/>
-                <PageTitle>Find activities and organisations near you</PageTitle>
-                <div id="main-content">
-                  {headerComponents}
-                </div>
-            </PageHeaderInner>
-        </PageHeader>
-        <ResultsArea ref={scrollRef}>
-            <ResultsAreaInner>
-                <Sidebar>
-                    {sidebarComponents}
-                </Sidebar>
-                <MainArea>
-                    {mainContentComponents}
-                </MainArea>
-            </ResultsAreaInner>
-        </ResultsArea>
-        <Prefooter>
-          <PrefooterInner>
-            <PrefooterColumn>
-              <h2>List your own service here</h2>
-              <p>If you offer an activity or service in Buckinghamshire, you can advertise it in our directory for free.</p>
-              <PrefooterLink href="https://outpost-staging.herokuapp.com/register">List a service</PrefooterLink>
-            </PrefooterColumn>
-            <PrefooterColumn>
-              <h2>Give feedback on this website</h2>
-              <p>This is a brand new website. Your feedback helps us improve it.</p>
-              <PrefooterLink href={process.env.REACT_APP_FEEDBACK_URL || "#"}>Give feedback</PrefooterLink>
-            </PrefooterColumn>
-          </PrefooterInner>
-        </Prefooter>
-        <Footer/>
-    </>
+  headerComponents,
+  sidebarComponents,
+  mainContentComponents,
+  scrollRef,
+}) => (
+  <>
+    <GlobalStyle />
+    <SkipLink href="#main-content">Skip to main content</SkipLink>
+    <Header />
+    <PageHeader>
+      <PageHeaderInner>
+        <Breadcrumbs />
+        <PageTitle>Find activities and organisations near you</PageTitle>
+        <div id="main-content">{headerComponents}</div>
+      </PageHeaderInner>
+    </PageHeader>
+    <ResultsArea ref={scrollRef}>
+      <ResultsAreaInner>
+        <Sidebar>{sidebarComponents}</Sidebar>
+        <MainArea>{mainContentComponents}</MainArea>
+      </ResultsAreaInner>
+    </ResultsArea>
+    <Prefooter>
+      <PrefooterInner>
+        <PrefooterColumn>
+          <h2>List your own service here</h2>
+          <p>
+            If you offer an activity or service in Buckinghamshire, you can
+            advertise it in our directory for free.
+          </p>
+          <PrefooterLink href="https://outpost-staging.herokuapp.com/register">
+            List a service
+          </PrefooterLink>
+        </PrefooterColumn>
+        <PrefooterColumn>
+          <h2>Give feedback on this website</h2>
+          <p>This is a brand new website. Your feedback helps us improve it.</p>
+          <PrefooterLink href={process.env.REACT_APP_FEEDBACK_URL || "#"}>
+            Give feedback
+          </PrefooterLink>
+        </PrefooterColumn>
+      </PrefooterInner>
+    </Prefooter>
+    <Footer />
+  </>
+)
 
 export default Layout
