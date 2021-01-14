@@ -43,7 +43,7 @@ const Logo = styled.img`
   }
 `
 
-const ServiceNameArea = styled.nav`
+const ServiceNameArea = styled.div`
   display: inline-flex;
   flex-direction: row;
   align-items: center;

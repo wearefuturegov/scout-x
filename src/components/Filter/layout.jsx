@@ -8,7 +8,7 @@ export const Outer = styled.fieldset`
   margin-bottom: 0px;
 `
 
-export const Header = styled.header`
+export const Header = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
