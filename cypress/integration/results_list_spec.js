@@ -1,11 +1,11 @@
 describe("Results list page", () => {
   beforeEach(() => {
+    cy.intercept("https://example.com/api/v1/services?", {
+      fixture: "services.json",
+    }).as("searchForServices")
+
     cy.visit("/")
     cy.injectAxe()
-
-    cy.intercept("/api/v1/services?", {
-      fixture: "services",
-    }).as("searchForServices")
   })
 
   it("has no detectable accessibility problems", () => {
@@ -20,9 +20,7 @@ describe("Results list page", () => {
     cy.get("#results")
       .should("contain", "12th Aylesbury Brownies")
       .should("contain", "Chepping View Primary Academy")
-  })
 
-  it("renders a 'next page' button", () => {
     cy.get("button").should("contain", "Next page")
   })
 
