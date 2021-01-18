@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-export const PageHeader = styled.header`
+export const PageHeader = styled.div`
   padding: 30px ${theme.outerSpacing};
   @media screen and (min-width: ${theme.breakpointM}) {
     padding: 40px ${theme.outerSpacing};
@@ -81,11 +81,11 @@ const Sidebar = styled.aside`
   }
 `
 
-const MainArea = styled.div`
+const MainArea = styled.main`
   flex: 1;
 `
 
-export const ResultsHeader = styled.header`
+export const ResultsHeader = styled.div`
   margin-bottom: 25px;
   *:first-child {
     margin-bottom: 15px;
@@ -215,7 +215,7 @@ const Layout = ({
     <GlobalStyle />
     <SkipLink href="#main-content">Skip to main content</SkipLink>
     <Header />
-    <PageHeader>
+    <PageHeader role="search">
       <PageHeaderInner>
         <Breadcrumbs />
         <PageTitle>Find activities and organisations near you</PageTitle>
@@ -225,10 +225,10 @@ const Layout = ({
     <ResultsArea ref={scrollRef}>
       <ResultsAreaInner>
         <Sidebar>{sidebarComponents}</Sidebar>
-        <MainArea>{mainContentComponents}</MainArea>
+        <MainArea id="results">{mainContentComponents}</MainArea>
       </ResultsAreaInner>
     </ResultsArea>
-    <Prefooter>
+    <Prefooter role="complementary ">
       <PrefooterInner>
         <PrefooterColumn>
           <h2>List your own service here</h2>

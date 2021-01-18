@@ -47,7 +47,7 @@ const StyledLink = styled(Link)`
   }
 `
 
-const Name = styled.h3`
+const Name = styled.h2`
   margin-bottom: 10px;
   font-size: 1.3rem;
 `

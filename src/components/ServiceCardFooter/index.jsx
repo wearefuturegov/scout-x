@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { buildServiceCardFooter, prettyDistance } from "../../lib/utils"
 import tick from "./tick.svg"
 
-const Footer = styled.footer`
+const Footer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
