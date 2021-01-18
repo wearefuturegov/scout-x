@@ -225,7 +225,7 @@ const Layout = ({
     <ResultsArea ref={scrollRef}>
       <ResultsAreaInner>
         <Sidebar>{sidebarComponents}</Sidebar>
-        <MainArea>{mainContentComponents}</MainArea>
+        <MainArea id="results">{mainContentComponents}</MainArea>
       </ResultsAreaInner>
     </ResultsArea>
     <Prefooter role="complementary ">
