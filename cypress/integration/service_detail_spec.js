@@ -10,6 +10,8 @@ describe("Service detail", () => {
 
     cy.visit("/service/1")
     cy.injectAxe()
+
+    cy.wait("@singleService")
   })
 
   it("has no detectable accessibility problems", () => {
