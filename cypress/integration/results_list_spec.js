@@ -1,6 +1,6 @@
 describe("Results list page", () => {
   beforeEach(() => {
-    cy.intercept("https://example.com/api/v1/services?", {
+    cy.intercept("/api/v1/services?", {
       fixture: "services.json",
     }).as("searchForServices")
 
