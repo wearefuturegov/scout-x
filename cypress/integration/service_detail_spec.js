@@ -3,6 +3,7 @@ describe("Service detail", () => {
     cy.intercept("/services?", {
       fixture: "services.json",
     }).as("searchForServices")
+    cy.intercept("/services/1/feedback").as("singleServiceFeedback")
     cy.intercept("/services/1", {
       fixture: "service.json",
     }).as("singleService")
@@ -51,5 +52,24 @@ describe("Service detail", () => {
     cy.contains("Part of the Buckinghamshire local offer for SEND")
     cy.contains("Open weekends")
     cy.contains("Suitable for 5-11 year olds")
+  })
+
+  it("can be pinned and unpinned", () => {
+    cy.get("button").contains("Add to pins").click()
+    cy.contains("Added to pinned services")
+    cy.get("button").contains("Added").click()
+  })
+
+  it("shows hours, links and categories", () => {
+    cy.get("td strong").contains("Monday")
+    cy.get("td").contains("10.00 am—5.00 pm")
+
+    cy.get("a").contains("Facebook")
+    cy.get("p").contains("Clubs and groups, Things to do")
+  })
+
+  it("lets the user suggest edits", () => {
+    cy.get("a").contains("Suggest an edit").click()
+    cy.wait("@singleServiceFeedback")
   })
 })
