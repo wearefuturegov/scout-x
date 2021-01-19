@@ -3,15 +3,12 @@ describe("Service detail", () => {
     cy.intercept("/services?", {
       fixture: "services.json",
     }).as("searchForServices")
-
-    cy.intercept("/service/1?", {
+    cy.intercept("/services/1?", {
       fixture: "service.json",
     }).as("singleService")
 
     cy.visit("/service/1")
     cy.injectAxe()
-
-    cy.wait("@singleService")
   })
 
   it("has no detectable accessibility problems", () => {
@@ -49,8 +46,8 @@ describe("Service detail", () => {
   })
 
   it("displays some 'good to know' points", () => {
-    cy.get("li").contains("Part of the Buckinghamshire local offer for SEND")
-    cy.get("li").contains("Open weekends")
-    cy.get("li").contains("Suitable for 5-11 year olds")
+    cy.contains("Part of the Buckinghamshire local offer for SEND")
+    cy.contains("Open weekends")
+    cy.contains("Suitable for 5-11 year olds")
   })
 })
