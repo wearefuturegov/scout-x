@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("Results list page", () => {
   beforeEach(() => {
     cy.intercept("/services?", {
