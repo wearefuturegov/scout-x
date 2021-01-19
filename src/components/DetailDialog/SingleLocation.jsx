@@ -52,7 +52,7 @@ const SingleLocation = ({
   mask_exact_address,
 }) => (
   <Outer>
-    <MapContainer>
+    <MapContainer aria-hidden="true">
       <Map
         latitude={parseFloat(geometry.coordinates[1])}
         longitude={parseFloat(geometry.coordinates[0])}

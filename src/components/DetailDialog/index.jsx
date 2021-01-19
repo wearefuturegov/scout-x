@@ -194,167 +194,172 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
         {daysSince(service.updated_at) > 180 && (
           <Banner>Last updated more than six months ago</Banner>
         )}
-        <Header>
-          {service.organisation.name && (
-            <Caption>{service.organisation.name}</Caption>
-          )}
-          <Title>{service.name}</Title>
-        </Header>
-        {service.locations.length === 1 && (
-          <SingleLocation {...service.locations[0]} />
-        )}
-        <Body>
-          <Actions>
-            {service.url ? (
-              <ButtonLink href={service.url}>Visit website</ButtonLink>
-            ) : (
-              service.contacts.length === 1 &&
-              service.contacts[0].email && (
-                <ButtonLink href={`mailto:${service.contacts[0].email}`}>
-                  Send email
-                </ButtonLink>
-              )
+        <main>
+          <Header>
+            {service.organisation.name && (
+              <Caption>{service.organisation.name}</Caption>
             )}
-            <PinboardButton service={service} location={location} />
-          </Actions>
-          {service.description && (
-            <Description description={service.description} />
+            <Title>{service.name}</Title>
+          </Header>
+          {service.locations.length === 1 && (
+            <SingleLocation {...service.locations[0]} />
           )}
-          {service.locations.length > 1 && (
-            <LocationAccordion locations={service.locations} />
+          <Body>
+            <Actions>
+              {service.url ? (
+                <ButtonLink href={service.url}>Visit website</ButtonLink>
+              ) : (
+                service.contacts.length === 1 &&
+                service.contacts[0].email && (
+                  <ButtonLink href={`mailto:${service.contacts[0].email}`}>
+                    Send email
+                  </ButtonLink>
+                )
+              )}
+              <PinboardButton service={service} location={location} />
+            </Actions>
+            {service.description && (
+              <Description description={service.description} />
+            )}
+            {service.locations.length > 1 && (
+              <LocationAccordion locations={service.locations} />
+            )}
+          </Body>
+          {goodToKnow.length > 0 && (
+            <Body>
+              <Crosshead>Good to know</Crosshead>
+              <TwoColumnTickList>
+                {goodToKnow.map(point => (
+                  <TickListItem key={point}>
+                    {point}
+                    <br />
+                    {point === "Needs a referral" && service.referral_url && (
+                      <A href={service.referral_url}>Details</A>
+                    )}
+                  </TickListItem>
+                ))}
+              </TwoColumnTickList>
+            </Body>
           )}
-        </Body>
-        {goodToKnow.length > 0 && (
-          <Body>
-            <Crosshead>Good to know</Crosshead>
-            <TwoColumnTickList>
-              {goodToKnow.map(point => (
-                <TickListItem key={point}>
-                  {point}
-                  <br />
-                  {point === "Needs a referral" && service.referral_url && (
-                    <A href={service.referral_url}>Details</A>
-                  )}
-                </TickListItem>
-              ))}
-            </TwoColumnTickList>
-          </Body>
-        )}
-        {service.contacts.length > 0 && (
-          <Body>
-            <Crosshead>Who to contact</Crosshead>
-            <Columns>
-              {service.contacts.map(contact => (
-                <div key={contact.id}>
-                  <ContactName>{contact.name || service.name}</ContactName>
-                  {contact.title && <ContactRole>{contact.title}</ContactRole>}
-                  {contact.phone && <p>{contact.phone}</p>}
-                  {contact.email && (
-                    <p>
-                      <A href={`mailto:${contact.email}`}>{contact.email}</A>
-                    </p>
-                  )}
-                </div>
-              ))}
-            </Columns>
-          </Body>
-        )}
-        {service.local_offer && (
-          <Body>
-            <Crosshead>Local offer and SEND</Crosshead>
-            <LocalOffer
-              {...service.local_offer}
-              sendNeeds={service.send_needs}
-            />
-          </Body>
-        )}
-        <Body>
-          {service.locations.length === 1 &&
-            service.locations[0].accessibilities.length > 0 && (
+          {service.contacts.length > 0 && (
+            <Body>
+              <Crosshead>Who to contact</Crosshead>
               <Columns>
-                <Crosshead>Accessibility</Crosshead>
-                <TickList>
-                  {service.locations[0].accessibilities.map(point => (
-                    <TickListItem key={point.name}>{point.name}</TickListItem>
-                  ))}
-                </TickList>
+                {service.contacts.map(contact => (
+                  <div key={contact.id}>
+                    <ContactName>{contact.name || service.name}</ContactName>
+                    {contact.title && (
+                      <ContactRole>{contact.title}</ContactRole>
+                    )}
+                    {contact.phone && <p>{contact.phone}</p>}
+                    {contact.email && (
+                      <p>
+                        <A href={`mailto:${contact.email}`}>{contact.email}</A>
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </Columns>
+            </Body>
+          )}
+          {service.local_offer && (
+            <Body>
+              <Crosshead>Local offer and SEND</Crosshead>
+              <LocalOffer
+                {...service.local_offer}
+                sendNeeds={service.send_needs}
+              />
+            </Body>
+          )}
+          <Body>
+            {service.locations.length === 1 &&
+              service.locations[0].accessibilities.length > 0 && (
+                <Columns>
+                  <Crosshead>Accessibility</Crosshead>
+                  <TickList>
+                    {service.locations[0].accessibilities.map(point => (
+                      <TickListItem key={point.name}>{point.name}</TickListItem>
+                    ))}
+                  </TickList>
+                </Columns>
+              )}
+            {service.regular_schedules.length > 0 && (
+              <Columns>
+                <Crosshead>Hours</Crosshead>
+                <Table>
+                  <tbody>
+                    {service.regular_schedules.map((sched, i) => (
+                      <tr key={i}>
+                        <td>
+                          <strong>{sched.weekday}s</strong>
+                        </td>
+                        <td>
+                          {twelveHourTime(sched.opens_at)}—
+                          {twelveHourTime(sched.closes_at)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
               </Columns>
             )}
-          {service.regular_schedules.length > 0 && (
-            <Columns>
-              <Crosshead>Hours</Crosshead>
-              <Table>
-                <tbody>
-                  {service.regular_schedules.map((sched, i) => (
-                    <tr key={i}>
-                      <td>
-                        <strong>{sched.weekday}s</strong>
-                      </td>
-                      <td>
-                        {twelveHourTime(sched.opens_at)}—
-                        {twelveHourTime(sched.closes_at)}
-                      </td>
-                    </tr>
+            {service.cost_options.length > 0 && (
+              <Columns>
+                <Crosshead>Fees</Crosshead>
+                <Table>
+                  <tbody>
+                    {service.cost_options.map((fee, i) => (
+                      <tr key={i}>
+                        <td>
+                          <strong>{fee.option}</strong>
+                        </td>
+                        <td>£{fee.amount}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Columns>
+            )}
+            {service.links.length > 0 && (
+              <Columns>
+                <Crosshead>Links</Crosshead>
+                <div>
+                  {service.links.map(link => (
+                    <p key={link.url}>
+                      <A href={link.url}>{link.label}</A>
+                    </p>
                   ))}
-                </tbody>
-              </Table>
-            </Columns>
-          )}
-          {service.cost_options.length > 0 && (
-            <Columns>
-              <Crosshead>Fees</Crosshead>
-              <Table>
-                <tbody>
-                  {service.cost_options.map((fee, i) => (
-                    <tr key={i}>
-                      <td>
-                        <strong>{fee.option}</strong>
-                      </td>
-                      <td>£{fee.amount}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </Columns>
-          )}
-          {service.links.length > 0 && (
-            <Columns>
-              <Crosshead>Links</Crosshead>
-              <div>
-                {service.links.map(link => (
-                  <p key={link.url}>
-                    <A href={link.url}>{link.label}</A>
-                  </p>
-                ))}
-              </div>
-            </Columns>
-          )}
-          {categories.length > 0 && (
-            <Columns>
-              <Crosshead>Categories</Crosshead>
-              <p>{categories.map(taxon => taxon.name).join(", ")}</p>
-            </Columns>
-          )}
-        </Body>
-        <Footer>
-          <SuggestEditLink
-            target="blank"
-            href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedback`}
-          >
-            Suggest an edit
-          </SuggestEditLink>
-          <p>
-            If anything here is out of date or missing, please suggest an edit.
-          </p>
-          <p>
-            We regularly check and update these community services, but can’t
-            guarantee that they will always be accurate.
-          </p>
-          <p>
-            You may need a referral for some activities and groups. Contact the
-            organiser if unsure.
-          </p>
-        </Footer>
+                </div>
+              </Columns>
+            )}
+            {categories.length > 0 && (
+              <Columns>
+                <Crosshead>Categories</Crosshead>
+                <p>{categories.map(taxon => taxon.name).join(", ")}</p>
+              </Columns>
+            )}
+          </Body>
+          <Footer>
+            <SuggestEditLink
+              target="blank"
+              href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedback`}
+            >
+              Suggest an edit
+            </SuggestEditLink>
+            <p>
+              If anything here is out of date or missing, please suggest an
+              edit.
+            </p>
+            <p>
+              We regularly check and update these community services, but can’t
+              guarantee that they will always be accurate.
+            </p>
+            <p>
+              You may need a referral for some activities and groups. Contact
+              the organiser if unsure.
+            </p>
+          </Footer>
+        </main>
       </Dialog>
     )
   }

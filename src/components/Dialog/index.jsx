@@ -69,7 +69,7 @@ export const Header = styled.header`
   }
 `
 
-export const Body = styled.section`
+export const Body = styled.div`
   padding: 25px;
   @media screen and (min-width: ${theme.breakpointM}) {
     padding: 45px;
