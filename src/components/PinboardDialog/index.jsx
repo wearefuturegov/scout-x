@@ -89,28 +89,30 @@ const PinboardDialog = ({ location, navigate, pinboard }) => {
 
   return (
     <Dialog handleDismiss={handleDismiss} dialogTitle="Pinboard">
-      <Header>
-        <Title>
-          Pinned services
-          <Count> ({pinboard.length})</Count>
-        </Title>
-        <PrintLink href="/print" target="blank">
-          Print list
-        </PrintLink>
-        <EmailButton onClick={() => setDialogOpen(true)}>
-          Email list
-        </EmailButton>
-      </Header>
-      <Body>
-        {pinboard.map(pin => (
-          <ServiceCard key={pin.id} {...pin} />
-        ))}
-      </Body>
-      <ShareDialog
-        isOpen={dialogOpen}
-        handleDismiss={() => setDialogOpen(false)}
-        pinboard={pinboard}
-      />
+      <main>
+        <Header>
+          <Title>
+            Pinned services
+            <Count> ({pinboard.length})</Count>
+          </Title>
+          <PrintLink href="/print" target="blank">
+            Print list
+          </PrintLink>
+          <EmailButton onClick={() => setDialogOpen(true)}>
+            Email list
+          </EmailButton>
+        </Header>
+        <Body>
+          {pinboard.map(pin => (
+            <ServiceCard key={pin.id} {...pin} />
+          ))}
+        </Body>
+        <ShareDialog
+          isOpen={dialogOpen}
+          handleDismiss={() => setDialogOpen(false)}
+          pinboard={pinboard}
+        />
+      </main>
     </Dialog>
   )
 }
