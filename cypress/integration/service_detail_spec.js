@@ -3,12 +3,14 @@ describe("Service detail", () => {
     cy.intercept("/services?", {
       fixture: "services.json",
     }).as("searchForServices")
-    cy.intercept("/services/1?", {
+    cy.intercept("/services/1", {
       fixture: "service.json",
     }).as("singleService")
 
     cy.visit("/service/1")
     cy.injectAxe()
+
+    cy.wait("@singleService")
   })
 
   it("has no detectable accessibility problems", () => {
