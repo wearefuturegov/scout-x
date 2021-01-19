@@ -73,3 +73,19 @@ You can configure it using a `.env` file locally. Run `cp .env.example .env` to 
 | `SENDGRID_API_KEY`            | Your API key for [Sendgrid](https://sendgrid.com/docs/ui/account-and-settings/api-keys/)                  |                            | Yes, for email features      |
 | `EMAIL_FROM`                  | The "from" address for emails. Should be a verified Sendgrid sender.                                      | example@email.com          | Yes, for email features      |
 | `EMAIL_HOST`                  | URLs in emails will be built using this host.                                                             | https://example.com        | Yes, for email features      |
+
+## 🧪 Tests and linting
+
+It uses Prettier to enforce code style, along with Jest for unit tests and Cypress for integration/UI tests.
+
+You can run all the tests with:
+
+```
+npm test
+```
+
+You can lint with:
+
+```
+npm run lint
+```
