@@ -1,3 +1,5 @@
+import { range } from "cypress/types/lodash"
+
 /* eslint-disable no-undef */
 describe("Service detail", () => {
   beforeEach(() => {
@@ -14,6 +16,17 @@ describe("Service detail", () => {
 
     cy.wait("@singleService")
   })
+
+  // TO ADD
+  // 1. handle multiple and no locations
+  // 2. full "good to know" range
+  // 3. contacts
+  // 4. local offer
+  // 5. hours
+  // 6. accessibility
+  // 7. fees
+  // 8. links
+  // 9. categories
 
   it("has no detectable accessibility problems", () => {
     // disable rules that don't understand reach dialog, see: https://reach.tech/dialog/
