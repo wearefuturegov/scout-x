@@ -70,7 +70,7 @@ describe("Service detail", () => {
   })
 
   it("lets the user suggest edits", () => {
-    cy.get("a").contains("Suggest an edit").click()
+    cy.get("div[role='dialog'] a").contains("Suggest an edit").click()
     cy.wait("@singleServiceFeedback")
   })
 })
