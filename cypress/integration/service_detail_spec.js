@@ -1,5 +1,3 @@
-import { range } from "cypress/types/lodash"
-
 /* eslint-disable no-undef */
 describe("Service detail", () => {
   beforeEach(() => {
