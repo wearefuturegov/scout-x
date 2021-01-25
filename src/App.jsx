@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
+import useFathom from "./hooks/useFathom"
 import { fetchResultsByQuery } from "./lib/api"
 import { onlyOptions } from "./data/_config"
 import {
@@ -56,6 +57,8 @@ const App = ({ children, location, navigate }) => {
 
   const [page, setPage] = useQuery("page", 1, { numerical: true })
   const [totalPages, setTotalPages] = useState(false)
+
+  useFathom()
 
   useEffect(() => {
     setLoading(true)
