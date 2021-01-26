@@ -109,7 +109,7 @@ const LocalOffer = ({ description, link, survey_answers, sendNeeds }) => {
               </List>
             </>
           )}
-          <Subheading>Details about their support</Subheading>
+          <Subheading>More about their support</Subheading>
           {survey_answers.map(
             response =>
               response.answer && (
