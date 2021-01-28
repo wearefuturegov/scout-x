@@ -139,63 +139,115 @@ const App = ({ children, location, navigate }) => {
           </>
         }
         mainContentComponents={
-          !loading && results.length === 0 ? (
-            <NoResults>No results to show. Try widening your search.</NoResults>
-          ) : (
-            <>
-              <ResultsHeader>
-                <Count>
-                  {results.length > 0 && (keywords || coverage) && (
-                    <>
-                      Showing results{" "}
-                      {keywords && (
-                        <>
-                          for <strong>{keywords}</strong>
-                        </>
-                      )}{" "}
-                      {coverage && (
-                        <>
-                          near <strong>{coverage}</strong>
-                        </>
-                      )}
-                    </>
-                  )}
-                </Count>
-                <Switch
-                  id="map-toggle"
-                  checked={mapVisible}
-                  onChange={e => setMapVisible(e.target.checked)}
-                  label="Show map?"
-                />
-              </ResultsHeader>
-              {mapVisible && (
-                <ListMap
-                  results={results}
-                  navigate={navigate}
-                  location={location}
-                />
-              )}
-              <PinboardLink location={location} />
-              <ResultsList aria-live="polite">
-                {loading ? (
-                  <Skeleton />
-                ) : (
-                  results.map(s => <ServiceCard key={s.id} {...s} />)
-                )}
-              </ResultsList>
-              {!loading && (
-                <Pagination
-                  totalPages={totalPages}
-                  page={page}
-                  setPage={setPage}
-                  scrollTarget={scrollTarget}
-                />
-              )}
-            </>
-          )
+          <MainContent
+            loading={loading}
+            results={results}
+            keywords={keywords}
+            coverage={coverage}
+            mapVisible={mapVisible}
+            setMapVisible={setMapVisible}
+            navigate={navigate}
+            location={location}
+            totalPages={totalPages}
+            page={page}
+            setPage={setPage}
+            scrollTarget={scrollTarget}
+          />
         }
       />
       {children}
+    </>
+  )
+}
+
+const MainContent = ({
+  loading,
+  results,
+  keywords,
+  coverage,
+  mapVisible,
+  setMapVisible,
+  navigate,
+  location,
+  totalPages,
+  page,
+  setPage,
+  scrollTarget,
+}) => {
+  // still loading
+  if (loading)
+    return (
+      <>
+        <ResultsHeader>
+          <Count />
+          <Switch
+            id="map-toggle"
+            checked={mapVisible}
+            onChange={e => setMapVisible(e.target.checked)}
+            label="Show map?"
+          />
+        </ResultsHeader>
+        <ResultsList aria-live="polite">
+          <Skeleton />
+        </ResultsList>
+      </>
+    )
+
+  // not loading and no results
+  if (!results)
+    return (
+      <NoResults>
+        There was a problem fetching results. Please try again later.
+      </NoResults>
+    )
+
+  // not loading, results exists but is empty array
+  if (results.length === 0)
+    return <NoResults>No results to show. Try widening your search.</NoResults>
+
+  // not loading, results exist and has length that is not 0
+  return (
+    <>
+      <ResultsHeader>
+        <Count>
+          {(keywords || coverage) && (
+            <>
+              Showing results{" "}
+              {keywords && (
+                <>
+                  for <strong>{keywords}</strong>
+                </>
+              )}{" "}
+              {coverage && (
+                <>
+                  near <strong>{coverage}</strong>
+                </>
+              )}
+            </>
+          )}
+        </Count>
+        <Switch
+          id="map-toggle"
+          checked={mapVisible}
+          onChange={e => setMapVisible(e.target.checked)}
+          label="Show map?"
+        />
+      </ResultsHeader>
+      {mapVisible && (
+        <ListMap results={results} navigate={navigate} location={location} />
+      )}
+      <PinboardLink location={location} />
+      <ResultsList aria-live="polite">
+        {results?.map(s => (
+          <ServiceCard key={s.id} {...s} />
+        ))}
+      </ResultsList>
+      <Pagination
+        totalPages={totalPages}
+        page={page}
+        setPage={setPage}
+        scrollTarget={scrollTarget}
+      />
     </>
   )
 }
