@@ -89,13 +89,13 @@ const Response = styled.div`
 const LocalOffer = ({ description, link, survey_answers, sendNeeds }) => {
   const wordLimit = 30
   const [expanded, setExpanded] = useState(false)
-  let paragraphs = description.split("\n").filter(paragraph => paragraph)
+  let paragraphs = description?.split("\n").filter(paragraph => paragraph)
 
   return (
     <Outer>
       {expanded ? (
         <Panel>
-          {paragraphs.map((paragraph, i) => (
+          {paragraphs?.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
           ))}
           {link && <Link href={link}>See latest SEND report</Link>}

@@ -9,9 +9,9 @@ const Outer = styled.div`
   padding: 45px;
   min-height: 250px;
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 0px;
   @media screen and (min-width: ${theme.breakpointM}) {
-    margin-bottom: 45px;
+    /* margin-bottom: 45px; */
     display: block;
   }
 `
