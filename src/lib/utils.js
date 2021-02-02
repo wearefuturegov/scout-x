@@ -39,8 +39,11 @@ export const buildServiceCardFooter = ({
   free,
   locations,
   updated_at,
+  status,
 }) => {
   let keyPoints = []
+  status = "temporarily_closed"
+  if (status === "temporarily_closed") keyPoints.push("Temporarily closed")
   if (locations && wheelchairAccessible(locations))
     keyPoints.push("Wheelchair accessible")
   if (free) keyPoints.push("Free")

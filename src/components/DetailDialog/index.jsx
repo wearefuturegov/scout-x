@@ -31,9 +31,14 @@ const Body = styled(InheritedBody)`
 const Banner = styled.p`
   background: ${theme.pale};
   padding: 10px 50px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: ${theme.grey};
   text-align: center;
+`
+
+const YellowBanner = styled(Banner)`
+  background: ${theme.focus}50;
+  color: ${theme.darkYellow};
 `
 
 const Caption = styled.p`
@@ -191,9 +196,17 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
             />
           )}
         </Helmet>
-        {daysSince(service.updated_at) > 180 && (
-          <Banner>Last updated more than six months ago</Banner>
+
+        {service.status === "temporarily_closed" ? (
+          <YellowBanner>
+            This service is <strong>temporarily closed</strong>.
+          </YellowBanner>
+        ) : (
+          daysSince(service.updated_at) > 180 && (
+            <Banner>Last updated more than six months ago</Banner>
+          )
         )}
+
         <main>
           <Header>
             {service.organisation.name && (
