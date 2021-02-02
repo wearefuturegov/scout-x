@@ -197,7 +197,7 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
           )}
         </Helmet>
 
-        {service.status === "temporarily_closed" ? (
+        {service.status === "temporarily closed" ? (
           <YellowBanner>
             This service is <strong>temporarily closed</strong>.
           </YellowBanner>
