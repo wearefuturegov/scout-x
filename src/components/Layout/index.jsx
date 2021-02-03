@@ -236,7 +236,7 @@ const Layout = ({
             If you offer an activity or service in Buckinghamshire, you can
             advertise it in our directory for free.
           </p>
-          <PrefooterLink href="https://outpost-staging.herokuapp.com/register">
+          <PrefooterLink href="https://manage-services.familyinfo.buckinghamshire.gov.uk/register">
             List a service
           </PrefooterLink>
         </PrefooterColumn>

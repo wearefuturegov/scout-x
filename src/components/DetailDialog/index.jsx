@@ -355,7 +355,7 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
           <Footer>
             <SuggestEditLink
               target="blank"
-              href={`https://outpost-staging.herokuapp.com/services/${service.id}/feedback`}
+              href={`https://manage-services.familyinfo.buckinghamshire.gov.uk/services/${service.id}/feedback`}
             >
               Suggest an edit
             </SuggestEditLink>
