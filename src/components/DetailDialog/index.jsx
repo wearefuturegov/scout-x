@@ -178,6 +178,8 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
       .then(data => setService(data))
   }, [serviceId])
 
+  if (service.error) navigate(`/`)
+
   if (service) {
     let goodToKnow = buildGoodToKnow(service)
     let categories = service.taxonomies
