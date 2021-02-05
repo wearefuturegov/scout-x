@@ -178,9 +178,10 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
       .then(data => setService(data))
   }, [serviceId])
 
+  // handle 404
   if (service.error) navigate(`/`)
 
-  if (service) {
+  if (service.name) {
     let goodToKnow = buildGoodToKnow(service)
     let categories = service.taxonomies
 
