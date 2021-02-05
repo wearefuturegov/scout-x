@@ -26,7 +26,7 @@ export const daysSince = date => {
 export const wheelchairAccessible = locations =>
   locations
     .reduce((accumulator, loc) => accumulator.concat(loc.accessibilities), [])
-    .filter(access => access.name === "Partial wheelchair access").length > 0
+    .filter(access => access?.name === "Partial wheelchair access").length > 0
 
 export const openWeekends = schedules =>
   schedules.filter(sched => sched.weekday === "Saturday" || "Sunday").length > 0
