@@ -18,7 +18,7 @@ exports.handler = async (event, context, callback) => {
 
     return {
       statusCode: 200,
-      body: res,
+      body: JSON.stringify(res.body),
     }
   } catch (e) {
     console.error(e)
@@ -45,9 +45,9 @@ const template = (host, pins) =>
   pins
     .map(
       (pin, i) => `
-          # ${i}. ${pin.name}\r\n
-          ${host}/service/${pin.id}\r\n
-          ${truncate(pin.description, 30)}\r\n
+          ${i + 1}. ${pin.name}
+          ${host}/service/${pin.id}
+          ${truncate(pin.description, 30)}
         `
     )
-    .join()
+    .join("\n\r")
