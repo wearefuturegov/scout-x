@@ -1,39 +1,17 @@
-const fetch = require("isomorphic-unfetch")
+const NotifyClient = require("notifications-node-client").NotifyClient
 const template = require("./template")
+
+var client = new NotifyClient(process.env.NOTIFY_API_KEY)
 
 exports.handler = async (event, context, callback) => {
   try {
     let { email, pins } = JSON.parse(event.body)
-
     let host = process.env.EMAIL_HOST || "https://scout-x.netlify.app"
 
-    let res = await fetch("https://api.sendgrid.com/v3/mail/send", {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + [process.env.SENDGRID_API_KEY],
-        "content-type": "application/json",
+    let res = await client.sendEmail(process.env.NOTIFY_TEMPLATE_ID, email, {
+      personalisation: {
+        pins: template(host, pins),
       },
-      body: JSON.stringify({
-        from: {
-          email: process.env.EMAIL_FROM || "CHANGEME@CHANGEME.com",
-        },
-        subject: "Your pinned services",
-        personalizations: [
-          {
-            to: [
-              {
-                email: email,
-              },
-            ],
-          },
-        ],
-        content: [
-          {
-            type: "text/html",
-            value: template(host, pins),
-          },
-        ],
-      }),
     })
 
     return {
