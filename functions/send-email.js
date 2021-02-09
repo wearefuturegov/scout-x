@@ -18,9 +18,7 @@ exports.handler = async (event, context, callback) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({
-        status: res,
-      }),
+      body: res,
     }
   } catch (e) {
     console.error(e)
@@ -46,14 +44,10 @@ const truncate = (str, noWords) => {
 const template = (host, pins) =>
   pins
     .map(
-      pin => `
-      
-            # ${pin.name}
-
-            ${host}/service/${pin.id}
-
-            ${truncate(pin.description, 30)}
-
+      (pin, i) => `
+          # ${i}. ${pin.name}\r\n
+          ${host}/service/${pin.id}\r\n
+          ${truncate(pin.description, 30)}\r\n
         `
     )
-    .join("")
+    .join()
