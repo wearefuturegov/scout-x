@@ -15,9 +15,9 @@ exports.handler = async (event, context, callback) => {
     })
 
     return {
-      statusCode: res.status,
+      statusCode: 200,
       body: JSON.stringify({
-        status: await res.json(),
+        status: res,
       }),
     }
   } catch (e) {
