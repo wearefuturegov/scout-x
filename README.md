@@ -50,6 +50,12 @@ Before building, it will attempt to grab the latest version of the collection, c
 
 It'll be on **localhost:3000**.
 
+### Serverless functions
+
+To test out the email-sending function locally you'll need to install [Netlify Dev](https://www.netlify.com/products/dev/) and use `netlify dev` to start the app instead.
+
+It should be on port 8888.
+
 ## 🌎 Running it on the web
 
 [![Deploy](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/wearefuturegov/scout-x)
