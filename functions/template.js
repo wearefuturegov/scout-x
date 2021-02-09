@@ -12,8 +12,8 @@ module.exports = (host, pins) =>
   pins
     .map(
       pin => `
-            ${host}/service/${pin.id}
             # ${pin.name}
+            ${host}/service/${pin.id}
             ${truncate(pin.description, 30)}
         `
     )
