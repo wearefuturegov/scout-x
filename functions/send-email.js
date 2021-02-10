@@ -45,9 +45,9 @@ const template = (host, pins) =>
   pins
     .map(
       (pin, i) => `
-          ${i + 1}. ${pin.name}
-          ${host}/service/${pin.id}
-          ${truncate(pin.description, 30)}
+          # ${i + 1}. ${pin.name} \n
+          ${host}/service/${pin.id} \n
+          ${truncate(pin.description, 30)} \n
         `
     )
     .join("\n\r")
