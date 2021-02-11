@@ -76,8 +76,8 @@ You can configure it using a `.env` file locally. Run `cp .env.example .env` to 
 | `REACT_APP_GOOGLE_CLIENT_KEY` | Needs the Google Places, Maps Javascript and Maps Static APIs enabled                                     |                            | Yes, for map features        |
 | `REACT_APP_FEEDBACK_URL`      | The URL to a form where users can submit feedback about the service                                       | https://example.com        | Yes, for feedback form links |
 | `FILTERS_DATASOURCE`          | A non-standard API endpoint, to grab data about taxonomies and SEND needs to populate filters on app boot | https://example.com/api/v1 | No                           |
-| `SENDGRID_API_KEY`            | Your API key for [Sendgrid](https://sendgrid.com/docs/ui/account-and-settings/api-keys/)                  |                            | Yes, for email features      |
-| `EMAIL_FROM`                  | The "from" address for emails. Should be a verified Sendgrid sender.                                      | example@email.com          | Yes, for email features      |
+| `NOTIFY_API_KEY`              | Your API key for [Notify](notifications.service.gov.uk/)                                                  |                            | Yes, for email features      |
+| `NOTIFY_TEMPLATE_ID`          | The ID of a Notify email template to use                                                                  |                            | Yes, for email features      |
 | `EMAIL_HOST`                  | URLs in emails will be built using this host.                                                             | https://example.com        | Yes, for email features      |
 
 ## 🧪 Tests and linting
