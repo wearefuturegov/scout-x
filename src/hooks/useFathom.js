@@ -1,18 +1,17 @@
 import { useEffect } from "react"
 import { useLocation } from "@reach/router"
-import * as Fathom from "fathom-client"
+import ReactGA from "react-ga"
 
 const useFathom = () => {
   const location = useLocation()
 
   useEffect(() => {
-    Fathom.load(process.env.REACT_APP_FATHOM_ID, {
-      excludedDomains: ["localhost"],
-    })
+    ReactGA.initialize(process.env.REACT_APP_GA_PROPERTY_ID)
   }, [])
 
   useEffect(() => {
-    Fathom.trackPageview()
+    console.log(location.pathname + location.search)
+    ReactGA.pageview(location.pathname + location.search)
   }, [location])
 }
 
