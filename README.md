@@ -74,6 +74,7 @@ You can configure it using a `.env` file locally. Run `cp .env.example .env` to 
 | ----------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------- |
 | `REACT_APP_API_HOST`          | The location of the API where service data can be read                                                    | https://example.com/api/v1 | Yes                          |
 | `REACT_APP_GOOGLE_CLIENT_KEY` | Needs the Google Places, Maps Javascript and Maps Static APIs enabled                                     |                            | Yes, for map features        |
+| `REACT_APP_GA_PROPERTY_ID`    | Google Analytics property ID                                                                              | UA-00000-1                 | No                           |
 | `REACT_APP_FEEDBACK_URL`      | The URL to a form where users can submit feedback about the service                                       | https://example.com        | Yes, for feedback form links |
 | `FILTERS_DATASOURCE`          | A non-standard API endpoint, to grab data about taxonomies and SEND needs to populate filters on app boot | https://example.com/api/v1 | No                           |
 | `NOTIFY_API_KEY`              | Your API key for [Notify](notifications.service.gov.uk/)                                                  |                            | Yes, for email features      |
