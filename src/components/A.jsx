@@ -3,6 +3,10 @@ import theme from "./_theme"
 
 export default styled.a`
   color: ${theme.link};
+
+  /* prevent long links from overflowing */
+  word-wrap: anywhere;
+
   &:hover {
     text-decoration: none;
   }
