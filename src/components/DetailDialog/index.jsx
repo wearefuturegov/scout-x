@@ -329,7 +329,9 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
                         <td>
                           <strong>{fee.option}</strong>
                         </td>
-                        <td>£{fee.amount}</td>
+                        <td>
+                          £{fee.amount} {fee.cost_type}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
