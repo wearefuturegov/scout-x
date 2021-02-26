@@ -49,14 +49,9 @@ const Link = styled.a`
 const Breadcrumbs = () => (
   <Outer>
     <Crumb>
-      <Link href="https://www.buckinghamshire.gov.uk/">Home</Link>
+      <Link href="https://familyinfo.buckinghamshire.gov.uk/">Home</Link>
     </Crumb>
-    <Crumb>
-      <Link href="https://familyinfo.buckinghamshire.gov.uk/">
-        Children and families
-      </Link>
-    </Crumb>
-    <Crumb>Find activities and organisations</Crumb>
+    <Crumb>Service directory</Crumb>
   </Outer>
 )
 

@@ -131,7 +131,8 @@ export const ResultsFooter = styled.footer`
 
 const Prefooter = styled.div`
   padding: 30px ${theme.outerSpacing};
-  color: ${theme.text};
+  background: ${theme.text};
+  color: ${theme.white};
   @media screen and (min-width: ${theme.breakpointM}) {
     padding: 60px ${theme.outerSpacing};
   }
@@ -152,23 +153,29 @@ const PrefooterColumn = styled.div`
     flex: 1;
     width: 50%;
   }
-  &:first-of-type {
+  &:not(:last-of-type) {
     margin-bottom: 35px;
     @media screen and (min-width: ${theme.breakpointM}) {
       margin-bottom: 0px;
-      padding-right: 35px;
+      padding-right: 20px;
       border-right: 1px solid ${theme.grey2};
-      margin-right: 35px;
+      margin-right: 20px;
     }
   }
 
   h2 {
-    margin-bottom: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  p {
+    margin-top: 15px;
+    color: ${theme.offwhite};
   }
 `
 
 const PrefooterLink = styled.a`
-  color: ${theme.link};
+  color: ${theme.white};
   font-weight: bold;
   margin-top: 15px;
   display: inline-block;
@@ -231,20 +238,38 @@ const Layout = ({
     <Prefooter role="complementary ">
       <PrefooterInner>
         <PrefooterColumn>
-          <h2>List your own service here</h2>
+          <h2>Get in touch</h2>
           <p>
-            If you offer an activity or service in Buckinghamshire, you can
-            advertise it in our directory for free.
+            Contact us online for more information and advice from our
+            supportive team, or email or call us:
           </p>
-          <PrefooterLink href="https://manage-services.familyinfo.buckinghamshire.gov.uk/register">
-            List a service
+          <PrefooterLink href="mailto:familyinfo@buckinghamshire.gov.uk">
+            familyinfo@buckinghamshire.gov.uk
           </PrefooterLink>
+          <p>01296 383 293</p>
         </PrefooterColumn>
+
         <PrefooterColumn>
-          <h2>Give feedback on this website</h2>
+          <h2>Feedback</h2>
           <p>This is a brand new website. Your feedback helps us improve it.</p>
           <PrefooterLink href={process.env.REACT_APP_FEEDBACK_URL || "#"}>
             Give feedback
+          </PrefooterLink>
+        </PrefooterColumn>
+
+        <PrefooterColumn>
+          <h2>Add or update directory listings</h2>
+          <p>
+            Create an account to add your organisation, activity or event to our
+            directory. If you already have an account, sign in to update a
+            listing or add a new one
+          </p>
+          <PrefooterLink href="https://familyinfo.buckinghamshire.gov.uk/create-your-account/">
+            Create an account
+          </PrefooterLink>
+          <br />
+          <PrefooterLink href="https://familyinfo.buckinghamshire.gov.uk/sign-in-to-your-account/">
+            Sign in
           </PrefooterLink>
         </PrefooterColumn>
       </PrefooterInner>
