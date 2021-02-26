@@ -182,11 +182,12 @@ const PrefooterLink = styled.a`
   &:hover {
     text-decoration: none;
   }
+  &:active {
+    color: ${theme.white};
+  }
   &:focus {
     outline: 3px solid ${theme.focus};
     background: ${theme.focus};
-  }
-  &:active {
     color: ${theme.text};
   }
 `
