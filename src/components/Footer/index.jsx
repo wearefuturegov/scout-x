@@ -8,7 +8,7 @@ const Outer = styled.footer`
   padding: 30px ${theme.outerSpacing} 50px ${theme.outerSpacing};
   @media screen and (min-width: ${theme.breakpointM}) {
     padding: 30px ${theme.outerSpacing} 60px ${theme.outerSpacing};
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 
   * {
@@ -60,24 +60,20 @@ const Footer = ({ children }) => (
   <Outer>
     <Inner>
       <Nav>
-        <NavLink href="https://www.buckinghamshire.gov.uk/about/">
-          About
+        <NavLink href="https://familyinfo.buckinghamshire.gov.uk/about/">
+          About the Buckinghamshire Family Information Service
         </NavLink>
         <NavLink href="https://www.buckinghamshire.gov.uk/about/accessibility/">
-          Accessibility
+          Accessibility statement
+        </NavLink>
+        <NavLink href="https://familyinfo.buckinghamshire.gov.uk/privacy-policy/">
+          Privacy policy
         </NavLink>
         <NavLink href="https://www.buckinghamshire.gov.uk/about/cookies/">
           Cookies
         </NavLink>
-        <NavLink href="https://www.buckinghamshire.gov.uk/your-council/contact-us/">
-          Contact us
-        </NavLink>
-        <NavLink href="https://www.buckinghamshire.gov.uk/community-and-safety/modern-slavery-statement/">
-          Modern slavery statement
-        </NavLink>
-        <NavLink href="https://jobs.buckinghamshire.gov.uk/">Jobs</NavLink>
-        <NavLink href="https://www.buckinghamshire.gov.uk/coronavirus/martin-tett-coronavirus-update/subscribe-our-newsletter/">
-          Newsletter
+        <NavLink href="https://familyinfo.buckinghamshire.gov.uk/publiccustomer-disclaimer/">
+          Public and customer disclaimer
         </NavLink>
       </Nav>
       <License>
@@ -88,7 +84,9 @@ const Footer = ({ children }) => (
         </a>
         , except where otherwise stated
       </License>
-      <Copyright>© 2020 Buckinghamshire Council</Copyright>
+      <Copyright>
+        © {new Date().getFullYear()} Buckinghamshire Council
+      </Copyright>
     </Inner>
   </Outer>
 )

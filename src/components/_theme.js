@@ -10,6 +10,7 @@ export default {
   text: "#212121",
   grey: "#343434",
   pale: "#f7f6f2",
+  offwhite: "#cecece",
   white: "#ffffff",
 
   grey2: "#999999",
