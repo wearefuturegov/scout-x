@@ -92,7 +92,7 @@ const Header = () => (
         </LogoLink>
       </MastheadArea>
       <ServiceNameArea>
-        <ServiceName href="#">Family information service</ServiceName>
+        <ServiceName href="#">Family Information Service</ServiceName>
         <PhaseTag>Beta</PhaseTag>
       </ServiceNameArea>
     </Inner>
