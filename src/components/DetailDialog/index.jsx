@@ -280,7 +280,7 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
           )}
           {service.local_offer && (
             <Body>
-              <Crosshead>Local offer and SEND</Crosshead>
+              <Crosshead>SEND support (Local Offer)</Crosshead>
               <LocalOffer
                 {...service.local_offer}
                 sendNeeds={service.send_needs}

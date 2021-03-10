@@ -64,8 +64,7 @@ export const buildGoodToKnow = ({
 }) => {
   let goodToKnow = []
 
-  local_offer &&
-    goodToKnow.push("Part of the Buckinghamshire local offer for SEND")
+  local_offer && goodToKnow.push("Includes information for people with SEND")
   needs_referral && goodToKnow.push("Needs a referral")
   wheelchairAccessible(locations) && goodToKnow.push("Wheelchair accessible")
   free && goodToKnow.push("Free")
