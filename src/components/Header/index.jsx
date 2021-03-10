@@ -92,7 +92,9 @@ const Header = () => (
         </LogoLink>
       </MastheadArea>
       <ServiceNameArea>
-        <ServiceName href="#">Family Information Service</ServiceName>
+        <ServiceName href="https://familyinfo.buckinghamshire.gov.uk">
+          Family Information Service
+        </ServiceName>
         <PhaseTag>Beta</PhaseTag>
       </ServiceNameArea>
     </Inner>
