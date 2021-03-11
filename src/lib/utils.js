@@ -29,7 +29,9 @@ export const wheelchairAccessible = locations =>
     ?.filter(access => access?.name === "Partial wheelchair access").length > 0
 
 export const openWeekends = schedules =>
-  schedules.filter(sched => sched.weekday === "Saturday" || "Sunday").length > 0
+  schedules.filter(
+    sched => sched.weekday === "Saturday" || sched.weekday === "Sunday"
+  ).length > 0
 
 export const openAfterSix = schedules =>
   schedules.filter(sched => sched.closes_at >= "18:00").length > 0
