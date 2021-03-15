@@ -34,7 +34,7 @@ export const openWeekends = schedules =>
   ).length > 0
 
 export const openAfterSix = schedules =>
-  schedules.filter(sched => sched.closes_at >= "18:00").length > 0
+  schedules.filter(sched => sched.closes_at > "18:00").length > 0
 
 export const buildServiceCardFooter = ({
   needs_referral,
