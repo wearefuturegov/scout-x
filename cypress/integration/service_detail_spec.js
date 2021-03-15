@@ -62,7 +62,6 @@ describe("Service detail", () => {
 
   it("displays some 'good to know' points", () => {
     cy.contains("Includes information for people with SEND")
-    cy.contains("Open weekends")
     cy.contains("Suitable for 5-11 year olds")
   })
 
