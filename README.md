@@ -23,7 +23,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/27801f71-59f2-4186-9587-9a2669e7edb2/deploy-status)](https://app.netlify.com/sites/hungry-wozniak-46471f/deploys)
 
-🚨 **This is ALPHA software. Please file an issue for any bugs** 🚨
+🚨 **This is BETA software. Please file an issue for any bugs** 🚨
 
 A simple API-driven front-end for local authority service directories and local offers.
 
