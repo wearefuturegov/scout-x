@@ -62,7 +62,7 @@ describe("Service detail", () => {
 
   it("displays some 'good to know' points", () => {
     cy.contains("Includes information for people with SEND")
-    cy.contains("Suitable for 5-11 year olds")
+    cy.contains("Suitable for 5 to 11 year olds")
   })
 
   it("can be pinned and unpinned", () => {
