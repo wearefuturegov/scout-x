@@ -310,7 +310,7 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
                           <strong>{sched.weekday}s</strong>
                         </td>
                         <td>
-                          {twelveHourTime(sched.opens_at)}—
+                          {twelveHourTime(sched.opens_at)} to{" "}
                           {twelveHourTime(sched.closes_at)}
                         </td>
                       </tr>
