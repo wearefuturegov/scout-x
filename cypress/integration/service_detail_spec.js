@@ -73,7 +73,7 @@ describe("Service detail", () => {
 
   it("shows hours, links and categories", () => {
     cy.get("td strong").contains("Monday")
-    cy.get("td").contains("10.00 am to 5.00 pm")
+    cy.get("td").contains("10am to 5pm")
 
     cy.get("a").contains("Facebook")
     cy.get("p").contains("Clubs and groups, Things to do")

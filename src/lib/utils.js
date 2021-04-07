@@ -90,6 +90,7 @@ export const buildGoodToKnow = ({
 export const twelveHourTime = rawTime => {
   const oldFormatTimeArray = rawTime.split(":")
   const HH = parseInt(oldFormatTimeArray[0])
+  const MM = oldFormatTimeArray[1] === "00" ? "" : `.${oldFormatTimeArray[1]}`
   const AMPM = HH >= 12 ? "pm" : "am"
   let hours
   if (HH === 0) {
@@ -99,5 +100,5 @@ export const twelveHourTime = rawTime => {
   } else {
     hours = HH
   }
-  return `${hours}.${oldFormatTimeArray[1]} ${AMPM}`
+  return `${hours}${MM}${AMPM}`
 }
