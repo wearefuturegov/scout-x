@@ -123,7 +123,7 @@ const Table = styled.table`
     width: 50%;
   }
   tr:not(:last-child) td {
-    padding-bottom: 5px;
+    padding-bottom: 10px;
   }
 `
 
