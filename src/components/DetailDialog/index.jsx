@@ -122,6 +122,9 @@ const Table = styled.table`
   td {
     width: 50%;
   }
+  tr:not(:last-child) td {
+    padding-bottom: 10px;
+  }
 `
 
 const Footer = styled(Body)`

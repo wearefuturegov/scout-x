@@ -23,12 +23,15 @@ describe("prettyDistance", () => {
 
 describe("twelveHourTime", () => {
   it("displays mornings properly", () => {
-    expect(twelveHourTime("10:00")).toBe("10.00 am")
+    expect(twelveHourTime("10:00")).toBe("10am")
   })
   it("displays afternoons properly", () => {
-    expect(twelveHourTime("17:00")).toBe("5.00 pm")
+    expect(twelveHourTime("17:00")).toBe("5pm")
   })
   it("displays midnight properly", () => {
-    expect(twelveHourTime("00:00")).toBe("12.00 am")
+    expect(twelveHourTime("00:00")).toBe("12am")
+  })
+  it("displays a not on the hour time properly", () => {
+    expect(twelveHourTime("16:45")).toBe("4.45pm")
   })
 })
