@@ -272,7 +272,7 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
                     )}
                     {contact.phone && (
                       <p>
-                        <a href={`tel:${contact.phone}`}>{contact.phone}</a>
+                        <A href={`tel:${contact.phone}`}>{contact.phone}</A>
                       </p>
                     )}
                     {contact.email && (
