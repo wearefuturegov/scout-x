@@ -270,7 +270,11 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
                     {contact.title && (
                       <ContactRole>{contact.title}</ContactRole>
                     )}
-                    {contact.phone && <p>{contact.phone}</p>}
+                    {contact.phone && (
+                      <p>
+                        <A href={`tel:${contact.phone}`}>{contact.phone}</A>
+                      </p>
+                    )}
                     {contact.email && (
                       <p>
                         <A href={`mailto:${contact.email}`}>{contact.email}</A>
