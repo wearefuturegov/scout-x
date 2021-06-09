@@ -63,7 +63,7 @@ const Footer = ({ children }) => (
         <NavLink href="https://familyinfo.buckinghamshire.gov.uk/about/">
           About the Buckinghamshire Family Information Service
         </NavLink>
-        <NavLink href="https://www.buckinghamshire.gov.uk/about/accessibility/">
+        <NavLink href="https://familyinfo.buckinghamshire.gov.uk/accessibility-statement-/">
           Accessibility statement
         </NavLink>
         <NavLink href="https://familyinfo.buckinghamshire.gov.uk/privacy-policy/">
@@ -80,7 +80,7 @@ const Footer = ({ children }) => (
         <img src={ogl} alt="Open Government License" />
         All content is available under the{" "}
         <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">
-          Open Government Licence v.30
+          Open Government Licence v3.0
         </a>
         , except where otherwise stated
       </License>
