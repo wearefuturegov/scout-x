@@ -2,7 +2,7 @@ import React from "react"
 import theme from "../_theme"
 import styled from "styled-components"
 
-const Outer = styled.li`
+const Outer = styled.div`
   display: block;
   padding: 25px;
   background: ${theme.white};
