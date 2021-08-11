@@ -21,6 +21,7 @@ import Dialog, { Body as InheritedBody, Header, Title } from "../Dialog"
 import SingleLocation from "./SingleLocation"
 import LocationAccordion from "./LocationAccordion"
 import { TickList, TickListItem } from "../TickList"
+import { getThemeTitle, getThemeOrganisation } from "./../../lib/themes"
 
 const Body = styled(InheritedBody)`
   &:first-of-type {
@@ -192,8 +193,7 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
       <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>
         <Helmet>
           <title>
-            {service.name} | Family information service | Buckinghamshire
-            Council
+            {service.name} | {getThemeTitle()} | {getThemeOrganisation()}
           </title>
           {service.description && (
             <meta

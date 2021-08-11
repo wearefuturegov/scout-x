@@ -2,6 +2,13 @@ import React from "react"
 import styled from "styled-components"
 import theme from "../_theme"
 import logo from "./logo.svg"
+import {
+  getThemeTitle,
+  getThemeServiceUrl,
+  getThemeOrganisation,
+  getThemeOrganisationUrl,
+  getThemeBeta,
+} from "./../../lib/themes"
 
 const Outer = styled.header`
   background: ${theme.link};
@@ -87,15 +94,13 @@ const Header = () => (
   <Outer>
     <Inner>
       <MastheadArea>
-        <LogoLink href="https://www.buckinghamshire.gov.uk/">
-          <Logo src={logo} alt="Buckinghamshire Council" />
+        <LogoLink href={getThemeOrganisationUrl()}>
+          <Logo src={logo} alt={getThemeOrganisation()} />
         </LogoLink>
       </MastheadArea>
       <ServiceNameArea>
-        <ServiceName href="https://familyinfo.buckinghamshire.gov.uk">
-          Family Information Service
-        </ServiceName>
-        <PhaseTag>Beta</PhaseTag>
+        <ServiceName href={getThemeServiceUrl()}>{getThemeTitle()}</ServiceName>
+        {getThemeBeta() && <PhaseTag>Beta</PhaseTag>}
       </ServiceNameArea>
     </Inner>
   </Outer>

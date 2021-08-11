@@ -72,6 +72,7 @@ You can configure it using a `.env` file locally. Run `cp .env.example .env` to 
 
 | Variable                      | Description                                                                                               | Example                    | Required?                    |
 | ----------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------- |
+| `REACT_APP_THEME`             | Which version of scout are we deploying, generic or other                                                 | generic, BFIS, BOD         | Yes, for theme switching     |
 | `REACT_APP_API_HOST`          | The location of the API where service data can be read                                                    | https://example.com/api/v1 | Yes                          |
 | `REACT_APP_GOOGLE_CLIENT_KEY` | Needs the Google Places, Maps Javascript and Maps Static APIs enabled                                     |                            | Yes, for map features        |
 | `REACT_APP_GA_PROPERTY_ID`    | Google Analytics property ID                                                                              | UA-00000-1                 | No                           |

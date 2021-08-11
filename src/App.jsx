@@ -29,6 +29,11 @@ import AgeFilter from "./components/Filter/AgeFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
+import {
+  getThemeTitle,
+  getThemeOrganisation,
+  getThemeTagline,
+} from "./lib/themes"
 
 const App = ({ children, location, navigate }) => {
   const scrollTarget = useRef(null)
@@ -73,10 +78,8 @@ const App = ({ children, location, navigate }) => {
     <>
       <Helmet>
         <title>
-          {page > 1
-            ? `Page ${page}`
-            : "Find activities and organisations near you"}{" "}
-          | Family information service | Buckinghamshire Council
+          {page > 1 ? `Page ${page}` : `${getThemeTagline()} `}|{" "}
+          {getThemeTitle()} | {getThemeOrganisation()}
         </title>
       </Helmet>
       <Layout
