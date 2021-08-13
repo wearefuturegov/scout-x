@@ -1,4 +1,7 @@
-require("dotenv").config()
+// import React from "react";
+require("dotenv").config();
+
+
 // import generic from './themes/generic';
 // import bfis from './themes/bfis';
 // import bod from './themes/bod';
@@ -20,7 +23,9 @@ const generic = {
     beta: true
 };
 
-const fis = {
+
+
+const bfis = {
     slug: 'fis',
     title: "Family information service",
     serviceUrl: "https://familyinfo.buckinghamshire.gov.uk",
@@ -28,7 +33,7 @@ const fis = {
     organisation: "Buckinghamshire Council",
     organisationUrl: "https://www.buckinghamshire.gov.uk/",
     tagline: "Find activities and organisations near you",
-    beta: true
+    beta: true,
 };
 
 const bod = {
@@ -49,8 +54,8 @@ switch (process.env.REACT_APP_THEME.toLowerCase()) {
     case 'generic':
         currentVersion = generic;
     break;
-    case 'fis':
-        currentVersion = fis;
+    case 'bfis':
+        currentVersion = bfis;
     break;
     case 'bod':
         currentVersion = bod;

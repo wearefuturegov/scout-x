@@ -71,3 +71,11 @@ export const getThemeTagline = () => {
 export const getThemeBeta = () => {
   return currentTheme.beta
 }
+
+/**
+ * Returns the JSX for the <head> of the application
+ * @returns jsx
+ */
+export const getThemeHead = () => {
+  return currentTheme.head
+}

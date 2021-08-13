@@ -33,6 +33,7 @@ import {
   getThemeTitle,
   getThemeOrganisation,
   getThemeTagline,
+  getThemeHead,
 } from "./lib/themes"
 
 const App = ({ children, location, navigate }) => {

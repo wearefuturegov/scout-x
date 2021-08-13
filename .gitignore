@@ -37,3 +37,9 @@ yarn-error.log*
 debug.log
 
 .vscode
+
+# public
+/public/
+
+!/public/robots.txt
+!/public/scout.png
