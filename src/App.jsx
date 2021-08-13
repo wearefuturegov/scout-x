@@ -29,12 +29,7 @@ import AgeFilter from "./components/Filter/AgeFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
-import {
-  getThemeTitle,
-  getThemeOrganisation,
-  getThemeTagline,
-  getThemeHead,
-} from "./lib/themes"
+import { theme } from "./themes/theme_generator"
 
 const App = ({ children, location, navigate }) => {
   const scrollTarget = useRef(null)
@@ -79,8 +74,8 @@ const App = ({ children, location, navigate }) => {
     <>
       <Helmet>
         <title>
-          {page > 1 ? `Page ${page}` : `${getThemeTagline()} `}|{" "}
-          {getThemeTitle()} | {getThemeOrganisation()}
+          {page > 1 ? `Page ${page}` : `${theme.tagline} `}| {theme.title} |{" "}
+          {theme.organisation}
         </title>
       </Helmet>
       <Layout

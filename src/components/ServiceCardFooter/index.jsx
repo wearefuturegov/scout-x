@@ -1,5 +1,5 @@
 import React from "react"
-import theme from "../_theme"
+
 import styled from "styled-components"
 import { buildServiceCardFooter, prettyDistance } from "../../lib/utils"
 import tick from "./tick.svg"
@@ -10,15 +10,15 @@ const Footer = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   font-size: 0.9rem;
-  color: ${theme.grey};
+  color: ${props => props.theme.styles.grey};
   line-height: 1.7;
 `
 
 const LocalOfferTag = styled.strong`
   margin-right: 15px;
   margin-bottom: 2px;
-  background: ${theme.focus};
-  color: ${theme.darkYellow};
+  background: ${props => props.theme.styles.focus};
+  color: ${props => props.theme.styles.darkYellow};
   border-radius: 2px;
   padding: 0px 6px;
   &:before {
@@ -34,7 +34,7 @@ const LocalOfferTag = styled.strong`
 `
 
 const Point = styled.span`
-  color: ${theme.grey};
+  color: ${props => props.theme.styles.grey};
   &:after {
     margin-left: 7px;
     content: "•";

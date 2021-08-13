@@ -1,14 +1,14 @@
 import React from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import A from "../A"
 
 const Outer = styled.div`
   margin-bottom: 15px;
   padding: 20px 25px;
-  background-color: ${theme.focus}1A;
-  border: 2px solid ${theme.focus};
-  color: ${theme.text};
+  background-color: ${props => props.theme.styles.focus}1A;
+  border: 2px solid ${props => props.theme.styles.focus};
+  color: ${props => props.theme.styles.text};
   line-height: 1.4;
 `
 

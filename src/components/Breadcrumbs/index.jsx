@@ -1,12 +1,12 @@
 import React from "react"
-import theme from "../_theme"
+
 import styled from "styled-components"
 
 const Outer = styled.ul`
   list-style: none;
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   margin-bottom: 25px;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     margin-bottom: 45px;
   }
 `
@@ -26,23 +26,23 @@ const Crumb = styled.li`
       content: none;
     }
   }
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     font-size: 1rem;
   }
 `
 
 const Link = styled.a`
-  color: ${theme.link};
+  color: ${props => props.theme.styles.link};
   text-decoration: none;
   &:hover {
     text-decoration: underline;
   }
   &:focus {
-    outline: 3px solid ${theme.focus};
-    background: ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
+    background: ${props => props.theme.styles.focus};
   }
   &:active {
-    color: ${theme.text};
+    color: ${props => props.theme.styles.text};
   }
 `
 

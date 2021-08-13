@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import { Header, UnfoldButton, Content } from "./layout"
-import theme from "../_theme"
 
 const Form = styled.form`
   border: none;
@@ -15,19 +14,19 @@ const Field = styled.div`
 
 const Label = styled.label`
   font-weight: bold;
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   cursor: pointer;
 `
 
 const Input = styled.input`
   font-size: 0.9rem;
   padding: 7px;
-  border: 2px solid ${theme.text};
+  border: 2px solid ${props => props.theme.styles.text};
   display: block;
   width: 100%;
   padding-right: 65px;
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   &::placeholder {
     opacity: 0.3;
@@ -36,8 +35,8 @@ const Input = styled.input`
 
 const ApplyButton = styled.button`
   font-size: 0.8rem;
-  background: ${theme.text};
-  color: ${theme.white};
+  background: ${props => props.theme.styles.text};
+  color: ${props => props.theme.styles.white};
   border: none;
   padding: 8px 12px;
   position: absolute;
@@ -47,7 +46,7 @@ const ApplyButton = styled.button`
   font-weight: bold;
   bottom: 0px;
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
 `
 

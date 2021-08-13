@@ -3,11 +3,10 @@ import { GoogleMap, useGoogleMap } from "@react-google-maps/api"
 import Marker from "./Marker"
 import { GoogleContextConsumer } from "../../contexts/googleContext"
 import styled from "styled-components"
-import theme from "../_theme"
 
 const Outer = styled.section`
   height: 450px;
-  border: 1px solid ${theme.cardShadow};
+  border: 1px solid ${props => props.theme.styles.cardShadow};
   margin-bottom: 25px;
   .list-map {
     height: 100%;

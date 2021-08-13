@@ -1,12 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import tick from "./tick.svg"
 
 const Outer = styled.div`
   display: inline-block;
   &:focus-within label:after {
-    box-shadow: 0px 0px 0px 3px ${theme.focus};
+    box-shadow: 0px 0px 0px 3px ${props => props.theme.styles.focus};
   }
 `
 
@@ -21,10 +21,10 @@ const Input = styled.input`
   &:checked + label {
     &:before {
       transform: translateX(19px);
-      background-color: ${theme.link};
+      background-color: ${props => props.theme.styles.link};
     }
     &:after {
-      background: ${theme.linkBackground};
+      background: ${props => props.theme.styles.linkBackground};
     }
   }
 `
@@ -36,14 +36,14 @@ const Label = styled.label`
   flex-direction: row;
   align-items: center;
   font-size: 0.9rem;
-  color: ${theme.grey};
+  color: ${props => props.theme.styles.grey};
   &:after {
     content: "";
     display: block;
     margin-left: 10px;
     width: 45px;
     height: 25px;
-    background: ${theme.cardShadow};
+    background: ${props => props.theme.styles.cardShadow};
     border-radius: 100px;
   }
   &:before {
@@ -55,7 +55,7 @@ const Label = styled.label`
     right: 23px;
     width: 17px;
     height: 17px;
-    background: ${theme.white};
+    background: ${props => props.theme.styles.white};
     border-radius: 100%;
     background-image: url(${tick});
     background-size: 10px;
@@ -63,7 +63,7 @@ const Label = styled.label`
     background-repeat: no-repeat;
   }
   &:hover:after {
-    background: ${theme.cardShadow};
+    background: ${props => props.theme.styles.cardShadow};
   }
 `
 

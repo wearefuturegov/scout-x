@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import theme from "../_theme"
+
 import styled from "styled-components"
 import search from "./search.svg"
 import location from "./location.svg"
@@ -11,7 +11,7 @@ import { AlertContextConsumer } from "../../contexts/alertContext"
 import Tooltip from "../Tooltip"
 
 const Form = styled.form`
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -22,7 +22,7 @@ const Form = styled.form`
 const Field = styled.div`
   margin-bottom: 15px;
   position: relative;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     margin-bottom: 0px;
     margin-right: 20px;
     flex: 1;
@@ -50,15 +50,15 @@ const GeolocateButton = styled.button`
     height: 20px;
   }
   &:hover {
-    background: ${theme.pale};
+    background: ${props => props.theme.styles.pale};
   }
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
 `
 
 const Button = styled.button`
-  background: ${theme.link};
+  background: ${props => props.theme.styles.link};
   border: none;
   text-align: center;
   width: 100%;
@@ -66,15 +66,15 @@ const Button = styled.button`
   cursor: pointer;
   height: 45px;
   &:hover {
-    background: ${theme.linkHover};
+    background: ${props => props.theme.styles.linkHover};
   }
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   &:active {
-    background: ${theme.linkActive};
+    background: ${props => props.theme.styles.linkActive};
   }
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     width: 100px;
   }
 `
@@ -82,13 +82,13 @@ const Button = styled.button`
 const Input = styled.input`
   font-size: 1rem;
   padding: 10px;
-  border: 2px solid ${theme.text};
+  border: 2px solid ${props => props.theme.styles.text};
   display: block;
   width: 100%;
   height: 45px;
   padding-right: 45px;
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   &::placeholder {
     color: rgb(33, 33, 33, 0.3);

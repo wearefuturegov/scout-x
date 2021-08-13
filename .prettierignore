@@ -31,3 +31,5 @@ yarn-error.log*
 
 /public
 /src/data
+/src/themes/*/public
+.vscode/

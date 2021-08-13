@@ -1,26 +1,20 @@
 import React from "react"
 import styled from "styled-components"
-import theme from "../_theme"
-import logo from "./logo.svg"
-import {
-  getThemeTitle,
-  getThemeServiceUrl,
-  getThemeOrganisation,
-  getThemeOrganisationUrl,
-  getThemeBeta,
-} from "./../../lib/themes"
+import { theme } from "./../../themes/theme_generator"
+
+const logo = theme.headerLogo
 
 const Outer = styled.header`
-  background: ${theme.link};
-  color: ${theme.white};
-  padding: 10px ${theme.outerSpacing};
+  background: ${props => props.theme.styles.link};
+  color: ${props => props.theme.styles.white};
+  padding: 10px ${props => props.theme.styles.outerSpacing};
 `
 
 const Inner = styled.div`
-  max-width: ${theme.maxWidth};
+  max-width: ${props => props.theme.styles.maxWidth};
   margin-left: auto;
   margin-right: auto;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -29,7 +23,7 @@ const Inner = styled.div`
 
 const MastheadArea = styled.div`
   margin-bottom: 10px;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     width: 33%;
     display: inline-block;
     margin-bottom: 0px;
@@ -39,13 +33,13 @@ const MastheadArea = styled.div`
 const LogoLink = styled.a`
   outline: none;
   &:focus-within img {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
 `
 
 const Logo = styled.img`
   height: 40px;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     height: 45px;
   }
 `
@@ -55,7 +49,7 @@ const ServiceNameArea = styled.div`
   flex-direction: row;
   align-items: center;
   margin-bottom: 10px;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     margin-bottom: 0px;
   }
 `
@@ -63,24 +57,24 @@ const ServiceNameArea = styled.div`
 const ServiceName = styled.a`
   font-weight: bold;
   font-size: 1.1rem;
-  color: ${theme.white};
+  color: ${props => props.theme.styles.white};
   text-decoration: none;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     font-size: 1.5rem;
   }
   &:hover {
     text-decoration: underline;
   }
   &:focus {
-    outline: 3px solid ${theme.focus};
-    background: ${theme.focus};
-    color: ${theme.text};
+    outline: 3px solid ${props => props.theme.styles.focus};
+    background: ${props => props.theme.styles.focus};
+    color: ${props => props.theme.styles.text};
   }
 `
 
 const PhaseTag = styled.strong`
-  color: ${theme.text};
-  background: ${theme.focus};
+  color: ${props => props.theme.styles.text};
+  background: ${props => props.theme.styles.focus};
   text-transform: uppercase;
   font-weight: bold;
   padding: 2px 5px;
@@ -94,13 +88,13 @@ const Header = () => (
   <Outer>
     <Inner>
       <MastheadArea>
-        <LogoLink href={getThemeOrganisationUrl()}>
-          <Logo src={logo} alt={getThemeOrganisation()} />
+        <LogoLink href={theme.organisationUrl}>
+          <Logo src={logo} alt={theme.organisation} />
         </LogoLink>
       </MastheadArea>
       <ServiceNameArea>
-        <ServiceName href={getThemeServiceUrl()}>{getThemeTitle()}</ServiceName>
-        {getThemeBeta() && <PhaseTag>Beta</PhaseTag>}
+        <ServiceName href={theme.serviceHomepageUrl}>{theme.title}</ServiceName>
+        {theme.beta && <PhaseTag>Beta</PhaseTag>}
       </ServiceNameArea>
     </Inner>
   </Outer>

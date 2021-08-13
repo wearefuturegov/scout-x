@@ -8,8 +8,16 @@ require("dotenv").config()
 const fs = require("fs")
 const fsPromises = fs.promises
 const path = require("path")
+const validThemes = require("../src/themes/valid-themes.json")
+const valid = validThemes.valid
 
-const sourceDirectory = `./src/data/themes/${process.env.REACT_APP_THEME.toLowerCase()}/public`
+const themeLabel =
+  process.env.hasOwnProperty("REACT_APP_THEME") &&
+  valid.find(e => e === process.env.REACT_APP_THEME.toLowerCase())
+    ? process.env.REACT_APP_THEME.toLowerCase()
+    : "generic"
+
+const sourceDirectory = `./src/themes/${themeLabel}/public`
 
 async function copyDir(src, dest) {
   await fsPromises.mkdir(dest, { recursive: true })
@@ -28,8 +36,12 @@ async function copyDir(src, dest) {
 ;(async () => {
   try {
     await fsPromises.stat(sourceDirectory)
+    console.log(
+      `${sourceDirectory} directory exists, attempting to copy correct files...`
+    )
     try {
       await copyDir(sourceDirectory, "./public")
+      console.log(`Copied correct files...`)
     } catch (error) {
       console.log(error)
     }

@@ -1,18 +1,18 @@
 import React, { useRef, useEffect } from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import { GoogleContextConsumer } from "../../contexts/googleContext"
 
 const Input = styled.input`
   font-size: 1rem;
   padding: 10px;
-  border: 2px solid ${theme.text};
+  border: 2px solid ${props => props.theme.styles.text};
   display: block;
   width: 100%;
   height: 45px;
   padding-right: 45px;
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   &::placeholder {
     opacity: 0.3;
