@@ -16,6 +16,7 @@ export const theme_bfis = {
   grey2: "#999999",
 
   cardShadow: "rgba(225,223,210, 0.6)",
+  toggleColor: "rgba(225,223,210, 0.6)",
 
   green: "#9fc63b",
   focus: "#FFB81C",

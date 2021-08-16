@@ -16,6 +16,7 @@ export const theme_bod = {
   grey2: "#999999",
 
   cardShadow: "rgba(225,223,210, 0.6)",
+  toggleColor: "rgba(44,45,132,0.6)", //rgb of link
 
   green: "#9fc63b",
   focus: "#FFB81C",

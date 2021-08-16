@@ -13,6 +13,7 @@ export const vars_bod = {
   tagline: "Find activities, groups and services near you",
   beta: true,
   headerLogo: logo,
+  mapSwitchSmall: true,
   footerNav: (
     <Styles.Nav>
       <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/about/">
