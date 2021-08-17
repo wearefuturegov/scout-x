@@ -33,6 +33,15 @@ const LocalOfferTag = styled.strong`
   }
 `
 
+const CountyWideServiceTag = styled.strong`
+  margin-right: 15px;
+  margin-bottom: 2px;
+  background: ${props => props.theme.styles.link};
+  color: ${props => props.theme.styles.white};
+  border-radius: 2px;
+  padding: 0px 6px;
+`
+
 const Point = styled.span`
   color: ${props => props.theme.styles.grey};
   &:after {
@@ -50,7 +59,9 @@ const Distance = styled(Point)`
 `
 
 const ServiceCardFooter = props => {
-  let { local_offer, current_vacancies, distance_away } = props
+  let { local_offer, current_vacancies, distance_away, locations } = props
+
+  const countywide = locations.length > 0 ? false : true
 
   let points
 
@@ -63,6 +74,7 @@ const ServiceCardFooter = props => {
   return (
     <Footer>
       {local_offer && <LocalOfferTag>Part of local offer</LocalOfferTag>}
+      {countywide && <CountyWideServiceTag>Countywide</CountyWideServiceTag>}
       {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
       {points.slice(0, distance_away ? 2 : 3).map(point => (
         <Point key={point}>{point}</Point>
