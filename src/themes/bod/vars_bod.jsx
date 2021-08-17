@@ -5,8 +5,8 @@ import * as Styles from "../../components/Footer/Footer.styles"
 export const vars_bod = {
   slug: "bod",
   title: "Bucks Online Directory",
-  contactEmail: "directory@buckinghamshire.gov.uk",
-  contactPhone: "01296 383 293",
+  contactEmail: "communities@buckinghamshire.gov.uk",
+  contactPhone: false,
   serviceHomepageUrl: "https://directory.buckinghamshire.gov.uk",
   organisation: "Buckinghamshire Council",
   organisationUrl: "https://www.buckinghamshire.gov.uk/",

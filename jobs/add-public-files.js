@@ -33,6 +33,7 @@ async function copyDir(src, dest) {
   }
 }
 
+// @TODO should probably replace the titles etc in these files with content form the theme files like the env vars are already
 ;(async () => {
   try {
     await fsPromises.stat(sourceDirectory)
