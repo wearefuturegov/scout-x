@@ -35,6 +35,7 @@ import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
 import { theme } from "./themes/theme_generator"
+import ClearFilters from "./components/ClearFilters"
 
 const App = ({ children, location, navigate }) => {
   const scrollTarget = useRef(null)
@@ -141,11 +142,31 @@ const App = ({ children, location, navigate }) => {
   )
 
   const filters = {
-    filterSendNeeds,
-    filterAges,
-    filterAccessibility,
-    filterOnlyShow,
-    filterDays,
+    sendNeeds: {
+      component: filterSendNeeds,
+      clear: [setNeeds],
+      clearValue: [[]],
+    },
+    ages: {
+      component: filterAges,
+      clear: [setMinAge, setMaxAge],
+      clearValue: [false, false],
+    },
+    accessibility: {
+      component: filterAccessibility,
+      clear: [setAccessibility],
+      clearValue: [[]],
+    },
+    onlyShow: {
+      component: filterOnlyShow,
+      clear: [setOnly],
+      clearValue: [[]],
+    },
+    days: {
+      component: filterDays,
+      clear: [setDays],
+      clearValue: [[]],
+    },
   }
 
   return (
@@ -191,6 +212,12 @@ const App = ({ children, location, navigate }) => {
                 />
               )}
               {orderFilters(filters, theme.filterOrder)}
+              <ClearFilters
+                setPage={setPage}
+                filters={filters}
+                clearCategory={setCollection}
+                clearSubCategory={setCategories}
+              />
             </Filters>
           </>
         }

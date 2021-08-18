@@ -8,19 +8,19 @@ export const orderFilters = (filters, filterOrder) => {
   filterOrder.map(filter => {
     switch (filter.name) {
       case "send-needs":
-        output.push(filters.filterSendNeeds)
+        output.push(filters.sendNeeds.component)
         break
       case "ages":
-        output.push(filters.filterAges)
+        output.push(filters.ages.component)
         break
       case "accessibility":
-        output.push(filters.filterAccessibility)
+        output.push(filters.accessibility.component)
         break
       case "only-show":
-        output.push(filters.filterOnlyShow)
+        output.push(filters.onlyShow.component)
         break
       case "days":
-        output.push(filters.filterDays)
+        output.push(filters.days.component)
         break
       default:
         return false
