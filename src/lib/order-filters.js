@@ -19,6 +19,9 @@ export const orderFilters = (filters, filterOrder) => {
       case "only-show":
         output.push(filters.filterOnlyShow)
         break
+      case "days":
+        output.push(filters.filterDays)
+        break
       default:
         return false
     }

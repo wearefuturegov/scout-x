@@ -48,6 +48,10 @@ export const vars_bod = {
     },
     {
       order: 4,
+      name: "days",
+    },
+    {
+      order: 5,
       name: "only-show",
     },
   ],

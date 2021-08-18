@@ -10,6 +10,7 @@ import {
   subcategoriesOf,
   sendOptions,
   accessibilityOptions,
+  daysOptions,
 } from "./lib/transform-taxonomies"
 
 import Layout, {
@@ -54,6 +55,7 @@ const App = ({ children, location, navigate }) => {
   const [accessibility, setAccessibility] = useQuery("accessibility", [], {
     array: true,
   })
+  const [days, setDays] = useQuery("days", [], { array: true })
   const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
   const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
   const [only, setOnly] = useQuery("only", [], { array: true })
@@ -126,11 +128,24 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
+  const filterDays = (
+    <Filter
+      key="days"
+      legend="Days"
+      options={daysOptions}
+      selection={days}
+      setSelection={setDays}
+      setPage={setPage}
+      foldable
+    />
+  )
+
   const filters = {
     filterSendNeeds,
     filterAges,
     filterAccessibility,
     filterOnlyShow,
+    filterDays,
   }
 
   return (
