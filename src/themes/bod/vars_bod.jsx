@@ -33,6 +33,24 @@ export const vars_bod = {
       </Styles.NavLink>
     </Styles.Nav>
   ),
+  filterOrder: [
+    {
+      order: 1,
+      name: "send-needs",
+    },
+    {
+      order: 2,
+      name: "accessibility",
+    },
+    {
+      order: 3,
+      name: "ages",
+    },
+    {
+      order: 4,
+      name: "only-show",
+    },
+  ],
 }
 
 export default vars_bod

@@ -50,6 +50,7 @@ const generate_theme = (vars, theme_vars) => {
     mapSwitchSmall: vars.hasOwnProperty("mapSwitchSmall")
       ? vars.mapSwitchSmall
       : true,
+    filterOrder: vars.hasOwnProperty("filterOrder") ? vars.filterOrder : {},
 
     styles: {
       link: theme_vars.link,

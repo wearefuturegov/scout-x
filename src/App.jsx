@@ -9,6 +9,7 @@ import {
   collectionOptions,
   subcategoriesOf,
   sendOptions,
+  accessibilityOptions,
 } from "./lib/transform-taxonomies"
 
 import Layout, {
@@ -17,6 +18,9 @@ import Layout, {
   Count,
   NoResults,
 } from "./components/Layout"
+
+import { orderFilters } from "./lib/order-filters"
+
 import Switch from "./components/Switch"
 import SearchBar from "./components/SearchBar"
 import ServiceCard from "./components/ServiceCard"
@@ -47,6 +51,9 @@ const App = ({ children, location, navigate }) => {
   })
   const [ages, setAges] = useQuery("ages", [], { array: true })
   const [needs, setNeeds] = useQuery("needs", [], { array: true })
+  const [accessibility, setAccessibility] = useQuery("accessibility", [], {
+    array: true,
+  })
   const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
   const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
   const [only, setOnly] = useQuery("only", [], { array: true })
@@ -69,6 +76,62 @@ const App = ({ children, location, navigate }) => {
       setLoading(false)
     })
   }, [location.search])
+
+  const filterSendNeeds = (
+    <Filter
+      key="sendNeeds"
+      legend="SEND needs"
+      options={sendOptions}
+      selection={needs}
+      setSelection={setNeeds}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filterAges = (
+    <AgeFilter
+      key="ages"
+      legend="Ages"
+      maxAge={maxAge}
+      setMaxAge={setMaxAge}
+      minAge={minAge}
+      setMinAge={setMinAge}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filterAccessibility = (
+    <Filter
+      key="accessibility"
+      legend="Accessibility"
+      options={accessibilityOptions}
+      selection={accessibility}
+      setSelection={setAccessibility}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filterOnlyShow = (
+    <Filter
+      key="onlyShow"
+      legend="Only show"
+      options={onlyOptions}
+      selection={only}
+      setSelection={setOnly}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filters = {
+    filterSendNeeds,
+    filterAges,
+    filterAccessibility,
+    filterOnlyShow,
+  }
 
   return (
     <>
@@ -112,31 +175,7 @@ const App = ({ children, location, navigate }) => {
                   foldable
                 />
               )}
-              <Filter
-                legend="SEND needs"
-                options={sendOptions}
-                selection={needs}
-                setSelection={setNeeds}
-                setPage={setPage}
-                foldable
-              />
-              <AgeFilter
-                legend="Ages"
-                maxAge={maxAge}
-                setMaxAge={setMaxAge}
-                minAge={minAge}
-                setMinAge={setMinAge}
-                setPage={setPage}
-                foldable
-              />
-              <Filter
-                legend="Only show"
-                options={onlyOptions}
-                selection={only}
-                setSelection={setOnly}
-                setPage={setPage}
-                foldable
-              />
+              {orderFilters(filters, theme.filterOrder)}
             </Filters>
           </>
         }

@@ -33,6 +33,20 @@ export const vars_bfis = {
       </Styles.NavLink>
     </Styles.Nav>
   ),
+  filterOrder: [
+    {
+      order: 1,
+      name: "send-needs",
+    },
+    {
+      order: 2,
+      name: "ages",
+    },
+    {
+      order: 3,
+      name: "only-show",
+    },
+  ],
 }
 
 export default vars_bfis
