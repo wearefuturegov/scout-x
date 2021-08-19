@@ -173,7 +173,7 @@ const App = ({ children, location, navigate }) => {
     <>
       <Helmet>
         <title>
-          {page > 1 ? `Page ${page}` : `${theme.tagline} `}| {theme.title} |{" "}
+          {page > 1 ? `Page ${page} ` : `${theme.tagline} `}| {theme.title} |{" "}
           {theme.organisation}
         </title>
       </Helmet>
