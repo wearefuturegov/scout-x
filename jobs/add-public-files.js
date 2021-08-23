@@ -13,7 +13,7 @@ const valid = validThemes.valid
 
 const themeLabel =
   process.env.hasOwnProperty("REACT_APP_THEME") &&
-  valid.find(e => e === process.env.REACT_APP_THEME.toLowerCase())
+  valid.find(e => e.label === process.env.REACT_APP_THEME.toLowerCase())
     ? process.env.REACT_APP_THEME.toLowerCase()
     : "generic"
 

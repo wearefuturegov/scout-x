@@ -1,5 +1,6 @@
 import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
+import { getThemeName } from "./../themes/theme_generator"
 
 export const fetchResultsByQuery = async query => {
   let {
@@ -23,8 +24,11 @@ export const fetchResultsByQuery = async query => {
   if (collection) taxonomies.push([].concat(collection))
   if (categories) taxonomies.push([].concat(categories).join(","))
 
+  const targetDirectories = [getThemeName().name]
+
   const res = await fetch(
     `${process.env.REACT_APP_API_HOST}/services?${queryString.stringify({
+      targetDirectories,
       keywords,
       location,
       lat,

@@ -15,9 +15,18 @@ require("dotenv").config()
  */
 export const getThemeLabel = () => {
   return process.env.hasOwnProperty("REACT_APP_THEME") &&
-    valid.find(e => e === process.env.REACT_APP_THEME.toLowerCase())
+    valid.find(e => e.label === process.env.REACT_APP_THEME.toLowerCase())
     ? process.env.REACT_APP_THEME.toLowerCase()
     : "generic"
+}
+
+export const getThemeName = () => {
+  return process.env.hasOwnProperty("REACT_APP_THEME") &&
+    valid.find(e => e.label === process.env.REACT_APP_THEME.toLowerCase())
+    ? valid.find(e =>
+        e.label === process.env.REACT_APP_THEME.toLowerCase() ? e.name : false
+      )
+    : "Generic"
 }
 
 /**
