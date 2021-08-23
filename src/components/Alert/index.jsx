@@ -2,6 +2,7 @@ import React from "react"
 import Alert from "@reach/alert"
 import { Link } from "@reach/router"
 import styled from "styled-components"
+import { theme } from "./../../themes/theme_generator"
 
 const StyledAlert = styled(Alert)`
   position: fixed;
@@ -43,16 +44,19 @@ const StyledAlert = styled(Alert)`
   }
 `
 
+const white = theme.styles.white
+const focus = theme.styles.focus
+
 const StyledLink = styled(Link)`
   font-weight: bold;
-  color: ${props => props.theme.styles.white};
+  color: ${white};
   text-decoration: underline;
   &:hover {
     text-decoration: none;
   }
   &:focus {
-    outline: 3px solid ${props => props.theme.styles.focus};
-    background: ${props => props.theme.styles.focus};
+    outline: 3px solid ${focus};
+    background: ${focus};
   }
 `
 
