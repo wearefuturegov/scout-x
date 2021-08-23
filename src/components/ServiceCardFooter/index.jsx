@@ -74,7 +74,9 @@ const ServiceCardFooter = props => {
   return (
     <Footer>
       {local_offer && <LocalOfferTag>Part of local offer</LocalOfferTag>}
-      {countywide && <CountyWideServiceTag>Countywide</CountyWideServiceTag>}
+      {countywide && (
+        <CountyWideServiceTag>Buckinghamshire wide</CountyWideServiceTag>
+      )}
       {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
       {points.slice(0, distance_away ? 2 : 3).map(point => (
         <Point key={point}>{point}</Point>
