@@ -15,7 +15,7 @@ const fetchTaxonomies = async resource => {
 if (process.env.FILTERS_DATASOURCE) {
   fetchTaxonomies("taxonomies")
   fetchTaxonomies("send_needs")
-  fetchTaxonomies("accessibility")
+  fetchTaxonomies("accessibilities")
 } else {
   console.log(
     "FILTERS_DATASOURCE environment config not set. Continuing without updating."

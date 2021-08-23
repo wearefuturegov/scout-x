@@ -13,8 +13,8 @@ export const orderFilters = (filters, filterOrder) => {
       case "ages":
         output.push(filters.ages.component)
         break
-      case "accessibility":
-        output.push(filters.accessibility.component)
+      case "accessibilities":
+        output.push(filters.accessibilities.component)
         break
       case "only-show":
         output.push(filters.onlyShow.component)

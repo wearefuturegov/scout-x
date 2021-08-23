@@ -40,7 +40,7 @@ export const vars_bod = {
     },
     {
       order: 2,
-      name: "accessibility",
+      name: "accessibilities",
     },
     {
       order: 3,

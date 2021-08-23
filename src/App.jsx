@@ -53,9 +53,13 @@ const App = ({ children, location, navigate }) => {
   })
   const [ages, setAges] = useQuery("ages", [], { array: true })
   const [needs, setNeeds] = useQuery("needs", [], { array: true })
-  const [accessibility, setAccessibility] = useQuery("accessibility", [], {
-    array: true,
-  })
+  const [accessibilities, setAccessibilities] = useQuery(
+    "accessibilities",
+    [],
+    {
+      array: true,
+    }
+  )
   const [days, setDays] = useQuery("days", [], { array: true })
   const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
   const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
@@ -105,13 +109,13 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
-  const filterAccessibility = (
+  const filterAccessibilities = (
     <Filter
-      key="accessibility"
+      key="accessibilities"
       legend="Accessibility"
       options={accessibilityOptions}
-      selection={accessibility}
-      setSelection={setAccessibility}
+      selection={accessibilities}
+      setSelection={setAccessibilities}
       setPage={setPage}
       foldable
     />
@@ -152,9 +156,9 @@ const App = ({ children, location, navigate }) => {
       clear: [setMinAge, setMaxAge],
       clearValue: [false, false],
     },
-    accessibility: {
-      component: filterAccessibility,
-      clear: [setAccessibility],
+    accessibilities: {
+      component: filterAccessibilities,
+      clear: [setAccessibilities],
       clearValue: [[]],
     },
     onlyShow: {
