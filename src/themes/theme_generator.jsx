@@ -20,6 +20,11 @@ export const getThemeLabel = () => {
     : "generic"
 }
 
+/**
+ * This was added incase we couldn't support bfis/bod etc on the api side
+ *
+ * @deprecated
+ */
 export const getThemeName = () => {
   return process.env.hasOwnProperty("REACT_APP_THEME") &&
     valid.find(e => e.label === process.env.REACT_APP_THEME.toLowerCase())
