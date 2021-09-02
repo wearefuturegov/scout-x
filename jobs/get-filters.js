@@ -31,6 +31,7 @@ if (process.env.FILTERS_DATASOURCE) {
   fetchTaxonomies("taxonomies")
   fetchTaxonomies("send_needs")
   fetchTaxonomies("accessibilities")
+  fetchTaxonomies("suitabilities")
 } else {
   console.log(
     "FILTERS_DATASOURCE environment config not set. Continuing without updating."

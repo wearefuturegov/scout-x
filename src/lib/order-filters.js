@@ -22,6 +22,9 @@ export const orderFilters = (filters, filterOrder) => {
       case "days":
         output.push(filters.days.component)
         break
+      case "suitabilities":
+        output.push(filters.suitabilities.component)
+        break
       default:
         return false
     }

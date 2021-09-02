@@ -11,6 +11,7 @@ import {
   sendOptions,
   accessibilityOptions,
   daysOptions,
+  suitabilityOptions,
 } from "./lib/transform-taxonomies"
 
 import Layout, {
@@ -60,6 +61,9 @@ const App = ({ children, location, navigate }) => {
       array: true,
     }
   )
+  const [suitabilities, setSuitabilities] = useQuery("suitabilities", [], {
+    array: true,
+  })
   const [days, setDays] = useQuery("days", [], { array: true })
   const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
   const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
@@ -112,7 +116,7 @@ const App = ({ children, location, navigate }) => {
   const filterAccessibilities = (
     <Filter
       key="accessibilities"
-      legend="Accessibility"
+      legend="Access needs"
       options={accessibilityOptions}
       selection={accessibilities}
       setSelection={setAccessibilities}
@@ -145,6 +149,18 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
+  const filterSuitabilities = (
+    <Filter
+      key="suitabilities"
+      legend="Suitable for"
+      options={suitabilityOptions}
+      selection={suitabilities}
+      setSelection={setSuitabilities}
+      setPage={setPage}
+      foldable
+    />
+  )
+
   const filters = {
     sendNeeds: {
       component: filterSendNeeds,
@@ -169,6 +185,11 @@ const App = ({ children, location, navigate }) => {
     days: {
       component: filterDays,
       clear: [setDays],
+      clearValue: [[]],
+    },
+    suitabilities: {
+      component: filterSuitabilities,
+      clear: [setSuitabilities],
       clearValue: [[]],
     },
   }

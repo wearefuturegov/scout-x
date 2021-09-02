@@ -36,7 +36,7 @@ export const vars_bod = {
   filterOrder: [
     {
       order: 1,
-      name: "send-needs",
+      name: "suitabilities",
     },
     {
       order: 2,
