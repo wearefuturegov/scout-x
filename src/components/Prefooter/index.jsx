@@ -3,7 +3,7 @@ import * as Styles from "./Prefooter.styles"
 import { theme } from "./../../themes/theme_generator"
 
 const Prefooter = ({ children }) => (
-  <Styles.PrefooterContainer role="complementary ">
+  <Styles.PrefooterContainer role="complementary">
     <Styles.PrefooterInner>
       {[!theme.contactPhone && !theme.contactEmail].includes(false) && (
         <Styles.PrefooterColumn>
