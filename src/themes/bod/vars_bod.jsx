@@ -16,20 +16,14 @@ export const vars_bod = {
   mapSwitchSmall: true,
   footerNav: (
     <Styles.Nav>
-      <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/about/">
-        About the Buckinghamshire Online Directory
-      </Styles.NavLink>
-      <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/accessibility-statement-/">
+      <Styles.NavLink href="https://www.buckinghamshire.gov.uk/about/accessibility/">
         Accessibility statement
       </Styles.NavLink>
-      <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/privacy-policy/">
+      <Styles.NavLink href="https://www.buckinghamshire.gov.uk/your-council/privacy/privacy-policy/">
         Privacy policy
       </Styles.NavLink>
       <Styles.NavLink href="https://www.buckinghamshire.gov.uk/about/cookies/">
         Cookies
-      </Styles.NavLink>
-      <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/publiccustomer-disclaimer/">
-        Public and customer disclaimer
       </Styles.NavLink>
     </Styles.Nav>
   ),
