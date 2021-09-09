@@ -61,25 +61,29 @@ const RadioFilter = ({
     clearThis([])
   }
 
-  return (
-    <Outer>
-      <Content>
-        {options.map(o => (
-          <StyledField key={o.slug}>
-            <Input
-              type="radio"
-              id={o.slug}
-              name={name}
-              value={o.slug}
-              onChange={handleChange}
-              checked={selection === o.slug}
-            />
-            <StyledLabel htmlFor={o.slug}>{o.label}</StyledLabel>
-          </StyledField>
-        ))}
-      </Content>
-    </Outer>
-  )
+  if (options.length > 0) {
+    return (
+      <Outer>
+        <Content>
+          {options.map(o => (
+            <StyledField key={o.slug}>
+              <Input
+                type="radio"
+                id={o.slug}
+                name={name}
+                value={o.slug}
+                onChange={handleChange}
+                checked={selection === o.slug}
+              />
+              <StyledLabel htmlFor={o.slug}>{o.label}</StyledLabel>
+            </StyledField>
+          ))}
+        </Content>
+      </Outer>
+    )
+  } else {
+    return null
+  }
 }
 
 export default RadioFilter

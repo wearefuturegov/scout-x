@@ -226,7 +226,7 @@ const App = ({ children, location, navigate }) => {
                 clearThis={setCategories}
                 setPage={setPage}
               />
-              {collection && (
+              {subcategoriesOf(collection).length > 0 && (
                 <Filter
                   legend="Categories"
                   options={subcategoriesOf(collection)}
