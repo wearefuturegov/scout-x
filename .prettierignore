@@ -29,8 +29,10 @@ yarn-error.log*
 
 /functions/node_modules
 
+package.json
+
 /public
 /src/data
 /src/themes/*/public
-/src/themes/*.json
+/src/themes/**/*.json
 .vscode/

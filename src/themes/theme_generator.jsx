@@ -35,6 +35,23 @@ export const getThemeName = () => {
 }
 
 /**
+ * Determine whether or not we show custom taxonomies.
+ * We can overwrite it with env vars if we want.
+ * @returns
+ */
+const determineUsePresetTaxonomies = vars => {
+  if (process.env.REACT_APP_USE_PRESET_TAXONOMIES === "true") {
+    return true
+  }
+
+  if (vars.hasOwnProperty("usePresetTaxonomies")) {
+    return vars.usePresetTaxonomies
+  } else {
+    return false
+  }
+}
+
+/**
  * Ensures we have a standard theme object.
  * @param {*} vars object
  * @param {*} theme_vars object
@@ -65,7 +82,10 @@ const generate_theme = (vars, theme_vars) => {
       ? vars.mapSwitchSmall
       : true,
     filterOrder: vars.hasOwnProperty("filterOrder") ? vars.filterOrder : {},
-
+    usePresetTaxonomies: determineUsePresetTaxonomies(vars),
+    presetTaxonomies: vars.hasOwnProperty("presetTaxonomies")
+      ? vars.presetTaxonomies
+      : {},
     styles: {
       link: theme_vars.link,
       linkHover: theme_vars.linkHover,

@@ -13,6 +13,7 @@ export const vars_generic = {
   beta: true,
   headerLogo: logo,
   mapSwitchSmall: true,
+  usePresetTaxonomies: false,
   footerNav: (
     <Styles.Nav>
       <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/about/">

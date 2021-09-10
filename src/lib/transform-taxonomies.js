@@ -3,8 +3,11 @@ import sendNeeds from "../data/_send_needs.json"
 import accessibilities from "../data/_accessibilities.json"
 import days from "../data/_days.json"
 import suitabilities from "../data/_suitabilities.json"
+import { theme } from "./../themes/theme_generator"
 
-export const collectionOptions = taxa
+export const collectionOptions = theme.usePresetTaxonomies
+  ? theme.presetTaxonomies
+  : taxa
 
 export const sendOptions = sendNeeds
 

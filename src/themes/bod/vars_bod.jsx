@@ -1,6 +1,7 @@
 import React from "react"
 import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
+import taxa from "./_taxonomies.json"
 
 export const vars_bod = {
   slug: "bod",
@@ -14,6 +15,8 @@ export const vars_bod = {
   beta: true,
   headerLogo: logo,
   mapSwitchSmall: true,
+  usePresetTaxonomies: true,
+  presetTaxonomies: taxa,
   footerNav: (
     <Styles.Nav>
       <Styles.NavLink href="https://www.buckinghamshire.gov.uk/about/accessibility/">
