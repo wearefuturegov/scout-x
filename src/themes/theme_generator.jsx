@@ -42,6 +42,8 @@ export const getThemeName = () => {
 const determineUsePresetTaxonomies = vars => {
   if (process.env.REACT_APP_USE_PRESET_TAXONOMIES === "true") {
     return true
+  } else if (process.env.REACT_APP_USE_PRESET_TAXONOMIES === "false") {
+    return false
   }
 
   if (vars.hasOwnProperty("usePresetTaxonomies")) {
