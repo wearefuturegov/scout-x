@@ -88,6 +88,13 @@ const generate_theme = (vars, theme_vars) => {
     presetTaxonomies: vars.hasOwnProperty("presetTaxonomies")
       ? vars.presetTaxonomies
       : {},
+    serviceCard: {
+      hideCategories:
+        vars.hasOwnProperty("serviceCard") &&
+        vars.serviceCard.hasOwnProperty("hideCategories")
+          ? vars.serviceCard.hideCategories
+          : false,
+    },
     styles: {
       link: theme_vars.link,
       linkHover: theme_vars.linkHover,

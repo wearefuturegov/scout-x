@@ -370,7 +370,7 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
                 </div>
               </Columns>
             )}
-            {categories.length > 0 && (
+            {!theme.serviceCard.hideCategories && categories.length > 0 && (
               <Columns>
                 <Crosshead>Categories</Crosshead>
                 <p>{categories.map(taxon => taxon.name).join(", ")}</p>

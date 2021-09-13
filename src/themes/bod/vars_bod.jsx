@@ -17,6 +17,9 @@ export const vars_bod = {
   mapSwitchSmall: true,
   usePresetTaxonomies: true,
   presetTaxonomies: taxa,
+  serviceCard: {
+    hideCategories: true,
+  },
   footerNav: (
     <Styles.Nav>
       <Styles.NavLink href="https://www.buckinghamshire.gov.uk/about/accessibility/">
