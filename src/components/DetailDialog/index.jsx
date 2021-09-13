@@ -295,7 +295,9 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
             </Body>
           )}
           <Body>
-            {service.locations.length === 1 &&
+            {service.hasOwnProperty("locations") &&
+              service.locations.length === 1 &&
+              service.locations[0].hasOwnProperty("accessibilities") &&
               service.locations[0].accessibilities.length > 0 && (
                 <Columns>
                   <Crosshead>Access needs</Crosshead>
@@ -306,16 +308,17 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
                   </TickList>
                 </Columns>
               )}
-            {service.suitabilities.length > 0 && (
-              <Columns>
-                <Crosshead>Suitable for</Crosshead>
-                <TickList>
-                  {service.suitabilities.map(point => (
-                    <TickListItem key={point.name}>{point.name}</TickListItem>
-                  ))}
-                </TickList>
-              </Columns>
-            )}
+            {service.hasOwnProperty("suitabilities") &&
+              service.suitabilities.length > 0 && (
+                <Columns>
+                  <Crosshead>Suitable for</Crosshead>
+                  <TickList>
+                    {service.suitabilities.map(point => (
+                      <TickListItem key={point.name}>{point.name}</TickListItem>
+                    ))}
+                  </TickList>
+                </Columns>
+              )}
             {service.regular_schedules.length > 0 && (
               <Columns>
                 <Crosshead>Hours</Crosshead>

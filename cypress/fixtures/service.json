@@ -126,5 +126,15 @@
         "answer": ""
       }
     ]
-  }
+  },
+  "target_directories": [
+    {
+      "name": "Buckinghamshire Online Directory",
+      "label": "bod"
+    },
+    {
+      "name": "Family Information Service",
+      "label": "bfis"
+    }
+  ]
 }

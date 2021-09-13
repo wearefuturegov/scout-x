@@ -110,7 +110,17 @@
         ]
       },
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 2,
@@ -162,7 +172,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 3,
@@ -217,7 +237,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 4,
@@ -275,7 +305,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 5,
@@ -339,7 +379,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 6,
@@ -368,7 +418,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 7,
@@ -432,7 +492,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 8,
@@ -509,7 +579,17 @@
       ],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 10,
@@ -600,7 +680,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 11,
@@ -672,7 +762,17 @@
       ],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 12,
@@ -733,7 +833,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 17,
@@ -824,7 +934,17 @@
       ],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 18,
@@ -866,7 +986,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 19,
@@ -983,7 +1113,17 @@
       ],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 20,
@@ -1056,7 +1196,17 @@
       ],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 21,
@@ -1159,7 +1309,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 22,
@@ -1245,7 +1405,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 23,
@@ -1312,7 +1482,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 29,
@@ -1367,7 +1547,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     },
     {
       "id": 723,
@@ -1437,7 +1627,17 @@
       "send_needs": [],
       "local_offer": null,
       "score": 0,
-      "distance_away": null
+      "distance_away": null,
+      "target_directories": [
+        {
+          "name": "Buckinghamshire Online Directory",
+          "label": "bod"
+        },
+        {
+          "name": "Family Information Service",
+          "label": "bfis"
+        }
+      ]
     }
   ]
 }

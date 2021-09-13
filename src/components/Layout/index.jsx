@@ -170,7 +170,9 @@ const Layout = ({
     </PageHeader>
     <ResultsArea ref={scrollRef}>
       <ResultsAreaInner>
-        <Sidebar>{sidebarComponents}</Sidebar>
+        <Sidebar id="sidebar" aria-label="sidebar">
+          {sidebarComponents}
+        </Sidebar>
         <MainArea id="results">{mainContentComponents}</MainArea>
       </ResultsAreaInner>
     </ResultsArea>
