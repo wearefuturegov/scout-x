@@ -1,7 +1,10 @@
 import React from "react"
 import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
-import taxa from "./_taxonomies.json"
+
+// import taxa from "./_taxonomies.json"
+// usePresetTaxonomies: true,
+// presetTaxonomies: taxa,
 
 export const vars_bfis = {
   slug: "bfis",
@@ -15,8 +18,6 @@ export const vars_bfis = {
   beta: true,
   headerLogo: logo,
   mapSwitchSmall: true,
-  usePresetTaxonomies: true,
-  presetTaxonomies: taxa,
   serviceCard: {
     hideCategories: true,
   },
