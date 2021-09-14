@@ -11,7 +11,7 @@
 ---
 
 <p align="center">
-   <img src="https://github.com/wearefuturegov/scout-x/raw/master/public/examples.jpg?raw=true" width="750px" />     
+   <img src="https://github.com/wearefuturegov/scout-x/raw/master/docs/examples.jpg?raw=true" width="750px" />     
 </p>
 <p align="center">
    <em>Example screens from the app</em>         
@@ -70,16 +70,20 @@ If you want to use the built-in email sending function, you'll _need_ to host it
 
 You can configure it using a `.env` file locally. Run `cp .env.example .env` to make a fresh one.
 
-| Variable                      | Description                                                                                               | Example                    | Required?                    |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------- |
-| `REACT_APP_API_HOST`          | The location of the API where service data can be read                                                    | https://example.com/api/v1 | Yes                          |
-| `REACT_APP_GOOGLE_CLIENT_KEY` | Needs the Google Places, Maps Javascript and Maps Static APIs enabled                                     |                            | Yes, for map features        |
-| `REACT_APP_GA_PROPERTY_ID`    | Google Analytics property ID                                                                              | UA-00000-1                 | No                           |
-| `REACT_APP_FEEDBACK_URL`      | The URL to a form where users can submit feedback about the service                                       | https://example.com        | Yes, for feedback form links |
-| `FILTERS_DATASOURCE`          | A non-standard API endpoint, to grab data about taxonomies and SEND needs to populate filters on app boot | https://example.com/api/v1 | No                           |
-| `NOTIFY_API_KEY`              | Your API key for [Notify](notifications.service.gov.uk/)                                                  |                            | Yes, for email features      |
-| `NOTIFY_TEMPLATE_ID`          | The ID of a Notify email template to use                                                                  |                            | Yes, for email features      |
-| `EMAIL_HOST`                  | URLs in emails will be built using this host.                                                             | https://example.com        | Yes, for email features      |
+| Variable                          | Description                                                                                               | Example                    | Required?                                                     |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------- |
+| `REACT_APP_THEME`                 | Which version of scout are we deploying, generic or other                                                 | generic, BFIS, BOD         | Yes, for theme switching                                      |
+| `REACT_APP_API_HOST`              | The location of the API where service data can be read                                                    | https://example.com/api/v1 | Yes                                                           |
+| `REACT_APP_GOOGLE_CLIENT_KEY`     | Needs the Google Places, Maps Javascript and Maps Static APIs enabled                                     |                            | Yes, for map features                                         |
+| `REACT_APP_GA_PROPERTY_ID`        | Google Analytics property ID                                                                              | UA-00000-1                 | No                                                            |
+| `REACT_APP_FEEDBACK_URL`          | The URL to a form where users can submit feedback about the service                                       | https://example.com        | Yes, for feedback form links                                  |
+| `REACT_APP_OUTPOST_REGISTER_URL`  | The URL to where users can register to the related outpost install                                        | https://example.com        | Yes, for users to be able to register                         |
+| `REACT_APP_OUTPOST_LOGIN_URL`     | The URL to where users can sign in to the related outpost install                                         | https://example.com        | Yes, for users to be able to sign in and manage their service |
+| `REACT_APP_USE_PRESET_TAXONOMIES` | Overwrite theme default and force load from outpost taxonomies API                                        | true/false                 | No                                                            |
+| `FILTERS_DATASOURCE`              | A non-standard API endpoint, to grab data about taxonomies and SEND needs to populate filters on app boot | https://example.com/api/v1 | No                                                            |
+| `NOTIFY_API_KEY`                  | Your API key for [Notify](notifications.service.gov.uk/)                                                  |                            | Yes, for email features                                       |
+| `NOTIFY_TEMPLATE_ID`              | The ID of a Notify email template to use                                                                  |                            | Yes, for email features                                       |
+| `EMAIL_HOST`                      | URLs in emails will be built using this host.                                                             | https://example.com        | Yes, for email features                                       |
 
 ## 🧪 Tests and linting
 

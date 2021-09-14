@@ -14,21 +14,26 @@ import { GoogleContextProvider } from "./contexts/googleContext"
 import { AlertContextProvider } from "./contexts/alertContext"
 import { PinboardContextProvider } from "./contexts/pinboardContext"
 
+import { ThemeProvider } from "styled-components"
+import { theme } from "./themes/theme_generator"
+
 ReactDOM.render(
   <React.StrictMode>
-    <PinboardContextProvider>
-      <AlertContextProvider>
-        <GoogleContextProvider>
-          <Router>
-            <App path="/" default>
-              <DetailDialog path="service/:serviceId" />
-              <PinboardDialog path="pinboard" />
-            </App>
-            <PrintablePinboard path="print/" />
-          </Router>
-        </GoogleContextProvider>
-      </AlertContextProvider>
-    </PinboardContextProvider>
+    <ThemeProvider theme={theme}>
+      <PinboardContextProvider>
+        <AlertContextProvider>
+          <GoogleContextProvider>
+            <Router>
+              <App path="/" default>
+                <DetailDialog path="service/:serviceId" />
+                <PinboardDialog path="pinboard" />
+              </App>
+              <PrintablePinboard path="print/" />
+            </Router>
+          </GoogleContextProvider>
+        </AlertContextProvider>
+      </PinboardContextProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 )

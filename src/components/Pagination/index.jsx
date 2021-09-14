@@ -1,12 +1,12 @@
 import React from "react"
-import theme from "../_theme"
+
 import styled from "styled-components"
 import Button from "../Button"
 import { ResultsFooter } from "../Layout"
 
 const SecondaryButton = styled.button`
   font-size: 1rem;
-  color: ${theme.link};
+  color: ${props => props.theme.styles.link};
   background: none;
   border: none;
   cursor: pointer;
@@ -15,11 +15,11 @@ const SecondaryButton = styled.button`
     text-decoration: underline;
   }
   &:focus {
-    outline: 3px solid ${theme.focus};
-    background: ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
+    background: ${props => props.theme.styles.focus};
   }
   &:active {
-    color: ${theme.linkActive};
+    color: ${props => props.theme.styles.linkActive};
   }
 `
 

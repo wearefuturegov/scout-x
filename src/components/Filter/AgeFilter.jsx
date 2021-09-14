@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import { Outer, Legend, Header, UnfoldButton, Content } from "./layout"
-import theme from "../_theme"
 
 const ColumnContent = styled(Content)`
   display: grid;
@@ -17,7 +16,7 @@ const Field = styled.div`
 `
 
 const LabelWithMargin = styled.label`
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   cursor: pointer;
   display: block;
   margin-bottom: 7px;
@@ -26,11 +25,11 @@ const LabelWithMargin = styled.label`
 const Input = styled.input`
   font-size: 0.9rem;
   padding: 7px;
-  border: 2px solid ${theme.text};
+  border: 2px solid ${props => props.theme.styles.text};
   display: block;
   width: 100%;
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   &::placeholder {
     opacity: 0.3;

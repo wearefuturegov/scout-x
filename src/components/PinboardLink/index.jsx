@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import { Link } from "@reach/router"
 import { PinboardContextConsumer } from "../../contexts/pinboardContext"
 
@@ -8,21 +8,21 @@ const StyledLink = styled(Link)`
   display: block;
   text-align: center;
   padding: 10px;
-  border: 3px solid ${theme.link};
+  border: 3px solid ${props => props.theme.styles.link};
   margin-bottom: 25px;
-  color: ${theme.link};
+  color: ${props => props.theme.styles.link};
   font-weight: bold;
   text-decoration: none;
   &:hover {
-    color: ${theme.linkHover};
-    border-color: ${theme.linkHover};
+    color: ${props => props.theme.styles.linkHover};
+    border-color: ${props => props.theme.styles.linkHover};
   }
   &:active {
-    color: ${theme.linkActive};
-    border-color: ${theme.linkActive};
+    color: ${props => props.theme.styles.linkActive};
+    border-color: ${props => props.theme.styles.linkActive};
   }
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
 `
 

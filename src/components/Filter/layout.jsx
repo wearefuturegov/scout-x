@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import theme from "../_theme"
+
 import downArrow from "./down-arrow.svg"
 import upArrow from "./up-arrow.svg"
 
@@ -19,7 +19,7 @@ export const UnfoldButton = styled.button`
   width: 100%;
   padding: 20px 0px;
   border: none;
-  border-bottom: 1px solid ${theme.cardShadow};
+  border-bottom: 1px solid ${props => props.theme.styles.cardShadow};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -41,18 +41,18 @@ export const UnfoldButton = styled.button`
     background-image: url(${downArrow});
   }
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
 `
 
 export const Legend = styled.legend`
   font-weight: bold;
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
 `
 
 export const Content = styled.div`
   padding: 25px 0px;
-  border-bottom: 1px solid ${theme.cardShadow};
+  border-bottom: 1px solid ${props => props.theme.styles.cardShadow};
 `
 
 export const Field = styled.div`
@@ -60,18 +60,18 @@ export const Field = styled.div`
   margin-bottom: 10px;
   padding: 4.5px 0px 4.5px 40px;
   &:focus-within label:before {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
 `
 
 export const Label = styled.label`
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   cursor: pointer;
   &:before {
     content: "";
     display: inline-block;
-    background: ${theme.white};
-    border: 2px solid ${theme.text};
+    background: ${props => props.theme.styles.white};
+    border: 2px solid ${props => props.theme.styles.text};
     width: 25px;
     height: 25px;
     position: absolute;

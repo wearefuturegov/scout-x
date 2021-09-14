@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { Dialog } from "@reach/dialog"
 import "@reach/dialog/styles.css"
 import close from "./close.svg"
-import theme from "../_theme"
 
 const StyledDialog = styled(Dialog)`
   position: relative;
@@ -14,7 +13,7 @@ const StyledDialog = styled(Dialog)`
   &:hover {
     box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
   }
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     margin: 60px auto;
   }
   animation: splat 0.15s ease-out;
@@ -46,10 +45,10 @@ export const CloseButton = styled.button`
   border: none;
   cursor: pointer;
   &:hover {
-    background: ${theme.pale};
+    background: ${props => props.theme.styles.pale};
   }
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
 `
 
@@ -64,26 +63,26 @@ export default ({ handleDismiss, dialogTitle, children }) => (
 
 export const Header = styled.header`
   padding: 25px;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     padding: 45px;
   }
 `
 
 export const Body = styled.div`
   padding: 25px;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     padding: 45px;
   }
   &:nth-of-type(even) {
-    background: ${theme.pale};
+    background: ${props => props.theme.styles.pale};
   }
 `
 
 export const Title = styled.h1`
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   margin-bottom: 0px;
   font-size: 1.5rem;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     font-size: 2rem;
   }
 `

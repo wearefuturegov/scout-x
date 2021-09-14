@@ -38,11 +38,12 @@
     "webpack-bundle-analyzer": "^3.7.0"
   },
   "scripts": {
-    "dev": "run-s get-filters dev:app",
+    "dev": "run-s add-public-files get-filters dev:app",
     "dev:app": "react-scripts start",
-    "build": "run-s get-filters build:app",
+    "build": "run-s add-public-files get-filters build:app",
     "build:app": "react-scripts build",
     "get-filters": "node jobs/get-filters",
+    "add-public-files": "node jobs/add-public-files",
     "test": "run-s test:*",
     "test:unit": "jest",
     "test:cypress": "cypress open",
@@ -72,5 +73,12 @@
   },
   "lint-staged": {
     "*.{js,jsx,css,md}": "prettier --write"
+  },
+  "jest": {
+    "setupFiles": ["<rootDir>/jest/set-env-vars.js"],
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg)$": "<rootDir>/jest/transform-stub.js" 
+    }
   }
 }

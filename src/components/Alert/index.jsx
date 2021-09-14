@@ -2,16 +2,16 @@ import React from "react"
 import Alert from "@reach/alert"
 import { Link } from "@reach/router"
 import styled from "styled-components"
-import theme from "../_theme"
+import { theme } from "./../../themes/theme_generator"
 
 const StyledAlert = styled(Alert)`
   position: fixed;
   bottom: 0px;
   width: 100%;
   z-index: 999;
-  background: ${theme.text};
+  background: ${props => props.theme.styles.text};
   padding: 20px;
-  color: ${theme.white};
+  color: ${props => props.theme.styles.white};
   /* pointer-events: none; */
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
   animation: popIn 5s ease-out;
@@ -19,7 +19,7 @@ const StyledAlert = styled(Alert)`
   flex-direction: row;
   justify-content: space-between;
   text-align: center;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     max-width: 400px;
     margin: 25px;
     text-align: left;
@@ -44,16 +44,19 @@ const StyledAlert = styled(Alert)`
   }
 `
 
+const white = theme.styles.white
+const focus = theme.styles.focus
+
 const StyledLink = styled(Link)`
   font-weight: bold;
-  color: ${theme.white};
+  color: ${white};
   text-decoration: underline;
   &:hover {
     text-decoration: none;
   }
   &:focus {
-    outline: 3px solid ${theme.focus};
-    background: ${theme.focus};
+    outline: 3px solid ${focus};
+    background: ${focus};
   }
 `
 

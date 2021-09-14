@@ -1,0 +1,37 @@
+[{
+    "id": 1,
+    "label": "Monday",
+    "slug": "Monday",
+    "order": 1
+}, {
+    "id": 2,
+    "label": "Tuesday",
+    "slug": "Tuesday",
+    "order": 2
+}, {
+    "id": 3,
+    "label": "Wednesday",
+    "slug": "Wednesday",
+    "order": 3
+}, {
+    "id": 4,
+    "label": "Thursday",
+    "slug": "Thursday",
+    "order": 4
+}, {
+    "id": 5,
+    "label": "Friday",
+    "slug": "Friday",
+    "order": 5
+}, {
+    "id": 6,
+    "label": "Saturday",
+    "slug": "Saturday",
+    "order": 6
+}, {
+    "id": 7,
+    "label": "Sunday",
+    "slug": "Sunday",
+    "order": 7
+}
+]

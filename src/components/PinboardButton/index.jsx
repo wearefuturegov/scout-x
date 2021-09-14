@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import useHover from "../../hooks/useHover"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import add from "./add.svg"
 import remove from "./remove.svg"
 import tick from "./tick.svg"
@@ -17,7 +17,7 @@ const BaseButton = styled.button`
   background: none;
   border: none;
   font-weight: bold;
-  color: ${theme.link};
+  color: ${props => props.theme.styles.link};
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
@@ -32,17 +32,17 @@ const BaseButton = styled.button`
     background-position: center;
   }
   &:hover {
-    /* color: ${theme.linkHover}; */
+    /* color: ${props => props.theme.styles.linkHover}; */
     text-decoration: underline;
   }
   &:active {
-    color: ${theme.text};
+    color: ${props => props.theme.styles.text};
   }
   &:focus {
-    background: ${theme.focus};
-    outline: 3px solid ${theme.focus};
+    background: ${props => props.theme.styles.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     width: inherit;
   }
 `

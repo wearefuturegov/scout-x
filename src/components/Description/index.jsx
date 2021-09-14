@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import { truncate } from "../../lib/utils"
 import upArrow from "./up-arrow.svg"
 import downArrow from "./down-arrow.svg"
 
 const Outer = styled.article`
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   p {
     line-height: 1.4;
     margin-bottom: 10px;
@@ -17,7 +17,7 @@ const Outer = styled.article`
 `
 
 const Button = styled.button`
-  color: ${theme.link};
+  color: ${props => props.theme.styles.link};
   font-size: 1rem;
   font-weight: bold;
   border: none;
@@ -27,11 +27,11 @@ const Button = styled.button`
     text-decoration: underline;
   }
   &:active {
-    color: ${theme.text};
+    color: ${props => props.theme.styles.text};
   }
   &:focus {
-    background: ${theme.focus};
-    outline: 3px solid ${theme.focus};
+    background: ${props => props.theme.styles.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   &:after {
     content: "";

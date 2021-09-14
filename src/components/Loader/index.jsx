@@ -1,11 +1,10 @@
 import styled from "styled-components"
-import theme from "../_theme"
 
 const Loader = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
-  background: ${theme.focus};
+  background: ${props => props.theme.styles.focus};
   height: 3px;
   width: 0%;
   animation: load 60s;

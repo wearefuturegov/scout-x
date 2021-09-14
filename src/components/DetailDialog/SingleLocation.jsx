@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import Map from "./Map"
 import A from "../A"
 
@@ -10,7 +10,7 @@ const Outer = styled.div`
   min-height: 250px;
   position: relative;
   margin-bottom: 0px;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     /* margin-bottom: 45px; */
     display: block;
   }
@@ -19,7 +19,7 @@ const Outer = styled.div`
 const Inner = styled.div`
   display: block;
   position: relative;
-  background: ${theme.white};
+  background: ${props => props.theme.styles.white};
   padding: 25px;
   width: 100%;
   max-width: 270px;
@@ -27,7 +27,7 @@ const Inner = styled.div`
 
 const Crosshead = styled.h2`
   margin-bottom: 5px;
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
 `
 
 const MapContainer = styled.section`
@@ -37,7 +37,7 @@ const MapContainer = styled.section`
   height: 100%;
   width: 100%;
   /* pointer-events: none; */
-  background: ${theme.pale};
+  background: ${props => props.theme.styles.pale};
   .map {
     height: 100%;
   }

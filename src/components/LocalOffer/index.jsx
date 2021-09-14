@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import { truncate } from "../../lib/utils"
 import upArrow from "./up-arrow.svg"
 import downArrow from "./down-arrow.svg"
@@ -8,7 +8,7 @@ import A from "../A"
 import { TickList, TickListItem } from "../TickList"
 
 const Outer = styled.article`
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   p {
     line-height: 1.4;
     margin-bottom: 10px;
@@ -23,7 +23,7 @@ const Link = styled(A)`
 `
 
 const Button = styled.button`
-  color: ${theme.link};
+  color: ${props => props.theme.styles.link};
   font-size: 1rem;
   font-weight: bold;
   border: none;
@@ -33,11 +33,11 @@ const Button = styled.button`
     text-decoration: underline;
   }
   &:active {
-    color: ${theme.text};
+    color: ${props => props.theme.styles.text};
   }
   &:focus {
-    background: ${theme.focus};
-    outline: 3px solid ${theme.focus};
+    background: ${props => props.theme.styles.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   &:after {
     content: "";
@@ -62,8 +62,8 @@ const Panel = styled.div`
 const Subheading = styled.h3`
   margin-top: 30px;
   margin-bottom: 15px;
-  color: ${theme.text};
-  @media screen and (min-width: ${theme.breakpointM}) {
+  color: ${props => props.theme.styles.text};
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     margin-top: 45px;
   }
 `
@@ -72,7 +72,7 @@ const List = styled(TickList)`
   margin-top: 0px;
   margin-bottom: 25px;
   list-style: none;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 35px;
