@@ -4,6 +4,11 @@
     publish = "/"
 
 
+[context.maintenance-mode]
+    base = "/"
+    command = "echo branch"
+    publish = "/"
+
 [[redirects]]
     from = "/*"
     to = "/index.html"
