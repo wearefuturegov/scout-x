@@ -17,6 +17,9 @@ export const vars_bfis = {
   mapSwitchSmall: true,
   usePresetTaxonomies: true,
   presetTaxonomies: taxa,
+  serviceCard: {
+    hideCategories: true,
+  },
   footerNav: (
     <Styles.Nav>
       <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/about/">
