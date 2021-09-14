@@ -1,36 +1,44 @@
 import styled from "styled-components"
-import theme from "../_theme"
+
+import { theme } from "./../../themes/theme_generator"
+
+const link = theme.styles.link
+const linkHover = theme.styles.linkHover
+const linkActive = theme.styles.linkActive
+const focus = theme.styles.focus
+const breakpointM = theme.styles.breakpointM
+const text = theme.styles.text
 
 let styles = `
     display: inline-block;
     text-decoration: none;
-    color: ${theme.link};
+    color: ${link};
     padding: 15px 45px;
     text-align: center;
-    border: 3px solid ${theme.link};
+    border: 3px solid ${link};
     font-size: 1rem;
     background: none;
     font-weight: bold;
     cursor: pointer;
     width: 100%;
     &:focus{
-        outline: 3px solid ${theme.focus}
+        outline: 3px solid ${focus}
     }
     &:hover{
-        color: ${theme.linkHover};
-        border-color: ${theme.linkHover}
+        color: ${linkHover};
+        border-color: ${linkHover}
     }
     &:active{
-        color: ${theme.linkActive};
-        border-color: ${theme.linkActive}
+        color: ${linkActive};
+        border-color: ${linkActive}
     }
-    @media screen and (min-width: ${theme.breakpointM}){
+    @media screen and (min-width: ${breakpointM}){
         width: inherit;
     }
     &:disabled{
-        background: ${theme.text};
+        background: ${text};
         pointer-events: none;
-        border-color: ${theme.text};
+        border-color: ${text};
     }
 `
 
@@ -41,15 +49,15 @@ const Button = styled.button`
 export default Button
 
 export const SolidButton = styled(Button)`
-  background: ${theme.link};
-  color: ${theme.white};
+  background: ${props => props.theme.styles.link};
+  color: ${props => props.theme.styles.white};
   &:hover {
-    color: ${theme.white};
-    background: ${theme.linkHover};
+    color: ${props => props.theme.styles.white};
+    background: ${props => props.theme.styles.linkHover};
   }
   &:active {
-    color: ${theme.white};
-    background: ${theme.linkActive};
+    color: ${props => props.theme.styles.white};
+    background: ${props => props.theme.styles.linkActive};
   }
 `
 

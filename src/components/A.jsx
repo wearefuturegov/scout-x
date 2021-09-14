@@ -1,8 +1,7 @@
 import styled from "styled-components"
-import theme from "./_theme"
 
 export default styled.a`
-  color: ${theme.link};
+  color: ${props => props.theme.styles.link};
 
   /* prevent long links from overflowing */
   word-wrap: anywhere;
@@ -11,10 +10,10 @@ export default styled.a`
     text-decoration: none;
   }
   &:focus {
-    background: ${theme.focus};
-    outline: 3px solid ${theme.focus};
+    background: ${props => props.theme.styles.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   &:active {
-    color: ${theme.text};
+    color: ${props => props.theme.styles.text};
   }
 `

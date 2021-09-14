@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import { Outer, Label, Field } from "./layout"
 
 const Input = styled.input`
@@ -16,7 +16,7 @@ const Input = styled.input`
     content: "";
     display: block;
     border-radius: 100%;
-    background: ${theme.text};
+    background: ${props => props.theme.styles.text};
     height: 19px;
     width: 19px;
     left: 5px;
@@ -29,14 +29,14 @@ const Input = styled.input`
 
 export const Content = styled.div`
   padding: 25px 0px;
-  border-top: 1px solid ${theme.cardShadow};
-  border-bottom: 1px solid ${theme.cardShadow};
+  border-top: 1px solid ${props => props.theme.styles.cardShadow};
+  border-bottom: 1px solid ${props => props.theme.styles.cardShadow};
 `
 
 export const StyledField = styled(Field)`
   &:focus-within label:before {
     outline: none;
-    box-shadow: 0px 0px 0px 3px ${theme.focus};
+    box-shadow: 0px 0px 0px 3px ${props => props.theme.styles.focus};
   }
 `
 
@@ -61,25 +61,29 @@ const RadioFilter = ({
     clearThis([])
   }
 
-  return (
-    <Outer>
-      <Content>
-        {options.map(o => (
-          <StyledField key={o.slug}>
-            <Input
-              type="radio"
-              id={o.slug}
-              name={name}
-              value={o.slug}
-              onChange={handleChange}
-              checked={selection === o.slug}
-            />
-            <StyledLabel htmlFor={o.slug}>{o.label}</StyledLabel>
-          </StyledField>
-        ))}
-      </Content>
-    </Outer>
-  )
+  if (options.length > 0) {
+    return (
+      <Outer>
+        <Content>
+          {options.map(o => (
+            <StyledField key={o.slug}>
+              <Input
+                type="radio"
+                id={o.slug}
+                name={name}
+                value={o.slug}
+                onChange={handleChange}
+                checked={selection === o.slug}
+              />
+              <StyledLabel htmlFor={o.slug}>{o.label}</StyledLabel>
+            </StyledField>
+          ))}
+        </Content>
+      </Outer>
+    )
+  } else {
+    return null
+  }
 }
 
 export default RadioFilter

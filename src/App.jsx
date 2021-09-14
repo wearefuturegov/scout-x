@@ -9,6 +9,9 @@ import {
   collectionOptions,
   subcategoriesOf,
   sendOptions,
+  accessibilityOptions,
+  daysOptions,
+  suitabilityOptions,
 } from "./lib/transform-taxonomies"
 
 import Layout, {
@@ -17,6 +20,9 @@ import Layout, {
   Count,
   NoResults,
 } from "./components/Layout"
+
+import { orderFilters } from "./lib/order-filters"
+
 import Switch from "./components/Switch"
 import SearchBar from "./components/SearchBar"
 import ServiceCard from "./components/ServiceCard"
@@ -29,6 +35,8 @@ import AgeFilter from "./components/Filter/AgeFilter"
 import ListMap from "./components/ListMap"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
+import { theme } from "./themes/theme_generator"
+import ClearFilters from "./components/ClearFilters"
 
 const App = ({ children, location, navigate }) => {
   const scrollTarget = useRef(null)
@@ -46,6 +54,17 @@ const App = ({ children, location, navigate }) => {
   })
   const [ages, setAges] = useQuery("ages", [], { array: true })
   const [needs, setNeeds] = useQuery("needs", [], { array: true })
+  const [accessibilities, setAccessibilities] = useQuery(
+    "accessibilities",
+    [],
+    {
+      array: true,
+    }
+  )
+  const [suitabilities, setSuitabilities] = useQuery("suitabilities", [], {
+    array: true,
+  })
+  const [days, setDays] = useQuery("days", [], { array: true })
   const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
   const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
   const [only, setOnly] = useQuery("only", [], { array: true })
@@ -69,14 +88,118 @@ const App = ({ children, location, navigate }) => {
     })
   }, [location.search])
 
+  const filterSendNeeds = (
+    <Filter
+      key="sendNeeds"
+      legend="SEND needs"
+      options={sendOptions}
+      selection={needs}
+      setSelection={setNeeds}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filterAges = (
+    <AgeFilter
+      key="ages"
+      legend="Ages"
+      maxAge={maxAge}
+      setMaxAge={setMaxAge}
+      minAge={minAge}
+      setMinAge={setMinAge}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filterAccessibilities = (
+    <Filter
+      key="accessibilities"
+      legend="Access needs"
+      options={accessibilityOptions}
+      selection={accessibilities}
+      setSelection={setAccessibilities}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filterOnlyShow = (
+    <Filter
+      key="onlyShow"
+      legend="Only show"
+      options={onlyOptions}
+      selection={only}
+      setSelection={setOnly}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filterDays = (
+    <Filter
+      key="days"
+      legend="Days"
+      options={daysOptions}
+      selection={days}
+      setSelection={setDays}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filterSuitabilities = (
+    <Filter
+      key="suitabilities"
+      legend="Suitable for"
+      options={suitabilityOptions}
+      selection={suitabilities}
+      setSelection={setSuitabilities}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filters = {
+    sendNeeds: {
+      component: filterSendNeeds,
+      clear: [setNeeds],
+      clearValue: [[]],
+    },
+    ages: {
+      component: filterAges,
+      clear: [setMinAge, setMaxAge],
+      clearValue: [false, false],
+    },
+    accessibilities: {
+      component: filterAccessibilities,
+      clear: [setAccessibilities],
+      clearValue: [[]],
+    },
+    onlyShow: {
+      component: filterOnlyShow,
+      clear: [setOnly],
+      clearValue: [[]],
+    },
+    days: {
+      component: filterDays,
+      clear: [setDays],
+      clearValue: [[]],
+    },
+    suitabilities: {
+      component: filterSuitabilities,
+      clear: [setSuitabilities],
+      clearValue: [[]],
+    },
+  }
+
   return (
     <>
       <Helmet>
         <title>
-          {page > 1
-            ? `Page ${page}`
-            : "Find activities and organisations near you"}{" "}
-          | Family information service | Buckinghamshire Council
+          {page > 1 ? `Page ${page} ` : `${theme.tagline} `}| {theme.title} |{" "}
+          {theme.organisation}
         </title>
       </Helmet>
       <Layout
@@ -103,7 +226,7 @@ const App = ({ children, location, navigate }) => {
                 clearThis={setCategories}
                 setPage={setPage}
               />
-              {collection && (
+              {subcategoriesOf(collection).length > 0 && (
                 <Filter
                   legend="Categories"
                   options={subcategoriesOf(collection)}
@@ -113,30 +236,12 @@ const App = ({ children, location, navigate }) => {
                   foldable
                 />
               )}
-              <Filter
-                legend="SEND needs"
-                options={sendOptions}
-                selection={needs}
-                setSelection={setNeeds}
+              {orderFilters(filters, theme.filterOrder)}
+              <ClearFilters
                 setPage={setPage}
-                foldable
-              />
-              <AgeFilter
-                legend="Ages"
-                maxAge={maxAge}
-                setMaxAge={setMaxAge}
-                minAge={minAge}
-                setMinAge={setMinAge}
-                setPage={setPage}
-                foldable
-              />
-              <Filter
-                legend="Only show"
-                options={onlyOptions}
-                selection={only}
-                setSelection={setOnly}
-                setPage={setPage}
-                foldable
+                filters={filters}
+                clearCategory={setCollection}
+                clearSubCategory={setCategories}
               />
             </Filters>
           </>

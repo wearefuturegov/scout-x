@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import { Dialog } from "@reach/dialog"
 import { CloseButton, Icon } from "../Dialog"
 import fetch from "isomorphic-unfetch"
@@ -36,7 +36,7 @@ const Field = styled.div`
 
 const Label = styled.label`
   display: block;
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   cursor: pointer;
   margin-bottom: 5px;
 `
@@ -44,11 +44,11 @@ const Label = styled.label`
 const Input = styled.input`
   font-size: 1rem;
   padding: 10px;
-  border: 2px solid ${theme.text};
+  border: 2px solid ${props => props.theme.styles.text};
   display: block;
   width: 100%;
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   &::placeholder {
     opacity: 0.3;

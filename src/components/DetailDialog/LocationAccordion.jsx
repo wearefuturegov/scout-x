@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import Map from "./Map"
 import downArrow from "./down-arrow.svg"
 import upArrow from "./up-arrow.svg"
@@ -9,14 +9,14 @@ import { TickList, TickListItem } from "../TickList"
 
 const Outer = styled.div`
   margin-top: 30px;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     margin-top: 40px;
   }
 `
 
 const Crosshead = styled.h2`
   margin-bottom: 5px;
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
 `
 
 const Button = styled.button`
@@ -25,15 +25,15 @@ const Button = styled.button`
   width: 100%;
   border: none;
   text-align: left;
-  border-bottom: 1px solid ${theme.cardShadow};
+  border-bottom: 1px solid ${props => props.theme.styles.cardShadow};
   font-size: 1rem;
   background: none;
   padding: 15px 0px;
   padding-right: 30px;
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   cursor: pointer;
   &:focus {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   &:after {
     content: "";
@@ -64,7 +64,7 @@ const Panel = styled.div`
     display: none;
   }
   @supports (display: grid) {
-    @media screen and (min-width: ${theme.breakpointM}) {
+    @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 35px;
@@ -78,7 +78,7 @@ const Panel = styled.div`
 const MapContainer = styled.section`
   height: 200px;
   width: 100%;
-  background: ${theme.pale};
+  background: ${props => props.theme.styles.pale};
   .map {
     height: 100%;
   }

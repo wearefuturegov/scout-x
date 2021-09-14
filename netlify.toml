@@ -6,3 +6,13 @@
     from = "/*"
     to = "/index.html"
     status = 200
+
+[context."feature/bod".environment]
+    FILTERS_DATASOURCE="https://outpost-staging.herokuapp.com/api/v1"
+    REACT_APP_API_HOST="https://outpost-api-staging.herokuapp.com/api/v1"
+
+[context."staging".environment]
+    FILTERS_DATASOURCE="https://outpost-staging.herokuapp.com/api/v1"
+    REACT_APP_API_HOST="https://outpost-api-staging.herokuapp.com/api/v1"
+
+    

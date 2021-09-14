@@ -1,11 +1,11 @@
 import React from "react"
-import theme from "../_theme"
+
 import styled from "styled-components"
 
 const Outer = styled.div`
   display: block;
   padding: 25px;
-  background: ${theme.white};
+  background: ${props => props.theme.styles.white};
   margin-bottom: 15px;
   position: relative;
   opacity: 0;
@@ -38,10 +38,10 @@ const Shimmer = styled.div`
     width: 100%;
     background: linear-gradient(
       to right,
-      ${theme.pale} 0%,
-      ${theme.cardShadow} 20%,
-      ${theme.pale} 40%,
-      ${theme.pale} 100%
+      ${props => props.theme.styles.pale} 0%,
+      ${props => props.theme.styles.cardShadow} 20%,
+      ${props => props.theme.styles.pale} 40%,
+      ${props => props.theme.styles.pale} 100%
     );
     animation: shimmer 1s infinite;
     animation-fill-mode: forwards;
@@ -61,7 +61,7 @@ const Shimmer = styled.div`
 const Name = styled.div`
   height: 25px;
   width: 50%;
-  background: ${theme.cardShadow};
+  background: ${props => props.theme.styles.cardShadow};
   margin-bottom: 15px;
   border-radius: 10px;
 `
@@ -69,7 +69,7 @@ const Name = styled.div`
 const Description = styled.div`
   height: 10px;
   margin-bottom: 5px;
-  background: ${theme.cardShadow};
+  background: ${props => props.theme.styles.cardShadow};
   border-radius: 10px;
 `
 
@@ -79,7 +79,7 @@ const Tag = styled.div`
   width: 80px;
   margin-right: 10px;
   display: inline-block;
-  background: ${theme.cardShadow};
+  background: ${props => props.theme.styles.cardShadow};
   border-radius: 2px;
   border-radius: 10px;
 `

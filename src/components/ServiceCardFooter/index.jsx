@@ -1,5 +1,5 @@
 import React from "react"
-import theme from "../_theme"
+
 import styled from "styled-components"
 import { buildServiceCardFooter, prettyDistance } from "../../lib/utils"
 import tick from "./tick.svg"
@@ -10,15 +10,15 @@ const Footer = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   font-size: 0.9rem;
-  color: ${theme.grey};
+  color: ${props => props.theme.styles.grey};
   line-height: 1.7;
 `
 
 const LocalOfferTag = styled.strong`
   margin-right: 15px;
   margin-bottom: 2px;
-  background: ${theme.focus};
-  color: ${theme.darkYellow};
+  background: ${props => props.theme.styles.focus};
+  color: ${props => props.theme.styles.darkYellow};
   border-radius: 2px;
   padding: 0px 6px;
   &:before {
@@ -33,8 +33,17 @@ const LocalOfferTag = styled.strong`
   }
 `
 
+const CountyWideServiceTag = styled.strong`
+  margin-right: 15px;
+  margin-bottom: 2px;
+  background: ${props => props.theme.styles.link};
+  color: ${props => props.theme.styles.white};
+  border-radius: 2px;
+  padding: 0px 6px;
+`
+
 const Point = styled.span`
-  color: ${theme.grey};
+  color: ${props => props.theme.styles.grey};
   &:after {
     margin-left: 7px;
     content: "•";
@@ -50,7 +59,9 @@ const Distance = styled(Point)`
 `
 
 const ServiceCardFooter = props => {
-  let { local_offer, current_vacancies, distance_away } = props
+  let { local_offer, current_vacancies, distance_away, locations } = props
+
+  const countywide = locations.length > 0 ? false : true
 
   let points
 
@@ -63,6 +74,9 @@ const ServiceCardFooter = props => {
   return (
     <Footer>
       {local_offer && <LocalOfferTag>Part of local offer</LocalOfferTag>}
+      {countywide && (
+        <CountyWideServiceTag>Buckinghamshire wide</CountyWideServiceTag>
+      )}
       {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
       {points.slice(0, distance_away ? 2 : 3).map(point => (
         <Point key={point}>{point}</Point>

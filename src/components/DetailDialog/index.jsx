@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import theme from "../_theme"
+
 import fetch from "isomorphic-unfetch"
 import {
   daysSince,
@@ -21,6 +21,7 @@ import Dialog, { Body as InheritedBody, Header, Title } from "../Dialog"
 import SingleLocation from "./SingleLocation"
 import LocationAccordion from "./LocationAccordion"
 import { TickList, TickListItem } from "../TickList"
+import { theme } from "./../../themes/theme_generator"
 
 const Body = styled(InheritedBody)`
   &:first-of-type {
@@ -29,23 +30,23 @@ const Body = styled(InheritedBody)`
 `
 
 const Banner = styled.p`
-  background: ${theme.pale};
+  background: ${props => props.theme.styles.pale};
   padding: 10px 50px;
   font-size: 0.95rem;
-  color: ${theme.grey};
+  color: ${props => props.theme.styles.grey};
   text-align: center;
 `
 
 const YellowBanner = styled(Banner)`
-  background: ${theme.focus}50;
-  color: ${theme.darkYellow};
+  background: ${props => props.theme.styles.focus}50;
+  color: ${props => props.theme.styles.darkYellow};
 `
 
 const Caption = styled.p`
-  color: ${theme.grey};
+  color: ${props => props.theme.styles.grey};
   margin-bottom: 10px;
   font-size: 1.1rem;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     font-size: 1.2rem;
   }
 `
@@ -55,7 +56,7 @@ const Actions = styled.div`
   a:first-of-type {
     margin-bottom: 25px;
   }
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -70,7 +71,7 @@ const Actions = styled.div`
 const TwoColumnTickList = styled(TickList)`
   margin-top: 25px;
   list-style: none;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 35px;
@@ -79,7 +80,7 @@ const TwoColumnTickList = styled(TickList)`
 
 const Crosshead = styled.h2`
   margin-bottom: 15px;
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
 `
 
 const Columns = styled.div`
@@ -94,7 +95,7 @@ const Columns = styled.div`
     }
   }
   @supports (display: grid) {
-    @media screen and (min-width: ${theme.breakpointM}) {
+    @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 35px;
@@ -108,7 +109,7 @@ const Columns = styled.div`
 
 const ContactName = styled.h3`
   line-height: 1.5;
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
 `
 
 const ContactRole = styled.p`
@@ -118,7 +119,7 @@ const ContactRole = styled.p`
 
 const Table = styled.table`
   width: 100%;
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   td {
     width: 50%;
   }
@@ -130,7 +131,7 @@ const Table = styled.table`
 const Footer = styled(Body)`
   text-align: center;
   padding: 25px;
-  @media screen and (min-width: ${theme.breakpointM}) {
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     padding: 45px;
   }
   p {
@@ -144,10 +145,10 @@ const Footer = styled(Body)`
 const SuggestEditLink = styled.a`
   display: inline-block;
   text-decoration: none;
-  color: ${theme.link};
+  color: ${props => props.theme.styles.link};
   padding: 7px 25px;
   text-align: center;
-  border: 3px solid ${theme.link};
+  border: 3px solid ${props => props.theme.styles.link};
   font-size: 1rem;
   background: none;
   font-weight: bold;
@@ -156,15 +157,15 @@ const SuggestEditLink = styled.a`
   margin-bottom: 20px;
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 0px 3px ${theme.focus};
+    box-shadow: 0px 0px 0px 3px ${props => props.theme.styles.focus};
   }
   &:hover {
-    color: ${theme.linkHover};
-    border-color: ${theme.linkHover};
+    color: ${props => props.theme.styles.linkHover};
+    border-color: ${props => props.theme.styles.linkHover};
   }
   &:active {
-    color: ${theme.linkActive};
-    border-color: ${theme.linkActive};
+    color: ${props => props.theme.styles.linkActive};
+    border-color: ${props => props.theme.styles.linkActive};
   }
 `
 
@@ -192,8 +193,7 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
       <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>
         <Helmet>
           <title>
-            {service.name} | Family information service | Buckinghamshire
-            Council
+            {service.name} | {theme.title} | {theme.organisation}
           </title>
           {service.description && (
             <meta
@@ -295,12 +295,25 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
             </Body>
           )}
           <Body>
-            {service.locations.length === 1 &&
+            {service.hasOwnProperty("locations") &&
+              service.locations.length === 1 &&
+              service.locations[0].hasOwnProperty("accessibilities") &&
               service.locations[0].accessibilities.length > 0 && (
                 <Columns>
-                  <Crosshead>Accessibility</Crosshead>
+                  <Crosshead>Access needs</Crosshead>
                   <TickList>
                     {service.locations[0].accessibilities.map(point => (
+                      <TickListItem key={point.name}>{point.name}</TickListItem>
+                    ))}
+                  </TickList>
+                </Columns>
+              )}
+            {service.hasOwnProperty("suitabilities") &&
+              service.suitabilities.length > 0 && (
+                <Columns>
+                  <Crosshead>Suitable for</Crosshead>
+                  <TickList>
+                    {service.suitabilities.map(point => (
                       <TickListItem key={point.name}>{point.name}</TickListItem>
                     ))}
                   </TickList>
@@ -357,7 +370,7 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
                 </div>
               </Columns>
             )}
-            {categories.length > 0 && (
+            {!theme.serviceCard.hideCategories && categories.length > 0 && (
               <Columns>
                 <Crosshead>Categories</Crosshead>
                 <p>{categories.map(taxon => taxon.name).join(", ")}</p>

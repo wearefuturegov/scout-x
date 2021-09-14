@@ -1,5 +1,6 @@
 import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
+import { getThemeLabel } from "./../themes/theme_generator"
 
 export const fetchResultsByQuery = async query => {
   let {
@@ -10,6 +11,9 @@ export const fetchResultsByQuery = async query => {
     collection,
     categories,
     needs,
+    accessibilities,
+    suitabilities,
+    days,
     min_age,
     max_age,
     only,
@@ -21,14 +25,20 @@ export const fetchResultsByQuery = async query => {
   if (collection) taxonomies.push([].concat(collection))
   if (categories) taxonomies.push([].concat(categories).join(","))
 
+  const targetDirectories = [getThemeLabel()]
+
   const res = await fetch(
     `${process.env.REACT_APP_API_HOST}/services?${queryString.stringify({
+      targetDirectories,
       keywords,
       location,
       lat,
       lng,
       taxonomies,
       needs,
+      accessibilities,
+      suitabilities,
+      days,
       min_age,
       max_age,
       only,

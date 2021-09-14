@@ -1,5 +1,5 @@
 import React from "react"
-import theme from "../_theme"
+
 import styled from "styled-components"
 import { truncate } from "../../lib/utils"
 import { Link, useLocation } from "@reach/router"
@@ -7,17 +7,17 @@ import Footer from "../ServiceCardFooter"
 
 const Outer = styled.li`
   padding: 25px;
-  background: ${theme.white};
+  background: ${props => props.theme.styles.white};
   margin-bottom: 15px;
   transition: box-shadow 0.2s ease-out;
   position: relative;
   animation: fadeIn 0.2s ease-out;
   &:hover {
-    /* box-shadow: 0px 4px 5px ${theme.cardShadow}; */
-    box-shadow: 0px 22px 24px 0px ${theme.cardShadow};
+    /* box-shadow: 0px 4px 5px ${props => props.theme.styles.cardShadow}; */
+    box-shadow: 0px 22px 24px 0px ${props => props.theme.styles.cardShadow};
   }
   &:focus-within {
-    outline: 3px solid ${theme.focus};
+    outline: 3px solid ${props => props.theme.styles.focus};
   }
   @keyframes fadeIn {
     from {
@@ -30,7 +30,7 @@ const Outer = styled.li`
 `
 
 const StyledLink = styled(Link)`
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   text-decoration: none;
   &:before {
     content: "";
@@ -53,7 +53,7 @@ const Name = styled.h2`
 `
 
 const Description = styled.p`
-  color: ${theme.text};
+  color: ${props => props.theme.styles.text};
   font-size: 0.9rem;
   margin-bottom: 17px;
   line-height: 1.5;
