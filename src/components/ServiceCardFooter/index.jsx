@@ -3,6 +3,7 @@ import React from "react"
 import styled from "styled-components"
 import { buildServiceCardFooter, prettyDistance } from "../../lib/utils"
 import tick from "./tick.svg"
+import { theme } from "./../../themes/theme_generator"
 
 const Footer = styled.div`
   display: flex;
@@ -74,7 +75,7 @@ const ServiceCardFooter = props => {
   return (
     <Footer>
       {local_offer && <LocalOfferTag>Part of local offer</LocalOfferTag>}
-      {countywide && (
+      {theme.noLocationIsCountywide && countywide && (
         <CountyWideServiceTag>Buckinghamshire wide</CountyWideServiceTag>
       )}
       {distance_away && <Distance>{prettyDistance(distance_away)}</Distance>}
