@@ -88,6 +88,9 @@ const generate_theme = (vars, theme_vars) => {
     presetTaxonomies: vars.hasOwnProperty("presetTaxonomies")
       ? vars.presetTaxonomies
       : {},
+    noLocationIsCountywide: vars.hasOwnProperty("noLocationIsCountywide")
+      ? vars.noLocationIsCountywide
+      : false,
     serviceCard: {
       hideCategories:
         vars.hasOwnProperty("serviceCard") &&

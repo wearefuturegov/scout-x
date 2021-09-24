@@ -56,6 +56,7 @@ export const vars_bod = {
       name: "only-show",
     },
   ],
+  noLocationIsCountywide: true,
 }
 
 export default vars_bod
