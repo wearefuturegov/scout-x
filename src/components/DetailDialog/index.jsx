@@ -188,16 +188,36 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
   if (service.name) {
     let goodToKnow = buildGoodToKnow(service)
     let categories = service.taxonomies
-
     return (
       <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>
         <Helmet>
           <title>
             {service.name} | {theme.title} | {theme.organisation}
           </title>
+          <meta
+            property="twitter:title"
+            content={`${service.name} | ${theme.title} | ${theme.organisation}`}
+          />
+          <meta
+            property="og:title"
+            content={`${service.name} | ${theme.title} | ${theme.organisation}`}
+          />
+
           {service.description && (
             <meta
               name="description"
+              content={truncate(service.description, 30)}
+            />
+          )}
+          {service.description && (
+            <meta
+              property="twitter:description"
+              content={truncate(service.description, 30)}
+            />
+          )}
+          {service.description && (
+            <meta
+              property="og:description"
               content={truncate(service.description, 30)}
             />
           )}
