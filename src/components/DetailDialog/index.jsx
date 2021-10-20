@@ -195,11 +195,11 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
             {service.name} | {theme.title} | {theme.organisation}
           </title>
           <meta
-            name="twitter:title"
+            property="twitter:title"
             content={`${service.name} | ${theme.title} | ${theme.organisation}`}
           />
           <meta
-            name="og:title"
+            property="og:title"
             content={`${service.name} | ${theme.title} | ${theme.organisation}`}
           />
 
