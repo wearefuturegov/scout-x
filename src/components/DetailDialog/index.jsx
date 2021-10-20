@@ -211,13 +211,13 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
           )}
           {service.description && (
             <meta
-              name="twitter:description"
+              property="twitter:description"
               content={truncate(service.description, 30)}
             />
           )}
           {service.description && (
             <meta
-              name="og:description"
+              property="og:description"
               content={truncate(service.description, 30)}
             />
           )}
