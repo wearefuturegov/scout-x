@@ -5,6 +5,7 @@ import Header from "../Header"
 import Footer from "../Footer"
 import Breadcrumbs from "../Breadcrumbs"
 import Prefooter from "../Prefooter"
+import CookieBanner from "../CookieBanner"
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -160,6 +161,7 @@ const Layout = ({
   <>
     <GlobalStyle />
     <SkipLink href="#main-content">Skip to main content</SkipLink>
+    <CookieBanner />
     <Header />
     <PageHeader role="search">
       <PageHeaderInner>
