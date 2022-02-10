@@ -19,7 +19,7 @@ const LocalOfferTag = styled.strong`
   margin-right: 15px;
   margin-bottom: 2px;
   background: ${props => props.theme.styles.focus};
-  color: ${props => props.theme.styles.darkYellow};
+  color: ${props => props.theme.styles.text};
   border-radius: 2px;
   padding: 0px 6px;
   &:before {
