@@ -76,8 +76,17 @@ describe("Service detail", () => {
     cy.get("td").contains("10am to 5pm")
 
     cy.get("a").contains("Facebook")
-    cy.get("p").contains("Clubs and groups, Things to do")
   })
+
+  // need to fix svg issue and the weird env variable issues befor ehtis will work properly
+  // it("shows categories depending on theme settings", () => {
+  // if(theme.serviceCard.hideCategories) {
+  // cy.get("p").contains("Clubs and groups, Things to do").should('not.exist')
+  // } else {
+  // cy.get("p").contains("Clubs and groups, Things to do")
+  // }
+
+  // })
 
   it("lets the user suggest edits", () => {
     cy.get("div[role='dialog'] a").contains("Suggest an edit").click()
