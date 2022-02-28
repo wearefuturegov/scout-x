@@ -83,7 +83,7 @@ const generate_theme = (vars, theme_vars) => {
     mapSwitchSmall: vars.hasOwnProperty("mapSwitchSmall")
       ? vars.mapSwitchSmall
       : true,
-    filterOrder: vars.hasOwnProperty("filterOrder") ? vars.filterOrder : {},
+    filterOrder: vars.hasOwnProperty("filterOrder") ? vars.filterOrder : [],
     usePresetTaxonomies: determineUsePresetTaxonomies(vars),
     presetTaxonomies: vars.hasOwnProperty("presetTaxonomies")
       ? vars.presetTaxonomies
