@@ -28,10 +28,11 @@ export const vars_bod = {
         <a href="https://www.buckinghamshire.gov.uk/about/cookies/">
           cookies to collect information
         </a>{" "}
-        about how you use the Buckinghamshire Council website.
+        about how you use the Buckinghamshire Council website and directories.
       </p>
       <p>
-        We use this information to improve the website and our services.{" "}
+        We use this information to improve the website, directories and our
+        services.{" "}
         <a href="https://www.buckinghamshire.gov.uk/about/cookies/">
           How to manage cookies.
         </a>
