@@ -14,6 +14,19 @@ export const vars_generic = {
   headerLogo: logo,
   mapSwitchSmall: true,
   usePresetTaxonomies: false,
+  cookieMessage: (
+    <>
+      <p>
+        We use cookies to collect information about how you use the
+        Buckinghamshire Council website.
+      </p>
+      <p>We use this information to improve the website and our services.</p>
+    </>
+  ),
+  cookieName: "generic-scout",
+  cookieCallback: () => {
+    console.log("loadcookies")
+  },
   footerNav: (
     <Styles.Nav>
       <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/about/">
