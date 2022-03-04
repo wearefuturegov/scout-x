@@ -15,11 +15,10 @@ export const GoogleContextProvider = ({ children }) => {
     preventGoogleFontsLoading: true,
   })
 
-  let value = {}
-  cookiesAccepted ? (value.isLoaded = isLoaded) : (value.isLoaded = false)
-
   return (
-    <GoogleContext.Provider value={value}>{children}</GoogleContext.Provider>
+    <GoogleContext.Provider value={{ isLoaded: cookiesAccepted && isLoaded }}>
+      {children}
+    </GoogleContext.Provider>
   )
 }
 

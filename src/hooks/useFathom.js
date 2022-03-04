@@ -11,14 +11,14 @@ const useFathom = () => {
     if (cookiesAccepted) {
       ReactGA.initialize(process.env.REACT_APP_GA_PROPERTY_ID)
     }
-  }, [])
+  }, [cookiesAccepted])
 
   useEffect(() => {
     console.log(location.pathname + location.search)
     if (cookiesAccepted) {
       ReactGA.pageview(location.pathname + location.search)
     }
-  }, [location])
+  }, [cookiesAccepted, location])
 }
 
 export default useFathom

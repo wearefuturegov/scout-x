@@ -17,7 +17,7 @@ export const vars_generic = {
   cookieMessage: (
     <>
       <p>
-        We use cookies to collect informationabout how you use the
+        We use cookies to collect information about how you use the
         Buckinghamshire Council website.
       </p>
       <p>We use this information to improve the website and our services.</p>
