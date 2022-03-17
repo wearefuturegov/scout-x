@@ -206,19 +206,28 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
           {service.description && (
             <meta
               name="description"
-              content={truncate(service.description, 30)}
+              content={truncate(service.description, 22).replace(
+                /(\r\n|\n|\r)/gm,
+                " "
+              )}
             />
           )}
           {service.description && (
             <meta
               property="twitter:description"
-              content={truncate(service.description, 30)}
+              content={truncate(service.description, 22).replace(
+                /(\r\n|\n|\r)/gm,
+                " "
+              )}
             />
           )}
           {service.description && (
             <meta
               property="og:description"
-              content={truncate(service.description, 30)}
+              content={truncate(service.description, 22).replace(
+                /(\r\n|\n|\r)/gm,
+                " "
+              )}
             />
           )}
         </Helmet>
