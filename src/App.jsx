@@ -37,6 +37,7 @@ import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
 import { theme } from "./themes/theme_generator"
 import ClearFilters from "./components/ClearFilters"
+import { checkCookiesAccepted } from "./lib/cookies"
 
 const App = ({ children, location, navigate }) => {
   const scrollTarget = useRef(null)
@@ -69,7 +70,7 @@ const App = ({ children, location, navigate }) => {
   const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
   const [only, setOnly] = useQuery("only", [], { array: true })
 
-  const [mapVisible, setMapVisible] = useQuery("map", false)
+  const [mapVisible, setMapVisible] = useQuery("map", false, { boolean: true })
 
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(true)
@@ -288,12 +289,14 @@ const MainContent = ({
       <>
         <ResultsHeader>
           <Count />
-          <Switch
-            id="map-toggle"
-            checked={mapVisible}
-            onChange={e => setMapVisible(e.target.checked)}
-            label="Show map?"
-          />
+          {checkCookiesAccepted() && (
+            <Switch
+              id="map-toggle"
+              checked={mapVisible}
+              onChange={e => setMapVisible(e.target.checked)}
+              label="Show map?"
+            />
+          )}
         </ResultsHeader>
         <ResultsList aria-live="polite">
           <Skeleton />
@@ -334,12 +337,14 @@ const MainContent = ({
             </>
           )}
         </Count>
-        <Switch
-          id="map-toggle"
-          checked={mapVisible}
-          onChange={e => setMapVisible(e.target.checked)}
-          label="Show map?"
-        />
+        {checkCookiesAccepted() && (
+          <Switch
+            id="map-toggle"
+            checked={mapVisible}
+            onChange={e => setMapVisible(e.target.checked)}
+            label="Show map?"
+          />
+        )}
       </ResultsHeader>
       {mapVisible && (
         <ListMap results={results} navigate={navigate} location={location} />
