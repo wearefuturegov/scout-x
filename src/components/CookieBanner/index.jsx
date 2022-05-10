@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { ButtonLink } from "../Button"
+import { SolidButtonLinkPrimary } from "../Button"
 
 import { getCookie } from "../../lib/cookies"
 import { theme } from "./../../themes/theme_generator"
@@ -99,7 +99,9 @@ export default () => {
         <Outer>
           <Inner>
             <Message>{theme.cookieMessage}</Message>
-            <ButtonLink onClick={handleAccept}>Accept all cookies</ButtonLink>
+            <SolidButtonLinkPrimary onClick={handleAccept}>
+              Accept all cookies
+            </SolidButtonLinkPrimary>
           </Inner>
         </Outer>
       )}
