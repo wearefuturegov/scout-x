@@ -5,11 +5,6 @@ import { ButtonLink } from "../Button"
 import { getCookie } from "../../lib/cookies"
 import { theme } from "./../../themes/theme_generator"
 
-export const Icon = styled.img`
-  width: 30px;
-  height: 30px;
-`
-
 const Outer = styled.header`
   background: ${props => props.theme.styles.white};
   padding: 10px ${props => props.theme.styles.outerSpacing};
@@ -28,6 +23,7 @@ const Message = styled.div`
   a {
     text-decoration: none;
     color: ${props => props.theme.styles.link};
+    text-decoration: underline;
     &:focus {
       outline: none;
       box-shadow: 0px 0px 0px 3px ${props => props.theme.styles.focus};
