@@ -33,11 +33,13 @@ import RadioFilter from "./components/Filter/RadioFilter"
 import KeywordFilter from "./components/Filter/KeywordFilter"
 import AgeFilter from "./components/Filter/AgeFilter"
 import ListMap from "./components/ListMap"
+import ListMapStatic from "./components/ListMapStatic"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
 import { theme } from "./themes/theme_generator"
 import ClearFilters from "./components/ClearFilters"
 import { checkCookiesAccepted } from "./lib/cookies"
+import AlertStatic from "./components/AlertStatic"
 
 const App = ({ children, location, navigate }) => {
   const scrollTarget = useRef(null)
@@ -283,20 +285,19 @@ const MainContent = ({
   setPage,
   scrollTarget,
 }) => {
+  const cookiesAccepted = checkCookiesAccepted()
   // still loading
   if (loading)
     return (
       <>
         <ResultsHeader>
           <Count />
-          {checkCookiesAccepted() && (
-            <Switch
-              id="map-toggle"
-              checked={mapVisible}
-              onChange={e => setMapVisible(e.target.checked)}
-              label="Show map?"
-            />
-          )}
+          <Switch
+            id="map-toggle"
+            checked={mapVisible}
+            onChange={e => setMapVisible(e.target.checked)}
+            label="Show map?"
+          />
         </ResultsHeader>
         <ResultsList aria-live="polite">
           <Skeleton />
@@ -337,18 +338,22 @@ const MainContent = ({
             </>
           )}
         </Count>
-        {checkCookiesAccepted() && (
-          <Switch
-            id="map-toggle"
-            checked={mapVisible}
-            onChange={e => setMapVisible(e.target.checked)}
-            label="Show map?"
-          />
-        )}
+        <Switch
+          id="map-toggle"
+          checked={mapVisible}
+          onChange={e => setMapVisible(e.target.checked)}
+          label="Show map?"
+        />
       </ResultsHeader>
-      {mapVisible && (
-        <ListMap results={results} navigate={navigate} location={location} />
-      )}
+      {mapVisible &&
+        (cookiesAccepted ? (
+          <ListMap results={results} navigate={navigate} location={location} />
+        ) : (
+          <>
+            <AlertStatic>{theme.cookiesDisabledMessage}</AlertStatic>
+            <ListMapStatic results={results} />
+          </>
+        ))}
       <PinboardLink location={location} />
       <ResultsList aria-live="polite">
         {results?.map(s => (

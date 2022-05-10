@@ -75,6 +75,7 @@ const generate_theme = (vars, theme_vars) => {
     tagline: vars.hasOwnProperty("tagline") ? vars.tagline : "",
     beta: vars.hasOwnProperty("beta") ? vars.beta : false,
     headerLogo: vars.headerLogo,
+    cookiesDisabledMessage: vars.cookiesDisabledMessage,
     cookieMessage: vars.cookieMessage,
     cookieName: vars.cookieName,
     cookieCallback: vars.hasOwnProperty("cookieCallback")
