@@ -20,6 +20,9 @@ const Outer = styled.section`
 `
 
 export default ({ results }) => {
+  if (process.env.REACT_APP_GOOGLE_STATIC_MAPS_API_KEY === undefined)
+    return null
+
   let resultsLatLng = []
   results.map(result =>
     result.locations.map(location => {
@@ -56,12 +59,18 @@ export default ({ results }) => {
     return null
   })
 
-  var centerLatSum = centerLatArray.reduce(function (a, b) {
-    return a + b
-  })
-  var centerLngSum = centerLngArray.reduce(function (a, b) {
-    return a + b
-  })
+  var centerLatSum =
+    centerLatArray.length === 0
+      ? 0
+      : centerLatArray.reduce(function (a, b) {
+          return a + b
+        })
+  var centerLngSum =
+    centerLngArray.length === 0
+      ? 0
+      : centerLngArray.reduce(function (a, b) {
+          return a + b
+        })
 
   var centerLat = centerLatSum / filteredtextCoordinatesArray.length
   var centerLng = centerLngSum / filteredtextCoordinatesArray.length
