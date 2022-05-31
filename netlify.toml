@@ -7,12 +7,8 @@
     to = "/index.html"
     status = 200
 
-[context."feature/bod".environment]
-    FILTERS_DATASOURCE="https://outpost-staging.herokuapp.com/api/v1"
-    REACT_APP_API_HOST="https://outpost-api-staging.herokuapp.com/api/v1"
+[[plugins]]
+    package = 'netlify-plugin-contextual-env'
+        [plugins.inputs]
+            mode = 'prefix'
 
-[context."staging".environment]
-    FILTERS_DATASOURCE="https://outpost-staging.herokuapp.com/api/v1"
-    REACT_APP_API_HOST="https://outpost-api-staging.herokuapp.com/api/v1"
-
-    
