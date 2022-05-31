@@ -22,6 +22,9 @@ import SingleLocation from "./SingleLocation"
 import LocationAccordion from "./LocationAccordion"
 import { TickList, TickListItem } from "../TickList"
 import { theme } from "./../../themes/theme_generator"
+import { checkCookiesAccepted } from "./../../lib/cookies"
+
+import AlertStatic from "./../AlertStatic"
 
 const Body = styled(InheritedBody)`
   &:first-of-type {
@@ -171,7 +174,7 @@ const SuggestEditLink = styled.a`
 
 const DetailDialog = ({ serviceId, location, navigate }) => {
   const [service, setService] = useState(false)
-
+  const cookiesAccepted = checkCookiesAccepted()
   const handleDismiss = () => {
     navigate(`/${location.search}`)
   }
@@ -249,6 +252,9 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
             )}
             <Title>{service.name}</Title>
           </Header>
+          {!cookiesAccepted && (
+            <AlertStatic>{theme.cookiesDisabledMessage}</AlertStatic>
+          )}
           {service.locations.length === 1 && (
             <SingleLocation {...service.locations[0]} />
           )}

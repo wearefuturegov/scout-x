@@ -21,6 +21,8 @@ export const vars_bod = {
   serviceCard: {
     hideCategories: true,
   },
+  cookiesDisabledMessage:
+    "Please note, some functionality such as interactive maps and location auto complete is currently disabled. Please accept cookies to use these features.",
   cookieMessage: (
     <>
       <p>

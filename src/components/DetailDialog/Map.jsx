@@ -3,11 +3,7 @@ import { GoogleMap, Marker } from "@react-google-maps/api"
 import { GoogleContextConsumer } from "../../contexts/googleContext"
 import marker from "../ListMap/marker.svg"
 
-import { checkCookiesAccepted } from "./../../lib/cookies"
-
 const Map = React.memo(({ latitude, longitude, isLoaded, offCenter }) => {
-  const cookiesAccepted = checkCookiesAccepted()
-  if (!cookiesAccepted) return <></>
   return isLoaded ? (
     <GoogleMap
       mapContainerClassName="map"

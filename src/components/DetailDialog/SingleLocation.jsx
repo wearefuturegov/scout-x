@@ -4,6 +4,9 @@ import styled from "styled-components"
 import Map from "./Map"
 import A from "../A"
 
+import { checkCookiesAccepted } from "./../../lib/cookies"
+import MapStatic from "./MapStatic"
+
 const Outer = styled.div`
   /* display: none; */
   padding: 45px;
@@ -43,6 +46,28 @@ const MapContainer = styled.section`
   }
 `
 
+const StaticMapContainer = styled.section`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  /* pointer-events: none; */
+  background: ${props => props.theme.styles.pale};
+  .map {
+    height: 100%;
+  }
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+`
+
 const SingleLocation = ({
   name,
   geometry,
@@ -50,39 +75,59 @@ const SingleLocation = ({
   city,
   postal_code,
   mask_exact_address,
-}) => (
-  <Outer>
-    <MapContainer aria-hidden="true">
-      <Map
-        latitude={parseFloat(geometry.coordinates[1])}
-        longitude={parseFloat(geometry.coordinates[0])}
-        offCenter
-      />
-    </MapContainer>
-    <Inner>
-      <Crosshead>{name || "Where"}</Crosshead>
-      {mask_exact_address ? (
-        <>
-          <p>Near {city}</p>
-          <p>{postal_code}</p>
-          <p>
-            <em>This location is approximate</em>
-          </p>
-        </>
+}) => {
+  const cookiesAccepted = checkCookiesAccepted()
+  const latitude = parseFloat(geometry.coordinates[1])
+  const longitude = parseFloat(geometry.coordinates[0])
+  const offCenter = true
+  return (
+    <Outer>
+      {cookiesAccepted ? (
+        <MapContainer aria-hidden="true">
+          <Map
+            latitude={latitude}
+            longitude={longitude}
+            offCenter={offCenter}
+          />
+        </MapContainer>
       ) : (
         <>
-          <p>{address_1}</p>
-          <p>{city}</p>
-          <p>{postal_code}</p>
-          <p>
-            <A href={`https://maps.google.com/maps/search/${postal_code}`}>
-              Get directions
-            </A>
-          </p>
+          <StaticMapContainer>
+            <MapStatic
+              latitude={latitude}
+              longitude={longitude}
+              offCenter={offCenter}
+              zoom={15}
+              size={`900x300`}
+            />
+          </StaticMapContainer>
         </>
       )}
-    </Inner>
-  </Outer>
-)
+      <Inner>
+        <Crosshead>{name || "Where"}</Crosshead>
+        {mask_exact_address ? (
+          <>
+            <p>Near {city}</p>
+            <p>{postal_code}</p>
+            <p>
+              <em>This location is approximate</em>
+            </p>
+          </>
+        ) : (
+          <>
+            <p>{address_1}</p>
+            <p>{city}</p>
+            <p>{postal_code}</p>
+            <p>
+              <A href={`https://maps.google.com/maps/search/${postal_code}`}>
+                Get directions
+              </A>
+            </p>
+          </>
+        )}
+      </Inner>
+    </Outer>
+  )
+}
 
 export default SingleLocation

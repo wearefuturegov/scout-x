@@ -30,4 +30,10 @@ export const theme_bod = {
   breakpointS: "350px",
   breakpointM: "750px",
   breakpointL: "1000px",
+
+  primary: "#9fc63b",
+  primaryCompanion: "#80a02e",
+  primaryText: "#3c3c3b",
+  primaryHover: "#96bb36",
+  primaryHoverText: "#3c3c3b",
 }
