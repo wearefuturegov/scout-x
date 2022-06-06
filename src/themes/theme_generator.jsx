@@ -75,6 +75,11 @@ const generate_theme = (vars, theme_vars) => {
     tagline: vars.hasOwnProperty("tagline") ? vars.tagline : "",
     beta: vars.hasOwnProperty("beta") ? vars.beta : false,
     headerLogo: vars.headerLogo,
+    cookieMessage: vars.cookieMessage,
+    cookieName: vars.cookieName,
+    cookieCallback: vars.hasOwnProperty("cookieCallback")
+      ? vars.cookieCallback
+      : () => {},
     footerNav: vars.footerNav,
     outpostLoginUrl: process.env.REACT_APP_OUTPOST_LOGIN_URL,
     outpostRegisterUrl: process.env.REACT_APP_OUTPOST_REGISTER_URL,
@@ -83,7 +88,7 @@ const generate_theme = (vars, theme_vars) => {
     mapSwitchSmall: vars.hasOwnProperty("mapSwitchSmall")
       ? vars.mapSwitchSmall
       : true,
-    filterOrder: vars.hasOwnProperty("filterOrder") ? vars.filterOrder : {},
+    filterOrder: vars.hasOwnProperty("filterOrder") ? vars.filterOrder : [],
     usePresetTaxonomies: determineUsePresetTaxonomies(vars),
     presetTaxonomies: vars.hasOwnProperty("presetTaxonomies")
       ? vars.presetTaxonomies

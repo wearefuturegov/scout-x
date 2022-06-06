@@ -6,7 +6,7 @@ import queryString from "query-string"
 import { useNavigate } from "@reach/router"
 
 const useQuery = (key, initialValue, options = {}) => {
-  let { numerical, array } = options
+  let { numerical, array, boolean } = options
 
   const navigate = useNavigate()
 
@@ -34,6 +34,7 @@ const useQuery = (key, initialValue, options = {}) => {
   const getQueryStringValue = (key, query) => {
     const value = queryString.parse(query)[key]
     if (numerical) return parseInt(value)
+    if (boolean) return !!value
     if (array) return value ? [].concat(value) : []
     return value
   }
