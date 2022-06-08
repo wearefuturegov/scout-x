@@ -6,6 +6,8 @@ import downArrow from "./down-arrow.svg"
 import upArrow from "./up-arrow.svg"
 import A from "../A"
 import { TickList, TickListItem } from "../TickList"
+import { checkCookiesAccepted } from "./../../lib/cookies"
+import MapStatic from "./MapStatic"
 
 const Outer = styled.div`
   margin-top: 30px;
@@ -84,12 +86,31 @@ const MapContainer = styled.section`
   }
 `
 
+const StaticMapContainer = styled.section`
+  height: 200px;
+  width: 100%;
+  background: ${props => props.theme.styles.pale};
+  .map {
+    height: 100%;
+  }
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+`
+
 const TickListWithTopMargin = styled(TickList)`
   margin-top: 25px;
 `
 
 const LocationAccordion = ({ locations }) => {
   const [active, setActive] = useState(0)
+  const cookiesAccepted = checkCookiesAccepted()
 
   return (
     <Outer>
@@ -134,12 +155,26 @@ const LocationAccordion = ({ locations }) => {
                 ))}
               </TickListWithTopMargin>
             </div>
-            <MapContainer>
-              <Map
-                latitude={parseFloat(location.geometry.coordinates[1])}
-                longitude={parseFloat(location.geometry.coordinates[0])}
-              />
-            </MapContainer>
+            {cookiesAccepted ? (
+              <MapContainer>
+                <Map
+                  latitude={parseFloat(location.geometry.coordinates[1])}
+                  longitude={parseFloat(location.geometry.coordinates[0])}
+                />
+              </MapContainer>
+            ) : (
+              <>
+                <StaticMapContainer>
+                  <MapStatic
+                    latitude={location.geometry.coordinates[1]}
+                    longitude={location.geometry.coordinates[0]}
+                    offCenter={false}
+                    zoom={15}
+                    size={`300x250`}
+                  />
+                </StaticMapContainer>
+              </>
+            )}
           </Panel>
         </div>
       ))}

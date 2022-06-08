@@ -4,7 +4,6 @@ export const theme_bfis = {
   linkActive: "#131338",
 
   linkBackground: "rgba(44, 45, 132, 0.1)",
-
   textBackground: "rgba(33, 33, 33, 0.1)",
 
   text: "#212121",
@@ -30,4 +29,10 @@ export const theme_bfis = {
   breakpointS: "350px",
   breakpointM: "750px",
   breakpointL: "1000px",
+
+  primary: "#9fc63b",
+  primaryCompanion: "#80a02e",
+  primaryText: "#3c3c3b",
+  primaryHover: "#96bb36",
+  primaryHoverText: "#3c3c3b",
 }

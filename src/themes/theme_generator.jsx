@@ -75,6 +75,7 @@ const generate_theme = (vars, theme_vars) => {
     tagline: vars.hasOwnProperty("tagline") ? vars.tagline : "",
     beta: vars.hasOwnProperty("beta") ? vars.beta : false,
     headerLogo: vars.headerLogo,
+    cookiesDisabledMessage: vars.cookiesDisabledMessage,
     cookieMessage: vars.cookieMessage,
     cookieName: vars.cookieName,
     cookieCallback: vars.hasOwnProperty("cookieCallback")
@@ -136,6 +137,12 @@ const generate_theme = (vars, theme_vars) => {
       breakpointS: theme_vars.breakpointS,
       breakpointM: theme_vars.breakpointM,
       breakpointL: theme_vars.breakpointL,
+
+      primary: theme_vars.primary,
+      primaryCompanion: theme_vars.primaryCompanion,
+      primaryText: theme_vars.primaryText,
+      primaryHover: theme_vars.primaryHover,
+      primaryHoverText: theme_vars.primaryHoverText,
     },
   }
 }

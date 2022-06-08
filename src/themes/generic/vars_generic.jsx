@@ -13,6 +13,8 @@ export const vars_generic = {
   headerLogo: logo,
   mapSwitchSmall: true,
   usePresetTaxonomies: false,
+  cookiesDisabledMessage:
+    "Please note, some functionality such as interactive maps and location auto complete is currently disabled. Please accept cookies to use these features.",
   cookieMessage: (
     <>
       <p>
