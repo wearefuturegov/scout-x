@@ -54,6 +54,22 @@ const determineUsePresetTaxonomies = vars => {
 }
 
 /**
+ * We get a list of targets from the env vars,
+ * format it nicely here
+ * if theres no targets return it blank
+ */
+const formatTargets = () => {
+  let targets = []
+  if (
+    process.env.hasOwnProperty("REACT_APP_TARGETS") &&
+    process.env.REACT_APP_TARGETS !== ""
+  ) {
+    targets = process.env.REACT_APP_TARGETS.split(",")
+  }
+  return targets
+}
+
+/**
  * Ensures we have a standard theme object.
  * @param {*} vars object
  * @param {*} theme_vars object
@@ -61,6 +77,7 @@ const determineUsePresetTaxonomies = vars => {
  */
 const generate_theme = (vars, theme_vars) => {
   return {
+    targets: formatTargets(),
     slug: vars.slug,
     title: vars.hasOwnProperty("title") ? vars.title : "",
     contactEmail: vars.hasOwnProperty("contactEmail")
