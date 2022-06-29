@@ -25,12 +25,13 @@ export const fetchResultsByQuery = async query => {
   if (collection) taxonomies.push([].concat(collection))
   if (categories) taxonomies.push([].concat(categories).join(","))
 
-  let targets = []
-  if (theme.targets.length > 0) targets.push([].concat(theme.targets).join(","))
+  let targetDirectories = []
+  if (theme.targets.length > 0)
+    targetDirectories.push([].concat(theme.targets).join(","))
 
   const res = await fetch(
     `${process.env.REACT_APP_API_HOST}/services?${queryString.stringify({
-      targets,
+      targetDirectories,
       keywords,
       location,
       lat,
