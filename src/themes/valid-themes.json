@@ -2,5 +2,7 @@
   "valid": [
     {"label": "generic", "name": "Generic"}, 
     {"label": "bfis", "name": "Family Information Service"}, 
-    {"label": "bod", "name": "Buckinghamshire Online Directory"}]
+    {"label": "bod", "name": "Buckinghamshire Online Directory"}, 
+    {"label": "tvp", "name": "Thames Valley Police Violence Reduction Unit"}
+  ]
 }

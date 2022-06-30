@@ -38,9 +38,9 @@ const LogoLink = styled.a`
 `
 
 const Logo = styled.img`
-  height: 40px;
+  height: ${props => props.theme.styles.logoHeightMobile};
   @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
-    height: 45px;
+    height: ${props => props.theme.styles.logoHeight};
   }
 `
 
