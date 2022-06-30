@@ -8,10 +8,11 @@ import logo from "./logo.jpg"
 export const vars_tvp = {
   slug: "tvp",
   title: "Thames Valley Police Violence Reduction Unit",
+  contactEmail: "vrutechnicalsupport@thamesvalley.police.uk",
   serviceHomepageUrl: "/",
   organisation: "Thames Valley Police Violence Reduction Unit",
   organisationUrl: "https://www.tvvru.co.uk/",
-  tagline: "Find activities and organisations",
+  tagline: "The Thames Valley Wide Service directory for professional users",
   beta: true,
   headerLogo: logo,
   mapSwitchSmall: true,
@@ -31,11 +32,11 @@ export const vars_tvp = {
   },
   filterOrder: [
     {
-      order: 1,
+      order: 6,
       name: "send-needs",
     },
     {
-      order: 2,
+      order: 1,
       name: "ages",
     },
     {
@@ -43,15 +44,15 @@ export const vars_tvp = {
       name: "accessibilities",
     },
     {
-      order: 4,
+      order: 2,
       name: "only-show",
     },
     {
-      order: 5,
+      order: 4,
       name: "days",
     },
     {
-      order: 6,
+      order: 5,
       name: "suitabilities",
     },
   ],
