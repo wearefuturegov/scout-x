@@ -65,8 +65,8 @@ const RadioFilter = ({
     return (
       <Outer>
         <Content>
-          {options.map(o => (
-            <StyledField key={o.slug}>
+          {options.map((o, i) => (
+            <StyledField key={`${o.slug}_${i}`}>
               <Input
                 type="radio"
                 id={o.slug}
