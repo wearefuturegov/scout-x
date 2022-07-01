@@ -1,11 +1,11 @@
 import { theme_generic } from "./generic/theme_generic"
 import { theme_bfis } from "./bfis/theme_bfis"
 import { theme_bod } from "./bod/theme_bod"
-import { theme_tvp } from "./tvp/theme_tvp"
+import { theme_tvvru } from "./tvvru/theme_tvvru"
 import { vars_generic } from "./generic/vars_generic"
 import { vars_bfis } from "./bfis/vars_bfis"
 import { vars_bod } from "./bod/vars_bod"
-import { vars_tvp } from "./tvp/vars_tvp"
+import { vars_tvvru } from "./tvvru/vars_tvvru"
 import validThemes from "./valid-themes.json"
 const valid = validThemes.valid
 require("dotenv").config()
@@ -189,9 +189,9 @@ switch (getThemeLabel()) {
     currentTheme = theme_bod
     currentVars = vars_bod
     break
-  case "tvp":
-    currentTheme = theme_tvp
-    currentVars = vars_tvp
+  case "tvvru":
+    currentTheme = theme_tvvru
+    currentVars = vars_tvvru
     break
   default:
     currentTheme = theme_generic
