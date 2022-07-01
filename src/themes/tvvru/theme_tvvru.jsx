@@ -1,4 +1,4 @@
-export const theme_tvp = {
+export const theme_tvvru = {
   link: "#082A52",
   linkHover: "#1f205e",
   linkActive: "#131338",
