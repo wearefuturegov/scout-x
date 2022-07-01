@@ -91,7 +91,7 @@ const App = ({ children, location, navigate }) => {
     })
   }, [location.search])
 
-  const filterSendNeeds = (
+  const filterSendNeeds = sendOptions.length > 0 && (
     <Filter
       key="sendNeeds"
       legend="SEND needs"
@@ -116,7 +116,7 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
-  const filterAccessibilities = (
+  const filterAccessibilities = accessibilityOptions.length > 0 && (
     <Filter
       key="accessibilities"
       legend="Access needs"
@@ -128,7 +128,7 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
-  const filterOnlyShow = (
+  const filterOnlyShow = onlyOptions.length > 0 && (
     <Filter
       key="onlyShow"
       legend="Only show"
@@ -140,7 +140,7 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
-  const filterDays = (
+  const filterDays = daysOptions.length > 0 && (
     <Filter
       key="days"
       legend="Days"
@@ -152,7 +152,7 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
-  const filterSuitabilities = (
+  const filterSuitabilities = suitabilityOptions.length > 0 && (
     <Filter
       key="suitabilities"
       legend="Suitable for"
