@@ -24,7 +24,7 @@ const Inner = styled.div`
 const MastheadArea = styled.div`
   margin-bottom: 10px;
   @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
-    width: 33%;
+    width: ${props => props.theme.styles.logoAreaWidth};
     display: inline-block;
     margin-bottom: 0px;
   }
