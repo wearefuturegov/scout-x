@@ -36,6 +36,7 @@ export const theme_tvvru = {
   primaryHover: "#3cafb7",
   primaryHoverText: "#ffffff",
 
-  logoHeightMobile: "100px",
-  logoHeight: "150px",
+  logoHeightMobile: "80px",
+  logoHeight: "110px",
+  logoAreaWidth: "25%",
 }
