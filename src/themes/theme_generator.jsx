@@ -169,6 +169,9 @@ const generate_theme = (vars, theme_vars) => {
       logoHeight: theme_vars.hasOwnProperty("logoHeight")
         ? theme_vars.logoHeight
         : "45px",
+      logoAreaWidth: theme_vars.hasOwnProperty("logoAreaWidth")
+        ? theme_vars.logoAreaWidth
+        : "33%",
     },
   }
 }
