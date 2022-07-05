@@ -105,6 +105,7 @@ const generate_theme = (vars, theme_vars) => {
     outpostRegisterUrl: process.env.REACT_APP_OUTPOST_REGISTER_URL,
     feedbackUrl: process.env.REACT_APP_FEEDBACK_URL,
     scoutUrl: process.env.REACT_APP_SCOUT_URL,
+    outpostUrl: process.env.REACT_APP_OUTPOST_URL || "",
     mapSwitchSmall: vars.hasOwnProperty("mapSwitchSmall")
       ? vars.mapSwitchSmall
       : true,
@@ -117,6 +118,11 @@ const generate_theme = (vars, theme_vars) => {
       ? vars.noLocationIsCountywide
       : false,
     serviceCard: {
+      countyWideServiceText:
+        vars.hasOwnProperty("serviceCard") &&
+        vars.serviceCard.hasOwnProperty("countyWideServiceText")
+          ? vars.serviceCard.countyWideServiceText
+          : "Countywide",
       hideCategories:
         vars.hasOwnProperty("serviceCard") &&
         vars.serviceCard.hasOwnProperty("hideCategories")

@@ -19,6 +19,7 @@ export const vars_bod = {
   headerLogo: logo,
   mapSwitchSmall: true,
   serviceCard: {
+    countyWideServiceText: "Buckinghamshire wide",
     hideCategories: true,
   },
   cookiesDisabledMessage:
