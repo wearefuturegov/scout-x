@@ -413,12 +413,14 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
             )}
           </Body>
           <Footer>
-            <SuggestEditLink
-              target="blank"
-              href={`https://manage-services.familyinfo.buckinghamshire.gov.uk/services/${service.id}/feedback`}
-            >
-              Suggest an edit
-            </SuggestEditLink>
+            {theme.outpostUrl && (
+              <SuggestEditLink
+                target="blank"
+                href={`${theme.outpostUrl}/services/${service.id}/feedback`}
+              >
+                Suggest an edit
+              </SuggestEditLink>
+            )}
             <p>
               If anything here is out of date or missing, please suggest an
               edit.

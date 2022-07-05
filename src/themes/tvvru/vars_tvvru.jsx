@@ -67,6 +67,7 @@ export const vars_tvvru = {
       name: "suitabilities",
     },
   ],
+  noLocationIsCountywide: true,
 }
 
 export default vars_tvvru
