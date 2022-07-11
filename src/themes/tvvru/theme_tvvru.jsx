@@ -1,10 +1,9 @@
-export const theme_bod = {
-  link: "#2C2D84",
+export const theme_tvvru = {
+  link: "#082A52",
   linkHover: "#1f205e",
   linkActive: "#131338",
 
   linkBackground: "rgba(44, 45, 132, 0.1)",
-
   textBackground: "rgba(33, 33, 33, 0.1)",
 
   text: "#212121",
@@ -16,7 +15,7 @@ export const theme_bod = {
   grey2: "#999999",
 
   cardShadow: "rgba(225,223,210, 0.6)",
-  toggleColor: "rgba(44,45,132,0.6)", //rgb of link
+  toggleColor: "rgba(225,223,210, 0.6)",
 
   green: "#9fc63b",
   focus: "#FFB81C",
@@ -31,9 +30,13 @@ export const theme_bod = {
   breakpointM: "750px",
   breakpointL: "1000px",
 
-  primary: "#9fc63b",
-  primaryCompanion: "#80a02e",
-  primaryText: "#3c3c3b",
-  primaryHover: "#96bb36",
-  primaryHoverText: "#3c3c3b",
+  primary: "#43BAC3",
+  primaryCompanion: "#349097",
+  primaryText: "#ffffff",
+  primaryHover: "#3cafb7",
+  primaryHoverText: "#ffffff",
+
+  logoHeightMobile: "80px",
+  logoHeight: "110px",
+  logoAreaWidth: "25%",
 }

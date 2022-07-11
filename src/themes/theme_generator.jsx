@@ -1,9 +1,11 @@
 import { theme_generic } from "./generic/theme_generic"
 import { theme_bfis } from "./bfis/theme_bfis"
 import { theme_bod } from "./bod/theme_bod"
+import { theme_tvvru } from "./tvvru/theme_tvvru"
 import { vars_generic } from "./generic/vars_generic"
 import { vars_bfis } from "./bfis/vars_bfis"
 import { vars_bod } from "./bod/vars_bod"
+import { vars_tvvru } from "./tvvru/vars_tvvru"
 import validThemes from "./valid-themes.json"
 const valid = validThemes.valid
 require("dotenv").config()
@@ -54,6 +56,22 @@ const determineUsePresetTaxonomies = vars => {
 }
 
 /**
+ * We get a list of targets from the env vars,
+ * format it nicely here
+ * if theres no targets return it blank
+ */
+const formatTargets = () => {
+  let targets = []
+  if (
+    process.env.hasOwnProperty("REACT_APP_TARGETS") &&
+    process.env.REACT_APP_TARGETS !== ""
+  ) {
+    targets = process.env.REACT_APP_TARGETS.split(",")
+  }
+  return targets
+}
+
+/**
  * Ensures we have a standard theme object.
  * @param {*} vars object
  * @param {*} theme_vars object
@@ -61,6 +79,7 @@ const determineUsePresetTaxonomies = vars => {
  */
 const generate_theme = (vars, theme_vars) => {
   return {
+    targets: formatTargets(),
     slug: vars.slug,
     title: vars.hasOwnProperty("title") ? vars.title : "",
     contactEmail: vars.hasOwnProperty("contactEmail")
@@ -75,6 +94,7 @@ const generate_theme = (vars, theme_vars) => {
     tagline: vars.hasOwnProperty("tagline") ? vars.tagline : "",
     beta: vars.hasOwnProperty("beta") ? vars.beta : false,
     headerLogo: vars.headerLogo,
+    cookiesDisabledMessage: vars.cookiesDisabledMessage,
     cookieMessage: vars.cookieMessage,
     cookieName: vars.cookieName,
     cookieCallback: vars.hasOwnProperty("cookieCallback")
@@ -85,6 +105,7 @@ const generate_theme = (vars, theme_vars) => {
     outpostRegisterUrl: process.env.REACT_APP_OUTPOST_REGISTER_URL,
     feedbackUrl: process.env.REACT_APP_FEEDBACK_URL,
     scoutUrl: process.env.REACT_APP_SCOUT_URL,
+    outpostUrl: process.env.REACT_APP_OUTPOST_URL || "",
     mapSwitchSmall: vars.hasOwnProperty("mapSwitchSmall")
       ? vars.mapSwitchSmall
       : true,
@@ -97,6 +118,11 @@ const generate_theme = (vars, theme_vars) => {
       ? vars.noLocationIsCountywide
       : false,
     serviceCard: {
+      countyWideServiceText:
+        vars.hasOwnProperty("serviceCard") &&
+        vars.serviceCard.hasOwnProperty("countyWideServiceText")
+          ? vars.serviceCard.countyWideServiceText
+          : "Countywide",
       hideCategories:
         vars.hasOwnProperty("serviceCard") &&
         vars.serviceCard.hasOwnProperty("hideCategories")
@@ -136,6 +162,22 @@ const generate_theme = (vars, theme_vars) => {
       breakpointS: theme_vars.breakpointS,
       breakpointM: theme_vars.breakpointM,
       breakpointL: theme_vars.breakpointL,
+
+      primary: theme_vars.primary,
+      primaryCompanion: theme_vars.primaryCompanion,
+      primaryText: theme_vars.primaryText,
+      primaryHover: theme_vars.primaryHover,
+      primaryHoverText: theme_vars.primaryHoverText,
+
+      logoHeightMobile: theme_vars.hasOwnProperty("logoHeightMobile")
+        ? theme_vars.logoHeightMobile
+        : "40px",
+      logoHeight: theme_vars.hasOwnProperty("logoHeight")
+        ? theme_vars.logoHeight
+        : "45px",
+      logoAreaWidth: theme_vars.hasOwnProperty("logoAreaWidth")
+        ? theme_vars.logoAreaWidth
+        : "33%",
     },
   }
 }
@@ -155,6 +197,10 @@ switch (getThemeLabel()) {
   case "bod":
     currentTheme = theme_bod
     currentVars = vars_bod
+    break
+  case "tvvru":
+    currentTheme = theme_tvvru
+    currentVars = vars_tvvru
     break
   default:
     currentTheme = theme_generic

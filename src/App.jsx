@@ -33,11 +33,13 @@ import RadioFilter from "./components/Filter/RadioFilter"
 import KeywordFilter from "./components/Filter/KeywordFilter"
 import AgeFilter from "./components/Filter/AgeFilter"
 import ListMap from "./components/ListMap"
+import ListMapStatic from "./components/ListMapStatic"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
 import { theme } from "./themes/theme_generator"
 import ClearFilters from "./components/ClearFilters"
 import { checkCookiesAccepted } from "./lib/cookies"
+import AlertStatic from "./components/AlertStatic"
 
 const App = ({ children, location, navigate }) => {
   const scrollTarget = useRef(null)
@@ -89,7 +91,7 @@ const App = ({ children, location, navigate }) => {
     })
   }, [location.search])
 
-  const filterSendNeeds = (
+  const filterSendNeeds = sendOptions.length > 0 && (
     <Filter
       key="sendNeeds"
       legend="SEND needs"
@@ -114,7 +116,7 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
-  const filterAccessibilities = (
+  const filterAccessibilities = accessibilityOptions.length > 0 && (
     <Filter
       key="accessibilities"
       legend="Access needs"
@@ -126,7 +128,7 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
-  const filterOnlyShow = (
+  const filterOnlyShow = onlyOptions.length > 0 && (
     <Filter
       key="onlyShow"
       legend="Only show"
@@ -138,7 +140,7 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
-  const filterDays = (
+  const filterDays = daysOptions.length > 0 && (
     <Filter
       key="days"
       legend="Days"
@@ -150,7 +152,7 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
-  const filterSuitabilities = (
+  const filterSuitabilities = suitabilityOptions.length > 0 && (
     <Filter
       key="suitabilities"
       legend="Suitable for"
@@ -283,20 +285,19 @@ const MainContent = ({
   setPage,
   scrollTarget,
 }) => {
+  const cookiesAccepted = checkCookiesAccepted()
   // still loading
   if (loading)
     return (
       <>
         <ResultsHeader>
           <Count />
-          {checkCookiesAccepted() && (
-            <Switch
-              id="map-toggle"
-              checked={mapVisible}
-              onChange={e => setMapVisible(e.target.checked)}
-              label="Show map?"
-            />
-          )}
+          <Switch
+            id="map-toggle"
+            checked={mapVisible}
+            onChange={e => setMapVisible(e.target.checked)}
+            label="Show map?"
+          />
         </ResultsHeader>
         <ResultsList aria-live="polite">
           <Skeleton />
@@ -337,18 +338,22 @@ const MainContent = ({
             </>
           )}
         </Count>
-        {checkCookiesAccepted() && (
-          <Switch
-            id="map-toggle"
-            checked={mapVisible}
-            onChange={e => setMapVisible(e.target.checked)}
-            label="Show map?"
-          />
-        )}
+        <Switch
+          id="map-toggle"
+          checked={mapVisible}
+          onChange={e => setMapVisible(e.target.checked)}
+          label="Show map?"
+        />
       </ResultsHeader>
-      {mapVisible && (
-        <ListMap results={results} navigate={navigate} location={location} />
-      )}
+      {mapVisible &&
+        (cookiesAccepted ? (
+          <ListMap results={results} navigate={navigate} location={location} />
+        ) : (
+          <>
+            <AlertStatic>{theme.cookiesDisabledMessage}</AlertStatic>
+            <ListMapStatic results={results} />
+          </>
+        ))}
       <PinboardLink location={location} />
       <ResultsList aria-live="polite">
         {results?.map(s => (

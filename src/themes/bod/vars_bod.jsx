@@ -19,8 +19,11 @@ export const vars_bod = {
   headerLogo: logo,
   mapSwitchSmall: true,
   serviceCard: {
+    countyWideServiceText: "Buckinghamshire wide",
     hideCategories: true,
   },
+  cookiesDisabledMessage:
+    "Please note, some functionality such as interactive maps and location auto complete is currently disabled. Please accept cookies to use these features.",
   cookieMessage: (
     <>
       <p>

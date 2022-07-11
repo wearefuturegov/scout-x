@@ -24,7 +24,7 @@ const Inner = styled.div`
 const MastheadArea = styled.div`
   margin-bottom: 10px;
   @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
-    width: 33%;
+    width: ${props => props.theme.styles.logoAreaWidth};
     display: inline-block;
     margin-bottom: 0px;
   }
@@ -38,9 +38,9 @@ const LogoLink = styled.a`
 `
 
 const Logo = styled.img`
-  height: 40px;
+  height: ${props => props.theme.styles.logoHeightMobile};
   @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
-    height: 45px;
+    height: ${props => props.theme.styles.logoHeight};
   }
 `
 
