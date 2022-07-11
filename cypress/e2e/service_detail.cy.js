@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 describe("Service detail", () => {
   beforeEach(() => {
-    cy.intercept("/services?", {
+    cy.intercept("**/services?*", {
       fixture: "services.json",
     }).as("searchForServices")
-    cy.intercept("/services/1/feedback").as("singleServiceFeedback")
-    cy.intercept("/services/1", {
+
+    cy.intercept("**/services/1", {
       fixture: "service.json",
     }).as("singleService")
 
@@ -89,7 +89,10 @@ describe("Service detail", () => {
   // })
 
   it("lets the user suggest edits", () => {
-    cy.get("div[role='dialog'] a").contains("Suggest an edit").click()
-    cy.wait("@singleServiceFeedback")
+    const editLink = cy.get("div[role='dialog'] a")
+    editLink.contains("Suggest an edit")
+    editLink
+      .should("have.attr", "href")
+      .should("contain", "/services/1/feedback")
   })
 })

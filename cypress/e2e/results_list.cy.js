@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 describe("Results list page", () => {
   beforeEach(() => {
-    cy.intercept("/services?", {
+    cy.intercept("**/services?*", {
       fixture: "services.json",
     }).as("searchForServices")
 
