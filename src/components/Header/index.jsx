@@ -1,10 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 import { theme } from "./../../themes/theme_generator"
+import CookieBanner from "../CookieBanner"
 
 const logo = theme.headerLogo
 
-const Outer = styled.header`
+const Outer = styled.div`
   background: ${props => props.theme.styles.link};
   color: ${props => props.theme.styles.white};
   padding: 10px ${props => props.theme.styles.outerSpacing};
@@ -85,19 +86,24 @@ const PhaseTag = styled.strong`
 `
 
 const Header = () => (
-  <Outer>
-    <Inner>
-      <MastheadArea>
-        <LogoLink href={theme.organisationUrl}>
-          <Logo src={logo} alt={theme.organisation} />
-        </LogoLink>
-      </MastheadArea>
-      <ServiceNameArea>
-        <ServiceName href={theme.serviceHomepageUrl}>{theme.title}</ServiceName>
-        {theme.beta && <PhaseTag>Beta</PhaseTag>}
-      </ServiceNameArea>
-    </Inner>
-  </Outer>
+  <header>
+    <CookieBanner />
+    <Outer>
+      <Inner>
+        <MastheadArea>
+          <LogoLink href={theme.organisationUrl}>
+            <Logo src={logo} alt={theme.organisation} />
+          </LogoLink>
+        </MastheadArea>
+        <ServiceNameArea>
+          <ServiceName href={theme.serviceHomepageUrl}>
+            {theme.title}
+          </ServiceName>
+          {theme.beta && <PhaseTag>Beta</PhaseTag>}
+        </ServiceNameArea>
+      </Inner>
+    </Outer>
+  </header>
 )
 
 export default Header
