@@ -9,6 +9,12 @@ describe("Results list page", () => {
     cy.injectAxe()
   })
 
+  it("responds to collection filtering", () => {
+    cy.get("label").contains("Things to do").click()
+
+    cy.wait("@searchForServices")
+  })
+
   it("has no detectable accessibility problems", () => {
     cy.checkA11y()
   })
@@ -39,12 +45,6 @@ describe("Results list page", () => {
 
   it("has a switch for rendering a map", () => {
     cy.get("label").contains("Show map?").click()
-
-    cy.wait("@searchForServices")
-  })
-
-  it("responds to collection filtering", () => {
-    cy.get("label").contains("Things to do").click()
 
     cy.wait("@searchForServices")
   })
