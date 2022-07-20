@@ -22,7 +22,7 @@ export const vars_bfis = {
     hideCategories: true,
   },
   cookiesDisabledMessage:
-    "Please note, some functionality such as interactive maps and location auto complete is currently disabled. Please accept cookies to use these features.",
+    "Please note, cookies are needed for site functionality such as interactive maps and location autocomplete.",
   cookieMessage: (
     <>
       <p>
