@@ -1,14 +1,13 @@
 /* eslint-disable no-undef */
 describe("Pinboard", () => {
   beforeEach(() => {
-    cy.intercept("/services?", {
+    cy.intercept("**/services?*", {
       fixture: "services.json",
     }).as("searchForServices")
-    cy.intercept("/services/1", {
+
+    cy.intercept("**/services/1", {
       fixture: "service.json",
     }).as("singleService")
-    cy.intercept("/print").as("printList")
-    cy.intercept("/send-email").as("emailList")
   })
 
   it("has no detectable accessibility problems", () => {
@@ -45,6 +44,8 @@ describe("Pinboard", () => {
   })
 
   it("can print the list", () => {
+    cy.intercept("/print").as("printList")
+
     cy.visit("/service/1")
     cy.get("div[role='dialog'] button").contains("Add to pins").click()
 
@@ -54,6 +55,8 @@ describe("Pinboard", () => {
   })
 
   it("can email the list", () => {
+    cy.intercept("/.netlify/functions/send-email").as("emailList")
+
     cy.visit("/service/1")
     cy.get("div[role='dialog'] button").contains("Add to pins").click()
 
