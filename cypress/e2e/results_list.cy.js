@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 describe("Results list page", () => {
   beforeEach(() => {
-    cy.intercept("/services?", {
+    cy.intercept("**/services?*", {
       fixture: "services.json",
     }).as("searchForServices")
 
@@ -49,24 +49,15 @@ describe("Results list page", () => {
     cy.wait("@searchForServices")
   })
 
-  // TODO update tests to include bod/bfis differences
-  // it("responds to category filtering", () => {
-  //   cy.get("label").contains("Things to do").click()
+  it("responds to category filtering", () => {
+    cy.get("label").contains("Things to do").click()
 
-  //   cy.get("button").contains("Categories").click()
+    cy.get("button").contains("Categories").click()
 
-  //   cy.get("label").contains("Clubs and groups").click()
+    cy.get("label").contains("Clubs and groups").click()
 
-  //   cy.wait("@searchForServices")
-  // })
-
-  // it("responds to SEND need filtering", () => {
-  //     cy.get("button").contains("SEND needs").click()
-
-  //     cy.get("label").contains("Autism").click()
-
-  //     cy.wait("@searchForServices")
-  // })
+    cy.wait("@searchForServices")
+  })
 
   it("responds to age filtering", () => {
     cy.get("button").contains("Ages").click()

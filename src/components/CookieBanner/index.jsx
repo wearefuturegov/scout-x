@@ -5,7 +5,7 @@ import { SolidButtonLinkPrimary } from "../Button"
 import { getCookie } from "../../lib/cookies"
 import { theme } from "./../../themes/theme_generator"
 
-const Outer = styled.header`
+const Outer = styled.div`
   background: ${props => props.theme.styles.white};
   padding: 10px ${props => props.theme.styles.outerSpacing};
 `

@@ -91,7 +91,7 @@ You can configure it using a `.env` file locally. Run `cp .env.example .env` to 
 
 It uses Prettier to enforce code style, along with Jest for unit tests and Cypress for integration/UI tests.
 
-You can run all the tests with:
+Make sure you have the server running before you run the Cypress tests. You can run all the tests with:
 
 ```
 npm test
