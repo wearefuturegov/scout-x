@@ -414,17 +414,20 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
           </Body>
           <Footer>
             {theme.outpostUrl && (
-              <SuggestEditLink
-                target="blank"
-                href={`${theme.outpostUrl}/services/${service.id}/feedback`}
-              >
-                Suggest an edit
-              </SuggestEditLink>
+              <>
+                <SuggestEditLink
+                  target="blank"
+                  href={`${theme.outpostUrl}/services/${service.id}/feedback`}
+                >
+                  Suggest an edit
+                </SuggestEditLink>
+                <p>
+                  If anything here is out of date or missing, please suggest an
+                  edit.
+                </p>
+              </>
             )}
-            <p>
-              If anything here is out of date or missing, please suggest an
-              edit.
-            </p>
+
             <p>
               We regularly check and update these community services, but can’t
               guarantee that they will always be accurate.

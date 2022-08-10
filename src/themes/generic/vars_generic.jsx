@@ -28,6 +28,24 @@ export const vars_generic = {
   cookieCallback: () => {
     console.log("loadcookies")
   },
+  filterOrder: [
+    {
+      order: 1,
+      name: "accessibilities",
+    },
+    {
+      order: 2,
+      name: "ages",
+    },
+    {
+      order: 3,
+      name: "days",
+    },
+    {
+      order: 4,
+      name: "only-show",
+    },
+  ],
   footerNav: null,
 }
 
