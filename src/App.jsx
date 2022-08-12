@@ -80,6 +80,7 @@ const App = ({ children, location, navigate }) => {
 
   const [page, setPage] = useQuery("page", 1, { numerical: true })
   const [totalPages, setTotalPages] = useState(false)
+  const [totalElements, setTotalElements] = useState(false)
 
   // filter options
   const [collectionOptions, setCollectionOptions] = useState([])
@@ -111,18 +112,12 @@ const App = ({ children, location, navigate }) => {
   // on page search update the data
   useEffect(() => {
     setLoading(true)
-    fetchServiceData(location.search)
-      .then(data => {
-        setResults(data.content)
-        setTotalPages(data.totalPages)
-        setLoading(false)
-      })
-      .catch(err => {
-        console.log(err)
-        setResults(false)
-        setTotalPages(0)
-        setLoading(false)
-      })
+    fetchResultsByQuery(location.search).then(data => {
+      setResults(data.content)
+      setTotalPages(data.totalPages)
+      setTotalElements(data.totalElements)
+      setLoading(false)
+    })
   }, [location.search])
 
   // on page search we change collections so need to update sub categories
@@ -302,6 +297,7 @@ const App = ({ children, location, navigate }) => {
             page={page}
             setPage={setPage}
             scrollTarget={scrollTarget}
+            totalElements={totalElements}
           />
         }
       />
@@ -323,6 +319,7 @@ const MainContent = ({
   page,
   setPage,
   scrollTarget,
+  totalElements,
 }) => {
   const cookiesAccepted = checkCookiesAccepted()
   // still loading
@@ -363,7 +360,11 @@ const MainContent = ({
         <Count>
           {(keywords || coverage) && (
             <>
-              Showing results{" "}
+              Showing{" "}
+              <strong>
+                {results.length} out of {totalElements}
+              </strong>{" "}
+              results{" "}
               {keywords && (
                 <>
                   for <strong>{keywords}</strong>
