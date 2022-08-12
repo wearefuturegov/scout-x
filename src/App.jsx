@@ -3,16 +3,17 @@ import React, { useState, useEffect, useRef } from "react"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
 import useFathom from "./hooks/useFathom"
-import { fetchResultsByQuery } from "./lib/api"
-import { onlyOptions } from "./data/_config"
+
+// fetch data for the app and filters
+import { fetchServiceData, fetchSiteData } from "./lib/api"
+import daysOptionsData from "./data/_days.json"
+import onlyOptionsData from "./data/_only.json"
 import {
-  collectionOptions,
   subcategoriesOf,
-  sendOptions,
-  accessibilityOptions,
-  daysOptions,
-  suitabilityOptions,
-} from "./lib/transform-taxonomies"
+  formatAccessibilityOptions,
+  formatDaysOptions,
+  formatSuitabilityOptions,
+} from "./lib/data-helpers"
 
 import Layout, {
   ResultsHeader,
@@ -80,11 +81,33 @@ const App = ({ children, location, navigate }) => {
   const [page, setPage] = useQuery("page", 1, { numerical: true })
   const [totalPages, setTotalPages] = useState(false)
 
+  // filter options
+  const [collectionOptions, setCollectionOptions] = useState([])
+  const [suitabilityOptions, setSuitabilityOptions] = useState([])
+  const [sendOptions, setSendOptions] = useState([])
+  const [accessibilityOptions, setAccessibilityOptions] = useState([])
+  const [daysOptions, setDaysOptions] = useState(
+    formatDaysOptions(daysOptionsData)
+  )
+  const [onlyOptions, setOnlyOptions] = useState(onlyOptionsData)
+
   useFathom()
+
+  // only fetch once on site load
+  useEffect(() => {
+    fetchSiteData().then(
+      ([taxonomies, suitabilities, sendOptions, accessibilities]) => {
+        setCollectionOptions(taxonomies)
+        setSuitabilityOptions(formatSuitabilityOptions(suitabilities))
+        setSendOptions(sendOptions)
+        setAccessibilityOptions(formatAccessibilityOptions(accessibilities))
+      }
+    )
+  }, [])
 
   useEffect(() => {
     setLoading(true)
-    fetchResultsByQuery(location.search).then(data => {
+    fetchServiceData(location.search).then(data => {
       setResults(data.content)
       setTotalPages(data.totalPages)
       setLoading(false)
@@ -229,10 +252,10 @@ const App = ({ children, location, navigate }) => {
                 clearThis={setCategories}
                 setPage={setPage}
               />
-              {subcategoriesOf(collection).length > 0 && (
+              {subcategoriesOf(collectionOptions, collection).length > 0 && (
                 <Filter
                   legend="Categories"
-                  options={subcategoriesOf(collection)}
+                  options={subcategoriesOf(collectionOptions, collection)}
                   selection={categories}
                   setSelection={setCategories}
                   setPage={setPage}

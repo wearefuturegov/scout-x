@@ -5,6 +5,19 @@ describe("Results list page", () => {
       fixture: "services.json",
     }).as("searchForServices")
 
+    cy.intercept("**/taxonomies?*", {
+      fixture: "taxonomies.json",
+    })
+    cy.intercept("**/suitabilities?*", {
+      fixture: "suitabilities.json",
+    })
+    cy.intercept("**/send_needs?*", {
+      fixture: "send_needs.json",
+    })
+    cy.intercept("**/accessibilities?*", {
+      fixture: "accessibilities.json",
+    })
+
     cy.visit("/")
     cy.injectAxe()
   })
