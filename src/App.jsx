@@ -321,6 +321,23 @@ const MainContent = ({
   scrollTarget,
   totalElements,
 }) => {
+  /**
+   * function to calculate and show correct results for relevant page.
+   *
+   * @param {number} resultsLength - the amount of results per page.
+   *
+   * @return {string} - returns a string with the amount of results
+   */
+  const amountOfResults = resultsLength => {
+    const prevPage = page - 1
+
+    if (resultsLength < 20) {
+      return `${totalElements - resultsLength} - ${totalElements}`
+    } else {
+      return `${20 * prevPage} - ${20 * page}`
+    }
+  }
+
   const cookiesAccepted = checkCookiesAccepted()
   // still loading
   if (loading)
@@ -362,7 +379,7 @@ const MainContent = ({
             <>
               Showing{" "}
               <strong>
-                {results.length} out of {totalElements}
+                {amountOfResults(results.length)} out of {totalElements}
               </strong>{" "}
               results{" "}
               {keywords && (
