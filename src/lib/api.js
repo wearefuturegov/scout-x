@@ -65,25 +65,29 @@ export const fetchServiceData = async query => {
   if (theme.targets.length > 0)
     targetDirectories.push([].concat(theme.targets).join(","))
 
-  const res = await fetch(
-    `${process.env.REACT_APP_API_HOST}/services?${queryString.stringify({
-      targetDirectories,
-      keywords,
-      location,
-      lat,
-      lng,
-      taxonomies,
-      needs,
-      accessibilities,
-      suitabilities,
-      days,
-      min_age,
-      max_age,
-      only,
-      page,
-    })}`
-  )
-  return await res.json()
+  try {
+    const res = await fetch(
+      `${process.env.REACT_APP_API_HOST}/services?${queryString.stringify({
+        targetDirectories,
+        keywords,
+        location,
+        lat,
+        lng,
+        taxonomies,
+        needs,
+        accessibilities,
+        suitabilities,
+        days,
+        min_age,
+        max_age,
+        only,
+        page,
+      })}`
+    )
+    return await res.json()
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 /**
@@ -93,12 +97,18 @@ export const fetchServiceData = async query => {
  */
 export const fetchData = async resource => {
   const directory = [theme.slug]
-  const res = await fetch(
-    `${
-      process.env.REACT_APP_FILTERS_DATASOURCE
-    }/${resource}?${queryString.stringify({
-      directory,
-    })}`
-  )
-  return await res.json()
+
+  try {
+    const res = await fetch(
+      `${
+        process.env.REACT_APP_FILTERS_DATASOURCE
+      }/${resource}?${queryString.stringify({
+        directory,
+      })}`
+    )
+    return await res.json()
+  } catch (err) {
+    console.log(err)
+    return []
+  }
 }

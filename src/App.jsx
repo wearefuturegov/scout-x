@@ -83,6 +83,7 @@ const App = ({ children, location, navigate }) => {
 
   // filter options
   const [collectionOptions, setCollectionOptions] = useState([])
+  const [subcategoryOptions, setSubcategoryOptions] = useState([])
   const [suitabilityOptions, setSuitabilityOptions] = useState([])
   const [sendOptions, setSendOptions] = useState([])
   const [accessibilityOptions, setAccessibilityOptions] = useState([])
@@ -95,24 +96,39 @@ const App = ({ children, location, navigate }) => {
 
   // only fetch once on site load
   useEffect(() => {
-    fetchSiteData().then(
-      ([taxonomies, suitabilities, sendOptions, accessibilities]) => {
+    fetchSiteData()
+      .then(([taxonomies, suitabilities, sendOptions, accessibilities]) => {
         setCollectionOptions(taxonomies)
         setSuitabilityOptions(formatSuitabilityOptions(suitabilities))
         setSendOptions(sendOptions)
         setAccessibilityOptions(formatAccessibilityOptions(accessibilities))
-      }
-    )
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }, [])
 
+  // on page search update the data
   useEffect(() => {
     setLoading(true)
-    fetchServiceData(location.search).then(data => {
-      setResults(data.content)
-      setTotalPages(data.totalPages)
-      setLoading(false)
-    })
+    fetchServiceData(location.search)
+      .then(data => {
+        setResults(data.content)
+        setTotalPages(data.totalPages)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.log(err)
+        setResults(false)
+        setTotalPages(0)
+        setLoading(false)
+      })
   }, [location.search])
+
+  // on page search we change collections so need to update sub categories
+  useEffect(() => {
+    setSubcategoryOptions(subcategoriesOf(collectionOptions, collection))
+  }, [location.search, collectionOptions, collection])
 
   const filterSendNeeds = sendOptions.length > 0 && (
     <Filter
@@ -252,10 +268,10 @@ const App = ({ children, location, navigate }) => {
                 clearThis={setCategories}
                 setPage={setPage}
               />
-              {subcategoriesOf(collectionOptions, collection).length > 0 && (
+              {subcategoryOptions.length > 0 && (
                 <Filter
                   legend="Categories"
-                  options={subcategoriesOf(collectionOptions, collection)}
+                  options={subcategoryOptions}
                   selection={categories}
                   setSelection={setCategories}
                   setPage={setPage}

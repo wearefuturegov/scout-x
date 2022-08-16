@@ -5,11 +5,8 @@
  * @returns
  */
 export const subcategoriesOf = (taxonomies, parent) => {
-  if (taxonomies.length === 0) return []
-  const subcategories = taxonomies.filter(taxon => taxon.slug === parent)
-  return subcategories.length === 0
-    ? []
-    : taxonomies.filter(taxon => taxon.slug === parent)[0].children
+  const subcategories = taxonomies.find(taxon => taxon.slug === parent)
+  return subcategories ? subcategories.children : []
 }
 
 /**
