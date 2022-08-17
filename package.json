@@ -38,11 +38,10 @@
     "webpack-bundle-analyzer": "^3.7.0"
   },
   "scripts": {
-    "dev": "run-s add-public-files get-filters dev:app",
+    "dev": "run-s add-public-files dev:app",
     "dev:app": "react-scripts start",
-    "build": "run-s add-public-files get-filters build:app",
+    "build": "run-s add-public-files build:app",
     "build:app": "react-scripts build",
-    "get-filters": "node jobs/get-filters",
     "add-public-files": "node jobs/add-public-files",
     "test": "run-s test:*",
     "test:unit": "jest",
