@@ -59,10 +59,14 @@ const formatTargets = () => {
  * @returns object
  */
 const generate_theme = (vars, theme_vars) => {
+  console.log("INSIDE FUNCTION", vars.resultsPerPage)
   return {
     targets: formatTargets(),
     slug: vars.slug,
     title: vars.hasOwnProperty("title") ? vars.title : "",
+    resultsPerPage: vars.hasOwnProperty("resultsPerPage")
+      ? vars.resultsPerPage
+      : 20,
     contactEmail: vars.hasOwnProperty("contactEmail")
       ? vars.contactEmail
       : false,

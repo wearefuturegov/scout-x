@@ -6,6 +6,7 @@ import useFathom from "./hooks/useFathom"
 
 // fetch data for the app and filters
 import { fetchServiceData, fetchSiteData } from "./lib/api"
+import { pagination } from "./lib/utils"
 import daysOptionsData from "./data/_days.json"
 import onlyOptionsData from "./data/_only.json"
 import {
@@ -321,22 +322,11 @@ const MainContent = ({
   scrollTarget,
   totalElements,
 }) => {
-  /**
-   * function to calculate and show correct results for relevant page.
-   *
-   * @param {number} resultsLength - the amount of results per page.
-   *
-   * @return {string} - returns a string with the amount of results
-   */
-  const amountOfResults = resultsLength => {
-    const prevPage = page - 1
+  const numberOfResults = totalElements
+  const currentPage = page
+  const itemsPerPage = theme.resultsPerPage
 
-    if (resultsLength < 20) {
-      return `${totalElements - resultsLength} - ${totalElements}`
-    } else {
-      return `${20 * prevPage} - ${20 * page}`
-    }
-  }
+  const { from, to } = pagination(numberOfResults, currentPage, itemsPerPage)
 
   const cookiesAccepted = checkCookiesAccepted()
   // still loading
@@ -379,7 +369,7 @@ const MainContent = ({
             <>
               Showing{" "}
               <strong>
-                {amountOfResults(results.length)} out of {totalElements}
+                {from} - {to} out of {totalElements}
               </strong>{" "}
               results{" "}
               {keywords && (

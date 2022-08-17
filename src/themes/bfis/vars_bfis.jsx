@@ -5,6 +5,7 @@ import * as Styles from "../../components/Footer/Footer.styles"
 export const vars_bfis = {
   slug: "bfis",
   title: "Family information service",
+  resultsPerPage: 20,
   contactEmail: "familyinfo@buckinghamshire.gov.uk",
   contactPhone: "01296 383 293",
   serviceHomepageUrl: "https://familyinfo.buckinghamshire.gov.uk",

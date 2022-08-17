@@ -5,6 +5,7 @@ import * as Styles from "../../components/Footer/Footer.styles"
 export const vars_bod = {
   slug: "bod",
   title: "Bucks Online Directory",
+  resultsPerPage: 20,
   contactEmail: "communities@buckinghamshire.gov.uk",
   contactPhone: false,
   serviceHomepageUrl: "https://directory.buckinghamshire.gov.uk",

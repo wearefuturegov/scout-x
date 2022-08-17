@@ -4,6 +4,7 @@ import logo from "./logo.svg"
 export const vars_tvvru = {
   slug: "tvvru",
   title: "Thames Valley Violence Reduction Unit",
+  resultsPerPage: 20,
   contactEmail: "vrutechnicalsupport@thamesvalley.police.uk",
   serviceHomepageUrl: "/",
   organisation: "Thames Valley Violence Reduction Unit",
