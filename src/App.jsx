@@ -364,7 +364,7 @@ const MainContent = ({
           {(keywords || coverage) && (
             <>
               Showing{" "}
-              {pagination.current_page <= pagination.last_page && (
+              {pagination.currentPage <= pagination.lastPage && (
                 <>
                   <strong>
                     {pagination.from} - {pagination.to} out of{" "}
@@ -409,7 +409,7 @@ const MainContent = ({
         ))}
       </ResultsList>
       <Pagination
-        totalPages={pagination.total_pages}
+        totalPages={pagination.totalPages}
         page={page}
         setPage={setPage}
         scrollTarget={scrollTarget}
