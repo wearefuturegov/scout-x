@@ -103,12 +103,17 @@ export const twelveHourTime = rawTime => {
   return `${hours}${MM}${AMPM}`
 }
 
-export function pagination(numberOfResults, currentPage, itemsPerPage) {
+export const setAllPaginationValues = (
+  numberOfResults,
+  currentPage,
+  itemsPerPage
+) => {
   return {
     total: numberOfResults,
-    per_page: itemsPerPage,
-    current_page: currentPage,
-    last_page: Math.ceil(numberOfResults / itemsPerPage),
+    totalPages: (numberOfResults + itemsPerPage - 1) / itemsPerPage,
+    perPage: itemsPerPage,
+    currentPage: currentPage,
+    lastPage: Math.ceil(numberOfResults / itemsPerPage),
     from: (currentPage - 1) * itemsPerPage + 1,
     to:
       currentPage * itemsPerPage < numberOfResults

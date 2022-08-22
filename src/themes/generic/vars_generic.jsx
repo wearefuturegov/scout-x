@@ -4,7 +4,6 @@ import logo from "./logo.svg"
 export const vars_generic = {
   slug: "generic",
   title: "Scout",
-  resultsPerPage: 20,
   contactEmail: "fg-support@tpximpact.com",
   serviceHomepageUrl: "https://scout-and-outpost.netlify.app/",
   organisation: "TPXimpact",

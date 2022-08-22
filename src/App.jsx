@@ -6,7 +6,7 @@ import useFathom from "./hooks/useFathom"
 
 // fetch data for the app and filters
 import { fetchServiceData, fetchSiteData } from "./lib/api"
-import { pagination } from "./lib/utils"
+import { setAllPaginationValues } from "./lib/utils"
 import daysOptionsData from "./data/_days.json"
 import onlyOptionsData from "./data/_only.json"
 import {
@@ -80,8 +80,7 @@ const App = ({ children, location, navigate }) => {
   const [loading, setLoading] = useState(true)
 
   const [page, setPage] = useQuery("page", 1, { numerical: true })
-  const [totalPages, setTotalPages] = useState(false)
-  const [totalElements, setTotalElements] = useState(false)
+  const [pagination, setPagination] = useState({})
 
   // filter options
   const [collectionOptions, setCollectionOptions] = useState([])
@@ -113,10 +112,15 @@ const App = ({ children, location, navigate }) => {
   // on page search update the data
   useEffect(() => {
     setLoading(true)
-    fetchResultsByQuery(location.search).then(data => {
+    fetchServiceData(location.search).then(data => {
       setResults(data.content)
-      setTotalPages(data.totalPages)
-      setTotalElements(data.totalElements)
+      setPagination(
+        setAllPaginationValues(
+          data.totalElements,
+          data.page,
+          theme.resultsPerPage
+        )
+      )
       setLoading(false)
     })
   }, [location.search])
@@ -294,11 +298,10 @@ const App = ({ children, location, navigate }) => {
             setMapVisible={setMapVisible}
             navigate={navigate}
             location={location}
-            totalPages={totalPages}
             page={page}
             setPage={setPage}
             scrollTarget={scrollTarget}
-            totalElements={totalElements}
+            pagination={pagination}
           />
         }
       />
@@ -316,18 +319,11 @@ const MainContent = ({
   setMapVisible,
   navigate,
   location,
-  totalPages,
+  pagination,
   page,
   setPage,
   scrollTarget,
-  totalElements,
 }) => {
-  const numberOfResults = totalElements
-  const currentPage = page
-  const itemsPerPage = theme.resultsPerPage
-
-  const { from, to } = pagination(numberOfResults, currentPage, itemsPerPage)
-
   const cookiesAccepted = checkCookiesAccepted()
   // still loading
   if (loading)
@@ -368,9 +364,14 @@ const MainContent = ({
           {(keywords || coverage) && (
             <>
               Showing{" "}
-              <strong>
-                {from} - {to} out of {totalElements}
-              </strong>{" "}
+              {pagination.current_page <= pagination.last_page && (
+                <>
+                  <strong>
+                    {pagination.from} - {pagination.to} out of{" "}
+                    {pagination.total}
+                  </strong>{" "}
+                </>
+              )}
               results{" "}
               {keywords && (
                 <>
@@ -408,7 +409,7 @@ const MainContent = ({
         ))}
       </ResultsList>
       <Pagination
-        totalPages={totalPages}
+        totalPages={pagination.total_pages}
         page={page}
         setPage={setPage}
         scrollTarget={scrollTarget}
