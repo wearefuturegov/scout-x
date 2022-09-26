@@ -3,6 +3,8 @@ import queryString from "query-string"
 import { theme } from "./../themes/theme_generator"
 
 export const fetchResultsByQuery = async query => {
+  const per_page = 20
+
   let {
     keywords,
     location,
@@ -45,6 +47,7 @@ export const fetchResultsByQuery = async query => {
       max_age,
       only,
       page,
+      per_page,
     })}`
   )
   return await res.json()
