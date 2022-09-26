@@ -59,6 +59,7 @@
   ],
   "regular_schedules": [
     {
+      "id": 1,
       "weekday": "Monday",
       "opens_at": "10:00",
       "closes_at": "17:00"
