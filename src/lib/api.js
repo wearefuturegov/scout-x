@@ -39,6 +39,8 @@ export const fetchSiteData = async query => {
  * @returns
  */
 export const fetchServiceData = async query => {
+  const per_page = 20
+
   let {
     keywords,
     location,
@@ -82,6 +84,7 @@ export const fetchServiceData = async query => {
         max_age,
         only,
         page,
+        per_page,
       })}`
     )
     return await res.json()
