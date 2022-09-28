@@ -2,10 +2,6 @@ import React from "react"
 import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
 
-// import taxa from "./_taxonomies.json"
-// usePresetTaxonomies: true,
-// presetTaxonomies: taxa,
-
 export const vars_bfis = {
   slug: "bfis",
   title: "Family information service",
