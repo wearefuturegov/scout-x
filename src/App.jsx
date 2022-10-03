@@ -362,30 +362,27 @@ const MainContent = ({
     <>
       <ResultsHeader>
         <Count>
-          {(keywords || coverage) && (
-            <>
-              Showing{" "}
-              {pagination.currentPage <= pagination.lastPage && (
-                <>
-                  <strong>
-                    {pagination.from} - {pagination.to} out of{" "}
-                    {pagination.total}
-                  </strong>{" "}
-                </>
-              )}
-              results{" "}
-              {keywords && (
-                <>
-                  for <strong>{keywords}</strong>
-                </>
-              )}{" "}
-              {coverage && (
-                <>
-                  near <strong>{coverage}</strong>
-                </>
-              )}
-            </>
-          )}
+          <>
+            Showing{" "}
+            {pagination.currentPage <= pagination.lastPage && (
+              <>
+                <strong>
+                  {pagination.from} - {pagination.to} out of {pagination.total}
+                </strong>{" "}
+              </>
+            )}
+            results{" "}
+            {keywords && (
+              <>
+                for <strong>{keywords}</strong>
+              </>
+            )}{" "}
+            {coverage && (
+              <>
+                near <strong>{coverage}</strong>
+              </>
+            )}
+          </>
         </Count>
         <Switch
           id="map-toggle"
