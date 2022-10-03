@@ -117,7 +117,8 @@ const App = ({ children, location, navigate }) => {
       setPagination(
         setAllPaginationValues(
           data.totalElements,
-          data.page,
+          data.totalPages,
+          data.number,
           theme.resultsPerPage
         )
       )
