@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from "react"
-import { createGlobalStyle } from "styled-components"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
 import useFathom from "./hooks/useFathom"
@@ -94,13 +93,6 @@ const App = ({ children, location, navigate }) => {
   const [onlyOptions, setOnlyOptions] = useState(onlyOptionsData)
 
   useFathom()
-
-  // global styling for the site
-  const GlobalStyle = createGlobalStyle`
-  .gm-style-moc {
-    height: unset !important;
-}
-`
 
   // only fetch once on site load
   useEffect(() => {
@@ -246,7 +238,6 @@ const App = ({ children, location, navigate }) => {
 
   return (
     <>
-      <GlobalStyle />
       <Helmet>
         <title>
           {page > 1 ? `Page ${page} ` : `${theme.tagline} `}| {theme.title} |{" "}
