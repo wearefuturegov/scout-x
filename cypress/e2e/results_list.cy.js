@@ -5,6 +5,19 @@ describe("Results list page", () => {
       fixture: "services.json",
     }).as("searchForServices")
 
+    cy.intercept("**/taxonomies?*", {
+      fixture: "taxonomies.json",
+    })
+    cy.intercept("**/suitabilities?*", {
+      fixture: "suitabilities.json",
+    })
+    cy.intercept("**/send_needs?*", {
+      fixture: "send_needs.json",
+    })
+    cy.intercept("**/accessibilities?*", {
+      fixture: "accessibilities.json",
+    })
+
     cy.visit("/")
     cy.injectAxe()
   })
@@ -34,7 +47,9 @@ describe("Results list page", () => {
 
     cy.wait("@searchForServices")
 
-    cy.get("p").contains("Showing results for Example near Example2")
+    cy.get("p").contains(
+      "Showing 1 - 20 out of 2805 results for Example near Example2"
+    )
   })
 
   it("has a switch for rendering a map", () => {

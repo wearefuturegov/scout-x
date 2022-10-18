@@ -3,16 +3,18 @@ import React, { useState, useEffect, useRef } from "react"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
 import useFathom from "./hooks/useFathom"
-import { fetchResultsByQuery } from "./lib/api"
-import { onlyOptions } from "./data/_config"
+
+// fetch data for the app and filters
+import { fetchServiceData, fetchSiteData } from "./lib/api"
+import { setAllPaginationValues } from "./lib/utils"
+import daysOptionsData from "./data/_days.json"
+import onlyOptionsData from "./data/_only.json"
 import {
-  collectionOptions,
   subcategoriesOf,
-  sendOptions,
-  accessibilityOptions,
-  daysOptions,
-  suitabilityOptions,
-} from "./lib/transform-taxonomies"
+  formatAccessibilityOptions,
+  formatDaysOptions,
+  formatSuitabilityOptions,
+} from "./lib/data-helpers"
 
 import Layout, {
   ResultsHeader,
@@ -78,18 +80,56 @@ const App = ({ children, location, navigate }) => {
   const [loading, setLoading] = useState(true)
 
   const [page, setPage] = useQuery("page", 1, { numerical: true })
-  const [totalPages, setTotalPages] = useState(false)
+  const [pagination, setPagination] = useState({})
+
+  // filter options
+  const [collectionOptions, setCollectionOptions] = useState([])
+  const [subcategoryOptions, setSubcategoryOptions] = useState([])
+  const [suitabilityOptions, setSuitabilityOptions] = useState([])
+  const [sendOptions, setSendOptions] = useState([])
+  const [accessibilityOptions, setAccessibilityOptions] = useState([])
+  const [daysOptions, setDaysOptions] = useState(
+    formatDaysOptions(daysOptionsData)
+  )
+  const [onlyOptions, setOnlyOptions] = useState(onlyOptionsData)
 
   useFathom()
 
+  // only fetch once on site load
+  useEffect(() => {
+    fetchSiteData()
+      .then(([taxonomies, suitabilities, sendOptions, accessibilities]) => {
+        setCollectionOptions(taxonomies)
+        setSuitabilityOptions(formatSuitabilityOptions(suitabilities))
+        setSendOptions(sendOptions)
+        setAccessibilityOptions(formatAccessibilityOptions(accessibilities))
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+
+  // on page search update the data
   useEffect(() => {
     setLoading(true)
-    fetchResultsByQuery(location.search).then(data => {
+    fetchServiceData(location.search).then(data => {
       setResults(data.content)
-      setTotalPages(data.totalPages)
+      setPagination(
+        setAllPaginationValues(
+          data.totalElements,
+          data.totalPages,
+          data.number,
+          theme.resultsPerPage
+        )
+      )
       setLoading(false)
     })
   }, [location.search])
+
+  // on page search we change collections so need to update sub categories
+  useEffect(() => {
+    setSubcategoryOptions(subcategoriesOf(collectionOptions, collection))
+  }, [location.search, collectionOptions, collection])
 
   const filterSendNeeds = sendOptions.length > 0 && (
     <Filter
@@ -229,10 +269,10 @@ const App = ({ children, location, navigate }) => {
                 clearThis={setCategories}
                 setPage={setPage}
               />
-              {subcategoriesOf(collection).length > 0 && (
+              {subcategoryOptions.length > 0 && (
                 <Filter
                   legend="Categories"
-                  options={subcategoriesOf(collection)}
+                  options={subcategoryOptions}
                   selection={categories}
                   setSelection={setCategories}
                   setPage={setPage}
@@ -259,10 +299,10 @@ const App = ({ children, location, navigate }) => {
             setMapVisible={setMapVisible}
             navigate={navigate}
             location={location}
-            totalPages={totalPages}
             page={page}
             setPage={setPage}
             scrollTarget={scrollTarget}
+            pagination={pagination}
           />
         }
       />
@@ -280,7 +320,7 @@ const MainContent = ({
   setMapVisible,
   navigate,
   location,
-  totalPages,
+  pagination,
   page,
   setPage,
   scrollTarget,
@@ -322,21 +362,27 @@ const MainContent = ({
     <>
       <ResultsHeader>
         <Count>
-          {(keywords || coverage) && (
-            <>
-              Showing results{" "}
-              {keywords && (
-                <>
-                  for <strong>{keywords}</strong>
-                </>
-              )}{" "}
-              {coverage && (
-                <>
-                  near <strong>{coverage}</strong>
-                </>
-              )}
-            </>
-          )}
+          <>
+            Showing{" "}
+            {pagination.currentPage <= pagination.lastPage && (
+              <>
+                <strong>
+                  {pagination.from} - {pagination.to} out of {pagination.total}
+                </strong>{" "}
+              </>
+            )}
+            results{" "}
+            {keywords && (
+              <>
+                for <strong>{keywords}</strong>
+              </>
+            )}{" "}
+            {coverage && (
+              <>
+                near <strong>{coverage}</strong>
+              </>
+            )}
+          </>
         </Count>
         <Switch
           id="map-toggle"
@@ -361,7 +407,7 @@ const MainContent = ({
         ))}
       </ResultsList>
       <Pagination
-        totalPages={totalPages}
+        totalPages={pagination.totalPages}
         page={page}
         setPage={setPage}
         scrollTarget={scrollTarget}

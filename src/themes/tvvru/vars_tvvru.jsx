@@ -1,10 +1,6 @@
 import React from "react"
 import logo from "./logo.svg"
 
-// import taxa from "./_taxonomies.json"
-// usePresetTaxonomies: true,
-// presetTaxonomies: taxa,
-
 export const vars_tvvru = {
   slug: "tvvru",
   title: "Thames Valley Violence Reduction Unit",

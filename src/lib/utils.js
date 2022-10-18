@@ -102,3 +102,23 @@ export const twelveHourTime = rawTime => {
   }
   return `${hours}${MM}${AMPM}`
 }
+
+export const setAllPaginationValues = (
+  numberOfResults,
+  totalPages,
+  currentPage,
+  itemsPerPage
+) => {
+  return {
+    total: numberOfResults,
+    totalPages: totalPages,
+    perPage: itemsPerPage,
+    currentPage: currentPage,
+    lastPage: Math.ceil(numberOfResults / itemsPerPage),
+    from: (currentPage - 1) * itemsPerPage + 1,
+    to:
+      currentPage * itemsPerPage < numberOfResults
+        ? currentPage * itemsPerPage
+        : numberOfResults,
+  }
+}
