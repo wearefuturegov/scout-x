@@ -63,6 +63,9 @@ const generate_theme = (vars, theme_vars) => {
     targets: formatTargets(),
     slug: vars.slug,
     title: vars.hasOwnProperty("title") ? vars.title : "",
+    resultsPerPage: vars.hasOwnProperty("resultsPerPage")
+      ? vars.resultsPerPage
+      : 20,
     contactEmail: vars.hasOwnProperty("contactEmail")
       ? vars.contactEmail
       : false,

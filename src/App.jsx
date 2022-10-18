@@ -6,6 +6,7 @@ import useFathom from "./hooks/useFathom"
 
 // fetch data for the app and filters
 import { fetchServiceData, fetchSiteData } from "./lib/api"
+import { setAllPaginationValues } from "./lib/utils"
 import daysOptionsData from "./data/_days.json"
 import onlyOptionsData from "./data/_only.json"
 import {
@@ -79,7 +80,7 @@ const App = ({ children, location, navigate }) => {
   const [loading, setLoading] = useState(true)
 
   const [page, setPage] = useQuery("page", 1, { numerical: true })
-  const [totalPages, setTotalPages] = useState(false)
+  const [pagination, setPagination] = useState({})
 
   // filter options
   const [collectionOptions, setCollectionOptions] = useState([])
@@ -111,18 +112,18 @@ const App = ({ children, location, navigate }) => {
   // on page search update the data
   useEffect(() => {
     setLoading(true)
-    fetchServiceData(location.search)
-      .then(data => {
-        setResults(data.content)
-        setTotalPages(data.totalPages)
-        setLoading(false)
-      })
-      .catch(err => {
-        console.log(err)
-        setResults(false)
-        setTotalPages(0)
-        setLoading(false)
-      })
+    fetchServiceData(location.search).then(data => {
+      setResults(data.content)
+      setPagination(
+        setAllPaginationValues(
+          data.totalElements,
+          data.totalPages,
+          data.number,
+          theme.resultsPerPage
+        )
+      )
+      setLoading(false)
+    })
   }, [location.search])
 
   // on page search we change collections so need to update sub categories
@@ -298,10 +299,10 @@ const App = ({ children, location, navigate }) => {
             setMapVisible={setMapVisible}
             navigate={navigate}
             location={location}
-            totalPages={totalPages}
             page={page}
             setPage={setPage}
             scrollTarget={scrollTarget}
+            pagination={pagination}
           />
         }
       />
@@ -319,7 +320,7 @@ const MainContent = ({
   setMapVisible,
   navigate,
   location,
-  totalPages,
+  pagination,
   page,
   setPage,
   scrollTarget,
@@ -361,21 +362,27 @@ const MainContent = ({
     <>
       <ResultsHeader>
         <Count>
-          {(keywords || coverage) && (
-            <>
-              Showing results{" "}
-              {keywords && (
-                <>
-                  for <strong>{keywords}</strong>
-                </>
-              )}{" "}
-              {coverage && (
-                <>
-                  near <strong>{coverage}</strong>
-                </>
-              )}
-            </>
-          )}
+          <>
+            Showing{" "}
+            {pagination.currentPage <= pagination.lastPage && (
+              <>
+                <strong>
+                  {pagination.from} - {pagination.to} out of {pagination.total}
+                </strong>{" "}
+              </>
+            )}
+            results{" "}
+            {keywords && (
+              <>
+                for <strong>{keywords}</strong>
+              </>
+            )}{" "}
+            {coverage && (
+              <>
+                near <strong>{coverage}</strong>
+              </>
+            )}
+          </>
         </Count>
         <Switch
           id="map-toggle"
@@ -400,7 +407,7 @@ const MainContent = ({
         ))}
       </ResultsList>
       <Pagination
-        totalPages={totalPages}
+        totalPages={pagination.totalPages}
         page={page}
         setPage={setPage}
         scrollTarget={scrollTarget}
