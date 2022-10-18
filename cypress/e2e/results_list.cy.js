@@ -47,7 +47,9 @@ describe("Results list page", () => {
 
     cy.wait("@searchForServices")
 
-    cy.get("p").contains("Showing results for Example near Example2")
+    cy.get("p").contains(
+      "Showing 1 - 20 out of 2805 results for Example near Example2"
+    )
   })
 
   it("has a switch for rendering a map", () => {
