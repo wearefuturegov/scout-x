@@ -12,7 +12,7 @@ export const GoogleContextProvider = ({ children }) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_CLIENT_KEY,
     libraries: libs,
-    preventGoogleFontsLoading: true,
+    preventGoogleFontsLoading: false,
   })
 
   return (
