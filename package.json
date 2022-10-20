@@ -35,7 +35,7 @@
     "prettier": "2.2.1",
     "progress-bar-webpack-plugin": "^2.1.0",
     "webpack": "4.42.0",
-    "webpack-bundle-analyzer": "^3.7.0"
+    "webpack-bundle-analyzer": "^4.6.1"
   },
   "scripts": {
     "dev": "run-s add-public-files dev:app",
