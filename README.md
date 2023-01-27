@@ -56,6 +56,19 @@ To test out the email-sending function locally you'll need to install [Netlify D
 
 It should be on port 8888.
 
+## Deploying it
+
+Build the image and push to container repository
+
+```sh
+# Build it locally
+docker build --tag scout:production --target production .
+
+# Build it ready to push to dockerhub
+docker build--tag apricot13/scout:production --target production .
+docker push apricot13/scout:production
+```
+
 ## 🌎 Running it on the web
 
 [![Deploy](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/wearefuturegov/scout-x)
