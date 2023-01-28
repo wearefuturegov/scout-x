@@ -17,11 +17,21 @@ COPY . ./
 RUN npm run build
 
 
-FROM nginx:1.20.2-alpine as production
-ENV NODE_ENV production
-COPY --from=build_production ./app/build /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-CMD ["nginx", "-g", "daemon off;"]
+# this wont work because of env vars
+# we could build the app each time for each platform but we need 
+# to consider send-email.js functions
+# FROM nginx:1.20.2-alpine as production
+# ENV NODE_ENV production
+# COPY --from=build_production ./app/build /usr/share/nginx/html
+# COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+# CMD ["nginx", "-g", "daemon off;"]
+
+# so instead we're cheating for now
+FROM build_frontend as production
+COPY . ./
+# ENV NODE_ENV production
+CMD ["npm", "run", "dev" ]
+# ENTRYPOINT ["tail", "-f", "/dev/null"]
 
 
 #  build and install all  the things for the development env

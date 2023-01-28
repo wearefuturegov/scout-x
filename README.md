@@ -65,8 +65,12 @@ Build the image and push to container repository
 docker build --tag scout:production --target production .
 
 # Build it ready to push to dockerhub
-docker build--tag apricot13/scout:production --target production .
+docker build --tag apricot13/scout:production --target production .
 docker push apricot13/scout:production
+
+
+# Run the image - note -i
+docker run -p 3002:3000 -e NODE_ENV=production -i --env-file .env scout:production
 ```
 
 ## 🌎 Running it on the web
