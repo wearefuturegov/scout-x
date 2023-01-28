@@ -1,24 +1,9 @@
 version: "3.7"
 services:
-  # nginx:
-  #   image: "${PROJECT_NAME}/nginx:development"
-  #   container_name: ${PROJECT_NAME}-nginx
-  #   build:
-  #     context: ./
-  #     dockerfile: ./environment/containers/nginx/Dockerfile
-  #   depends_on:
-  #     - ruby
-  #   tty: true
-  #   ports:
-  #     - 80 #ephemeral port vs 80:80
-  #   volumes:
-  #     - ./environment/artifacts/nginx/:/var/log/nginx:cached
-  #   networks:
-  #     - external_network
   scout:
     env_file: ./.env
-    image: "${PROJECT_NAME}/app:development"
-    container_name: ${PROJECT_NAME}-app
+    image: "scout/scout:development"
+    container_name: scout-app
     command: "npm run dev"
     stdin_open: true
     build:
@@ -30,7 +15,6 @@ services:
     volumes:
       - ./:/app:cached
     environment:
-      PROJECT_NAME: ${PROJECT_NAME}
       NODE_ENV: development
     networks:
       - external_network
