@@ -11,6 +11,13 @@ COPY ./package.json ./
 COPY ./package-lock.json ./
 RUN npm ci
 
+#  build and install all  the things for the development env
+FROM build_frontend as development
+# COPY --from=build_frontend ./tmp ./app
+# ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD ["npm", "run", "dev" ]
+
+
 
 FROM build_frontend as build_production
 COPY . ./
@@ -34,8 +41,3 @@ CMD ["npm", "run", "dev" ]
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
 
 
-#  build and install all  the things for the development env
-FROM build_frontend as development
-# COPY --from=build_frontend ./tmp ./app
-# ENTRYPOINT ["tail", "-f", "/dev/null"]
-CMD ["npm", "run", "dev" ]
