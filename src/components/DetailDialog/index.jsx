@@ -412,6 +412,7 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
               </Columns>
             )}
           </Body>
+          {theme?.serviceCard?.footer && theme.serviceCard.footer(service)}
           <Footer>
             {theme.outpostUrl && (
               <>

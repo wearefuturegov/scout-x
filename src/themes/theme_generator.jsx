@@ -2,10 +2,12 @@ import { theme_generic } from "./generic/theme_generic"
 import { theme_bfis } from "./bfis/theme_bfis"
 import { theme_bod } from "./bod/theme_bod"
 import { theme_tvvru } from "./tvvru/theme_tvvru"
+import { theme_greenwich } from "./greenwich/theme_greenwich"
 import { vars_generic } from "./generic/vars_generic"
 import { vars_bfis } from "./bfis/vars_bfis"
 import { vars_bod } from "./bod/vars_bod"
 import { vars_tvvru } from "./tvvru/vars_tvvru"
+import { vars_greenwich } from "./greenwich/vars_greenwich"
 import validThemes from "./valid-themes.json"
 const valid = validThemes.valid
 require("dotenv").config()
@@ -98,6 +100,7 @@ const generate_theme = (vars, theme_vars) => {
       ? vars.noLocationIsCountywide
       : false,
     serviceCard: {
+      footer: vars?.serviceCard?.footer ? vars.serviceCard.footer : () => {},
       countyWideServiceText:
         vars.hasOwnProperty("serviceCard") &&
         vars.serviceCard.hasOwnProperty("countyWideServiceText")
@@ -181,6 +184,10 @@ switch (getThemeLabel()) {
   case "tvvru":
     currentTheme = theme_tvvru
     currentVars = vars_tvvru
+    break
+  case "greenwich":
+    currentTheme = theme_greenwich
+    currentVars = vars_greenwich
     break
   default:
     currentTheme = theme_generic

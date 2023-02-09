@@ -122,3 +122,15 @@ export const setAllPaginationValues = (
         : numberOfResults,
   }
 }
+
+export const getServiceMeta = serviceMeta => {
+  let meta = {}
+  if (serviceMeta.length > 0) {
+    serviceMeta.map(p => {
+      let data = { [p.key]: p.value }
+      meta = { ...data, ...meta }
+      return true
+    })
+  }
+  return meta
+}
