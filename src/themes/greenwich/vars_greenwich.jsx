@@ -6,7 +6,7 @@ import CqcWidget from "./CqcWidget"
 
 export const vars_greenwich = {
   slug: "greenwich",
-  title: "Scout",
+  title: "Greenwich community directory",
   contactEmail: "fg-support@tpximpact.com",
   serviceHomepageUrl: "https://scout-and-outpost.netlify.app/",
   organisation: "TPXimpact",
@@ -30,7 +30,7 @@ export const vars_greenwich = {
   cookieCallback: () => {
     console.log("loadcookies")
   },
-  serviceCarddd: {
+  serviceCard: {
     footer: service => {
       let CqcLocationId = getServiceMeta(service.meta)?.["CQC Location ID"]
 

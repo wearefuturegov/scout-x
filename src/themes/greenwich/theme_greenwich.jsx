@@ -1,5 +1,5 @@
 export const theme_greenwich = {
-  link: "#2C2D84",
+  link: "#c1002b",
   linkHover: "#1f205e",
   linkActive: "#131338",
 
