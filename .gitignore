@@ -43,3 +43,6 @@ debug.log
 
 !/public/robots.txt
 !/public/scout.png
+
+/environment/artifacts
+.DS_Store
