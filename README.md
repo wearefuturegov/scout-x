@@ -45,12 +45,17 @@ git clone git@github.com:wearefuturegov/scout-x.git && cd scout-x
 # build the image - if using for the first time
 docker build --tag test-scout:development --target development .
 
-
 # run the image in local environment
 docker run -p 3003:3000 --name test-scout -v $(pwd):/app:cached -i -d test-scout:development
 
 # access the site
 open http://localhost:3003/
+
+# stop the container
+docker stop test-scout
+
+# start again
+docker start test-scout
 ```
 
 ### Locally
@@ -119,4 +124,18 @@ You can lint with:
 
 ```
 npm run lint
+```
+
+### Run locally on docker
+
+**Linting**
+
+```sh
+docker exec -it test-scout npm run lint
+```
+
+**Unit tests**
+
+```sh
+docker exec -it test-scout npm run test:unit
 ```
