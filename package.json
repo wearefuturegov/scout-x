@@ -45,7 +45,7 @@
     "add-public-files": "node jobs/add-public-files",
     "test": "run-s test:*",
     "test:unit": "jest",
-    "test:cypress": "cypress open",
+    "test:cypress": "cypress open --e2e",
     "eject": "react-scripts eject",
     "analyse": "node jobs/analyse",
     "lint": "prettier --check ."
