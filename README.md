@@ -51,11 +51,33 @@ docker run -p 3003:3000 --name test-scout -v $(pwd):/app:cached -i -d test-scout
 # access the site
 open http://localhost:3003/
 
+# open shell in container
+docker exec -it test-scout /bin/ash;
+
 # stop the container
 docker stop test-scout
 
 # start again
 docker start test-scout
+```
+
+### Using docker-compose
+
+```sh
+git clone git@github.com:wearefuturegov/scout-x.git && cd scout-x
+
+# build the image
+docker compose -f docker-compose.development.yml build
+
+# run the container
+docker compose -f docker-compose.development.yml up -d
+
+# open shell in container
+docker compose -f docker-compose.development.yml exec scout-dev /bin/ash;
+
+# stop the container
+docker compose -f docker-compose.development.yml stop
+
 ```
 
 ### Locally
@@ -88,6 +110,18 @@ It's suitable for [any static host](https://facebook.github.io/create-react-app/
 Run the `npm run build` command and then serve the `/build` folder.
 
 If you want to use the built-in email sending function, you'll _need_ to host it on Netlify.
+
+### Docker
+
+You can also deploy via docker
+
+```sh
+# build the image
+docker compose build
+
+# run the container
+docker compose up -d
+```
 
 ## 🧬 Configuration
 
