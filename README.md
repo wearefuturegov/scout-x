@@ -37,6 +37,24 @@ The pinboard feature uses localstorage, and it has one email-sending function th
 
 ## 💻 Running it locally
 
+### Using docker
+
+```sh
+git clone git@github.com:wearefuturegov/scout-x.git && cd scout-x
+
+# build the image - if using for the first time
+docker build --tag test-scout:development --target development .
+
+
+# run the image in local environment
+docker run -p 3003:3000 --name test-scout -v $(pwd):/app:cached -i -d test-scout:development
+
+# access the site
+open http://localhost:3003/
+```
+
+### Locally
+
 You need Node.js and `npm` installed, plus an API for Scout to consume data from.
 
 First, clone the repo:
@@ -55,23 +73,6 @@ It'll be on **localhost:3000**.
 To test out the email-sending function locally you'll need to install [Netlify Dev](https://www.netlify.com/products/dev/) and use `netlify dev` to start the app instead.
 
 It should be on port 8888.
-
-## Deploying it
-
-Build the image and push to container repository
-
-```sh
-# Build it locally
-docker build --tag scout:production --target production .
-
-# Build it ready to push to dockerhub
-docker build --tag apricot13/scout:production --target production .
-docker push apricot13/scout:production
-
-
-# Run the image - note -i
-docker run -p 3002:3000 -e NODE_ENV=production -i --env-file .env scout:production
-```
 
 ## 🌎 Running it on the web
 

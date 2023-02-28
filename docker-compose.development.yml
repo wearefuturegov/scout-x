@@ -1,29 +1,27 @@
 version: "3.7"
 services:
+  # prod
   scout:
-    env_file: ./.env
-    image: "scout/scout:development"
-    container_name: scout-app
-    command: "npm run dev"
-    stdin_open: true
+    image: "scout:production"
+    container_name: scout
     build:
-      context: ./
-      dockerfile: ./Dockerfile
+      target: production
+    ports:
+      - 3000
+    volumes:
+      - ./:/app
+    environment:
+      NODE_ENV: production
+
+  # dev
+  scout-dev:
+    image: "scout:development"
+    container_name: scout-dev
+    build:
       target: development
     ports:
-      - 3002:3000
+      - 3000
     volumes:
       - ./:/app:cached
     environment:
       NODE_ENV: development
-    networks:
-      - external_network
-      - internal_network
-
-volumes:
-  mongo-volume:
-
-networks:
-  external_network:
-  internal_network:
-    internal: true
