@@ -1,0 +1,5 @@
+build:
+  docker:
+    scout:
+      dockerfile: Dockerfile
+      target: production
