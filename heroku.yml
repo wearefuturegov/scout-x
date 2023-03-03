@@ -3,3 +3,6 @@ build:
     scout:
       dockerfile: Dockerfile
       target: production
+setup:
+  config:
+    REACT_APP_SITE_URL: "https://#{HEROKU_APP_NAME}.herokuapp.com"
