@@ -10,7 +10,7 @@ FROM base_image as build_frontend
 COPY ./package.json ./tmp/package.json
 COPY ./package-lock.json ./tmp/package-lock.json
 RUN cd /tmp && \
-    yarn
+    npm install
 WORKDIR /app
 
 #  build and install all  the things for the development env

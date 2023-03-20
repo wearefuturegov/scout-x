@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scout example</title>
+    <meta name="description" content="" data-react-helmet="true" />
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+      }
+      .no-script {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        min-height: 100vh;
+        min-width: 100%;
+        background: #f7f6f2;
+        text-align: center;
+        font-size: 1.2rem;
+        color: #212121;
+      }
+      .no-script p {
+        max-width: 450px;
+        line-height: 1.4;
+      }
+      .no-script a {
+        color: #2c2d84;
+      }
+    </style>
+
+    <style>
+      .container {
+        width: 90%;
+        margin: 0 auto;
+      }
+
+      #header {
+        border-bottom: 1px solid #c4c4c4;
+        margin-bottom: 20px;
+        background: url("src/img/header.png") no-repeat center center;
+        height: 87px;
+      }
+
+      .visually-hidden {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+      }
+    </style>
+
+    <noscript>
+      <div class="no-script">
+        <p>This part of the directory needs JavaScript to work.</p>
+      </div>
+    </noscript>
+
+    <div class="container">
+      <header id="header">
+        <h1 class="visually-hidden">
+          Greenwich community directory local gov drupal website
+        </h1>
+      </header>
+      <div id="root"></div>
+    </div>
+
+    <script type="module" src="src/index.js"></script>
+    <script>
+      var options = { basePath: "/" }
+      if (window.scc?.directory) {
+        window.scc.directory(options)
+      } else {
+        window.addEventListener(
+          "SCCDirectoryReady",
+          e => {
+            window.scc.directory(options)
+          },
+          false
+        )
+      }
+    </script>
+  </body>
+</html>

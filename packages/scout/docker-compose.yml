@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  scout:
+    image: "scout:production"
+    container_name: scout
+    build:
+      target: production
+    ports:
+      - "3000"
+    volumes:
+      - ./:/app
+    environment:
+      NODE_ENV: production

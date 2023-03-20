@@ -1,0 +1,113 @@
+{
+  "name": "@outpost-platform/scout",
+  "version": "0.1.0",
+  "author": "TPXImpact <fg-support@tpximpact.com>",
+  "license": "Apache",
+  "type": "module",
+  "homepage": "https://outpost-platform.wearefuturegov.com/docs/scout",
+  "bugs": {
+    "url": "https://github.com/wearefuturegov/scout-x/issues"
+  },
+  "description": "A simple API-driven front-end for service directories, part of the Outpost platform.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wearefuturegov/scout-x.git"
+  },
+  "unpkg": "dist/index.min.js",
+  "style": "dist/style.css",
+  "source": "src/index.js",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "service directory",
+    "outpost",
+    "open referral UK",
+    "local authority",
+    "local offer"
+  ],
+  "scripts": {
+    "olddev": "run-s add-public-files dev:app",
+    "olddev:app": "react-scripts start",
+    "build": "run-s add-public-files build:app",
+    "build:app": "react-scripts build",
+    "add-public-files": "node jobs/add-public-files",
+    "test": "run-s test:*",
+    "test:unit": "jest",
+    "test:cypress": "cypress open --e2e",
+    "eject": "react-scripts eject",
+    "analyse": "node jobs/analyse",
+    "lint": "prettier --check .",
+    "dev": "parcel watch",
+    "parcel-build": "parcel build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,css,md}": "prettier --write"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0"
+  },
+  "dependencies": {
+    "@reach/alert": "^0.10.5",
+    "@reach/dialog": "^0.10.5",
+    "@reach/router": "^1.3.4",
+    "@reach/tooltip": "^0.10.5",
+    "@react-google-maps/api": "^2.18.1",
+    "@sendgrid/mail": "^7.7.0",
+    "isomorphic-unfetch": "^3.1.0",
+    "query-string": "^6.14.1",
+    "react-app-polyfill": "^1.0.6",
+    "react-ga": "^3.3.1",
+    "react-helmet": "^6.1.0",
+    "styled-components": "^5.3.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@parcel/reporter-bundle-analyzer": "^2.8.3",
+    "@parcel/resolver-default": "^2.8.3",
+    "axe-core": "^4.6.3",
+    "chalk": "^4.1.2",
+    "cypress": "^10.11.0",
+    "cypress-axe": "^1.4.0",
+    "dotenv": "^8.6.0",
+    "husky": "^4.3.8",
+    "jest": "^24.9.0",
+    "lint-staged": "^10.5.4",
+    "notifications-node-client": "^5.2.3",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^2.8.3",
+    "prettier": "2.2.1",
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "prop-types": "^15.8.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-is": "^18.2.0",
+    "react-scripts": "3.4.1",
+    "webpack": "4.42.0",
+    "webpack-bundle-analyzer": "^4.8.0"
+  }
+}

@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  scout-dev:
+    image: "scout:development"
+    container_name: scout-dev
+    stdin_open: true
+    build:
+      target: development
+    ports:
+      - "3000"
+    volumes:
+      - ./:/app:cached
+    environment:
+      NODE_ENV: development

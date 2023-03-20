@@ -68,8 +68,9 @@ export const fetchServiceData = async query => {
     targetDirectories.push([].concat(theme.targets).join(","))
 
   try {
+    // ${process.env.REACT_APP_API_HOST}
     const res = await fetch(
-      `${process.env.REACT_APP_API_HOST}/services?${queryString.stringify({
+      `http://localhost:3001/api/v1/services?${queryString.stringify({
         targetDirectories,
         keywords,
         location,
@@ -102,10 +103,9 @@ export const fetchData = async resource => {
   const directory = [theme.slug]
 
   try {
+    // ${process.env.REACT_APP_FILTERS_DATASOURCE}
     const res = await fetch(
-      `${
-        process.env.REACT_APP_FILTERS_DATASOURCE
-      }/${resource}?${queryString.stringify({
+      `http://localhost:3000/api/v1/${resource}?${queryString.stringify({
         directory,
       })}`
     )

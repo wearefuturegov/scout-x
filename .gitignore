@@ -1,45 +1,48 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# vscode
+.vscode
 
 # testing
-/coverage
+coverage
 
-# production
-/build
+# parcel 
+.parcel-cache
+
+
+# dependencies
+node_modules
+.pnp
+.pnp.js
+yarn-debug.log*
+yarn-error.log*
+npm-debug.log*
+.yarn/cache
+.yarn/install-state.gz
+.yarn/build-state.yml
+
+
 
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-.env
-
-# Local Netlify folder
-.netlify
-
-/functions/node_modules
-
-/cypress/screenshots
-
-/cypress/videos
-
-
 debug.log
 
-.vscode
+# env
+.env*
 
-# public
-/public/
+# build
+dist
 
-!/public/robots.txt
-!/public/scout.png
+
+# scout public folder
+
+/packages/scout/public/*
+!/packages/scout/public/robots.txt
+!/packages/scout/public/scout.png
+
+
+# scout stuff
+
+
+cypress/screenshots
+cypress/videos
