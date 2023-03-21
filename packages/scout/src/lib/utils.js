@@ -122,3 +122,13 @@ export const setAllPaginationValues = (
         : numberOfResults,
   }
 }
+
+export const normalizeQuerystring = query => {
+  query = query.replace(/^\?/, "")
+
+  if (query.length > 0) {
+    query = `?${query}`
+  }
+
+  return query
+}

@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import styled from "styled-components"
 
 import Dialog, { Header, Title } from "../Dialog"
-import { PinboardContextConsumer } from "../../contexts/pinboardContext"
+import { PinboardContextConsumer } from "../../contexts/Pinboard"
+import { AppSettingsContext } from "../../contexts/AppSettings"
 import ServiceCard from "../ServiceCard"
 import ShareDialog from "../ShareDialog"
 
@@ -81,10 +82,11 @@ const Count = styled.span`
 `
 
 const PinboardDialog = ({ location, navigate, pinboard }) => {
+  const settings = useContext(AppSettingsContext)
   const [dialogOpen, setDialogOpen] = useState(false)
 
   const handleDismiss = () => {
-    navigate(`/${location.search}`)
+    navigate(`${settings.basePath || ""}/${location.search}`)
   }
 
   return (

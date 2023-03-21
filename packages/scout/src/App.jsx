@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useRef } from "react"
+import React, { Fragment, useState, useEffect, useRef, useContext } from "react"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
 import useFathom from "./hooks/useFathom"
+import { Link } from "@reach/router"
+import { AppSettingsContext } from "./contexts/AppSettings"
 
 // fetch data for the app and filters
 import { fetchServiceData, fetchSiteData } from "./lib/api"
-import { setAllPaginationValues } from "./lib/utils"
+import { setAllPaginationValues, normalizeQuerystring } from "./lib/utils"
 import daysOptionsData from "./data/_days.json"
 import onlyOptionsData from "./data/_only.json"
 import {
@@ -93,6 +95,26 @@ const App = ({ children, location, navigate }) => {
   )
   const [onlyOptions, setOnlyOptions] = useState(onlyOptionsData)
 
+  // Embedded view variables
+  const settings = useContext(AppSettingsContext)
+  const embedded = settings?.embedded
+  const filteredUrl = settings?.filteredUrl
+  const index = filteredUrl ? filteredUrl.indexOf("?") : null
+  const embedQuery = filteredUrl ? filteredUrl.substring(index) : null
+  const [embedInitialised, setEmbedInitialised] = useState(false)
+
+  const locationSearch = normalizeQuerystring(location.search)
+
+  useEffect(() => {
+    if (!embedded) {
+      return
+    }
+    ;(async () => {
+      await navigate(`${embedQuery}`, { replace: true })
+      setEmbedInitialised(true)
+    })()
+  }, [embedded, embedQuery])
+
   useFathom()
 
   // only fetch once on site load
@@ -111,25 +133,34 @@ const App = ({ children, location, navigate }) => {
 
   // on page search update the data
   useEffect(() => {
+    // ensure embed URL has initialised before loading data
+    if (embedded && !embedInitialised) {
+      return
+    }
     setLoading(true)
-    fetchServiceData(location.search).then(data => {
-      setResults(data.content)
-      setPagination(
-        setAllPaginationValues(
-          data.totalElements,
-          data.totalPages,
-          data.number,
-          theme.resultsPerPage
+    fetchServiceData(locationSearch)
+      .then(data => {
+        setResults(data.content)
+        setPagination(
+          setAllPaginationValues(
+            data.totalElements,
+            data.totalPages,
+            data.number,
+            theme.resultsPerPage
+          )
         )
-      )
-      setLoading(false)
-    })
-  }, [location.search])
+        setLoading(false)
+      })
+      .catch(() => {
+        setResults([])
+        setLoading(false)
+      })
+  }, [locationSearch, embedQuery, embedded, embedInitialised])
 
   // on page search we change collections so need to update sub categories
   useEffect(() => {
     setSubcategoryOptions(subcategoriesOf(collectionOptions, collection))
-  }, [location.search, collectionOptions, collection])
+  }, [locationSearch, collectionOptions, collection])
 
   const filterSendNeeds = sendOptions.length > 0 && (
     <Filter
@@ -239,24 +270,29 @@ const App = ({ children, location, navigate }) => {
 
   return (
     <>
-      <Helmet>
-        <title>
-          {page > 1 ? `Page ${page} ` : `${theme.tagline} `}| {theme.title} |{" "}
-          {theme.organisation}
-        </title>
-      </Helmet>
+      {embedded ? null : (
+        <Helmet>
+          <title>
+            {page > 1 ? `Page ${page} ` : `${theme.tagline} `}| {theme.title} |{" "}
+            {theme.organisation}
+          </title>
+        </Helmet>
+      )}
       <Layout
         scrollRef={scrollTarget}
         headerComponents={
-          <SearchBar
-            keywords={keywords}
-            setKeywords={setKeywords}
-            coverage={coverage}
-            setCoverage={setCoverage}
-            setLat={setLat}
-            setLng={setLng}
-            setPage={setPage}
-          />
+          <>
+            {embedded ? "Embedded" : ""}
+            <SearchBar
+              keywords={keywords}
+              setKeywords={setKeywords}
+              coverage={coverage}
+              setCoverage={setCoverage}
+              setLat={setLat}
+              setLng={setLng}
+              setPage={setPage}
+            />
+          </>
         }
         sidebarComponents={
           <>
@@ -290,20 +326,25 @@ const App = ({ children, location, navigate }) => {
           </>
         }
         mainContentComponents={
-          <MainContent
-            loading={loading}
-            results={results}
-            keywords={keywords}
-            coverage={coverage}
-            mapVisible={mapVisible}
-            setMapVisible={setMapVisible}
-            navigate={navigate}
-            location={location}
-            page={page}
-            setPage={setPage}
-            scrollTarget={scrollTarget}
-            pagination={pagination}
-          />
+          <>
+            {embedded && embedInitialised && (
+              <>This is the embedded version of scout</>
+            )}
+            <MainContent
+              loading={loading}
+              results={results}
+              keywords={keywords}
+              coverage={coverage}
+              mapVisible={mapVisible}
+              setMapVisible={setMapVisible}
+              navigate={navigate}
+              location={location}
+              page={page}
+              setPage={setPage}
+              scrollTarget={scrollTarget}
+              pagination={pagination}
+            />
+          </>
         }
       />
       {children}

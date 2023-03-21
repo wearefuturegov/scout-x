@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scout example</title>
+    <meta name="description" content="" data-react-helmet="true" />
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+      }
+      .no-script {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        min-height: 100vh;
+        min-width: 100%;
+        background: #f7f6f2;
+        text-align: center;
+        font-size: 1.2rem;
+        color: #212121;
+      }
+      .no-script p {
+        max-width: 450px;
+        line-height: 1.4;
+      }
+      .no-script a {
+        color: #2c2d84;
+      }
+    </style>
+
+    <noscript>
+      <div class="no-script">
+        <p>This part of the directory needs JavaScript to work.</p>
+      </div>
+    </noscript>
+
+    <div id="root"></div>
+
+    <script type="module" src="src/index.js"></script>
+  </body>
+</html>

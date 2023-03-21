@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { GoogleMap, useGoogleMap } from "@react-google-maps/api"
 import Marker from "./Marker"
-import { GoogleContextConsumer } from "../../contexts/googleContext"
+import { GoogleContextConsumer } from "../../contexts/Google/GoogleContext"
 import styled from "styled-components"
 
 const Outer = styled.section`

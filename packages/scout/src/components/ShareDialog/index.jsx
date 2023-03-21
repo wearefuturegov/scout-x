@@ -6,7 +6,7 @@ import { CloseButton, Icon } from "../Dialog"
 import fetch from "isomorphic-unfetch"
 import { SolidButton } from "../Button"
 import close from "./close.svg"
-import { AlertContextConsumer } from "../../contexts/alertContext"
+import { AlertContextConsumer } from "../../contexts/Alert"
 
 const StyledDialog = styled(Dialog)`
   position: relative;

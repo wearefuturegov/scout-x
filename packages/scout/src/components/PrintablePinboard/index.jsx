@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { truncate } from "../../lib/utils"
-import { PinboardContextConsumer } from "../../contexts/pinboardContext"
+import { PinboardContextConsumer } from "../../contexts/Pinboard"
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`

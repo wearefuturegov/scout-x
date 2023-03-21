@@ -176,17 +176,18 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
   const [service, setService] = useState(false)
   const cookiesAccepted = checkCookiesAccepted()
   const handleDismiss = () => {
-    navigate(`/${location.search}`)
+    navigate(`../../${location.search}`)
   }
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_HOST}/services/${serviceId}`)
+    // fetch(`${process.env.REACT_APP_API_HOST}/services/${serviceId}`)
+    fetch(`http://localhost:3001/api/v1/services/${serviceId}`)
       .then(res => res.json())
       .then(data => setService(data))
   }, [serviceId])
 
   // handle 404
-  if (service.error) navigate(`/`)
+  if (service.error) navigate(`../../`)
 
   if (service.name) {
     let goodToKnow = buildGoodToKnow(service)

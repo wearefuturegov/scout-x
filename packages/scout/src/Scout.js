@@ -2,40 +2,55 @@ import "react-app-polyfill/ie11"
 import "react-app-polyfill/stable"
 
 import React from "react"
-import { Router } from "@reach/router"
+import { Link, Router } from "@reach/router"
 
 import App from "./App"
 import DetailDialog from "./components/DetailDialog"
 import PinboardDialog from "./components/PinboardDialog"
 import PrintablePinboard from "./components/PrintablePinboard"
 
-import { GoogleContextProvider } from "./contexts/googleContext"
-import { AlertContextProvider } from "./contexts/alertContext"
-import { PinboardContextProvider } from "./contexts/pinboardContext"
+import { RootProvider } from "./contexts/RootProvider"
 
-import { ThemeProvider } from "styled-components"
-import { theme } from "./themes/theme_generator"
+function Test(props) {
+  const { children } = props
+  return (
+    <>
+      home <Link to={"/service/1"}>TestTwo</Link>
+      {children}
+    </>
+  )
+}
 
-export function Scout() {
-  console.log(process.env.NODE_ENV)
-  console.log(React.version)
+function TestTwo(props) {
+  const { children } = props
+  return (
+    <>
+      TestTwo <Link to={"/"}>home</Link>
+      {children}
+    </>
+  )
+}
+
+export function Scout(props) {
+  const { children, routerProps, ...initialProps } = props
+
+  console.log(props)
   return (
     <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <PinboardContextProvider>
-          <AlertContextProvider>
-            <GoogleContextProvider>
-              <Router>
-                <App path="/" default>
-                  <DetailDialog path="service/:serviceId" />
-                  <PinboardDialog path="pinboard" />
-                </App>
-                <PrintablePinboard path="print/" />
-              </Router>
-            </GoogleContextProvider>
-          </AlertContextProvider>
-        </PinboardContextProvider>
-      </ThemeProvider>
+      <RootProvider {...initialProps}>
+        <Router {...routerProps}>
+          {/* <Test path="/" default>
+            <DetailDialog path="service/:serviceId" />
+            <TestTwo path="test" />
+          </Test> */}
+
+          <App path="/" default>
+            <DetailDialog path="service/:serviceId" />
+            <PinboardDialog path="pinboard" />
+          </App>
+          <PrintablePinboard path="print/" />
+        </Router>
+      </RootProvider>
     </React.StrictMode>
   )
 }

@@ -1,6 +1,6 @@
 import React from "react"
 import { GoogleMap, Marker } from "@react-google-maps/api"
-import { GoogleContextConsumer } from "../../contexts/googleContext"
+import { GoogleContextConsumer } from "../../contexts/Google/GoogleContext"
 import marker from "../ListMap/marker.svg"
 
 const Map = React.memo(({ latitude, longitude, isLoaded, offCenter }) => {

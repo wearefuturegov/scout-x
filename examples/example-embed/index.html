@@ -42,7 +42,7 @@
       #header {
         border-bottom: 1px solid #c4c4c4;
         margin-bottom: 20px;
-        background: url("src/img/header.png") no-repeat center center;
+        background: url("./img/header.png") no-repeat center center;
         height: 87px;
       }
 
@@ -69,19 +69,25 @@
           Greenwich community directory local gov drupal website
         </h1>
       </header>
-      <div id="root"></div>
+
+      <div id="app"></div>
     </div>
 
     <script type="module" src="src/index.js"></script>
     <script>
-      var options = { basePath: "/" }
-      if (window.scc?.directory) {
-        window.scc.directory(options)
+      var options = {
+        basePath: "", // if your application lives at /directory set this value here
+        targetElement: "#app", // where do you want your application to go set this if location other than #root
+        embedded: true, // are you running the application within another @TODO setting this does shadowDom stuff and other things
+      }
+
+      if (window.op?.scout) {
+        window.op.scout(options)
       } else {
         window.addEventListener(
-          "SCCDirectoryReady",
+          "OPScoutReady",
           e => {
-            window.scc.directory(options)
+            window.op.scout(options)
           },
           false
         )

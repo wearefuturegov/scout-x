@@ -1,15 +1,36 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
-import { Dialog } from "@reach/dialog"
+import FocusLock, { AutoFocusInside } from "react-focus-lock"
+import { RemoveScroll } from "react-remove-scroll"
+import {
+  DialogContent,
+  DialogInner,
+  unstable_DialogWrapper as DialogWrapper,
+} from "@reach/dialog"
 import "@reach/dialog/styles.css"
 import close from "./close.svg"
+import { DialogContext } from "../../contexts/Dialog"
 
-const StyledDialog = styled(Dialog)`
+const StyledDialogOverlay = styled("div")`
+  background: hsla(0, 0%, 0%, 0.33);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  z-index: 100;
+`
+
+const StyledDialog = styled(DialogContent)`
+  background: white;
+  outline: none;
   position: relative;
   padding: 0px;
   margin: 20px auto;
   width: 92vw;
   max-width: 700px;
+  min-height: max(60vh, 400px);
   &:hover {
     box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
   }
@@ -52,14 +73,42 @@ export const CloseButton = styled.button`
   }
 `
 
-export default ({ handleDismiss, dialogTitle, children }) => (
-  <StyledDialog onDismiss={handleDismiss} aria-label={dialogTitle}>
-    <CloseButton onClick={handleDismiss}>
-      <Icon src={close} alt="Close dialog" />
-    </CloseButton>
-    {children}
-  </StyledDialog>
-)
+export default ({
+  handleDismiss,
+  dialogTitle,
+  children,
+  enableAutoFocus = true,
+}) => {
+  const portalContainerRef = useContext(DialogContext)
+  return (
+    <DialogWrapper containerRef={portalContainerRef}>
+      <DialogInner
+        onDismiss={handleDismiss}
+        aria-label={dialogTitle}
+        as={StyledDialogOverlay}
+        dangerouslyBypassScrollLock={true}
+        dangerouslyBypassFocusLock={true}
+      >
+        <FocusLock
+          autoFocus={enableAutoFocus}
+          returnFocus={{ preventScroll: !enableAutoFocus }}
+          crossFrame
+        >
+          <RemoveScroll allowPinchZoom enabled={true} noIsolation={true}>
+            <DialogContent as={StyledDialog}>
+              {handleDismiss && (
+                <CloseButton onClick={handleDismiss}>
+                  <Icon src={close} alt="Close dialog" />
+                </CloseButton>
+              )}
+              <AutoFocusInside>{children}</AutoFocusInside>
+            </DialogContent>
+          </RemoveScroll>
+        </FocusLock>
+      </DialogInner>
+    </DialogWrapper>
+  )
+}
 
 export const Header = styled.header`
   padding: 25px;

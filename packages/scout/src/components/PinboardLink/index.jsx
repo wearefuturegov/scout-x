@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 
 import { Link } from "@reach/router"
-import { PinboardContextConsumer } from "../../contexts/pinboardContext"
+import { PinboardContextConsumer } from "../../contexts/Pinboard"
+import { AppSettingsContext } from "../../contexts/AppSettings"
+import { normalizeQuerystring } from "../../lib/utils"
 
 const StyledLink = styled(Link)`
   display: block;
@@ -31,13 +33,17 @@ const Count = styled.span`
   font-weight: normal;
 `
 
-const PinboardLink = ({ pinboard, location }) =>
-  pinboard.length > 0 ? (
-    <StyledLink to={`/pinboard${location.search}`}>
+const PinboardLink = ({ pinboard, location }) => {
+  const settings = useContext(AppSettingsContext)
+  const search = normalizeQuerystring(location.search)
+  const url = `${settings.basePath || ""}/pinboard${search}`
+  return pinboard.length > 0 ? (
+    <StyledLink to={url}>
       See pinned services
       <Count>({pinboard.length})</Count>
     </StyledLink>
   ) : null
+}
 
 export default props => (
   <PinboardContextConsumer>

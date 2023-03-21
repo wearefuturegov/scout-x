@@ -7,7 +7,7 @@ import clearIcon from "./clear.svg"
 
 import AutocompletePlaceInput from "../AutocompletePlaceInput"
 import Spinner from "../Spinner"
-import { AlertContextConsumer } from "../../contexts/alertContext"
+import { AlertContextConsumer } from "../../contexts/Alert"
 import Tooltip from "../Tooltip"
 
 const Form = styled.form`

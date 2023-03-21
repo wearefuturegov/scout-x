@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react"
 import styled from "styled-components"
 
-import { GoogleContextConsumer } from "../../contexts/googleContext"
+import { GoogleContextConsumer } from "../../contexts/Google/GoogleContext"
 
 const Input = styled.input`
   font-size: 1rem;

@@ -1,6 +1,6 @@
 import React from "react"
 import { useLoadScript } from "@react-google-maps/api"
-import { checkCookiesAccepted } from "../lib/cookies"
+import { checkCookiesAccepted } from "../../lib/cookies"
 
 const GoogleContext = React.createContext()
 

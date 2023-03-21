@@ -1,8 +1,8 @@
 version: "3.7"
 services:
   scout-dev:
-    image: "scout:development"
-    container_name: scout-dev
+    image: "scout-new:development"
+    container_name: scout-new-dev
     stdin_open: true
     build:
       target: development

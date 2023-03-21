@@ -1,5 +1,5 @@
 {
-  "name": "example",
+  "name": "example-standalone",
   "source": "index.html",
   "scripts": {
     "dev": "parcel",
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@outpost-platform/scout": "workspace:^",
+    "@reach/router": "^1.3.4",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   }

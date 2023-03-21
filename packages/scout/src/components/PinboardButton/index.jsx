@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import useHover from "../../hooks/useHover"
 import styled from "styled-components"
 
 import add from "./add.svg"
 import remove from "./remove.svg"
 import tick from "./tick.svg"
-import { PinboardContextConsumer } from "../../contexts/pinboardContext"
-import { AlertContextConsumer } from "../../contexts/alertContext"
+import { PinboardContextConsumer } from "../../contexts/Pinboard/pinboardContext"
+import { AlertContextConsumer } from "../../contexts/Alert/AlertContext"
+import { AppSettingsContext } from "../../contexts/AppSettings"
 
 const BaseButton = styled.button`
   display: flex;
@@ -70,6 +71,7 @@ const PinboardButton = ({
   removeFromPinboard,
   triggerAlert,
 }) => {
+  const settings = useContext(AppSettingsContext)
   const isPinned = isInPinboard(service.id)
   const [justPinned, setJustPinned] = useState(false)
   const [ref, isHovered] = useHover()
@@ -102,7 +104,7 @@ const PinboardButton = ({
             addToPinboard(service)
             triggerAlert("Added to pinned services", {
               linkText: "See pinboard",
-              link: `/pinboard${location.search}`,
+              link: `${settings.basePath || ""}/pinboard${location.search}`,
             })
           }}
         >

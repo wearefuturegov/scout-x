@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 
 import styled from "styled-components"
 import { truncate } from "../../lib/utils"
 import { Link, useLocation } from "@reach/router"
 import Footer from "../ServiceCardFooter"
+import { AppSettingsContext } from "../../contexts/AppSettings"
 
 const Outer = styled.li`
   padding: 25px;
@@ -57,13 +58,16 @@ const Description = styled.p`
   font-size: 0.9rem;
   margin-bottom: 17px;
   line-height: 1.5;
+  word-break: break-word;
 `
 
 const ServiceCard = ({ id, name, description, ...service }) => {
+  const settings = useContext(AppSettingsContext)
   const { search } = useLocation()
+  const url = `${settings.basePath || ""}/service/${id}${search}`
   return (
     <Outer>
-      <StyledLink to={`/service/${id}${search}`}>
+      <StyledLink to={url}>
         <Name>{name}</Name>
       </StyledLink>
       <Description>{truncate(description, 18)}</Description>
