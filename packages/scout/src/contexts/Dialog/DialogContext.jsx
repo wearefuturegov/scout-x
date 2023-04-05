@@ -1,13 +1,12 @@
-import React, { useRef } from "react"
+import React, { createContext, useRef } from "react"
 
-export const DialogContext = React.createContext()
+export const DialogContext = createContext()
 
 export const DialogContextProvider = ({ children }) => {
-  const portalContainerRef = useRef(null)
-
+  const DialogContainerRef = useRef()
   return (
-    <DialogContext.Provider value={portalContainerRef}>
-      <div ref={portalContainerRef}></div>
+    <DialogContext.Provider value={DialogContainerRef}>
+      <div ref={DialogContainerRef}></div>
       {children}
     </DialogContext.Provider>
   )

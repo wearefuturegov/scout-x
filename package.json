@@ -11,6 +11,7 @@
   "homepage": "https://outpost-platform.wearefuturegov.com/docs/scout",
   "license": "Apache",
   "scripts": {
+    "dev-all": "yarn workspaces foreach run dev",
     "build-all": "yarn workspaces foreach run build"
   },
   "repository": {

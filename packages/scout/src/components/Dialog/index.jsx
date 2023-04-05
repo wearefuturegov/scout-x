@@ -79,9 +79,9 @@ export default ({
   children,
   enableAutoFocus = true,
 }) => {
-  const portalContainerRef = useContext(DialogContext)
+  const DialogContainerRef = useContext(DialogContext)
   return (
-    <DialogWrapper containerRef={portalContainerRef}>
+    <DialogWrapper containerRef={DialogContainerRef}>
       <DialogInner
         onDismiss={handleDismiss}
         aria-label={dialogTitle}

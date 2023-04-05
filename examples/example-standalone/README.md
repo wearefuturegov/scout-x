@@ -1,3 +1,3 @@
 # Example standalone
 
-Replicates the current one Scout setup
+Replicates the current single page application SPA Scout setup

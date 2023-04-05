@@ -9,6 +9,8 @@ export const setScoutHistorySource = (inMemory = false) => {
     `inMemory: ${inMemory} - if true use memory history else use browser history`
   )
 
+  // false because we're not using this in ssr or testing purposes
+  inMemory = false
   history = inMemory
     ? createHistory(createMemorySource("/"))
     : createHistory(window)
