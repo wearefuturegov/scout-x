@@ -15,6 +15,8 @@ import { RootProvider } from "./contexts/RootProvider"
 import SimpleDialog from "./components/SimpleDialog"
 import { DialogContext } from "./contexts/Dialog"
 
+import * as ScoutComponents from "@outpost-platform/scout-components"
+
 function Test(props) {
   const { children } = props
   return (
@@ -60,9 +62,8 @@ function TestMenu() {
 }
 
 export function Scout(props) {
+  console.log(ScoutComponents)
   const { children, routerProps, ...initialProps } = props
-
-  console.log(props)
   return (
     <React.StrictMode>
       <RootProvider {...initialProps}>

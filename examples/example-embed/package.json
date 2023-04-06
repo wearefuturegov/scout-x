@@ -2,7 +2,7 @@
   "name": "example-embed",
   "source": "index.html",
   "scripts": {
-    "dev": "parcel",
+    "dev": "parcel -p 3100",
     "build": "parcel build"
   },
   "browserslist": {

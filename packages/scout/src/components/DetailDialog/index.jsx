@@ -11,20 +11,20 @@ import {
 import { Helmet } from "react-helmet"
 import "@reach/dialog/styles.css"
 
-import A from "../A"
+import { A } from "@outpost-platform/scout-components"
 import PinboardButton from "../PinboardButton"
-import Description from "../Description"
+import { Description } from "@outpost-platform/scout-components"
 import LocalOffer from "../LocalOffer"
-import Loader from "../Loader"
-import { ButtonLink } from "../Button"
+import { Loader } from "@outpost-platform/scout-components"
+import { ButtonLink } from "@outpost-platform/scout-components"
 import Dialog, { Body as InheritedBody, Header, Title } from "../Dialog"
 import SingleLocation from "./SingleLocation"
 import LocationAccordion from "./LocationAccordion"
-import { TickList, TickListItem } from "../TickList"
+import { TickList, TickListItem } from "@outpost-platform/scout-components"
 import { theme } from "./../../themes/theme_generator"
 import { checkCookiesAccepted } from "./../../lib/cookies"
 
-import AlertStatic from "./../AlertStatic"
+import { AlertStatic } from "@outpost-platform/scout-components"
 
 const Body = styled(InheritedBody)`
   &:first-of-type {

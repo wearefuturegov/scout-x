@@ -27,7 +27,7 @@ import Layout, {
 
 import { orderFilters } from "./lib/order-filters"
 
-import Switch from "./components/Switch"
+import { Switch } from "@outpost-platform/scout-components"
 import SearchBar from "./components/SearchBar"
 import ServiceCard from "./components/ServiceCard"
 import Skeleton from "./components/ServiceCard/Skeleton"
@@ -41,9 +41,9 @@ import ListMapStatic from "./components/ListMapStatic"
 import Pagination from "./components/Pagination"
 import PinboardLink from "./components/PinboardLink"
 import { theme } from "./themes/theme_generator"
-import ClearFilters from "./components/ClearFilters"
+import { ClearFilters } from "@outpost-platform/scout-components"
 import { checkCookiesAccepted } from "./lib/cookies"
-import AlertStatic from "./components/AlertStatic"
+import { AlertStatic } from "@outpost-platform/scout-components"
 
 const App = ({ children, location, navigate }) => {
   const scrollTarget = useRef(null)

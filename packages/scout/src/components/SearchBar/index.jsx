@@ -6,9 +6,9 @@ import location from "./location.svg"
 import clearIcon from "./clear.svg"
 
 import AutocompletePlaceInput from "../AutocompletePlaceInput"
-import Spinner from "../Spinner"
+import { Spinner } from "@outpost-platform/scout-components"
 import { AlertContextConsumer } from "../../contexts/Alert"
-import Tooltip from "../Tooltip"
+import { Tooltip } from "@outpost-platform/scout-components"
 
 const Form = styled.form`
   @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {

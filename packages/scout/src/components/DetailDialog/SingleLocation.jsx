@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import Map from "./Map"
-import A from "../A"
+import { A } from "@outpost-platform/scout-components"
 
 import { checkCookiesAccepted } from "./../../lib/cookies"
 import MapStatic from "./MapStatic"

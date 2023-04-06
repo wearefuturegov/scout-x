@@ -2,9 +2,9 @@ import React from "react"
 
 import styled, { createGlobalStyle } from "styled-components"
 import Header from "../Header"
-import Footer from "../Footer"
-import Breadcrumbs from "../Breadcrumbs"
-import Prefooter from "../Prefooter"
+import { Footer } from "@outpost-platform/scout-components"
+import { Breadcrumbs } from "@outpost-platform/scout-components"
+import { Prefooter } from "@outpost-platform/scout-components"
 
 const GlobalStyle = createGlobalStyle`
   *{

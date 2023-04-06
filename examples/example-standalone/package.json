@@ -2,7 +2,7 @@
   "name": "example-standalone",
   "source": "index.html",
   "scripts": {
-    "dev": "parcel",
+    "dev": "parcel -p 3101",
     "build": "parcel build"
   },
   "browserslist": {

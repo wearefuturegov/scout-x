@@ -4,8 +4,8 @@ import styled from "styled-components"
 import { truncate } from "../../lib/utils"
 import upArrow from "./up-arrow.svg"
 import downArrow from "./down-arrow.svg"
-import A from "../A"
-import { TickList, TickListItem } from "../TickList"
+import { A } from "@outpost-platform/scout-components"
+import { TickList, TickListItem } from "@outpost-platform/scout-components"
 
 const Outer = styled.article`
   color: ${props => props.theme.styles.text};

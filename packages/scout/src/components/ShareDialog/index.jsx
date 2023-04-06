@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Dialog } from "@reach/dialog"
 import { CloseButton, Icon } from "../Dialog"
 import fetch from "isomorphic-unfetch"
-import { SolidButton } from "../Button"
+import { ButtonSolid } from "@outpost-platform/scout-components"
 import close from "./close.svg"
 import { AlertContextConsumer } from "../../contexts/Alert"
 
@@ -102,7 +102,7 @@ const ShareDialog = ({ pinboard, isOpen, handleDismiss, triggerAlert }) => {
             onChange={e => setEmail(e.target.value)}
           />
         </Field>
-        <SolidButton disabled={sending}>Send email</SolidButton>
+        <ButtonSolid disabled={sending}>Send email</ButtonSolid>
       </form>
     </StyledDialog>
   )
