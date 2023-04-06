@@ -5,9 +5,11 @@ import {
   Outer,
   Inner,
   MastheadArea,
+  Logo,
   LogoLink,
   ServiceNameArea,
   ServiceName,
+  PhaseTag,
 } from "./Header.styles"
 // @TODO cookie banner should be able to be placed anywhere make it part of the 'widgets' functionality
 import CookieBanner from "./../CookieBanner"

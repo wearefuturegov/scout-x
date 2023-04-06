@@ -7,7 +7,7 @@ import clearIcon from "./clear.svg"
 
 import AutocompletePlaceInput from "../AutocompletePlaceInput"
 import { Spinner } from "@outpost-platform/scout-components"
-import { AlertContextConsumer } from "../../contexts/Alert"
+// import { AlertContextConsumer } from "../../contexts/Alert"
 import { Tooltip } from "@outpost-platform/scout-components"
 
 const Form = styled.form`
@@ -197,10 +197,12 @@ const SearchBar = ({
   )
 }
 
-const WrappedInput = props => (
-  <AlertContextConsumer>
-    {context => <SearchBar triggerAlert={context.triggerAlert} {...props} />}
-  </AlertContextConsumer>
-)
+// const WrappedInput = props => (
+//   <AlertContextConsumer>
+//     {context => <SearchBar triggerAlert={context.triggerAlert} {...props} />}
+//   </AlertContextConsumer>
+// )
+
+const WrappedInput = props => <>TODO</>
 
 export default WrappedInput

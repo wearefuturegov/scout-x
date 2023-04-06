@@ -1,17 +1,12 @@
 import React, { useState, useEffect, useContext } from "react"
 import { AddButton, RemoveButton } from "./PinboardButton.styles"
 import useHover from "./useHover"
+import { useAlertApi, usePinboardApi, useSettingsState } from "./../../"
 
-const PinboardButton = ({
-  service,
-  location,
-  isInPinboard,
-  addToPinboard,
-  removeFromPinboard,
-  triggerAlert,
-  AppSettings,
-}) => {
-  const settings = useContext(AppSettings)
+const PinboardButton = ({ service, location }) => {
+  const { settings } = useSettingsState()
+  const { triggerAlert } = useAlertApi()
+  const { addToPinboard, isInPinboard, removeFromPinboard } = usePinboardApi()
   const isPinned = isInPinboard(service.id)
   const [justPinned, setJustPinned] = useState(false)
   const [ref, isHovered] = useHover()

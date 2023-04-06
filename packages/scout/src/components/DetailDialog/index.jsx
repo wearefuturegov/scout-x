@@ -11,8 +11,7 @@ import {
 import { Helmet } from "react-helmet"
 import "@reach/dialog/styles.css"
 
-import { A } from "@outpost-platform/scout-components"
-import PinboardButton from "../PinboardButton"
+import { A, PinboardButton } from "@outpost-platform/scout-components"
 import { Description } from "@outpost-platform/scout-components"
 import LocalOffer from "../LocalOffer"
 import { Loader } from "@outpost-platform/scout-components"

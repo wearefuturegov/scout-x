@@ -80,4 +80,13 @@ const PhaseTag = styled.strong`
   text-decoration: none !important;
 `
 
-export { Outer, Inner, MastheadArea, LogoLink, ServiceNameArea, ServiceName }
+export {
+  Outer,
+  Inner,
+  MastheadArea,
+  Logo,
+  LogoLink,
+  ServiceNameArea,
+  ServiceName,
+  PhaseTag,
+}

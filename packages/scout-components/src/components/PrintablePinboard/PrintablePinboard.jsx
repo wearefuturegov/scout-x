@@ -1,8 +1,12 @@
 import React, { useEffect } from "react"
-import { truncate } from "./../../utils/Truncate"
+import { truncate } from "./../../"
 import { GlobalStyle } from "./PrintablePinboard.styles"
 
-const PrintablePinboard = ({ pinboard }) => {
+import { usePinboardState } from "./../../"
+
+const PrintablePinboard = () => {
+  const { pinboard } = usePinboardState()
+
   useEffect(() => {
     if (pinboard.length > 0) {
       window.print()
