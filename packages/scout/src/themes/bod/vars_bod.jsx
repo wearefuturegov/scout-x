@@ -1,6 +1,6 @@
 import React from "react"
 import logo from "./logo.svg"
-import * as Styles from "../../components/Footer/Footer.styles"
+// import * as Styles from "../../components/Footer/Footer.styles"
 
 export const vars_bod = {
   slug: "bod",
@@ -54,17 +54,18 @@ export const vars_bod = {
     })(window, document, "script", "dataLayer", "GTM-NR4BWCK")
   },
   footerNav: (
-    <Styles.Nav>
-      <Styles.NavLink href="https://www.buckinghamshire.gov.uk/about/accessibility/">
-        Accessibility statement
-      </Styles.NavLink>
-      <Styles.NavLink href="https://www.buckinghamshire.gov.uk/your-council/privacy/privacy-policy/">
-        Privacy policy
-      </Styles.NavLink>
-      <Styles.NavLink href="https://www.buckinghamshire.gov.uk/about/cookies/">
-        Cookies
-      </Styles.NavLink>
-    </Styles.Nav>
+    <>TODO</>
+    // <Styles.Nav>
+    //   <Styles.NavLink href="https://www.buckinghamshire.gov.uk/about/accessibility/">
+    //     Accessibility statement
+    //   </Styles.NavLink>
+    //   <Styles.NavLink href="https://www.buckinghamshire.gov.uk/your-council/privacy/privacy-policy/">
+    //     Privacy policy
+    //   </Styles.NavLink>
+    //   <Styles.NavLink href="https://www.buckinghamshire.gov.uk/about/cookies/">
+    //     Cookies
+    //   </Styles.NavLink>
+    // </Styles.Nav>
   ),
   filterOrder: [
     {

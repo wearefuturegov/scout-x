@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-// import { CloseButton, Icon } from "../Dialog"
+import { DialogStyles } from "./../../"
 import fetch from "isomorphic-unfetch"
 import { ButtonSolid } from "@outpost-platform/scout-components"
 import close from "./close.svg"
@@ -13,6 +13,7 @@ const ShareDialog = ({ pinboard, isOpen, handleDismiss }) => {
 
   const [email, setEmail] = useState("")
 
+  const { CloseButton, Icon } = DialogStyles
   const handleSubmit = async e => {
     e.preventDefault()
     setSending(true)
@@ -39,9 +40,9 @@ const ShareDialog = ({ pinboard, isOpen, handleDismiss }) => {
       onDismiss={handleDismiss}
       aria-label="Share dialog"
     >
-      {/* <CloseButton onClick={handleDismiss}>
+      <CloseButton onClick={handleDismiss}>
         <Icon src={close} alt="Close dialog" />
-      </CloseButton> */}
+      </CloseButton>
 
       <Title>Share pinned services by email</Title>
       <form onSubmit={handleSubmit}>

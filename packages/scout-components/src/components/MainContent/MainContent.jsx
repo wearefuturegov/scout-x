@@ -1,14 +1,7 @@
 import React from "react"
-
-import { ResultsHeader, ResultsList, Count, NoResults } from "./../Layout"
-
-// import ServiceCard from "./../ServiceCard"
-// import Skeleton from "./../ServiceCard/Skeleton"
-// import ListMap from "./../ListMap"
-// import ListMapStatic from "./../ListMapStatic"
-// import PinboardLink from "./../PinboardLink"
+// import { Count } from "./../Layout"
 import { theme } from "./../../themes/theme_generator"
-// import { checkCookiesAccepted } from "./../../lib/cookies"
+
 import {
   AlertStatic,
   Switch,
@@ -17,33 +10,44 @@ import {
   ServiceCardSkeleton,
   PinboardLink,
   ListMapStatic,
-} from "@outpost-platform/scout-components"
-import { useServiceDataState } from "./../../contexts/ServiceData"
-import { useAppState, useAppStateApi } from "../../contexts/AppState"
-// import { useCookiesState } from "@outpost-platform/scout-components"
+  ListMap,
+  ResultsHeader,
+  ResultsList,
+  ResultsNone,
+  ResultsCount,
+} from "./../../"
 
-const MainContent = ({ scrollTarget, locationSearch }) => {
+const MainContent = ({
+  locationSearch,
+  locationNavigate,
+  isLoading,
+  error,
+  results,
+  pagination,
+  setNextPage,
+  setPreviousPage,
+  setMapVisible,
+  mapVisible,
+  page,
+  scrollTarget,
+}) => {
   // TODO cookies
   // const cookiesAccepted = checkCookiesAccepted()
-  const { isLoading, error, results, pagination } = useServiceDataState()
-  const { setPage } = useAppStateApi()
 
   // console.log(useServiceDataState())
   const cookiesAccepted = true
-  // TODO mapVisible
-  const mapVisible = true
   // still loading
   if (isLoading)
     return (
       <>
         <ResultsHeader>
-          <Count />
-          {/* <Switch
+          <ResultsCount />
+          <Switch
             id="map-toggle"
             checked={mapVisible}
             onChange={e => setMapVisible(e.target.checked)}
             label="Show map?"
-          /> */}
+          />
         </ResultsHeader>
         <ResultsList aria-live="polite">
           <ServiceCardSkeleton />
@@ -54,23 +58,26 @@ const MainContent = ({ scrollTarget, locationSearch }) => {
   // not loading and no results
   if (error)
     return (
-      <NoResults>
+      <ResultsNone>
         There was a problem fetching results. Please try again later.
-      </NoResults>
+      </ResultsNone>
     )
 
   // not loading, results exists but is empty array
   if (!error && results.length === 0)
-    return <NoResults>No results to show. Try widening your search.</NoResults>
+    return (
+      <ResultsNone>No results to show. Try widening your search.</ResultsNone>
+    )
 
   // not loading, results exist and has length that is not 0
   return (
     <>
       <ResultsHeader>
-        <Count>
+        <ResultsCount>
           <>
+            Page: {page} <br />
             Showing{" "}
-            {pagination.currentPage <= pagination.lastPage && (
+            {page <= pagination.lastPage && (
               <>
                 <strong>
                   {pagination.from} - {pagination.to} out of {pagination.total}
@@ -89,18 +96,22 @@ const MainContent = ({ scrollTarget, locationSearch }) => {
               </>
             )} */}
           </>
-        </Count>
-        {/* <Switch
+        </ResultsCount>
+        <Switch
           id="map-toggle"
           checked={mapVisible}
           onChange={e => setMapVisible(e.target.checked)}
           label="Show map?"
-        /> */}
+        />
       </ResultsHeader>
       {mapVisible &&
         (cookiesAccepted ? (
           <>
-            {/* <ListMap results={results} navigate={navigate} location={location} /> */}
+            <ListMap
+              results={results}
+              locationNavigate={locationNavigate}
+              locationSearch={locationSearch}
+            />
           </>
         ) : (
           <>
@@ -116,7 +127,9 @@ const MainContent = ({ scrollTarget, locationSearch }) => {
       </ResultsList>
       <Pagination
         {...pagination}
-        setPage={setPage}
+        currentPage={page}
+        setNextPage={setNextPage}
+        setPreviousPage={setPreviousPage}
         scrollTarget={scrollTarget}
       />
     </>

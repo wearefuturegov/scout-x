@@ -6,7 +6,7 @@ import queryString from "query-string"
 import { useNavigate } from "@reach/router"
 
 const useQuery = (key, initialValue, options = {}) => {
-  console.log("useQuery:", key, initialValue, options)
+  // console.log("useQuery:", key, initialValue, options)
   let { numerical, array, boolean } = options
 
   const navigate = useNavigate()

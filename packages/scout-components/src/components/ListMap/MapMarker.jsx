@@ -2,11 +2,11 @@ import React from "react"
 import { Marker } from "@react-google-maps/api"
 import marker from "./marker.svg"
 
-const ResultMarker = ({ service, location, navigate }) => (
+const MapMarker = ({ service, locationSearch, locationNavigate }) => (
   <Marker
     key={service.id}
     onClick={() => {
-      navigate(`/service/${service.id}${location.search}`)
+      locationNavigate(`/service/${service.id}${locationSearch}`)
     }}
     animation={window.google.maps.Animation.DROP}
     position={{
@@ -22,4 +22,4 @@ const ResultMarker = ({ service, location, navigate }) => (
   />
 )
 
-export default ResultMarker
+export default MapMarker

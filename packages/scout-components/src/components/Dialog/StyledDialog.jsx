@@ -10,8 +10,8 @@ import "@reach/dialog/styles.css"
 import close from "./close.svg"
 import { useDialogState } from "./../../"
 
-import { StyledDialogOverlay, StyledDialog } from "./Dialog.styles"
-import { Icon, CloseButton } from "./Dialog.Shared.styles"
+import { StyledDialogOverlay, StyledDialog } from "./StyledDialog.styles"
+import { DialogStyles } from "./../../"
 
 export default ({
   handleDismiss,
@@ -20,6 +20,7 @@ export default ({
   enableAutoFocus = true,
 }) => {
   const { DialogContainerRef } = useDialogState()
+  const { Icon, CloseButton } = DialogStyles
   console.log(DialogContainerRef)
   return (
     <DialogWrapper containerRef={DialogContainerRef}>

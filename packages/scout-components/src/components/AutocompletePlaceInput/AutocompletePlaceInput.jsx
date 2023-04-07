@@ -1,34 +1,18 @@
 import React, { useRef, useEffect } from "react"
-import styled from "styled-components"
 
-import { GoogleContextConsumer } from "../../contexts/Google/GoogleContext"
+import { useGoogleState } from "./../../"
+import { Input } from "./AutocompletePlaceInput.styles"
 
-const Input = styled.input`
-  font-size: 1rem;
-  padding: 10px;
-  border: 2px solid ${props => props.theme.styles.text};
-  display: block;
-  width: 100%;
-  height: 45px;
-  padding-right: 45px;
-  &:focus {
-    outline: 3px solid ${props => props.theme.styles.focus};
-  }
-  &::placeholder {
-    opacity: 0.3;
-  }
-`
-
-const AutocompletePlacesInput = ({
+const AutocompletePlaceInput = ({
   name,
   id,
   placeholder,
   onChange,
   value,
-  isLoaded,
   setLat,
   setLng,
 }) => {
+  let { mapReady } = useGoogleState()
   const inputRef = useRef(false)
 
   let autocomplete = null
@@ -41,7 +25,7 @@ const AutocompletePlacesInput = ({
   }
 
   useEffect(() => {
-    if (isLoaded) {
+    if (mapReady) {
       let input = inputRef.current
 
       // eslint-disable-next-line
@@ -61,7 +45,7 @@ const AutocompletePlacesInput = ({
         input.removeEventListener(handleEnterKey)
       }
     }
-  }, [isLoaded])
+  }, [mapReady])
 
   const handlePlaceChanged = () => {
     console.log("handle place change function running")
@@ -89,12 +73,4 @@ const AutocompletePlacesInput = ({
   )
 }
 
-const WrappedInput = props => (
-  <GoogleContextConsumer>
-    {context => (
-      <AutocompletePlacesInput isLoaded={context.isLoaded} {...props} />
-    )}
-  </GoogleContextConsumer>
-)
-
-export default WrappedInput
+export default AutocompletePlaceInput

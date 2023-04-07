@@ -18,22 +18,72 @@ const AppStateProvider = ({ children }) => {
   //   normalizeQueryString(search)
   // )
   const [page, setPage] = useQuery("page", 1, { numerical: true })
-  const [mapVisible, setMapVisible] = useQuery("map", false, { boolean: true })
+  const [mapVisible, setMapVisible] = useQuery("map", false, {
+    boolean: true,
+  })
 
-  console.log("page:", page)
+  const [keywords, setKeywords] = useQuery("keywords", "")
+
+  const [coverage, setCoverage] = useQuery("location", "")
+  const [lat, setLat] = useQuery("lat", "")
+  const [lng, setLng] = useQuery("lng", "")
+
+  const [collection, setCollection] = useQuery("collection", false)
+
+  const [categories, setCategories] = useQuery("categories", [], {
+    array: true,
+  })
+  const [ages, setAges] = useQuery("ages", [], { array: true })
+  const [needs, setNeeds] = useQuery("needs", [], { array: true })
+  const [accessibilities, setAccessibilities] = useQuery(
+    "accessibilities",
+    [],
+    {
+      array: true,
+    }
+  )
+  const [suitabilities, setSuitabilities] = useQuery("suitabilities", [], {
+    array: true,
+  })
+  const [days, setDays] = useQuery("days", [], { array: true })
+  const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
+  const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
+  const [only, setOnly] = useQuery("only", [], { array: true })
 
   const api = useMemo(
     () => ({
-      page,
-      setPage,
-      mapVisible,
+      setNextPage: () => {
+        setPage(page + 1)
+      },
+      setPreviousPage: () => {
+        setPage(page - 1)
+      },
       setMapVisible,
     }),
-    [page, setPage, mapVisible, setMapVisible]
+    [setPage, setMapVisible, page]
   )
 
   return (
-    <AppStateContext.Provider value={{ page, mapVisible }}>
+    <AppStateContext.Provider
+      value={{
+        page,
+        mapVisible,
+        keywords,
+        coverage,
+        lat,
+        lng,
+        collection,
+        categories,
+        ages,
+        needs,
+        accessibilities,
+        suitabilities,
+        days,
+        minAge,
+        maxAge,
+        only,
+      }}
+    >
       <AppStateApiContext.Provider value={api}>
         {children}
       </AppStateApiContext.Provider>

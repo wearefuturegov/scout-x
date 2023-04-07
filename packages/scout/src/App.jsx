@@ -2,44 +2,99 @@
 import React, { useState, useEffect, useRef, useContext } from "react"
 import { Helmet } from "react-helmet"
 
-import Layout from "./components/Layout"
-import MainContent from "./components/MainContent"
-import { LocationSearch } from "./contexts/AppState"
+import {
+  LocationNavigate,
+  LocationSearch,
+  useAppState,
+  useAppStateApi,
+} from "./contexts/AppState"
 
-const App = ({ children, location, navigate }) => {
+import { theme } from "./themes/theme_generator"
+import {
+  useSettingsState,
+  Layout,
+  MainContent,
+  SidebarContent,
+  SearchBar,
+} from "@outpost-platform/scout-components"
+
+import { useServiceDataState } from "./contexts/ServiceData"
+
+import { useFilterDataApi, useFilterDataState } from "./contexts/FilterData"
+
+const App = ({ children }) => {
   const scrollTarget = useRef(null)
   const locationSearch = LocationSearch()
+  const {
+    settings: { embedded },
+  } = useSettingsState()
+  const locationNavigate = LocationNavigate()
+  const { mapVisible, page, collection, keywords, coverage } = useAppState()
+  const filterDataApi = useFilterDataApi()
 
+  const { isLoading, error, results, pagination } = useServiceDataState()
+  const {
+    setNextPage,
+    setPreviousPage,
+    setMapVisible,
+    setCategories,
+    setCoverage,
+    setPage,
+    setKeywords,
+    setLat,
+    setLng,
+  } = useAppStateApi()
+  const { collectionOptions } = useFilterDataState()
+  const { setCollection } = useFilterDataApi()
   return (
     <>
-      {/* {embedded ? null : (
+      {embedded ? null : (
         <Helmet>
           <title>
             {page > 1 ? `Page ${page} ` : `${theme.tagline} `}| {theme.title} |{" "}
             {theme.organisation}
           </title>
         </Helmet>
-      )} */}
+      )}
+      {embedded ? "embedded" : "not embedded"}
       <Layout
+        embedded={embedded}
         scrollRef={scrollTarget}
-        headerComponents={<>headerComponents</>}
-        sidebarComponents={<>SidebarContent</>}
+        headerComponents={
+          <>
+            <SearchBar
+              keywords={keywords}
+              setKeywords={setKeywords}
+              coverage={coverage}
+              setCoverage={setCoverage}
+              setLat={setLat}
+              setLng={setLng}
+              setPage={setPage}
+            />
+          </>
+        }
+        sidebarComponents={
+          <>
+            <SidebarContent filterDataApi={filterDataApi} />
+          </>
+        }
         mainContentComponents={
           <>
             <MainContent
               locationSearch={locationSearch}
-              // loading={loading}
-              // results={results}
+              locationNavigate={locationNavigate}
+              isLoading={isLoading}
+              results={results}
+              error={error}
+              pagination={pagination}
               // keywords={keywords}
               // coverage={coverage}
-              // mapVisible={mapVisible}
-              // setMapVisible={setMapVisible}
-              // navigate={navigate}
-              // location={location}
-              // page={page}
-              // setPage={setPage}
+              mapVisible={mapVisible}
+              setMapVisible={setMapVisible}
+              setNextPage={setNextPage}
+              setPreviousPage={setPreviousPage}
+              page={page}
               scrollTarget={scrollTarget}
-              // pagination={pagination}
             />
           </>
         }

@@ -1,17 +1,9 @@
 import React, { useEffect } from "react"
 import { GoogleMap, useGoogleMap } from "@react-google-maps/api"
-import Marker from "./Marker"
-import { GoogleContextConsumer } from "../../contexts/Google/GoogleContext"
-import styled from "styled-components"
+import MapMarker from "./MapMarker"
+import { useGoogleState } from "./../../"
 
-const Outer = styled.section`
-  height: 450px;
-  border: 1px solid ${props => props.theme.styles.cardShadow};
-  margin-bottom: 25px;
-  .list-map {
-    height: 100%;
-  }
-`
+import { Outer } from "./ListMap.styles"
 
 const BoundSetter = ({ results }) => {
   const map = useGoogleMap()
@@ -30,7 +22,8 @@ const BoundSetter = ({ results }) => {
   return null
 }
 
-const ListMap = React.memo(({ results, isLoaded, location, navigate }) => {
+const ListMap = React.memo(({ results, locationSearch, locationNavigate }) => {
+  let { mapReady } = useGoogleState()
   let plottableResults = []
   results.map(result =>
     result.locations.map(location => {
@@ -48,7 +41,14 @@ const ListMap = React.memo(({ results, isLoaded, location, navigate }) => {
     })
   )
 
-  return isLoaded ? (
+  //TODO include cookie check in here so theres no accidents
+  // const cookiesAccepted = true
+  // if (!cookiesAccepted) {
+  //   return null
+  // }
+
+  console.log(plottableResults)
+  return mapReady ? (
     <Outer>
       <GoogleMap
         mapContainerClassName="list-map"
@@ -63,11 +63,11 @@ const ListMap = React.memo(({ results, isLoaded, location, navigate }) => {
         <BoundSetter results={plottableResults} />
         {plottableResults &&
           plottableResults.map(service => (
-            <Marker
+            <MapMarker
               key={service.id}
               service={service}
-              navigate={navigate}
-              location={location}
+              locationNavigate={locationNavigate}
+              locationSearch={locationSearch}
             />
           ))}
       </GoogleMap>
@@ -77,8 +77,4 @@ const ListMap = React.memo(({ results, isLoaded, location, navigate }) => {
   )
 })
 
-export default props => (
-  <GoogleContextConsumer>
-    {context => <ListMap isLoaded={context.isLoaded} {...props} />}
-  </GoogleContextConsumer>
-)
+export default ListMap

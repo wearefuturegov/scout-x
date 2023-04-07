@@ -7,6 +7,8 @@ const SettingsProvider = ({ value, children }) => {
   const defaultSettings = {
     targetElement: "#root",
     basePath: "",
+    embedded: false,
+    sidebar: true,
   }
   const initSettings = { ...defaultSettings, ...value }
 
@@ -19,7 +21,7 @@ const SettingsProvider = ({ value, children }) => {
     [settings]
   )
 
-  console.log("Current settings: ", settings)
+  // console.log("Current settings: ", settings)
 
   return (
     <SettingsStateContext.Provider value={settingsState}>

@@ -1,6 +1,6 @@
 import React from "react"
 import logo from "./logo.svg"
-import * as Styles from "../../components/Footer/Footer.styles"
+// import * as Styles from "../../components/Footer/Footer.styles"
 
 export const vars_bfis = {
   slug: "bfis",
@@ -76,23 +76,24 @@ export const vars_bfis = {
     })()
   },
   footerNav: (
-    <Styles.Nav>
-      <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/about/">
-        About the Buckinghamshire Family Information Service
-      </Styles.NavLink>
-      <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/accessibility-statement-/">
-        Accessibility statement
-      </Styles.NavLink>
-      <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/privacy-policy/">
-        Privacy policy
-      </Styles.NavLink>
-      <Styles.NavLink href="https://www.buckinghamshire.gov.uk/about/cookies/">
-        Cookies
-      </Styles.NavLink>
-      <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/publiccustomer-disclaimer/">
-        Public and customer disclaimer
-      </Styles.NavLink>
-    </Styles.Nav>
+    <>TODO</>
+    // <Styles.Nav>
+    //   <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/about/">
+    //     About the Buckinghamshire Family Information Service
+    //   </Styles.NavLink>
+    //   <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/accessibility-statement-/">
+    //     Accessibility statement
+    //   </Styles.NavLink>
+    //   <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/privacy-policy/">
+    //     Privacy policy
+    //   </Styles.NavLink>
+    //   <Styles.NavLink href="https://www.buckinghamshire.gov.uk/about/cookies/">
+    //     Cookies
+    //   </Styles.NavLink>
+    //   <Styles.NavLink href="https://familyinfo.buckinghamshire.gov.uk/publiccustomer-disclaimer/">
+    //     Public and customer disclaimer
+    //   </Styles.NavLink>
+    // </Styles.Nav>
   ),
   filterOrder: [
     {

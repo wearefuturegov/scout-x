@@ -1,28 +1,31 @@
 import React, { useState, useMemo, useContext } from "react"
-import { useLoadScript } from "@react-google-maps/api"
-// import { useCookiesApi } from "./../../"
+import { useLoadScript, LoadScript } from "@react-google-maps/api"
+
+import { useAlertApi } from "./../../"
 
 const GoogleStateContext = React.createContext(null)
 const libs = ["places"]
 // Export the provider, one for the state and another for the API to save on re-renders
 const GoogleProvider = ({ children }) => {
-  const [google, setGoogle] = useState([])
-  // const { cookiesAccepted } = useCookiesApi()
-
-  const cookiesAccepted = true
-
-  const { isLoaded } = useLoadScript({
+  const { triggerAlert } = useAlertApi()
+  const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_CLIENT_KEY,
     libraries: libs,
     preventGoogleFontsLoading: false,
   })
 
+  if (loadError) {
+    triggerAlert("Error loading google maps", {
+      linkText: "See pinboard",
+      link: `${settings.basePath || ""}/pinboard${location.search}`,
+    })
+  }
+
   const googleState = useMemo(
     () => ({
-      google,
-      isLoaded: cookiesAccepted && isLoaded,
+      mapReady: isLoaded,
     }),
-    [setGoogle]
+    [isLoaded]
   )
 
   return (

@@ -32,19 +32,19 @@ export function RootProvider(props) {
       <ThemeProvider theme={theme}>
         <StyleSheetManager target={settings.styleSlot}>
           <PinboardProvider>
-            <GoogleProvider>
-              <DialogProvider>
-                <LocationProvider history={history}>
-                  <AlertProvider>
+            <AlertProvider>
+              <GoogleProvider>
+                <DialogProvider>
+                  <LocationProvider history={history}>
                     <AppStateProvider>
                       <ServiceDataProvider>
                         <FilterDataProvider>{children}</FilterDataProvider>
                       </ServiceDataProvider>
                     </AppStateProvider>
-                  </AlertProvider>
-                </LocationProvider>
-              </DialogProvider>
-            </GoogleProvider>
+                  </LocationProvider>
+                </DialogProvider>
+              </GoogleProvider>
+            </AlertProvider>
           </PinboardProvider>
         </StyleSheetManager>
       </ThemeProvider>

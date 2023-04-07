@@ -4,7 +4,13 @@ import { Button } from "../../"
 
 import { SecondaryButton, ResultsFooter } from "./Pagination.styles"
 
-const Pagination = ({ totalPages, currentPage, setPage, scrollTarget }) => {
+const Pagination = ({
+  totalPages,
+  currentPage,
+  setNextPage,
+  setPreviousPage,
+  scrollTarget,
+}) => {
   return (
     totalPages > 0 && (
       <ResultsFooter>
@@ -12,20 +18,20 @@ const Pagination = ({ totalPages, currentPage, setPage, scrollTarget }) => {
           <Button
             onClick={() => {
               scrollTarget.current.scrollIntoView()
-              setPage(currentPage + 1)
+              setNextPage()
             }}
           >
-            Next page
+            Next page (to page {currentPage + 1})
           </Button>
         )}
         {currentPage > 1 && (
           <SecondaryButton
             onClick={() => {
               scrollTarget.current.scrollIntoView()
-              setPage(currentPage - 1)
+              setPreviousPage()
             }}
           >
-            Previous page
+            Previous page (to page {currentPage - 1})
           </SecondaryButton>
         )}
       </ResultsFooter>

@@ -30,6 +30,7 @@ const ServiceDataProvider = ({ children }) => {
 
     getServiceData(locationSearch)
       .then(data => {
+        // TODO something weird happening with pagination
         const numberOfResults = data.totalElements
         const totalPages = data.totalPages
         const currentPage = data.number
@@ -65,7 +66,7 @@ const ServiceDataProvider = ({ children }) => {
       })
   }
 
-  // whenever the appState changes fetch the data again
+  // whenever the appState: page changes fetch the data again
   useEffect(() => {
     fetchData()
   }, [appState])
