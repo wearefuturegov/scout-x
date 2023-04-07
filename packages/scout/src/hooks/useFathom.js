@@ -3,6 +3,7 @@ import { useLocation } from "@reach/router"
 import ReactGA from "react-ga"
 import { checkCookiesAccepted } from "../lib/cookies"
 
+// TODO re-implement this
 const useFathom = () => {
   const location = useLocation()
   const cookiesAccepted = checkCookiesAccepted()

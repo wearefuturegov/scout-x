@@ -8,8 +8,6 @@ const PinboardLink = ({ locationSearch }) => {
   const { pinboard } = usePinboardState()
 
   const url = `${settings.basePath || ""}/pinboard${locationSearch}`
-
-  console.log(settings)
   return pinboard.length > 0 ? (
     <StyledLink to={url}>
       See pinned services

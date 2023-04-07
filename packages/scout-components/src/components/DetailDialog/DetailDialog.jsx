@@ -38,7 +38,6 @@ const DetailDialog = ({ serviceId, locationSearch, locationNavigate }) => {
     navigate(`../../${locationSearch}`)
   }
 
-  console.log(serviceId)
   //TODO put this somewher ebettwe
   useEffect(() => {
     // fetch(`${process.env.REACT_APP_API_HOST}/services/${serviceId}`)
@@ -51,7 +50,6 @@ const DetailDialog = ({ serviceId, locationSearch, locationNavigate }) => {
 
   // handle 404
   if (service.error) navigate(`../../`)
-  console.log(service)
   if (service.name) {
     return (
       <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>

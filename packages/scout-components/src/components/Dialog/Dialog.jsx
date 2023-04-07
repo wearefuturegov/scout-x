@@ -13,8 +13,6 @@ import { useDialogState } from "./../../"
 import { StyledDialogOverlay, StyledDialog } from "./StyledDialog.styles"
 import { DialogStyles } from "./../../"
 
-import * as Test from "./../../"
-
 const Dialog = ({
   handleDismiss,
   dialogTitle,
@@ -22,9 +20,7 @@ const Dialog = ({
   enableAutoFocus = true,
 }) => {
   const { DialogContainerRef } = useDialogState()
-  console.log(Test.DialogStyles)
   const { Icon, CloseButton } = DialogStyles
-  console.log(DialogContainerRef)
   return (
     <DialogWrapper containerRef={DialogContainerRef}>
       <DialogInner

@@ -92,8 +92,7 @@ const SearchBar = ({
       </Field>
       <Field>
         <Label htmlFor="location">Where</Label>
-        {/* // TODO */}
-        {/* <AutocompletePlaceInput
+        <AutocompletePlaceInput
           name="location"
           id="location"
           placeholder="Town or postcode"
@@ -101,7 +100,7 @@ const SearchBar = ({
           onChange={value => setLocalCoverage(value)}
           setLat={setLocalLat}
           setLng={setLocalLng}
-        /> */}
+        />
         {navigator.geolocation && finding ? (
           <Spinner />
         ) : (
