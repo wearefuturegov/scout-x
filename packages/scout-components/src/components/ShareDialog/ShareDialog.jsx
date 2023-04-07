@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { DialogStyles } from "./../../"
 import fetch from "isomorphic-unfetch"
-import { ButtonSolid } from "@outpost-platform/scout-components"
+import { ButtonSolid } from "./../../"
 import close from "./close.svg"
 import { useAlertApi } from "./../../"
 import { StyledDialog, Title, Field, Label, Input } from "./ShareDialog.styles"

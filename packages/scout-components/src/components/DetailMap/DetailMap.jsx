@@ -1,10 +1,11 @@
 import React from "react"
 import { GoogleMap, Marker } from "@react-google-maps/api"
-import { GoogleContextConsumer } from "../../contexts/Google/GoogleContext"
-import marker from "../ListMap/marker.svg"
+import marker from "./../MapMarker/marker.svg"
+import { useGoogleState } from "./../../"
 
-const Map = React.memo(({ latitude, longitude, isLoaded, offCenter }) => {
-  return isLoaded ? (
+const DetailMap = React.memo(({ latitude, longitude, isLoaded, offCenter }) => {
+  let { mapReady } = useGoogleState()
+  return mapReady ? (
     <GoogleMap
       mapContainerClassName="map"
       options={{
@@ -39,8 +40,4 @@ const Map = React.memo(({ latitude, longitude, isLoaded, offCenter }) => {
   )
 })
 
-export default props => (
-  <GoogleContextConsumer>
-    {context => <Map isLoaded={context.isLoaded} {...props} />}
-  </GoogleContextConsumer>
-)
+export default DetailMap

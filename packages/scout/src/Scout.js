@@ -9,6 +9,7 @@ import App from "./App"
 import {
   PrintablePinboard,
   PinboardDialog,
+  DetailDialog,
 } from "@outpost-platform/scout-components"
 
 import { RootProvider } from "./contexts/RootProvider"
@@ -23,7 +24,7 @@ export function Scout(props) {
       <RootProvider {...initialProps}>
         <Router {...routerProps}>
           <App path="/" default>
-            {/* <DetailDialog path="service/:serviceId" /> */}
+            <DetailDialog path="service/:serviceId" />
             <PinboardDialog path="pinboard" />
           </App>
           <PrintablePinboard path="print/" />

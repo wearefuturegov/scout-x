@@ -1,2 +1,2 @@
-export { default } from "./StyledDialog"
-export * as DialogStyles from "./Dialog.styles"
+export { default } from "./Dialog"
+export { default as DialogStyles } from "./Dialog.styles"

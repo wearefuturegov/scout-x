@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { GoogleMap, useGoogleMap } from "@react-google-maps/api"
-import MapMarker from "./MapMarker"
-import { useGoogleState } from "./../../"
+
+import { useGoogleState, MapMarker } from "./../../"
 
 import { Outer } from "./ListMap.styles"
 

@@ -1,6 +1,6 @@
 import React from "react"
 import { PageHeader, PageHeaderInner, PageTitle } from "./PageHeader.styles"
-import { Breadcrumbs } from "@outpost-platform/scout-components"
+import { Breadcrumbs } from "./../../"
 
 const Layout = ({ headerComponents }) => (
   <PageHeader role="search">

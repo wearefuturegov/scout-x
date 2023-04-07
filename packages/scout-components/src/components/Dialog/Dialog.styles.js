@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import "@reach/dialog/styles.css"
 
 const Icon = styled.img`
   width: 30px;
@@ -50,4 +49,4 @@ const Title = styled.h1`
   }
 `
 
-export { Icon, CloseButton, Header, Body, Title }
+export default { Icon, CloseButton, Header, Body, Title }

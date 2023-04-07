@@ -59,3 +59,11 @@ export { default as SidebarContent } from "./SidebarContent"
 
 export { default as SearchBar } from "./SearchBar"
 export { default as AutocompletePlaceInput } from "./AutocompletePlaceInput"
+export { default as DetailDialog } from "./DetailDialog"
+export { default as LocationAccordion } from "./LocationAccordion"
+
+export { default as MapMarker } from "./MapMarker"
+
+export { default as DetailMap } from "./DetailMap"
+export { default as DetailMapStatic } from "./DetailMapStatic"
+export { default as SingleLocation } from "./SingleLocation"

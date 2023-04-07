@@ -1,7 +1,2 @@
-import styled from "styled-components"
-
-const TickList = styled.ul`
-  list-style: none;
-`
-
+import { TickList } from "./TickList.styles"
 export default TickList
