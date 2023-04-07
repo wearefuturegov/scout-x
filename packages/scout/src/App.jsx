@@ -21,7 +21,7 @@ import {
 import { useServiceDataState } from "./contexts/ServiceData"
 
 import { useFilterDataApi, useFilterDataState } from "./contexts/FilterData"
-
+import Debugger from "./components/Debugger"
 const App = ({ children }) => {
   const scrollTarget = useRef(null)
   const locationSearch = LocationSearch()
@@ -57,6 +57,8 @@ const App = ({ children }) => {
         </Helmet>
       )}
       {embedded ? "embedded" : "not embedded"}
+
+      <Debugger />
       <Layout
         embedded={embedded}
         scrollRef={scrollTarget}

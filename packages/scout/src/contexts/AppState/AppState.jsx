@@ -52,11 +52,16 @@ const AppStateProvider = ({ children }) => {
 
   const api = useMemo(
     () => ({
+      setPage,
       setNextPage: () => {
-        setPage(page + 1)
+        let newPageNumber = page + 1
+        if (newPageNumber !== page || !(newPageNumber < 1))
+          setPage(newPageNumber)
       },
       setPreviousPage: () => {
-        setPage(page - 1)
+        let newPageNumber = page - 1
+        if (newPageNumber !== page || !(newPageNumber < 1))
+          setPage(newPageNumber)
       },
       setMapVisible,
     }),

@@ -69,7 +69,11 @@ const ServiceDataProvider = ({ children }) => {
   // whenever the appState: page changes fetch the data again
   useEffect(() => {
     fetchData()
-  }, [appState])
+
+    if (serviceData.pagination.currentPage !== appState.page) {
+      console.log(serviceData.pagination.currentPage, appState.page)
+    }
+  }, [appState.page])
 
   return (
     <ServiceDataStateContext.Provider value={serviceData}>
