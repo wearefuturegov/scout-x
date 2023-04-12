@@ -1,37 +1,40 @@
-import React, { useState, useEffect } from "react"
-import styled from "styled-components"
 import fetch from "isomorphic-unfetch"
+import React, { useEffect, useState } from "react"
 
 import "@reach/dialog/styles.css"
 
 import {
-  LocationAccordion,
-  SingleLocation,
-  Loader,
+  AlertStatic,
   Description,
   Dialog,
-  AlertStatic,
+  Loader,
+  LocationAccordion,
+  SingleLocation,
 } from "./../../"
 
 import { theme } from "./../../themes/theme_generator"
 
-import DetailDialogHelmet from "./DetailDialogHelmet"
-import DetailDialogBanners from "./DetailDialogBanners"
-import DetailDialogHeader from "./DetailDialogHeader"
-import DetailDialogContacts from "./DetailDialogContacts"
-import DetailDialogLocalOffer from "./DetailDialogLocalOffer"
 import DetailDialogAccessibilities from "./DetailDialogAccessibilities"
-import DetailDialogSuitabilities from "./DetailDialogSuitabilities"
-import DetailDialogRegularSchedule from "./DetailDialogRegularSchedule"
-import DetailDialogCategories from "./DetailDialogCategories"
-import DetailDialogFooter from "./DetailDialogFooter"
 import DetailDialogActions from "./DetailDialogActions"
+import DetailDialogBanners from "./DetailDialogBanners"
+import DetailDialogCategories from "./DetailDialogCategories"
+import DetailDialogContacts from "./DetailDialogContacts"
+import DetailDialogFooter from "./DetailDialogFooter"
+import DetailDialogHeader from "./DetailDialogHeader"
+import DetailDialogHelmet from "./DetailDialogHelmet"
+import DetailDialogLocalOffer from "./DetailDialogLocalOffer"
+import DetailDialogRegularSchedule from "./DetailDialogRegularSchedule"
+import DetailDialogSuitabilities from "./DetailDialogSuitabilities"
 // import DetailDialogGoodToKnow from "./DetailDialogGoodToKnow"
 
+import { useNavigate, useParams } from "react-router-dom"
 import { Body } from "./DetailDialog.styles"
 
-const DetailDialog = ({ serviceId, locationSearch, locationNavigate }) => {
+const DetailDialog = ({ locationSearch, locationNavigate }) => {
+  console.log("DetailDialog")
   const [service, setService] = useState(false)
+  let { serviceId } = useParams()
+  const navigate = useNavigate()
   // TODO cookies
   const cookiesAccepted = true
   const handleDismiss = () => {

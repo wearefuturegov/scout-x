@@ -1,15 +1,15 @@
-import { useSettingsState } from "@outpost-platform/scout-components"
-import React from "react"
 import {
-  LocationNavigate,
-  useAppState,
-  LocationSearch,
-  useAppStateApi,
-} from "../../contexts/AppState"
+  Button,
+  useSettingsState,
+  Switch,
+  SearchBar,
+} from "@outpost-platform/scout-components"
+import React from "react"
 import styled from "styled-components"
-import { useServiceDataState } from "../../contexts/ServiceData"
-import { Button } from "@outpost-platform/scout-components"
+import { useAppState, useAppStateApi } from "../../contexts/AppState"
+// import { useServiceDataState } from "../../contexts/ServiceData"
 
+import { useLocation } from "react-router-dom"
 const Prebug = styled.div`
   margin: 1rem;
   display: flex;
@@ -35,40 +35,55 @@ const SmolButton = styled(Button)`
 `
 
 const Debugger = ({}) => {
+  let location = useLocation()
+  console.log(location)
+
   // App settings
   const { settings } = useSettingsState()
 
-  // App state
-  const {
-    page,
-    mapVisible,
-    keywords,
-    coverage,
-    lat,
-    lng,
-    collection,
-    categories,
-    ages,
-    needs,
-    accessibilities,
-    suitabilities,
-    days,
-    minAge,
-    maxAge,
-    only,
-  } = useAppState()
-  const {
-    setPage,
-    setNextPage,
-    setPreviousPage,
-    setMapVisible,
-  } = useAppStateApi()
-  const locationNavigate = LocationNavigate()
-  const locationSearch = LocationSearch()
+  // // App state
+  // const {
+  //   page,
+  //   mapVisible,
+  //   keywords,
+  //   coverage,
+  //   lat,
+  //   lng,
+  //   collection,
+  //   categories,
+  //   ages,
+  //   needs,
+  //   accessibilities,
+  //   suitabilities,
+  //   days,
+  //   minAge,
+  //   maxAge,
+  //   only,
+  // } = useAppState()
+  // const {
+  //   setPage,
+  //   setNextPage,
+  //   setPreviousPage,
+  //   setMapVisible,
+  // } = useAppStateApi()
+  // const locationNavigate = LocationNavigate()
+  // const locationSearch = LocationSearch()
 
   // Service data from Outpost API
-  const { isLoading, pagination, results, error } = useServiceDataState()
-  console.dir(settings)
+  // const { isLoading, pagination, results, error } = useServiceDataState()
+  // console.dir(settings)
+
+  const { setSlider, setMapVisible } = useAppStateApi()
+  const { slider, mapVisible } = useAppState()
+
+  // console.log(filtersCollection)
+
+  const handleChange = e => {
+    console.log("handleChange")
+    let value = e.target.value
+    setSlider(value)
+  }
+
   return (
     <Prebug>
       <PrebugSection>
@@ -78,7 +93,8 @@ const Debugger = ({}) => {
             let [key, value] = sett
             return (
               <span key={key}>
-                <strong>{key}:</strong> {value}
+                <strong>{key}:</strong>{" "}
+                {!["shadowRoot", "styleSlot"].includes(key) && value}
                 <br />
               </span>
             )
@@ -87,7 +103,26 @@ const Debugger = ({}) => {
       </PrebugSection>
       <PrebugSection>
         <h1>App State</h1>
-        <pre>
+
+        <Switch
+          id="map-toggle"
+          checked={mapVisible}
+          onChange={e => setMapVisible(e.target.checked)}
+          label="Show map?"
+        />
+
+        <SearchBar useAppState={useAppState} useAppStateApi={useAppStateApi} />
+        <div>
+          <label htmlFor="volume">Slider {slider}</label>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={slider}
+            onChange={value => handleChange(value)}
+          />
+        </div>
+        {/* <pre>
           <strong>locationSearch:</strong> {locationSearch} <br />
           <strong>page:</strong> {page}
           <br />
@@ -120,9 +155,9 @@ const Debugger = ({}) => {
           <strong>maxAge:</strong> {maxAge}
           <br />
           <strong>only:</strong> {only}
-        </pre>
+        </pre> */}
         <h2>App state API</h2>
-        <pre>
+        {/* <pre>
           <strong>setMapVisible:</strong>
           <br />
           <SmolButton onClick={() => setPage(1)}>1</SmolButton>
@@ -150,10 +185,10 @@ const Debugger = ({}) => {
             MapNotVisible
           </SmolButton>
           <br />
-        </pre>
+        </pre> */}
       </PrebugSection>
 
-      <PrebugSection>
+      {/* <PrebugSection>
         <h1>Service Data</h1>
         <strong>isLoading:</strong> {isLoading ? "true" : "false"}
         <br />
@@ -190,7 +225,7 @@ const Debugger = ({}) => {
         <h1>Filter Data</h1>
       </PrebugSection>
 
-      <PrebugSection></PrebugSection>
+      <PrebugSection></PrebugSection> */}
     </Prebug>
   )
 }

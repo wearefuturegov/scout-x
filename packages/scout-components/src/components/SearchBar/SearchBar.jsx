@@ -1,10 +1,17 @@
 import React, { useState } from "react"
 
 import search from "./search.svg"
-import location from "./location.svg"
+import locationImage from "./location.svg"
 import clearIcon from "./clear.svg"
 
-import { useAlertApi, Tooltip, Spinner, AutocompletePlaceInput } from "./../../"
+import {
+  useAlertApi,
+  Tooltip,
+  Spinner,
+  AutocompletePlaceInput,
+  useAppState,
+  useAppStateApi,
+} from "./../../"
 
 import {
   Form,
@@ -15,21 +22,16 @@ import {
   Button,
 } from "./SearchBar.styles"
 
-const SearchBar = ({
-  keywords,
-  setKeywords,
-  coverage,
-  setCoverage,
-  setLat,
-  setLng,
-  setPage,
-}) => {
+const SearchBar = ({ useAppStateApi, useAppState }) => {
+  const { setKeywords, setPage, setLocation, setLat, setLng } = useAppStateApi()
+  const { keywords, location, lat, lng } = useAppState()
+
   const [finding, setFinding] = useState(false)
 
   const [localKeywords, setLocalKeywords] = useState(keywords)
-  const [localCoverage, setLocalCoverage] = useState(coverage)
-  const [localLat, setLocalLat] = useState("")
-  const [localLng, setLocalLng] = useState("")
+  const [localLocation, setLocalLocation] = useState(location)
+  const [localLat, setLocalLat] = useState(lat)
+  const [localLng, setLocalLng] = useState(lng)
 
   const { triggerAlert } = useAlertApi()
 
@@ -41,7 +43,7 @@ const SearchBar = ({
   const handleSubmit = e => {
     e && e.preventDefault()
     setKeywords(localKeywords)
-    setCoverage(localCoverage)
+    setLocation(localLocation)
     setLat(localLat)
     setLng(localLng)
     setFinding(false)
@@ -50,6 +52,7 @@ const SearchBar = ({
 
   const geolocate = () => {
     setFinding(true)
+    // @TODO fix
     navigator.geolocation.getCurrentPosition(
       async position => {
         let { latitude, longitude } = position.coords
@@ -57,7 +60,7 @@ const SearchBar = ({
           `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
         )
         let { address } = await res.json()
-        setLocalCoverage(address.postcode)
+        setLocalLocation(address.postcode)
         setLocalLat(latitude)
         setLocalLng(longitude)
         setFinding(false)
@@ -79,7 +82,7 @@ const SearchBar = ({
           name="query"
           id="query"
           placeholder="Enter a search.."
-          value={localKeywords}
+          value={localKeywords ? localKeywords : ""}
           onChange={e => setLocalKeywords(e.target.value)}
         />
         {localKeywords && (
@@ -96,8 +99,8 @@ const SearchBar = ({
           name="location"
           id="location"
           placeholder="Town or postcode"
-          value={localCoverage}
-          onChange={value => setLocalCoverage(value)}
+          value={localLocation}
+          onChange={value => setLocalLocation(value)}
           setLat={setLocalLat}
           setLng={setLocalLng}
         />
@@ -106,7 +109,7 @@ const SearchBar = ({
         ) : (
           <Tooltip label="Use current location">
             <GeolocateButton onClick={geolocate} type="button">
-              <img src={location} alt="Use current location" />
+              <img src={locationImage} alt="Use current location" />
             </GeolocateButton>
           </Tooltip>
         )}

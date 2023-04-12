@@ -1,0 +1,25 @@
+# Tasks
+
+- [ ] get scout embed dialog click working
+- [ ] include a utility in scout / package to deal with the embed logic for users
+- [ ] document setup process
+- [ ] insert theme into scout
+- [ ] setup example theme site
+- [ ] tests https://testing-library.com/docs/example-reach-router/
+- [ ] docker
+- [ ] documentation
+- [ ] publish to npm
+- [ ] get stories working in scout-components so we can add tests etc
+- [ ] sort out contexts in scout (specifically passing them to PrintablePinboard, PinboarButton)
+- [ ] create components out of the icons and standardise them (they're all the same image duplicated rn)
+- [ ] add namespacing to node envs [see here](https://parceljs.org/features/node-emulation/#disabling-these-features)
+- [ ] sort scout exports
+- [ ] standardise button styles accross site
+- [ ] make sure scout-components all import from the root file
+- [ ] make sure scout imports from scout-components all inline
+- [ ] some components are purely styles - should keep up .styles.js process too
+- [ ] write unit tests for each component and utilities
+- [ ] dont import theme into comonents pass as props
+- [ ] get cookies working
+- [ ] get filters and data contexts working correctly
+- [ ] scroll lock on spa view

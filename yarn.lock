@@ -2876,7 +2876,7 @@ __metadata:
     "@parcel/resolver-default": ^2.8.3
     "@reach/alert": ^0.10.5
     "@reach/dialog": ^0.18.0
-    "@reach/router": ^1.3.4
+    "@reach/router": latest
     "@reach/tooltip": ^0.10.5
     "@react-google-maps/api": ^2.18.1
     "@sendgrid/mail": ^7.7.0
@@ -2885,6 +2885,7 @@ __metadata:
     cypress: ^10.11.0
     cypress-axe: ^1.4.0
     dotenv: ^8.6.0
+    history: ^5.3.0
     husky: ^4.3.8
     isomorphic-unfetch: ^3.1.0
     jest: ^24.9.0
@@ -2904,6 +2905,8 @@ __metadata:
     react-helmet: ^6.1.0
     react-is: ^18.2.0
     react-remove-scroll: ^2.5.5
+    react-router: 6
+    react-router-dom: 6
     react-scripts: 3.4.1
     styled-components: ^5.3.9
     webpack: 4.42.0
@@ -3749,7 +3752,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach/router@npm:^1.3.4":
+"@reach/router@npm:^1.3.4, @reach/router@npm:latest":
   version: 1.3.4
   resolution: "@reach/router@npm:1.3.4"
   dependencies:
@@ -3846,6 +3849,13 @@ __metadata:
   version: 2.16.1
   resolution: "@react-google-maps/marker-clusterer@npm:2.16.1"
   checksum: 2b65cbe34b1e52c90bb0b175774e4296896064749b05a53344b21fd8c029d35228e0ea338bcefec97cc511505cc8b9b8ba579862b3ddd915c5f7260697509e27
+  languageName: node
+  linkType: hard
+
+"@remix-run/router@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@remix-run/router@npm:1.5.0"
+  checksum: 9c510c174af1553edd1f039ba16e7e3d34e04d53b3bac18814660e31cd0c48297ea4291ff86d0736b560123ebc63ecb62fa525829181d16a8dad15270d6672d7
   languageName: node
   linkType: hard
 
@@ -12378,6 +12388,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"history@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "history@npm:5.3.0"
+  dependencies:
+    "@babel/runtime": ^7.7.6
+  checksum: d73c35df49d19ac172f9547d30a21a26793e83f16a78386d99583b5bf1429cc980799fcf1827eb215d31816a6600684fba9686ce78104e23bd89ec239e7c726f
+  languageName: node
+  linkType: hard
+
 "hmac-drbg@npm:^1.0.1":
   version: 1.0.1
   resolution: "hmac-drbg@npm:1.0.1"
@@ -19090,6 +19109,30 @@ __metadata:
     react: ^16.0.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
   checksum: 55f4abad7f7523d16b081b5ab20f75c539a54a08253ce7e9df473d48386f42ceca6c31584ba9fa26e3528b498ef6685ec77fb9a22cffc97df05fb326d0bf1b26
+  languageName: node
+  linkType: hard
+
+"react-router-dom@npm:6":
+  version: 6.10.0
+  resolution: "react-router-dom@npm:6.10.0"
+  dependencies:
+    "@remix-run/router": 1.5.0
+    react-router: 6.10.0
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: d048d8cc66e5aec782bd675097d6bf0e5f867f3f0539bff9acdc4a314b5e0e34093944762960ca0977a54c6255272edd262231242b18c4e260d68df6b5288464
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6, react-router@npm:6.10.0":
+  version: 6.10.0
+  resolution: "react-router@npm:6.10.0"
+  dependencies:
+    "@remix-run/router": 1.5.0
+  peerDependencies:
+    react: ">=16.8"
+  checksum: c9fce46147c04257d7d6fa1f5bbfac96c5fdd0b15f26918bd12b2e5fe9143977c5a4452272f9b85795a22e29ec105a60d0bbe036118efc52b383d163cd8829ab
   languageName: node
   linkType: hard
 

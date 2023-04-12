@@ -2,15 +2,14 @@ import React from "react"
 
 // Contexts
 import {
+  AlertProvider,
+  DialogProvider,
+  GoogleProvider,
   PinboardProvider,
   SettingsProvider,
-  AlertProvider,
-  GoogleProvider,
-  DialogProvider,
 } from "@outpost-platform/scout-components"
 
-import { ServiceDataProvider } from "./ServiceData"
-import { FilterDataProvider } from "./FilterData"
+import { BrowserRouter } from "react-router-dom"
 
 // TODO cookie provider
 
@@ -19,35 +18,39 @@ import { StyleSheetManager, ThemeProvider } from "styled-components"
 import { theme } from "../themes/theme_generator"
 
 // Routing, Nav and History things
-import { LocationProvider, Router } from "@reach/router"
-import { setScoutHistorySource } from "./../lib/history"
 import { AppStateProvider } from "./AppState"
+
+import History from "../components/History"
 
 /** Provide values for all the context providers. */
 export function RootProvider(props) {
-  const { children, settings, routerProps } = props
-  const history = setScoutHistorySource(settings.embedded)
+  const { children, settings } = props
   return (
     <SettingsProvider value={settings}>
-      <ThemeProvider theme={theme}>
-        <StyleSheetManager target={settings.styleSlot}>
-          <PinboardProvider>
-            <AlertProvider>
-              <GoogleProvider>
-                <DialogProvider>
-                  <LocationProvider history={history}>
-                    <AppStateProvider>
-                      <ServiceDataProvider>
-                        <FilterDataProvider>{children}</FilterDataProvider>
-                      </ServiceDataProvider>
-                    </AppStateProvider>
-                  </LocationProvider>
-                </DialogProvider>
-              </GoogleProvider>
-            </AlertProvider>
-          </PinboardProvider>
-        </StyleSheetManager>
-      </ThemeProvider>
+      <History>
+        <AppStateProvider>
+          <ThemeProvider theme={theme}>
+            <StyleSheetManager target={settings.styleSlot}>
+              <PinboardProvider>
+                <AlertProvider>
+                  <GoogleProvider>
+                    <DialogProvider>
+                      {/* <ServiceDataProvider> */}
+                      {/* <FilterDataProvider> */}
+                      {/* <LocationProvider history={history}> */}
+
+                      {children}
+                      {/* </LocationProvider> */}
+                      {/* </FilterDataProvider> */}
+                      {/* </ServiceDataProvider> */}
+                    </DialogProvider>
+                  </GoogleProvider>
+                </AlertProvider>
+              </PinboardProvider>
+            </StyleSheetManager>
+          </ThemeProvider>
+        </AppStateProvider>
+      </History>
     </SettingsProvider>
   )
 }

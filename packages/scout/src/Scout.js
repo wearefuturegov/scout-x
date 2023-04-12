@@ -2,33 +2,44 @@ import "react-app-polyfill/ie11"
 import "react-app-polyfill/stable"
 
 import React from "react"
-import { Router } from "@reach/router"
-import App from "./App"
-// import DetailDialog from "./components/DetailDialog"
-// import PinboardDialog from "./components/PinboardDialog"
-import {
-  PrintablePinboard,
-  PinboardDialog,
-  DetailDialog,
-} from "@outpost-platform/scout-components"
+
+import { Outlet, Route, Routes } from "react-router-dom"
 
 import { RootProvider } from "./contexts/RootProvider"
 
-import * as ScoutComponents from "@outpost-platform/scout-components"
+import {
+  DetailDialog,
+  PinboardDialog,
+  PrintablePinboard,
+} from "@outpost-platform/scout-components"
 
+import App from "./App"
+const Test = props => {
+  console.log(props)
+  return (
+    <>
+      hey <Outlet />
+    </>
+  )
+}
 export function Scout(props) {
-  console.log(ScoutComponents)
-  const { children, routerProps, ...initialProps } = props
+  const { children, ...initialProps } = props
+
   return (
     <React.StrictMode>
       <RootProvider {...initialProps}>
-        <Router {...routerProps}>
-          <App path="/" default>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="service/:serviceId" element={<DetailDialog />} />
+            <Route path="pinboard" element={<PinboardDialog />} />
+          </Route>
+          <Route path="print" element={<PrintablePinboard />} />
+          {/* <App path="/" default>
             <DetailDialog path="service/:serviceId" />
             <PinboardDialog path="pinboard" />
           </App>
-          <PrintablePinboard path="print/" />
-        </Router>
+          <PrintablePinboard path="print/" /> */}
+        </Routes>
       </RootProvider>
     </React.StrictMode>
   )

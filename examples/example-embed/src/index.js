@@ -22,6 +22,7 @@ function TestTwo(props) {
 function init(settings = {}) {
   // TODO this stuff can go in scout as an export - user shouldn't be worrying about this
   // Where to put the thing
+  // https://codesandbox.io/s/react-shadow-forked-lnyk31
   const targetElement = settings.targetElement
 
   // get our shadow HOST

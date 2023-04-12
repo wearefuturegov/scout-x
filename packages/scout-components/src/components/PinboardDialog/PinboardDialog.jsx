@@ -1,23 +1,28 @@
 import React, { useState } from "react"
 
 import {
-  usePinboardState,
-  useSettingsState,
-  ShareDialog,
-  ServiceCard,
   Dialog,
   DialogStyles,
+  ServiceCard,
+  ShareDialog,
+  usePinboardState,
+  useSettingsState,
 } from "./../../"
 
-import { Body, PrintLink, EmailButton, Count } from "./PinboardDialog.styles"
+import { useNavigate } from "react-router-dom"
 
-const PinboardDialog = ({ location, navigate }) => {
+import { Body, Count, EmailButton, PrintLink } from "./PinboardDialog.styles"
+
+const PinboardDialog = ({ location }) => {
+  console.log("PinboardDialog")
+  const navigate = useNavigate()
   const { pinboard } = usePinboardState()
   const { settings } = useSettingsState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const { Header, Title } = DialogStyles
 
   const handleDismiss = () => {
+    console.log("handleDismiss")
     navigate(`${settings.basePath || ""}/${location.search}`)
   }
 
