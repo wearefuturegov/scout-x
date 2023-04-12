@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import {
   Input,
@@ -19,16 +19,47 @@ const Filter = ({
   setPage,
   foldable,
 }) => {
-  const [unfolded, setUnfolded] = useState(selection.length > 0 ? true : false)
+  const [unfolded, setUnfolded] = useState(
+    selection && selection.length > 0 ? true : false
+  )
 
-  const handleChange = e => {
+  if (selection === undefined) {
+    selection = []
+  }
+
+  const handleChange = async e => {
+    console.log("handleChange", e)
     let { checked, value } = e.target
-    if (checked) {
-      setSelection([...selection, value])
-    } else {
-      setSelection(selection.filter(el => el !== value))
-    }
-    setPage(1)
+
+    try {
+      let selectionData = checked
+        ? [...selection, value]
+        : selection.filter(el => el !== value)
+      selectionSet = await setSelection(selectionData)
+      pageSet = await setPage(1)
+      return [selectionSet, pageSet]
+    } catch (error) {}
+
+    // try {
+    //   let selectionData = checked
+    //     ? (selection = [...selection, value])
+    //     : selection.filter(el => el !== value)
+
+    //   let selectionUpdate = await setSelection(selectionData)
+    //   let pageUpdate = await setPage(1)
+    //   return [selectionUpdate, pageUpdate]
+    // } catch (error) {
+    //   console.log(error)
+    // }
+
+    // if (checked) {
+    //   await setSelection([...selection, value])
+    // } else {
+    //   await setSelection(selection.filter(el => el !== value))
+    // }
+
+    // console.log("hello")
+    // setPage(1)
   }
 
   return (

@@ -1,7 +1,15 @@
-import React, { useContext, useMemo } from "react"
+import React, {
+  useContext,
+  useMemo,
+  useReducer,
+  useState,
+  useCallback,
+} from "react"
 
 import { useStateParams } from "../../utils"
-
+import queryString from "query-string"
+import { useHistory } from "../History"
+import { useLocation } from "react-router-dom"
 const AppStateContext = React.createContext(null)
 const AppStateApiContext = React.createContext(null)
 
@@ -17,6 +25,10 @@ const AppStateApiContext = React.createContext(null)
  * rewrite unknowns at this stage this first attempt will stick to the previous convention of using
  * collections and categories - we will tack this part again later! @TODO
  *
+ *
+ * AppState sets the individual states for things like map etc
+ * Each of these gives us state setters such as setMapVisible when
+ * these are triggered a new url state is created
  * @param {*} param0
  * @returns
  */
@@ -50,8 +62,17 @@ const AppStateProvider = ({ children }) => {
    *
    */
 
-  const arraySerialize = () => {}
-  const arrayDeserialize = () => {}
+  const { getCurrentLocation } = useHistory()
+  const { location } = useLocation()
+
+  const [urlState, setUrlState] = useState("")
+
+  const arraySerialize = s => {
+    return s !== undefined ? [].concat(s) : []
+  }
+  const arrayDeserialize = s => {
+    return s !== undefined ? [].concat(s) : []
+  }
 
   const intSerialize = s => s.toString()
   const intDeserialize = d => s => (Number(s) !== Number.NaN ? Number(s) : d)
@@ -66,22 +87,26 @@ const AppStateProvider = ({ children }) => {
     false,
     "map",
     boolSerialize,
-    boolDeserialize
+    boolDeserialize,
+    getCurrentLocation
   )
 
   const [keywords, setKeywords] = useStateParams(
     "",
     "keywords",
     stringSerialize,
-    stringDeserialize
+    stringDeserialize,
+    getCurrentLocation
   )
 
-  const [location, setLocation] = useStateParams(
-    "",
-    "location",
-    stringSerialize,
-    stringDeserialize
-  )
+  // const [location, setLocation] = useStateParams(
+  //   "",
+  //   "location",
+  //   stringSerialize,
+  //   stringDeserialize,
+  //   urlState,
+  //   setUrlState
+  // )
 
   // DATA is managed in ServiceDataContext & FilterDataContext
 
@@ -124,32 +149,44 @@ const AppStateProvider = ({ children }) => {
   // const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
   // const [only, setOnly] = useQuery("only", [], { array: true })
 
+  const [filterOnly, setFilterOnly] = useStateParams(
+    [],
+    "only",
+    arraySerialize,
+    arrayDeserialize,
+    getCurrentLocation
+  )
+
   const [slider, setSlider] = useStateParams(
     10,
     "slider",
     intSerialize,
-    intDeserialize(10)
+    intDeserialize(10),
+    getCurrentLocation
   )
 
   const [page, setPage] = useStateParams(
     1,
     "page",
     intSerialize,
-    intDeserialize(1)
+    intDeserialize(1),
+    getCurrentLocation
   )
 
   const [lat, setLat] = useStateParams(
     "",
     "lat",
     stringSerialize,
-    stringDeserialize
+    stringDeserialize,
+    getCurrentLocation
   )
 
   const [lng, setLng] = useStateParams(
     "",
     "lng",
     stringSerialize,
-    stringDeserialize
+    stringDeserialize,
+    getCurrentLocation
   )
 
   const api = useMemo(
@@ -170,9 +207,14 @@ const AppStateProvider = ({ children }) => {
       setMapVisible,
       setKeywords,
       setPage,
-      setLocation,
+      // setLocation,
       setLat,
       setLng,
+      setFilterOnly,
+      setUrlState,
+      setFilters: params => {
+        console.log("setFilters", params)
+      },
       // setFiltersCollection,
     }),
     [
@@ -180,9 +222,10 @@ const AppStateProvider = ({ children }) => {
       setMapVisible,
       setKeywords,
       setPage,
-      setLocation,
       setLat,
       setLng,
+      setFilterOnly,
+      setUrlState,
     ]
   )
 
@@ -207,7 +250,17 @@ const AppStateProvider = ({ children }) => {
 
   return (
     <AppStateContext.Provider
-      value={{ slider, mapVisible, keywords, page, location, lat, lng }}
+      value={{
+        slider,
+        mapVisible,
+        keywords,
+        page,
+        location,
+        lat,
+        lng,
+        filterOnly,
+        urlState,
+      }}
     >
       <AppStateApiContext.Provider value={api}>
         {children}

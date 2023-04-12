@@ -2850,6 +2850,8 @@ __metadata:
     react-helmet: ^6.1.0
     react-is: ^18.2.0
     react-remove-scroll: ^2.5.5
+    react-router: 6
+    react-router-dom: 6
     storybook: ^7.0.2
     styled-components: ^5.3.9
     webpack: 4.42.0

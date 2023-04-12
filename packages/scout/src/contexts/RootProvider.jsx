@@ -20,14 +20,15 @@ import { theme } from "../themes/theme_generator"
 // Routing, Nav and History things
 import { AppStateProvider } from "./AppState"
 
-import History from "../components/History"
+// import History from "../components/History"
+import { HistoryProvider } from "./History"
 
 /** Provide values for all the context providers. */
 export function RootProvider(props) {
   const { children, settings } = props
   return (
     <SettingsProvider value={settings}>
-      <History>
+      <HistoryProvider>
         <AppStateProvider>
           <ThemeProvider theme={theme}>
             <StyleSheetManager target={settings.styleSlot}>
@@ -50,7 +51,7 @@ export function RootProvider(props) {
             </StyleSheetManager>
           </ThemeProvider>
         </AppStateProvider>
-      </History>
+      </HistoryProvider>
     </SettingsProvider>
   )
 }

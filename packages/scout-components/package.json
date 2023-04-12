@@ -22,6 +22,8 @@
     "react-focus-lock": "^2.9.4",
     "react-helmet": "^6.1.0",
     "react-remove-scroll": "^2.5.5",
+    "react-router": "6",
+    "react-router-dom": "6",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {

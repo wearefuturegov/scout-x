@@ -3,6 +3,7 @@ import {
   useSettingsState,
   Switch,
   SearchBar,
+  Filter,
 } from "@outpost-platform/scout-components"
 import React from "react"
 import styled from "styled-components"
@@ -34,9 +35,8 @@ const SmolButton = styled(Button)`
   margin: 0.2rem;
 `
 
-const Debugger = ({}) => {
+const Debugger = () => {
   let location = useLocation()
-  console.log(location)
 
   // App settings
   const { settings } = useSettingsState()
@@ -73,8 +73,19 @@ const Debugger = ({}) => {
   // const { isLoading, pagination, results, error } = useServiceDataState()
   // console.dir(settings)
 
-  const { setSlider, setMapVisible } = useAppStateApi()
-  const { slider, mapVisible } = useAppState()
+  const { setSlider, setMapVisible, setPage, setFilterOnly } = useAppStateApi()
+  const { slider, mapVisible, filterOnly } = useAppState()
+
+  const onlyOptions = [
+    {
+      label: "Free",
+      slug: "free",
+    },
+    {
+      label: "Fun",
+      slug: "fun",
+    },
+  ]
 
   // console.log(filtersCollection)
 
@@ -104,13 +115,21 @@ const Debugger = ({}) => {
       <PrebugSection>
         <h1>App State</h1>
 
+        <Filter
+          key="onlyShow"
+          legend="Only show"
+          options={onlyOptions}
+          selection={filterOnly}
+          setSelection={setFilterOnly}
+          setPage={setPage}
+          foldable
+        />
         <Switch
           id="map-toggle"
           checked={mapVisible}
           onChange={e => setMapVisible(e.target.checked)}
           label="Show map?"
         />
-
         <SearchBar useAppState={useAppState} useAppStateApi={useAppStateApi} />
         <div>
           <label htmlFor="volume">Slider {slider}</label>

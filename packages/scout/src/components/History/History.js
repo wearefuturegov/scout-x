@@ -42,7 +42,7 @@ export const routes = [
 const History = ({ children }) => {
   const { settings } = useSettingsState()
 
-  console.log(settings.embedded)
+  // console.log(settings.embedded)
 
   // createMemoryHistory("/f")
   let history =
