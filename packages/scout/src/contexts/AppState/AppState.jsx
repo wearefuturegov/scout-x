@@ -86,27 +86,23 @@ const AppStateProvider = ({ children }) => {
   const [mapVisible, setMapVisible] = useStateParams(
     false,
     "map",
-    boolSerialize,
-    boolDeserialize,
+    { boolean: true },
     getCurrentLocation
   )
 
-  const [keywords, setKeywords] = useStateParams(
+  const [searchKeywords, setSearchKeywords] = useStateParams(
     "",
     "keywords",
-    stringSerialize,
-    stringDeserialize,
+    { array: true },
     getCurrentLocation
   )
 
-  // const [location, setLocation] = useStateParams(
-  //   "",
-  //   "location",
-  //   stringSerialize,
-  //   stringDeserialize,
-  //   urlState,
-  //   setUrlState
-  // )
+  const [searchLocation, setSearchLocation] = useStateParams(
+    "",
+    "location",
+    { array: true },
+    getCurrentLocation
+  )
 
   // DATA is managed in ServiceDataContext & FilterDataContext
 
@@ -152,40 +148,35 @@ const AppStateProvider = ({ children }) => {
   const [filterOnly, setFilterOnly] = useStateParams(
     [],
     "only",
-    arraySerialize,
-    arrayDeserialize,
+    { array: true },
     getCurrentLocation
   )
 
   const [slider, setSlider] = useStateParams(
     10,
     "slider",
-    intSerialize,
-    intDeserialize(10),
+    { numerical: true },
     getCurrentLocation
   )
 
   const [page, setPage] = useStateParams(
     1,
     "page",
-    intSerialize,
-    intDeserialize(1),
+    { numerical: true },
     getCurrentLocation
   )
 
-  const [lat, setLat] = useStateParams(
+  const [searchLat, setSearchLat] = useStateParams(
     "",
     "lat",
-    stringSerialize,
-    stringDeserialize,
+    { array: true },
     getCurrentLocation
   )
 
-  const [lng, setLng] = useStateParams(
+  const [searchLng, setSearchLng] = useStateParams(
     "",
     "lng",
-    stringSerialize,
-    stringDeserialize,
+    { array: true },
     getCurrentLocation
   )
 
@@ -205,11 +196,11 @@ const AppStateProvider = ({ children }) => {
       // setMapVisible,
       setSlider,
       setMapVisible,
-      setKeywords,
+      setSearchKeywords,
       setPage,
-      // setLocation,
-      setLat,
-      setLng,
+      setSearchLocation,
+      setSearchLat,
+      setSearchLng,
       setFilterOnly,
       setUrlState,
       setFilters: params => {
@@ -220,12 +211,12 @@ const AppStateProvider = ({ children }) => {
     [
       setSlider,
       setMapVisible,
-      setKeywords,
+      setSearchKeywords,
       setPage,
-      setLat,
-      setLng,
+      setSearchLocation,
+      setSearchLat,
+      setSearchLng,
       setFilterOnly,
-      setUrlState,
     ]
   )
 
@@ -253,11 +244,11 @@ const AppStateProvider = ({ children }) => {
       value={{
         slider,
         mapVisible,
-        keywords,
+        searchKeywords,
         page,
-        location,
-        lat,
-        lng,
+        searchLocation,
+        searchLat,
+        searchLng,
         filterOnly,
         urlState,
       }}

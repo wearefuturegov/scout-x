@@ -130,7 +130,7 @@ const Debugger = () => {
           onChange={e => setMapVisible(e.target.checked)}
           label="Show map?"
         />
-        <SearchBar useAppState={useAppState} useAppStateApi={useAppStateApi} />
+        {/* <SearchBar useAppState={useAppState} useAppStateApi={useAppStateApi} /> */}
         <div>
           <label htmlFor="volume">Slider {slider}</label>
           <input
