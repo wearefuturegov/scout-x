@@ -1,4 +1,4 @@
-import { useLocation } from "@reach/router"
+import { useLocation } from "react-router-dom"
 import { normalizeQueryString } from "@outpost-platform/scout-components"
 const LocationSearch = () => {
   const { search } = useLocation()
