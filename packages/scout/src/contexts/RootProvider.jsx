@@ -1,34 +1,33 @@
 import React from "react"
 
+// @TODO cookie provider
 // Contexts
 import {
   AlertProvider,
+  AppStateProvider,
   DialogProvider,
   GoogleProvider,
+  ServiceDataProvider,
   PinboardProvider,
   SettingsProvider,
-} from "@outpost-platform/scout-components"
-
-import { BrowserRouter } from "react-router-dom"
-
-// TODO cookie provider
+  FilterDataProvider,
+  CookiesProvider,
+} from "~/src/contexts"
 
 // Theme things
 import { StyleSheetManager, ThemeProvider } from "styled-components"
-import { theme } from "../themes/theme_generator"
-
-// Routing, Nav and History things
-import { AppStateProvider } from "./AppState"
-
-// import History from "../components/History"
-import { HistoryProvider } from "./History"
+import { theme } from "~/src/themes"
+import { QueryClient, QueryClientProvider } from "react-query"
+import { ReactQueryDevtools } from "react-query/devtools"
 
 /** Provide values for all the context providers. */
 export function RootProvider(props) {
   const { children, settings } = props
+  const queryClient = new QueryClient()
   return (
     <SettingsProvider value={settings}>
-      <HistoryProvider>
+      {/* <HistoryProvider> */}
+      <CookiesProvider>
         <AppStateProvider>
           <ThemeProvider theme={theme}>
             <StyleSheetManager target={settings.styleSlot}>
@@ -36,14 +35,12 @@ export function RootProvider(props) {
                 <AlertProvider>
                   <GoogleProvider>
                     <DialogProvider>
-                      {/* <ServiceDataProvider> */}
-                      {/* <FilterDataProvider> */}
-                      {/* <LocationProvider history={history}> */}
-
-                      {children}
-                      {/* </LocationProvider> */}
-                      {/* </FilterDataProvider> */}
-                      {/* </ServiceDataProvider> */}
+                      <QueryClientProvider client={queryClient}>
+                        <ServiceDataProvider>
+                          <FilterDataProvider>{children}</FilterDataProvider>
+                        </ServiceDataProvider>
+                        <ReactQueryDevtools initialIsOpen />
+                      </QueryClientProvider>
                     </DialogProvider>
                   </GoogleProvider>
                 </AlertProvider>
@@ -51,7 +48,8 @@ export function RootProvider(props) {
             </StyleSheetManager>
           </ThemeProvider>
         </AppStateProvider>
-      </HistoryProvider>
+      </CookiesProvider>
+      {/* </HistoryProvider> */}
     </SettingsProvider>
   )
 }

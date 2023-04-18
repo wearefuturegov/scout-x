@@ -1,45 +1,66 @@
-import React, { useState, useEffect, useMemo, useContext } from "react"
-import { getFilterData } from "./../../utils"
+import React, { useContext, useEffect, useMemo, useState } from "react"
+import { getFilterData, getFilterDataHelpers } from "~/src/utils"
+import {
+  useTaxonomies,
+  useSuitabilities,
+  useSendNeeds,
+  useAccessibilities,
+  formatAccessibilityOptions,
+} from "~/src/hooks"
+import { useQueryClient } from "react-query"
 
-import { getFilterDataHelpers } from "./../../utils"
 const FilterDataStateContext = React.createContext(null)
 const FilterDataApiContext = React.createContext(null)
 
 // Export the provider, one for the state and another for the API to save on re-renders
 const FilterDataProvider = ({ children }) => {
-  const {
-    formatAccessibilityOptions,
-    formatSuitabilityOptions,
-  } = getFilterDataHelpers
+  const { formatSuitabilityOptions } = getFilterDataHelpers
   const [filterData, setFilterData] = useState({
     isLoading: true,
     results: [],
     error: null,
   })
 
-  const [collectionOptions, setCollectionOptions] = useState([])
-  const [suitabilityOptions, setSuitabilityOptions] = useState([])
-  const [sendOptions, setSendOptions] = useState([])
-  const [accessibilityOptions, setAccessibilityOptions] = useState([])
+  const queryClient = useQueryClient()
+  const {
+    status: taxonomyStatus,
+    data: taxonomyData,
+    error: taxonomyError,
+    isFetching: taxonomyIsFetching,
+  } = useTaxonomies()
 
-  const fetchData = async () => {
-    console.info("fetchingFilterData")
-    getFilterData()
-      .then(([taxonomies, suitabilities, sendOptions, accessibilities]) => {
-        setCollectionOptions(taxonomies)
-        setSuitabilityOptions(formatSuitabilityOptions(suitabilities))
-        setSendOptions(sendOptions)
-        setAccessibilityOptions(formatAccessibilityOptions(accessibilities))
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  let {
+    status: suitabilityStatus,
+    data: suitabilityData,
+    error: suitabilityError,
+    isFetching: suitabilityIsFetching,
+  } = useSuitabilities()
+
+  if (suitabilityData !== undefined) {
+    suitabilityData = suitabilityData.sort((a, b) =>
+      a.label.toLowerCase() > b.label.toLowerCase() ? 1 : -1
+    )
   }
 
-  // only fetch once on site load
-  useEffect(() => {
-    fetchData()
-  }, [])
+  const {
+    status: sendNeedsStatus,
+    data: sendNeedsData,
+    error: sendNeedsError,
+    isFetching: sendNeedsIsFetching,
+  } = useSendNeeds()
+
+  let {
+    status: accessibilitiesStatus,
+    data: accessibilitiesData,
+    error: accessibilitiesError,
+    isFetching: accessibilitiesIsFetching,
+  } = useAccessibilities()
+
+  if (accessibilitiesData !== undefined) {
+    accessibilitiesData = accessibilitiesData.sort((a, b) =>
+      a.label.toLowerCase() > b.label.toLowerCase() ? 1 : -1
+    )
+  }
 
   const api = useMemo(
     () => ({
@@ -50,16 +71,36 @@ const FilterDataProvider = ({ children }) => {
         // clearSubCategory([])
       },
     }),
-    [filterData, setFilterData]
+    []
   )
 
   return (
     <FilterDataStateContext.Provider
       value={{
-        collectionOptions,
-        suitabilityOptions,
-        sendOptions,
-        accessibilityOptions,
+        taxonomies: {
+          status: taxonomyStatus,
+          data: taxonomyData,
+          error: taxonomyError,
+          isFetching: taxonomyIsFetching,
+        },
+        suitabilities: {
+          status: suitabilityStatus,
+          data: suitabilityData,
+          error: suitabilityError,
+          isFetching: suitabilityIsFetching,
+        },
+        sendNeeds: {
+          status: sendNeedsStatus,
+          data: sendNeedsData,
+          error: sendNeedsError,
+          isFetching: sendNeedsIsFetching,
+        },
+        accessibilities: {
+          status: accessibilitiesStatus,
+          data: accessibilitiesData,
+          error: accessibilitiesError,
+          isFetching: accessibilitiesIsFetching,
+        },
       }}
     >
       <FilterDataApiContext.Provider value={api}>

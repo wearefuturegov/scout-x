@@ -1,4 +1,4 @@
-import { truncate, prettyDistance, twelveHourTime } from "./utils"
+import { prettyDistance, truncate, twelveHourTime } from "~/src/utils"
 
 describe("truncate", () => {
   it("leaves short text unaltered", () => {

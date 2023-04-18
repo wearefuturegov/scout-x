@@ -16,7 +16,7 @@ import {
   SidebarContent,
   useSettingsState,
 } from "@outpost-platform/scout-components"
-import { theme } from "./themes/theme_generator"
+import { theme } from "./src/themes"
 
 import { useServiceDataState } from "./contexts/ServiceData"
 

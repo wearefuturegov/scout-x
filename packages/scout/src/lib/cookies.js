@@ -1,5 +1,11 @@
-import { theme } from "./../themes/theme_generator"
+import { theme } from "~/src/themes"
 
+/**
+ *
+ * @deprecated
+ * @param {*} name
+ * @returns
+ */
 export const getCookie = name => {
   if (typeof document === "undefined") return ""
 

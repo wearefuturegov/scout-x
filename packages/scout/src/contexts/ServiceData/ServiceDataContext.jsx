@@ -1,82 +1,89 @@
-import React, { useState, useEffect, useContext } from "react"
-import { getServiceData } from "./../../utils"
-import { useLocation } from "@reach/router"
+import React, { useContext, useEffect, useState, useCallback } from "react"
+import { getServiceData } from "~/src/utils"
 
-import { theme } from "./../../themes/theme_generator"
-import { useAppState, LocationSearch } from "./../AppState"
+import { useAppState } from "~/src/contexts"
+import { theme } from "~/src/themes"
+import { useFetcher } from "react-router-dom"
 
-import { normalizeQueryString } from "@outpost-platform/scout-components"
+import {
+  useQuery,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query"
+import { ReactQueryDevtools } from "react-query/devtools"
+import { AppStateProvider } from "../AppState"
 
 const ServiceDataStateContext = React.createContext(null)
 
 // Export the provider, one for the state and another for the API to save on re-renders
 const ServiceDataProvider = ({ children }) => {
-  const locationSearch = LocationSearch()
-  const appState = useAppState()
-  const [serviceData, setServiceData] = useState({
-    isLoading: true,
-    pagination: [],
-    results: [],
-    error: false,
+  const queryClient = new QueryClient()
+  const { searchLocation, page } = useAppState()
+  const [servicePaginationInfo, setServicePaginationInfo] = useState({
+    total: undefined,
+    totalPages: undefined,
+    perPage: undefined,
+    currentPage: undefined,
+    lastPage: undefined,
+    from: undefined,
+    to: undefined,
   })
 
-  // console.log("serviceData:", serviceData)
-  const fetchData = async () => {
-    console.info("fetchingData")
-    setServiceData({
-      ...serviceData,
-      isLoading: true,
-    })
+  const {
+    status: serviceStatus,
+    data: serviceData,
+    error: serviceError,
+    isFetching: serviceIsFetching,
+    isPreviousData: serviceIsPreviousData,
+  } = useQuery(["services", page], () => getServiceData(`?page=${page}`), {
+    keepPreviousData: true,
+    staleTime: 5000,
+  })
 
-    getServiceData(locationSearch)
-      .then(data => {
-        // TODO something weird happening with pagination
-        const numberOfResults = data.totalElements
-        const totalPages = data.totalPages
-        const currentPage = data.number
-        const itemsPerPage = theme.resultsPerPage
-
-        // TODO per page should be in site settings
-        // TODO rename these to match API names
-        setServiceData({
-          ...serviceData,
-          results: data.content,
-          isLoading: false,
-          pagination: {
-            total: numberOfResults,
-            totalPages: totalPages,
-            perPage: itemsPerPage,
-            currentPage: currentPage,
-            lastPage: Math.ceil(numberOfResults / itemsPerPage),
-            from: (currentPage - 1) * itemsPerPage + 1,
-            to:
-              currentPage * itemsPerPage < numberOfResults
-                ? currentPage * itemsPerPage
-                : numberOfResults,
-          },
-        })
-      })
-      .catch(() => {
-        setServiceData({
-          ...serviceData,
-          results: [],
-          isLoading: false,
-          error: true,
-        })
-      })
-  }
-
-  // whenever the appState: page changes fetch the data again
-  useEffect(() => {
-    fetchData()
-
-    if (serviceData.pagination.currentPage !== appState.page) {
-      console.log(serviceData.pagination.currentPage, appState.page)
+  // setup pagination info
+  React.useEffect(() => {
+    if (serviceData) {
+      const pagination = {
+        total: serviceData.totalElements,
+        totalPages: serviceData.totalPages,
+        perPage: serviceData.size,
+        currentPage: page,
+        nextPage: Math.max(page + 1, 1),
+        prevPage: Math.max(page - 1, 0),
+        lastPage: Math.ceil(serviceData.totalElements / serviceData.size),
+        from: (page - 1) * serviceData.size + 1,
+        to:
+          page * serviceData.size < serviceData.totalElements
+            ? page * serviceData.size
+            : serviceData.totalElements,
+      }
+      setServicePaginationInfo(pagination)
     }
-  }, [appState.page])
+  }, [page, serviceData])
+
+  // Prefetch the next page
+  React.useEffect(() => {
+    // if (data?.hasMore) {
+    if (serviceData && serviceData?.last === false) {
+      console.log("prefetch", ["services", page + 1])
+      queryClient.prefetchQuery(["services", page + 1], () =>
+        getServiceData(`?page=${page + 1}`)
+      )
+    }
+  }, [page, queryClient, searchLocation, serviceData])
 
   return (
-    <ServiceDataStateContext.Provider value={serviceData}>
+    <ServiceDataStateContext.Provider
+      value={{
+        serviceStatus,
+        serviceData,
+        serviceError,
+        serviceIsFetching,
+        serviceIsPreviousData,
+        servicePaginationInfo,
+      }}
+    >
       {children}
     </ServiceDataStateContext.Provider>
   )
@@ -87,7 +94,7 @@ const useServiceDataState = () => {
 
   if (!context) {
     throw new Error(
-      "useServiceDataState must be used within the ServiceDataProvider"
+      "useServiceDataState must be used within the ServiceData provider"
     )
   }
 

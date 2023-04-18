@@ -1,6 +1,6 @@
 import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
-import { theme } from "./../../themes/theme_generator"
+import { theme } from "~/src/themes"
 
 /**
  * Fetching data from outpost itself vs the ol' static files method

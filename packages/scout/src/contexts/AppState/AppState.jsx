@@ -1,15 +1,17 @@
 import React, {
   useContext,
+  useEffect,
   useMemo,
-  useReducer,
   useState,
   useCallback,
 } from "react"
-
-import { useStateParams } from "../../utils"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import queryString from "query-string"
-import { useHistory } from "../History"
-import { useLocation } from "react-router-dom"
+import { useHistoryApi } from "~/src/contexts"
+import { useStateParams } from "~/src/hooks/"
+import isEqual from "lodash/isEqual"
+import filter from "lodash/filter"
+
 const AppStateContext = React.createContext(null)
 const AppStateApiContext = React.createContext(null)
 
@@ -19,7 +21,7 @@ const AppStateApiContext = React.createContext(null)
  * Our application uses the url for 99% of its state therefore we should always keep our app
  * state in sync with the url - we do this here
  *
- * In previous versions of scout the top level taxonomies were referred to as collections and
+ * In previous versions of Scout the top level taxonomies were referred to as collections and
  * the sub taxonomies as categories. this may have been because taxonomies (+vocabularies) as
  * they are defined in the open referral standard are not supported in Outpost yet. Rather than
  * rewrite unknowns at this stage this first attempt will stick to the previous convention of using
@@ -33,118 +35,129 @@ const AppStateApiContext = React.createContext(null)
  * @returns
  */
 const AppStateProvider = ({ children }) => {
-  // in the absense of anything fancy take this comment as your accepted types!
-
-  // storing individually since it might trigger re-renders on everything when part
+  // storing individually since it might trigger re-renders on everything when one part
   // changes and also because this is how it was before
-  // STATE
+
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const getCurrentLocation = () => {
+    return location
+  }
+  const [appState, setAppState] = useState(queryString.parse(location.search))
+
+  useEffect(() => {
+    // if (
+    //   existingValue &&
+    //   !existingValueMatchesState(deserialize(existingValue, options), options)
+    // ) {
+    console.log(`appState`, appState)
+    // setState(deserialize(existingValue, options))
+    // }
+  }, [appState])
+
+  /*******************
+   *
+   *  Filters
+   *  @TODO these will become more dynamic in the future
+   *
+   *******************/
+
   /**
-   * // filters (nb these are going to change all the time so we need a way to make this more dynamic @TODO)
-   * collection = outpost.taxonomies: top level nav
-   * categories = outpost.taxonomies.filter(parent === x): set based on the collection
-   * suitabilities = outpost.suitabilities:
-   * accessibilities = outpost.accessibilities:
-   * min_age: int
-   * max_age: int
-   * days: String = Saturday etc
-   * only = free: @TODO rename this to free=true
-   *
-   * // search queries
-   * keywords: (search term)
-   * lat
-   * lng
-   * location @TODO if location is set update lat lng? - update needed to outpost api for this, atm only returns interpreted_location if no lat lng returned
-   * ^ these three linked
-   *
-   * // site specific settings
-   * map: bool
-   * page: int
-   *
+   * Collection represents the top level category/taxonomy
+   * ?collection=things-to-do
+   * This will likely change in the future as we make it more ORUK compatible
    */
+  const [filterCollection, setFilterCollection] = useStateParams(
+    [],
+    "collection",
+    {},
+    getCurrentLocation
+  )
 
-  const { getCurrentLocation } = useHistory()
-  const { location } = useLocation()
+  /**
+   * Categories represents the subcategories of the selected top level category/taxonomy
+   * ?categories=health-and-wellbeing&categories=mental-health
+   * This currently only works if a filterCollection is set since a subcategory could contain the sanem key
+   */
+  const [filterCategories, setFilterCategories] = useStateParams(
+    [],
+    "categories",
+    { array: true },
+    getCurrentLocation
+  )
 
-  const [urlState, setUrlState] = useState("")
+  /**
+   * Filter for suitabilities
+   * ?suitabilities=dementia
+   */
+  const [filterSuitabilities, setFilterSuitabilities] = useStateParams(
+    [],
+    "suitabilities",
+    { array: true },
+    getCurrentLocation
+  )
 
-  const arraySerialize = s => {
-    return s !== undefined ? [].concat(s) : []
-  }
-  const arrayDeserialize = s => {
-    return s !== undefined ? [].concat(s) : []
-  }
+  /**
+   * Filter for accessibilities
+   * ?accessibilities=accessible-toilet-facilities
+   */
+  const [filterAccessibilities, setFilterAccessibilities] = useStateParams(
+    [],
+    "accessibilities",
+    { array: true },
+    getCurrentLocation
+  )
 
-  const intSerialize = s => s.toString()
-  const intDeserialize = d => s => (Number(s) !== Number.NaN ? Number(s) : d)
+  /**
+   * Filter for SEND needs
+   * ?needs=autism&needs=social-emotional-and-mental-health-difficulties
+   */
+  const [filterNeeds, setFilterNeeds] = useStateParams(
+    [],
+    "needs",
+    { array: true },
+    getCurrentLocation
+  )
 
-  const stringSerialize = s => s
-  const stringDeserialize = s => (s !== undefined ? s.toString() : "")
-
-  const boolSerialize = s => (s ? "true" : "false")
-  const boolDeserialize = s => s === "true"
-
-  const [mapVisible, setMapVisible] = useStateParams(
+  /**
+   * Min age filter
+   * ?min_age=1
+   */
+  const [filterMinAge, setFilterMinAge] = useStateParams(
     false,
-    "map",
-    { boolean: true },
+    "min_age",
+    { numerical: true },
     getCurrentLocation
   )
 
-  const [searchKeywords, setSearchKeywords] = useStateParams(
-    "",
-    "keywords",
+  /**
+   * Max age filter
+   * ?max_age=3
+   */
+  const [filterMaxAge, setFilterMaxAge] = useStateParams(
+    false,
+    "max_age",
+    { numerical: true },
+    getCurrentLocation
+  )
+
+  /**
+   * Days filter
+   * ?days=Monday&days=Tuesday
+   */
+  const [filterDays, setFilterDays] = useStateParams(
+    [],
+    "days",
     { array: true },
     getCurrentLocation
   )
 
-  const [searchLocation, setSearchLocation] = useStateParams(
-    "",
-    "location",
-    { array: true },
-    getCurrentLocation
-  )
-
-  // DATA is managed in ServiceDataContext & FilterDataContext
-
-  // TODO not sure why normalizeQueryString is used but not removing rn because of time
-  // TODO useLocation and search and useQuery needs some work
-  // const { search } = useLocation()
-  // const [locationSearch, setLocationSearch] = useState(
-  //   normalizeQueryString(search)
-  // )
-  // const [page, setPage] = useQuery("page", 1, { numerical: true })
-  // const [mapVisible, setMapVisible] = useQuery("map", false, {
-  //   boolean: true,
-  // })
-
-  // const [keywords, setKeywords] = useQuery("keywords", "")
-
-  // const [coverage, setCoverage] = useQuery("location", "")
-  // const [lat, setLat] = useQuery("lat", "")
-  // const [lng, setLng] = useQuery("lng", "")
-
-  // const [collection, setCollection] = useQuery("collection", false)
-
-  // const [categories, setCategories] = useQuery("categories", [], {
-  //   array: true,
-  // })
-  // const [ages, setAges] = useQuery("ages", [], { array: true })
-  // const [needs, setNeeds] = useQuery("needs", [], { array: true })
-  // const [accessibilities, setAccessibilities] = useQuery(
-  //   "accessibilities",
-  //   [],
-  //   {
-  //     array: true,
-  //   }
-  // )
-  // const [suitabilities, setSuitabilities] = useQuery("suitabilities", [], {
-  //   array: true,
-  // })
-  // const [days, setDays] = useQuery("days", [], { array: true })
-  // const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
-  // const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
-  // const [only, setOnly] = useQuery("only", [], { array: true })
-
+  /**
+   * Filter for "only show" options
+   * ?only=free
+   * @TODO this should be filterOnlyFree?
+   */
   const [filterOnly, setFilterOnly] = useStateParams(
     [],
     "only",
@@ -152,13 +165,77 @@ const AppStateProvider = ({ children }) => {
     getCurrentLocation
   )
 
-  const [slider, setSlider] = useStateParams(
-    10,
-    "slider",
-    { numerical: true },
+  /*******************
+   *
+   *  Search
+   *
+   *******************/
+
+  /**
+   * when user enters a search term
+   * ?keywords=playground
+   */
+  const [searchKeywords, setSearchKeywords] = useStateParams(
+    "",
+    "keywords",
+    {},
     getCurrentLocation
   )
 
+  /**
+   * Used when we enter a term into the location box
+   * ?lat=51.815606&lng=-0.8084&location=Aylesbury%2C%20UK
+   */
+  const [searchLat, setSearchLat] = useStateParams(
+    "",
+    "lat",
+    {},
+    getCurrentLocation
+  )
+
+  /**
+   * Used when we enter a term into the location box
+   * ?lat=51.815606&lng=-0.8084&location=Aylesbury%2C%20UK
+   */
+  const [searchLng, setSearchLng] = useStateParams(
+    "",
+    "lng",
+    {},
+    getCurrentLocation
+  )
+
+  /**
+   * Used when we search for a location at the top of the page
+   * ?lat=51.815606&lng=-0.8084&location=Aylesbury%2C%20UK
+   */
+  const [searchLocation, setSearchLocation] = useStateParams(
+    "",
+    "location",
+    {},
+    getCurrentLocation
+  )
+
+  /*******************
+   *
+   *  App State Specific
+   *
+   *******************/
+
+  /**
+   * Is the map shown on the listings page
+   * ?map=true
+   */
+  const [mapVisible, setMapVisible] = useStateParams(
+    false,
+    "map",
+    { boolean: true },
+    getCurrentLocation
+  )
+
+  /**
+   * What page of results are we on?
+   * ?page=1
+   */
   const [page, setPage] = useStateParams(
     1,
     "page",
@@ -166,93 +243,140 @@ const AppStateProvider = ({ children }) => {
     getCurrentLocation
   )
 
-  const [searchLat, setSearchLat] = useStateParams(
-    "",
-    "lat",
-    { array: true },
+  /**
+   * ignore this is a tester
+   */
+  const [slider, setSlider] = useStateParams(
+    10,
+    "slider",
+    { numerical: true },
     getCurrentLocation
   )
 
-  const [searchLng, setSearchLng] = useStateParams(
-    "",
-    "lng",
-    { array: true },
-    getCurrentLocation
+  /**
+   * We cant use setPage, setSearchKeywords in succession so we provide this  method to update the url all at once
+   */
+  const setAppStateFromObject = useCallback(
+    async newAppState => {
+      let currentParams = queryString.parse(location?.search)
+
+      let newUrl = { ...currentParams, ...newAppState }
+
+      // remove any empty values from the new url
+      newUrl = Object.keys(newUrl)
+        .filter(key => {
+          return newUrl[key] !== ""
+        })
+        .reduce((obj, key) => {
+          return {
+            ...obj,
+            [key]: newUrl[key],
+          }
+        }, {})
+
+      const newParams = queryString.stringify(newUrl)
+
+      if (!isEqual(currentParams, newUrl)) {
+        await navigate(`?${newParams}`)
+      }
+    },
+    [location.search, navigate]
+  )
+
+  /**
+   * The following two methods have been created as helpers
+   */
+
+  /**
+   * Helper method to create the paths
+   */
+  const getServiceDetailsPath = useCallback(
+    serviceId => {
+      let currentParams = queryString.parse(location?.search)
+      const newParams = queryString.stringify(currentParams)
+      return `/services/${serviceId}?${newParams}`
+    },
+    [location.search]
+  )
+
+  /**
+   * Helper method to naviagate to service details page
+   * @param {*} serviceId
+   */
+  const goToServiceDetails = useCallback(
+    async serviceId => {
+      const path = getServiceDetailsPath(serviceId)
+      await navigate(path)
+    },
+    [getServiceDetailsPath, navigate]
   )
 
   const api = useMemo(
     () => ({
-      // setPage,
-      // setNextPage: () => {
-      //   let newPageNumber = page + 1
-      //   if (newPageNumber !== page || !(newPageNumber < 1))
-      //     setPage(newPageNumber)
-      // },
-      // setPreviousPage: () => {
-      //   let newPageNumber = page - 1
-      //   if (newPageNumber !== page || !(newPageNumber < 1))
-      //     setPage(newPageNumber)
-      // },
-      // setMapVisible,
-      setSlider,
-      setMapVisible,
+      setFilterCollection,
+      setFilterCategories,
+      setFilterSuitabilities,
+      setFilterAccessibilities,
+      setFilterNeeds,
+      setFilterMinAge,
+      setFilterMaxAge,
+      setFilterDays,
+      setFilterOnly,
       setSearchKeywords,
-      setPage,
-      setSearchLocation,
       setSearchLat,
       setSearchLng,
-      setFilterOnly,
-      setUrlState,
-      setFilters: params => {
-        console.log("setFilters", params)
-      },
-      // setFiltersCollection,
+      setSearchLocation,
+      setMapVisible,
+      setPage,
+      setSlider,
+      setAppStateFromObject,
+      goToServiceDetails,
+      getServiceDetailsPath,
     }),
     [
-      setSlider,
-      setMapVisible,
+      setFilterCollection,
+      setFilterCategories,
+      setFilterSuitabilities,
+      setFilterAccessibilities,
+      setFilterNeeds,
+      setFilterMinAge,
+      setFilterMaxAge,
+      setFilterDays,
+      setFilterOnly,
       setSearchKeywords,
-      setPage,
-      setSearchLocation,
       setSearchLat,
       setSearchLng,
-      setFilterOnly,
+      setSearchLocation,
+      setMapVisible,
+      setPage,
+      setSlider,
+      setAppStateFromObject,
+      goToServiceDetails,
+      getServiceDetailsPath,
     ]
   )
 
-  // value={{
-  //   page,
-  //   mapVisible,
-  //   keywords,
-  //   coverage,
-  //   lat,
-  //   lng,
-  //   collection,
-  //   categories,
-  //   ages,
-  //   needs,
-  //   accessibilities,
-  //   suitabilities,
-  //   days,
-  //   minAge,
-  //   maxAge,
-  //   only,
-  // }}
+  const appStateValues = {
+    filterCollection,
+    filterCategories,
+    filterSuitabilities,
+    filterAccessibilities,
+    filterNeeds,
+    filterMinAge,
+    filterMaxAge,
+    filterDays,
+    filterOnly,
+    searchKeywords,
+    searchLat,
+    searchLng,
+    searchLocation,
+    mapVisible,
+    page,
+    slider,
+  }
 
   return (
-    <AppStateContext.Provider
-      value={{
-        slider,
-        mapVisible,
-        searchKeywords,
-        page,
-        searchLocation,
-        searchLat,
-        searchLng,
-        filterOnly,
-        urlState,
-      }}
-    >
+    <AppStateContext.Provider value={appStateValues}>
       <AppStateApiContext.Provider value={api}>
         {children}
       </AppStateApiContext.Provider>

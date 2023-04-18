@@ -21,6 +21,11 @@
   "files": [
     "dist"
   ],
+  "alias": {
+    "scout-components/*": "./src/components/$1",
+    "scout-utils/*": "./src/utils/$1",
+    "scout-contexts/*": "./src/contexts/$1"
+  },
   "keywords": [
     "service directory",
     "outpost",
@@ -70,22 +75,21 @@
     "react": "^16.14.0"
   },
   "dependencies": {
-    "@outpost-platform/scout-components": "workspace:^",
     "@reach/alert": "^0.10.5",
     "@reach/dialog": "^0.18.0",
-    "@reach/router": "latest",
     "@reach/tooltip": "^0.10.5",
     "@react-google-maps/api": "^2.18.1",
     "@sendgrid/mail": "^7.7.0",
     "history": "^5.3.0",
     "isomorphic-unfetch": "^3.1.0",
+    "lodash": "^4.17.21",
     "query-string": "^6.14.1",
     "react-app-polyfill": "^1.0.6",
     "react-focus-lock": "^2.9.4",
     "react-ga": "^3.3.1",
     "react-helmet": "^6.1.0",
+    "react-query": "^3.39.3",
     "react-remove-scroll": "^2.5.5",
-    "react-router": "6",
     "react-router-dom": "6",
     "styled-components": "^5.3.9"
   },

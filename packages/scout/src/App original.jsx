@@ -1,35 +1,35 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useRef, useContext } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import { Helmet } from "react-helmet"
-import useQuery from "./hooks/useQuery"
-import useFathom from "./hooks/useFathom"
 import { AppSettingsContext } from "./contexts/AppSettings"
+import useFathom from "./hooks/useFathom"
+import useQuery from "./hooks/useQuery"
 
 // fetch data for the app and filters
-import { fetchServiceData, fetchSiteData } from "./lib/api"
-import { setAllPaginationValues, normalizeQuerystring } from "./lib/utils"
 import daysOptionsData from "./data/_days.json"
 import onlyOptionsData from "./data/_only.json"
+import { fetchServiceData, fetchSiteData } from "./lib/api"
 import {
-  subcategoriesOf,
   formatAccessibilityOptions,
   formatDaysOptions,
   formatSuitabilityOptions,
+  subcategoriesOf,
 } from "./lib/data-helpers"
+import { normalizeQuerystring, setAllPaginationValues } from "./lib/utils"
 
 import Layout from "./components/Layout"
 
 import { orderFilters } from "./lib/order-filters"
 
-import SearchBar from "./components/SearchBar"
-import { theme } from "./themes/theme_generator"
 import {
-  Filters,
+  AgeFilter,
   ClearFilters,
   Filter,
-  AgeFilter,
+  Filters,
   RadioFilter,
 } from "@outpost-platform/scout-components"
+import { theme } from "~/src/themes"
+import SearchBar from "./components/SearchBar"
 
 import MainContent from "./components/MainContent"
 
@@ -101,7 +101,7 @@ const App = ({ children, location, navigate }) => {
       await navigate(`${embedQuery}`, { replace: true })
       setEmbedInitialised(true)
     })()
-  }, [embedded, embedQuery])
+  }, [embedded, embedQuery, navigate])
 
   useFathom()
 

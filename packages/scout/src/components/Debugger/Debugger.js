@@ -1,16 +1,21 @@
-import {
-  Button,
-  useSettingsState,
-  Switch,
-  SearchBar,
-  Filter,
-} from "@outpost-platform/scout-components"
 import React from "react"
-import styled from "styled-components"
-import { useAppState, useAppStateApi } from "../../contexts/AppState"
-// import { useServiceDataState } from "../../contexts/ServiceData"
 
-import { useLocation } from "react-router-dom"
+import { Button } from "~/src/components"
+import { Switch } from "~/src/components"
+import { SearchBar } from "~/src/components"
+import { Filter } from "~/src/components"
+import styled from "styled-components"
+import {
+  useAppState,
+  useAppStateApi,
+  useSettingsState,
+  useServiceDataState,
+} from "~/src/contexts"
+import queryString from "query-string"
+import { useLocation, useNavigate } from "react-router-dom"
+import { ReactQueryDevtools } from "react-query/devtools"
+import { useFilterDataState } from "../../contexts"
+
 const Prebug = styled.div`
   margin: 1rem;
   display: flex;
@@ -40,6 +45,21 @@ const Debugger = () => {
 
   // App settings
   const { settings } = useSettingsState()
+
+  const {
+    serviceStatus,
+    serviceData,
+    serviceError,
+    serviceIsFetching,
+    serviceIsPreviousData,
+  } = useServiceDataState()
+
+  const {
+    taxonomies,
+    suitabilities,
+    sendNeeds,
+    accessibilities,
+  } = useFilterDataState()
 
   // // App state
   // const {
@@ -74,7 +94,24 @@ const Debugger = () => {
   // console.dir(settings)
 
   const { setSlider, setMapVisible, setPage, setFilterOnly } = useAppStateApi()
-  const { slider, mapVisible, filterOnly } = useAppState()
+  const {
+    filterCollection,
+    filterCategories,
+    filterSuitabilities,
+    filterAccessibilities,
+    filterNeeds,
+    filterMinAge,
+    filterMaxAge,
+    filterDays,
+    filterOnly,
+    searchKeywords,
+    searchLat,
+    searchLng,
+    searchLocation,
+    mapVisible,
+    page,
+    slider,
+  } = useAppState()
 
   const onlyOptions = [
     {
@@ -95,6 +132,37 @@ const Debugger = () => {
     setSlider(value)
   }
 
+  const moveAlong = async (paramsName, s) => {
+    let currentParams = queryString.parse(location?.search)
+
+    let newUrl = {
+      ...currentParams,
+      [paramsName]: s,
+    }
+    if (!s) delete newUrl[paramsName]
+    const newParams = queryString.stringify(newUrl)
+
+    console.log("ONCHANGE: ", newParams)
+    // theres a very large chance this promise doesn't ever actually resolve
+    // await useNavigate(`/?${newParams}`)
+  }
+
+  const handleChange2 = async e => {
+    console.log("handleChange2")
+    // setFilterOnly(["free"])
+    // setPage(1)
+
+    try {
+      let selectionSet = await moveAlong("only", ["free"])
+      let pageSet = await moveAlong("page", 1)
+      // await navigate("?only=free&page=1")
+
+      return [selectionSet, pageSet]
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <Prebug>
       <PrebugSection>
@@ -111,10 +179,40 @@ const Debugger = () => {
             )
           })}
         </pre>
-      </PrebugSection>
-      <PrebugSection>
         <h1>App State</h1>
-
+        <strong>filterCollection:</strong> {filterCollection}
+        <br />
+        <strong>filterCategories:</strong> {filterCategories}
+        <br />
+        <strong>filterSuitabilities:</strong> {filterSuitabilities}
+        <br />
+        <strong>filterAccessibilities:</strong> {filterAccessibilities}
+        <br />
+        <strong>filterNeeds:</strong> {filterNeeds}
+        <br />
+        <strong>filterMinAge:</strong> {filterMinAge}
+        <br />
+        <strong>filterMaxAge:</strong> {filterMaxAge}
+        <br />
+        <strong>filterDays:</strong> {filterDays}
+        <br />
+        <strong>filterOnly:</strong> {filterOnly}
+        <br />
+        <strong>searchKeywords:</strong> {searchKeywords}
+        <br />
+        <strong>searchLat:</strong> {searchLat}
+        <br />
+        <strong>searchLng:</strong> {searchLng}
+        <br />
+        <strong>searchLocation:</strong> {searchLocation}
+        <br />
+        <strong>mapVisible:</strong> {mapVisible}
+        <br />
+        <strong>page:</strong> {page}
+        <br />
+        <strong>slider:</strong> {slider}
+        <br />
+        <button>Test something</button>
         <Filter
           key="onlyShow"
           legend="Only show"
@@ -207,9 +305,47 @@ const Debugger = () => {
         </pre> */}
       </PrebugSection>
 
-      {/* <PrebugSection>
+      <PrebugSection>
         <h1>Service Data</h1>
-        <strong>isLoading:</strong> {isLoading ? "true" : "false"}
+        {serviceStatus === "loading" ? (
+          <div>Loading...</div>
+        ) : serviceStatus === "error" ? (
+          <div>Error: {serviceError.message}</div>
+        ) : (
+          // `data` will either resolve to the latest page's data
+          // or if fetching a new page, the last successful page's data
+          <div>
+            {serviceData.content.map(content => (
+              <p key={content.id}>{content.name}</p>
+            ))}
+          </div>
+        )}
+        <div>Current Page: {page}</div>
+        <button
+          // onClick={() => setPage(old => Math.max(old - 1, 0))}
+          onClick={() => setPage(Math.max(page - 1, 0))}
+          disabled={page === 1}
+        >
+          Previous Page {Math.max(page - 1, 0)}
+        </button>{" "}
+        <button
+          // onClick={() => {
+          //   setPage(old => (serviceData?.last === false ? old + 1 : old))
+          // }}
+          onClick={() => {
+            setPage(Math.max(page + 1, 1))
+          }}
+          disabled={serviceIsPreviousData || serviceData?.last}
+        >
+          Next Page {Math.max(page + 1, 1)}
+        </button>
+        {
+          // Since the last page's data potentially sticks around between page requests,
+          // we can use `isFetching` to show a background loading
+          // indicator since our `status === 'loading'` state won't be triggered
+          serviceIsFetching ? <span> Loading...</span> : null
+        }{" "}
+        {/* <strong>isLoading:</strong> {isLoading ? "true" : "false"}
         <br />
         <strong>pagination:</strong> <br />
         <ul>
@@ -237,14 +373,82 @@ const Debugger = () => {
           })}
         </ul>
         <br />
-        <strong>error:</strong> {error ? "true" : "false"}
+        <strong>error:</strong> {error ? "true" : "false"} */}
       </PrebugSection>
 
       <PrebugSection>
         <h1>Filter Data</h1>
-      </PrebugSection>
+        <h2>Taxonomies</h2>
+        {taxonomies.status === "loading" ? (
+          "Loading..."
+        ) : taxonomies.status === "error" ? (
+          <span>Error: {taxonomies.error.message}</span>
+        ) : (
+          <>
+            <div>
+              {taxonomies.data.map(taxonomy => (
+                <p key={taxonomy.id}>
+                  {taxonomy.label}{" "}
+                  {filterCollection === taxonomy.slug ? "✅" : ""}
+                </p>
+              ))}
+            </div>
+            <div>{taxonomies.isFetching ? "Background Updating..." : " "}</div>
+          </>
+        )}
 
-      <PrebugSection></PrebugSection> */}
+        <h2>Suitabilities</h2>
+        {suitabilities.status === "loading" ? (
+          "Loading..."
+        ) : suitabilities.status === "error" ? (
+          <span>Error: {suitabilities.error.message}</span>
+        ) : (
+          <>
+            <div>
+              {suitabilities.data.map(taxonomy => (
+                <p key={taxonomy.id}>{taxonomy.label}</p>
+              ))}
+            </div>
+            <div>
+              {suitabilities.isFetching ? "Background Updating..." : " "}
+            </div>
+          </>
+        )}
+
+        <h2>SEND needs</h2>
+        {sendNeeds.status === "loading" ? (
+          "Loading..."
+        ) : sendNeeds.status === "error" ? (
+          <span>Error: {sendNeeds.error.message}</span>
+        ) : (
+          <>
+            <div>
+              {sendNeeds.data.map(taxonomy => (
+                <p key={taxonomy.id}>{taxonomy.label}</p>
+              ))}
+            </div>
+            <div>{sendNeeds.isFetching ? "Background Updating..." : " "}</div>
+          </>
+        )}
+
+        <h2>Accessibilities</h2>
+        {accessibilities.status === "loading" ? (
+          "Loading..."
+        ) : accessibilities.status === "error" ? (
+          <span>Error: {accessibilities.error.message}</span>
+        ) : (
+          <>
+            <div>
+              {accessibilities.data.map(accessibility => (
+                <p key={accessibility.id}>{accessibility.label}</p>
+              ))}
+            </div>
+            <div>
+              {accessibilities.isFetching ? "Background Updating..." : " "}
+            </div>
+          </>
+        )}
+      </PrebugSection>
     </Prebug>
   )
 }

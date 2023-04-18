@@ -1,6 +1,6 @@
 import React from "react"
 
-import { orderFilters } from "./../../lib/order-filters"
+import { orderFilters } from "~/src/utils"
 
 import {
   Filters,
@@ -8,7 +8,7 @@ import {
   Filter,
   AgeFilter,
   RadioFilter,
-} from "@outpost-platform/scout-components"
+} from "./../../components"
 
 // const filterSendNeeds = sendOptions.length > 0 && (
 //   <Filter
