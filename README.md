@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://outpost-staging.herokuapp.com/">
-        <img src="https://github.com/wearefuturegov/scout-x/blob/master/public/scout.png?raw=true" width="350px" />               
+        <img src="https://github.com/wearefuturegov/scout-x/blob/develop/public/scout.png?raw=true" width="350px" />               
     </a>
 </p>
   
@@ -11,7 +11,7 @@
 ---
 
 <p align="center">
-   <img src="https://github.com/wearefuturegov/scout-x/raw/master/docs/examples.jpg?raw=true" width="750px" />     
+   <img src="https://github.com/wearefuturegov/scout-x/raw/develop/docs/intro-scout.png?raw=true" width="750px" />     
 </p>
 <p align="center">
    <em>Example screens from the app</em>         
