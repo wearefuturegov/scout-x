@@ -35,7 +35,7 @@
     "prettier": "2.2.1",
     "progress-bar-webpack-plugin": "^2.1.0",
     "webpack": "4.42.0",
-    "webpack-bundle-analyzer": "^3.7.0"
+    "webpack-bundle-analyzer": "^4.6.1"
   },
   "scripts": {
     "dev": "run-s add-public-files dev:app",
@@ -45,7 +45,7 @@
     "add-public-files": "node jobs/add-public-files",
     "test": "run-s test:*",
     "test:unit": "jest",
-    "test:cypress": "cypress open",
+    "test:cypress": "cypress open --e2e",
     "eject": "react-scripts eject",
     "analyse": "node jobs/analyse",
     "lint": "prettier --check ."

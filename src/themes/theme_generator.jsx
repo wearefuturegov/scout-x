@@ -88,7 +88,6 @@ const generate_theme = (vars, theme_vars) => {
     outpostLoginUrl: process.env.REACT_APP_OUTPOST_LOGIN_URL,
     outpostRegisterUrl: process.env.REACT_APP_OUTPOST_REGISTER_URL,
     feedbackUrl: process.env.REACT_APP_FEEDBACK_URL,
-    scoutUrl: process.env.REACT_APP_SCOUT_URL,
     outpostUrl: process.env.REACT_APP_OUTPOST_URL || "",
     mapSwitchSmall: vars.hasOwnProperty("mapSwitchSmall")
       ? vars.mapSwitchSmall
