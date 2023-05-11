@@ -40,6 +40,9 @@ async function copyDir(src, dest) {
     console.log(
       `${sourceDirectory} directory exists, attempting to copy correct files...`
     )
+    console.log(
+      `REACT_APP_SITE_URL is set to ${process.env.REACT_APP_SITE_URL}`
+    )
     try {
       await copyDir(sourceDirectory, "./public")
       console.log(`Copied correct files...`)

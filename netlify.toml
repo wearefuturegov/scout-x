@@ -8,6 +8,9 @@
     status = 200
 
 [[plugins]]
+    package = "/plugins/netlify-add-netlify-build-vars"
+
+[[plugins]]
     package = 'netlify-plugin-contextual-env'
         [plugins.inputs]
             mode = 'prefix'
