@@ -3,10 +3,10 @@ import logo from "./logo.svg"
 
 export const vars_tvvru = {
   slug: "tvvru",
-  title: "Thames Valley Violence Reduction Unit",
+  title: "Thames Valley Connect",
   contactEmail: "vrutechnicalsupport@thamesvalley.police.uk",
   serviceHomepageUrl: "/",
-  organisation: "Thames Valley Violence Reduction Unit",
+  organisation: "Thames Valley Police",
   organisationUrl: "https://www.tvvru.co.uk/",
   tagline: "The Thames Valley Wide Service directory for professional users",
   beta: true,
@@ -39,20 +39,16 @@ export const vars_tvvru = {
   },
   filterOrder: [
     {
-      order: 6,
-      name: "send-needs",
-    },
-    {
       order: 1,
       name: "ages",
     },
     {
-      order: 3,
-      name: "accessibilities",
-    },
-    {
       order: 2,
       name: "only-show",
+    },
+    {
+      order: 3,
+      name: "accessibilities",
     },
     {
       order: 4,
@@ -61,6 +57,10 @@ export const vars_tvvru = {
     {
       order: 5,
       name: "suitabilities",
+    },
+    {
+      order: 6,
+      name: "send-needs",
     },
   ],
   noLocationIsCountywide: true,
