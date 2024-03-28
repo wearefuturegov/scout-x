@@ -2,21 +2,17 @@ version: "3.7"
 services:
   scout:
     stdin_open: true
-    image: "scout:development"
-    container_name: scout-dev
+    image: "scout:production"
+    container_name: scout-prod
     restart: unless-stopped
     build:
-      target: development
+      target: production
     ports:
       - 3000:3000
     volumes:
       - ./:/usr/src/app:cached
     environment:
-      NODE_ENV: development
-      REACT_APP_SITE_URL: http://localhost:3000
-      REACT_APP_THEME: generic
-      # REACT_APP_API_HOST: http://localhost:3002/api/v1
-      # REACT_APP_FILTERS_DATASOURCE: http://localhost:3000/api/v1
+      NODE_ENV: production
     networks:
       - scout_dev_external_network
       - scout_dev_internal_network

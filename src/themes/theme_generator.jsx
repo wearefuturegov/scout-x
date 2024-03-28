@@ -7,8 +7,8 @@ import { vars_bfis } from "./bfis/vars_bfis"
 import { vars_bod } from "./bod/vars_bod"
 import { vars_tvvru } from "./tvvru/vars_tvvru"
 import validThemes from "./valid-themes.json"
+import "dotenv/config"
 const valid = validThemes.valid
-require("dotenv").config()
 
 /**
  * If for some reason REACT_APP_THEME is undefined we return 'generic' as the default
