@@ -99,6 +99,14 @@ const App = ({ children, location, navigate }) => {
   useEffect(() => {
     fetchSiteData()
       .then(([taxonomies, suitabilities, sendOptions, accessibilities]) => {
+        if (theme && theme.parentTaxonomyId) {
+          const parentTaxonomy = taxonomies.find(
+            t => t.id === theme.parentTaxonomyId
+          )
+          if (parentTaxonomy && parentTaxonomy.children) {
+            taxonomies = parentTaxonomy.children
+          }
+        }
         setCollectionOptions(taxonomies)
         setSuitabilityOptions(formatSuitabilityOptions(suitabilities))
         setSendOptions(sendOptions)
