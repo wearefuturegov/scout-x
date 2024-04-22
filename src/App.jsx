@@ -256,15 +256,18 @@ const App = ({ children, location, navigate }) => {
       <Layout
         scrollRef={scrollTarget}
         headerComponents={
-          <SearchBar
-            keywords={keywords}
-            setKeywords={setKeywords}
-            coverage={coverage}
-            setCoverage={setCoverage}
-            setLat={setLat}
-            setLng={setLng}
-            setPage={setPage}
-          />
+          <>
+            <SearchBar
+              keywords={keywords}
+              setKeywords={setKeywords}
+              coverage={coverage}
+              setCoverage={setCoverage}
+              setLat={setLat}
+              setLng={setLng}
+              setPage={setPage}
+            />
+            {theme.headerComponents ?? theme.headerComponents}
+          </>
         }
         sidebarComponents={
           <>

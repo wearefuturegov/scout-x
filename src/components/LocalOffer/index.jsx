@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { truncate } from "../../lib/utils"
 import upArrow from "./up-arrow.svg"
 import downArrow from "./down-arrow.svg"
-import A from "../A"
+import { A } from "../A"
 import { TickList, TickListItem } from "../TickList"
 
 const Outer = styled.article`
