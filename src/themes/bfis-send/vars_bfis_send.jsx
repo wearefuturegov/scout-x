@@ -6,7 +6,7 @@ export const vars_bfis_send = {
   ...vars_bfis,
   slug: "bfis",
   title: "SEND Local Offer",
-  parentTaxonomyId: 411,
+  parentTaxonomyId: 518,
   headerComponents: (
     <SingleStrongLink
       text="How to use this directory"
