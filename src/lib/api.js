@@ -99,15 +99,17 @@ export const fetchServiceData = async query => {
  * @returns {}
  */
 export const fetchData = async resource => {
-  const directory = [theme.slug]
+  let filters = ""
+  if (resource === "taxonomies" && theme.targets.length > 0) {
+    filters = `?${queryString.stringify(
+      { directory: theme.targets.split(",") },
+      { arrayFormat: "bracket" }
+    )}`
+  }
 
   try {
     const res = await fetch(
-      `${
-        process.env.REACT_APP_FILTERS_DATASOURCE
-      }/${resource}?${queryString.stringify({
-        directory,
-      })}`
+      `${process.env.REACT_APP_FILTERS_DATASOURCE}/${resource}${filters}`
     )
     return await res.json()
   } catch (err) {
