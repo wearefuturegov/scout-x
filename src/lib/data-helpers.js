@@ -5,7 +5,7 @@
  * @returns
  */
 export const subcategoriesOf = (taxonomies, parent) => {
-  console.log(taxonomies, parent)
+  // console.log(taxonomies, parent)
   const subcategories = taxonomies.find(taxon => taxon.slug === parent)
   return subcategories ? subcategories.children : []
 }
