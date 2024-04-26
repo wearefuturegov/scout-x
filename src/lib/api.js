@@ -63,14 +63,14 @@ export const fetchServiceData = async query => {
   if (collection) taxonomies.push([].concat(collection))
   if (categories) taxonomies.push([].concat(categories).join(","))
 
-  let targetDirectories = []
+  let directory = []
   if (theme.targets.length > 0)
-    targetDirectories.push([].concat(theme.targets).join(","))
+    directory.push([].concat(theme.targets).join(","))
 
   try {
     const res = await fetch(
       `${process.env.REACT_APP_API_HOST}/services?${queryString.stringify({
-        targetDirectories,
+        directory,
         keywords,
         location,
         lat,
