@@ -2,6 +2,11 @@ import fetch from "isomorphic-unfetch"
 import queryString from "query-string"
 import { theme } from "./../themes/theme_generator"
 
+import {
+  defineQueryTaxonomies,
+  sortServices,
+  removeDuplicateServices,
+} from "./data-helpers"
 /**
  * These calls rely on
  * @param {*} query
@@ -38,16 +43,59 @@ export const fetchSiteData = async query => {
  * @param {*} query
  * @returns
  */
-export const fetchServiceData = async query => {
-  const per_page = 20
+export const fetchServiceData = async (query, page) => {
+  const per_page = theme.resultsPerPage || 20
+  let { collection, categories } = queryString.parse(query)
 
+  // api does AND queries only so we need to split the requests up according to the categories
+  const taxonomies = defineQueryTaxonomies(collection, categories)
+
+  try {
+    // return 2x as many results if there are multiple taxonomies to account for any duplicates so pagination works (not foolproof but works for now)
+    const results = await Promise.all(
+      taxonomies.length > 1
+        ? taxonomies.map((taxonomy, i) =>
+            fetchServiceDataFromApi(query, taxonomy, per_page * 2, page, i)
+          )
+        : [fetchServiceDataFromApi(query, taxonomies, per_page * 2, page)]
+    )
+    const combinedResults = results.map(r => r.content).flat()
+    const deduplicatedResults = removeDuplicateServices(combinedResults, query)
+    const sortedResults = sortServices(deduplicatedResults, query)
+
+    // moreResults tries to guess if theres going to nbe any more results to show if its 0 then we're no longer returning any results for any queries and can hide load more
+    // we use estTotalResults to show the user how many results we think there are going to be
+
+    let moreResults = results.reduce((acc, r) => acc + r.content.length, 0)
+    let estTotalResults = results.reduce((acc, r) => acc + r.totalElements, 0)
+
+    return {
+      content: sortedResults,
+      moreResults,
+      estTotalResults,
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+/**
+ * Get service data
+ * @param {*} query
+ * @returns
+ */
+export const fetchServiceDataFromApi = async (
+  query,
+  taxonomies,
+  per_page = theme.resultsPerPage || 20,
+  page,
+  query_num = 0
+) => {
   let {
     keywords,
     location,
     lat,
     lng,
-    collection,
-    categories,
     needs,
     accessibilities,
     suitabilities,
@@ -55,13 +103,7 @@ export const fetchServiceData = async query => {
     min_age,
     max_age,
     only,
-    page,
   } = queryString.parse(query)
-
-  // api expects collections and categories to both be a "taxonomy" parameter
-  let taxonomies = []
-  if (collection) taxonomies.push([].concat(collection))
-  if (categories) taxonomies.push([].concat(categories).join(","))
 
   let directory = []
   if (theme.targets.length > 0)
@@ -87,7 +129,10 @@ export const fetchServiceData = async query => {
         per_page,
       })}`
     )
-    return await res.json()
+    const results = await res.json()
+    // add query number to each result so we can track which query it came from
+    results.content = results.content.map(r => (r = { ...r, query_num }))
+    return results
   } catch (err) {
     console.log(err)
   }
