@@ -65,9 +65,7 @@ const generate_theme = (vars, theme_vars) => {
     targets: formatTargets(),
     slug: vars.slug,
     title: vars.hasOwnProperty("title") ? vars.title : "",
-    parentTaxonomyId: vars.hasOwnProperty("parentTaxonomyId")
-      ? vars.parentTaxonomyId
-      : "",
+    parentTaxonomyId: process.env.REACT_APP_PARENT_TAXONOMY_ID || "",
     resultsPerPage: vars.hasOwnProperty("resultsPerPage")
       ? vars.resultsPerPage
       : 20,
