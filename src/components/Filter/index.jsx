@@ -67,7 +67,7 @@ const Filter = ({
 
   const handleChange = e => {
     let { checked, value } = e.target
-    const [parent, slug] = value.split(":")
+    const [parent] = value.split(":")
 
     if (checked) {
       let tmpSelection = selection
