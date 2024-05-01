@@ -8,7 +8,7 @@
   "content": [
     {
       "id": 1,
-      "updated_at": "2021-01-13T12:48:54.730Z",
+      "updated_at": "2024-05-01T12:48:54.730Z",
       "name": "12th Aylesbury Brownies",
       "description": "Brownies are a group of girls aged 7 to 10 years who meet weekly in term time for fun activities, crafts, songs, badge work, games, learning new skills and making new friends. \r\n ",
       "url": null,
@@ -113,7 +113,7 @@
       },
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -175,7 +175,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -240,7 +240,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -308,7 +308,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -382,7 +382,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -421,7 +421,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -495,7 +495,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -582,7 +582,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -683,7 +683,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -765,7 +765,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -836,7 +836,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -937,7 +937,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -989,7 +989,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -1116,7 +1116,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -1199,7 +1199,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -1312,7 +1312,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -1408,7 +1408,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -1485,7 +1485,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -1550,7 +1550,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -1567,7 +1567,7 @@
       "description": "Mainstream primary academy for children aged 4 to 11.",
       "url": "https://www.example.com/",
       "created_at": "2020-11-26T10:55:35.503Z",
-      "updated_at": "2020-11-26T10:55:35.503Z",
+      "updated_at": "2024-05-01T15:55:35.503Z",
       "needs_referral": null,
       "free": null,
       "min_age": 2,
@@ -1630,7 +1630,7 @@
       "local_offer": null,
       "score": 0,
       "distance_away": null,
-      "target_directories": [
+      "directories": [
         {
           "name": "Buckinghamshire Online Directory",
           "label": "bod"
@@ -1640,6 +1640,2597 @@
           "label": "bfis"
         }
       ]
+    },
+    {
+      "id": 11935,
+      "updated_at": "2024-02-07T10:17:10.599Z",
+      "name": "Mums and Toddlers (St Anne's High Wycombe)",
+      "description": "At St. Anne's every Wednesday 9:30am  to 11.30am, Carol and Dawn wait to welcome you and your little ones. \r\n\r\nThere are toys for all ages, puzzles, books, a big kitchen and ride on toys. Children of all ages from 0 to 5 are welcomed to play, sing, draw and enjoy the fun.\r\nTeas, coffees and hot chocolates are served for the grownups (Mums, Dads, grandparents and carers) Squash and water for the children. A donation of £1 is welcomed per child, but not required.",
+      "url": "https://www.stannesandstpeters.com/forchildren.htm",
+      "min_age": null,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2024-02-07T10:17:10.599Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 13128,
+          "name": "St Anne's Church",
+          "address_1": "London Road",
+          "city": "High Wycombe",
+          "state_province": null,
+          "postal_code": "HP11 1ET",
+          "country": null,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.717223, 51.619114]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 15920,
+          "name": "",
+          "title": "",
+          "email": "stannes-stpeters@hotmail.co.uk",
+          "phone": "01494 471315"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 4189,
+        "name": "St Anne's and St Peter's Churches (High Wycombe)",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 123,
+          "name": "Activities for babies and toddlers",
+          "slug": "activities-for-babies-and-toddlers",
+          "parent_id": 3
+        },
+        {
+          "id": 271,
+          "name": "Libraries, churches, community centres",
+          "slug": "libraries-churches-community-centres",
+          "parent_id": 3
+        },
+        {
+          "id": 478,
+          "name": "Churches and places of worship",
+          "slug": "churches-and-places-of-worship",
+          "parent_id": 271
+        }
+      ],
+      "regular_schedules": [
+        {
+          "id": 18809,
+          "weekday": "Wednesday",
+          "opens_at": "09:30",
+          "closes_at": "11:30"
+        }
+      ],
+      "cost_options": [
+        {
+          "id": 6302,
+          "option": "Donation (not required)",
+          "amount": "1.00",
+          "cost_type": ""
+        }
+      ],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 11860,
+      "updated_at": "2024-01-26T10:22:23.957Z",
+      "name": "Kickboxing and Martial Arts",
+      "description": "Leighton Buzzard Kickboxing Academy is a safe and friendly place to learn martial arts, meet new people and transform your physical and mental well-being.\r\n\r\nEstablished in Leighton Buzzard and Wing since 2009. We welcome beginners to advanced, juniors from age 4, adults no upper age limit. We also have a female only class. Affiliated to Kickboxing GB, the largest kickboxing organisation in the world, recognised by the International Olympic Committee and also by Sport England.",
+      "url": "http://www.leightonbuzzardkickboxing.com",
+      "min_age": 4,
+      "max_age": 100,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2024-01-25T16:13:51.413Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 13051,
+          "name": "Gilbert Inglefield Academy ",
+          "address_1": "Vandyke Road",
+          "city": "Leighton Buzzard",
+          "state_province": null,
+          "postal_code": "LU7 3FU",
+          "country": null,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.646899, 51.925997]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        },
+        {
+          "id": 13052,
+          "name": "Cottesloe school",
+          "address_1": "Aylesbury Road",
+          "city": "Wing",
+          "state_province": null,
+          "postal_code": "LU7 0NY",
+          "country": null,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.720829, 51.894553]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 15830,
+          "name": "Sensei Jo Randall",
+          "title": "Chief Instructor ",
+          "email": "jokarate@hotmail.co.uk",
+          "phone": "+447539873858"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 3465,
+        "name": "Leighton Buzzard Kickboxing Academy",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 266,
+          "name": "Sports and fitness",
+          "slug": "sports-and-fitness",
+          "parent_id": 3
+        },
+        {
+          "id": 369,
+          "name": "Martial arts",
+          "slug": "martial-arts",
+          "parent_id": 266
+        }
+      ],
+      "regular_schedules": [],
+      "cost_options": [],
+      "links": [
+        {
+          "label": "Facebook",
+          "url": "https://www.facebook.com/LBKickboxingAcademy"
+        },
+        {
+          "label": "Instagram",
+          "url": "https://www.instagram.com/lbkickboxingacademy/"
+        }
+      ],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 5859,
+      "updated_at": "2022-12-05T23:16:04.198Z",
+      "name": "Penn Street Village Hall",
+      "description": "In the heart of the attractive village of Penn Street, this oak-built hall has already proved to be very popular with residents and near-by groups. The hall is now used by a variety of village-based groups and societies and the aim is to keep its function as central to the village community while making it available to hire by those elsewhere.\r\n\r\nPlease contact for the most up-to-date information.",
+      "url": "http://pennstreethall.co.uk/",
+      "min_age": null,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2021-09-14T13:03:32.346Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" },
+        { "name": "Buckinghamshire Online Directory", "label": "bod" }
+      ],
+      "locations": [
+        {
+          "id": 6772,
+          "name": "Penn Street Village Hall",
+          "address_1": "Penn Street",
+          "city": "Amersham",
+          "state_province": "Buckinghamshire",
+          "postal_code": "HP7 0PX",
+          "country": "GB",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.667496, 51.653394]
+          },
+          "mask_exact_address": false,
+          "accessibilities": [
+            {
+              "name": "Accessible toilet facilities",
+              "slug": "accessible-toilet-facilities"
+            },
+            {
+              "name": "Wheelchair accessible entrance",
+              "slug": "wheelchair-accessible-entrance"
+            },
+            {
+              "name": "Baby changing facilities",
+              "slug": "baby-changing-facilities"
+            },
+            { "name": "Car parking", "slug": "car-parking" },
+            { "name": "Changing facilities", "slug": "changing-facilities" },
+            { "name": "Bus stop nearby", "slug": "bus-stop-nearby" }
+          ]
+        }
+      ],
+      "contacts": [
+        {
+          "id": 13215,
+          "name": "Lettings Secretary",
+          "title": "Lettings Secretary",
+          "email": "pennstreethall@live.co.uk",
+          "phone": ""
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 4105,
+        "name": "Penn Street Village Hall",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 271,
+          "name": "Libraries, churches, community centres",
+          "slug": "libraries-churches-community-centres",
+          "parent_id": 3
+        }
+      ],
+      "regular_schedules": [],
+      "cost_options": [],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 3471,
+      "updated_at": "2021-09-08T09:12:19.191Z",
+      "name": "Youth Swimming at Wycombe Abbey School (Wycombe)",
+      "description": "Youth Swimming at Wycombe Abbey School, classes help to further develop swimmers from the age of 12 years. All abilities are accepted and grades are available to those who wish to take them.",
+      "url": "http://www.horizonsportsclub.org.uk/index.php",
+      "min_age": 12,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2021-03-01T15:53:20.525Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 4303,
+          "name": "Wycombe Abbey School",
+          "address_1": "Abbey Way",
+          "city": "High Wycombe",
+          "state_province": "Buckinghamshire",
+          "postal_code": "HP11 1PE",
+          "country": "GB",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.750872, 51.626229]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 6642,
+          "name": "",
+          "title": "",
+          "email": "info@horizonsportsclub.org.uk",
+          "phone": "01494 349001"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" }
+      ],
+      "organisation": {
+        "id": 580,
+        "name": "Horizon Sports Club",
+        "description": "Our members are able. Able to participate, able to be challenged and able to achieve – but they may need a little extra help from time to time, that’s where our inclusive sports club and unique approach comes in.\nAs a specialist sports club, we are passionate about enabling our members to participate in and enjoy sports. With the right coaching and support, we believe amazing things can happen.\nSports offered\n\nHorizon Minis\nJunior and Youth Swimming\nTennis\nJunior ball skills\nYouth Football\n",
+        "email": "info@horizonsportsclub.org.uk",
+        "url": "https://horizonsportsclub.org.uk/"
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 266,
+          "name": "Sports and fitness",
+          "slug": "sports-and-fitness",
+          "parent_id": 3
+        }
+      ],
+      "regular_schedules": [],
+      "cost_options": [],
+      "links": [],
+      "send_needs": [
+        { "id": 1, "name": "Autism", "slug": "autism" },
+        {
+          "id": 2,
+          "name": "Social, emotional and mental health difficulties",
+          "slug": "social-emotional-and-mental-health-difficulties"
+        },
+        { "id": 3, "name": "Hearing", "slug": "hearing" },
+        {
+          "id": 4,
+          "name": "Communication and interaction",
+          "slug": "communication-and-interaction"
+        },
+        {
+          "id": 5,
+          "name": "Sensory and physical needs",
+          "slug": "sensory-and-physical-needs"
+        },
+        {
+          "id": 6,
+          "name": "Cognition and learning",
+          "slug": "cognition-and-learning"
+        },
+        { "id": 7, "name": "Visual", "slug": "visual" }
+      ],
+      "suitabilities": [],
+      "local_offer": {
+        "description": "Horizon is a registered charity which provides a unique after school sports club for children and young people with disabilities, living in South Buckinghamshire. We give our members the opportunity to develop both physically and socially through the enjoyment of sport.",
+        "link": "",
+        "survey_answers": [
+          {
+            "question": "What outcomes does your setting, service or activity aim to achieve for children and young people with SEND and their families?",
+            "answer": ""
+          },
+          {
+            "question": "What recent SEND-specific training has been completed by your staff and/or volunteers?",
+            "answer": ""
+          },
+          {
+            "question": "How do you involve parents and how can I get involved?",
+            "answer": ""
+          },
+          {
+            "question": "How will you share information with me about my child’s progress? What is additional for children with SEND?",
+            "answer": ""
+          },
+          {
+            "question": "How accessible is the environment (indoors and outdoors)?",
+            "answer": ""
+          },
+          {
+            "question": "How can children and young people with SEND and their families start to use your service or activity?",
+            "answer": ""
+          },
+          {
+            "question": "What future plans do you have for developing your SEND provision?",
+            "answer": ""
+          }
+        ]
+      },
+      "distance_away": null
+    },
+    {
+      "id": 2786,
+      "updated_at": "2024-04-16T14:41:06.729Z",
+      "name": "Simpson Place Park (Aylesbury)",
+      "description": "Simpson Place Park (Aylesbury). A small pleasant play space with natural features and landscaped features.\r\n\r\nProviding a good range of play experiences designed for ages 2 to 14 years.\r\nNest swing\r\nDish roundabout.\r\n\r\n\r\n",
+      "url": "https://www.buckinghamshire.gov.uk/health-wellbeing-and-sports/parks-and-open-spaces/find-a-park-or-play-area/simpson-place-park/",
+      "min_age": 2,
+      "max_age": 15,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2021-03-01T15:44:54.732Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 3508,
+          "name": "Simpson Place Park",
+          "address_1": "Simpson Place",
+          "city": "Aylesbury",
+          "state_province": "Buckinghamshire",
+          "postal_code": "HP21 9PS",
+          "country": "GB",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.804204, 51.804144]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 5362,
+          "name": "",
+          "title": "Community Spaces",
+          "email": "communities_team.av@buckinghamshire.gov.uk",
+          "phone": "01296 585235"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 2706,
+        "name": "Parks and Outdoor Spaces | Aylesbury",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 270,
+          "name": "Parks and outdoor spaces",
+          "slug": "parks-and-outdoor-spaces",
+          "parent_id": 3
+        },
+        {
+          "id": 381,
+          "name": "Parks and playgrounds",
+          "slug": "parks-and-playgrounds",
+          "parent_id": 270
+        }
+      ],
+      "regular_schedules": [],
+      "cost_options": [],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 11936,
+      "updated_at": "2024-02-07T10:27:14.594Z",
+      "name": "Blast (St Peter's Church High Wycombe)",
+      "description": "BLAST is for you if you are aged 5 to 11. Each week we get together for fun, games, drama, craft, stories from God's Big Book, meeting with each other and with God. We meet  at St. Peter's Micklefield Road. \r\n\r\nWe meet at 6:30pm every other Thursday in term time. If you are over 11 and want to join in the fun, get in touch and we can talk about the next steps for you.",
+      "url": "https://www.stannesandstpeters.com/forchildren.htm",
+      "min_age": null,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2024-02-07T10:20:57.877Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 13129,
+          "name": "The Vicarage",
+          "address_1": "245 Micklefield Road",
+          "city": "High Wycombe",
+          "state_province": null,
+          "postal_code": "HP13 7HU",
+          "country": null,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.710736, 51.631388]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 15921,
+          "name": "",
+          "title": "",
+          "email": "stannes-stpeters@hotmail.co.uk",
+          "phone": ""
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 4189,
+        "name": "St Anne's and St Peter's Churches (High Wycombe)",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 271,
+          "name": "Libraries, churches, community centres",
+          "slug": "libraries-churches-community-centres",
+          "parent_id": 3
+        },
+        {
+          "id": 478,
+          "name": "Churches and places of worship",
+          "slug": "churches-and-places-of-worship",
+          "parent_id": 271
+        }
+      ],
+      "regular_schedules": [
+        {
+          "id": 18810,
+          "weekday": "Thursday",
+          "opens_at": "18:30",
+          "closes_at": "19:30"
+        }
+      ],
+      "cost_options": [],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 4493,
+      "updated_at": "2024-01-10T10:18:53.158Z",
+      "name": "Riding for the Disabled at Hartwell",
+      "description": "We are a small, friendly group that operates just outside Aylesbury. We have two riding lessons each week, one on a Wednesday afternoon term time only and the other one is on a Thursday morning. The Wednesday session takes a small number of young children from Booker Park School in Aylesbury only. These children have a wide range of disabilities. Our Thursday session is for adults with LD that are mobile and can mount the horse nearly independently. Both sessions take place in an outdoor school and are run entirely by volunteers. If you would like to know more about our group or are interested in volunteering with us, please contact us.",
+      "url": "https://www.hartwellstables.co.uk/",
+      "min_age": null,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2021-09-14T12:59:34.602Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 5406,
+          "name": "",
+          "address_1": "",
+          "city": "Aylesbury",
+          "state_province": "Buckinghamshire",
+          "postal_code": "HP22 5RF",
+          "country": "GB",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.754388, 51.792373]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 8009,
+          "name": "",
+          "title": "",
+          "email": "jackie@hartwellstables.co.uk",
+          "phone": "07553 361207"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 3242,
+        "name": "Hartwell Riding for the Disabled",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 308,
+          "name": "Activities for SEND",
+          "slug": "activities-for-send",
+          "parent_id": 3
+        },
+        {
+          "id": 403,
+          "name": "Staying active",
+          "slug": "staying-active",
+          "parent_id": null
+        }
+      ],
+      "regular_schedules": [],
+      "cost_options": [],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 19,
+      "updated_at": "2023-10-11T12:16:57.189Z",
+      "name": "Ladies Football ",
+      "description": "A ladies social football team ideal for complete beginners or those wishing to return to football on Wednesdays 7pm to 8pm.\r\n\r\nActive Bucks Activity",
+      "url": "https://aylesburyunitedladiesgirlsfc.com/teams/195403",
+      "min_age": null,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2021-03-01T15:04:00.552Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" },
+        { "name": "Buckinghamshire Online Directory", "label": "bod" }
+      ],
+      "locations": [
+        {
+          "id": 6,
+          "name": "Aqua Vale Swimming and Leisure Centre (all weather pitch)",
+          "address_1": "Vale Park, Park Street",
+          "city": "Aylesbury",
+          "state_province": "Buckinghamshire",
+          "postal_code": "HP20 1DX",
+          "country": "GB",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.802226, 51.817488]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 5,
+          "name": "Beth Cameron",
+          "title": "",
+          "email": "bethancameron1979@gmail.com",
+          "phone": "07799 633543"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 17,
+        "name": "Buckinghamshire Public Health",
+        "description": "Active Bucks provides information about fun and inspiring physical activities and classes taking place across Buckinghamshire; on days, evenings and weekends. There are over 1900 activities listed across Buckinghamshire, many are under £5, and your first one is free! Whatever your reason, you will be able to find an activity near you and on a day and time that suits you so it can become a part of your routine. Activities include aerobics, gym, swimming, dance, martial arts, badminton, tennis, and yoga to mention just a few. \nFind local activities at Active Bucks\n ",
+        "email": "activebucks@buckinghamshire.gov.uk",
+        "url": "http://activebucks.co.uk/"
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 266,
+          "name": "Sports and fitness",
+          "slug": "sports-and-fitness",
+          "parent_id": 3
+        },
+        {
+          "id": 309,
+          "name": "Activities for young people",
+          "slug": "activities-for-young-people",
+          "parent_id": 3
+        },
+        {
+          "id": 403,
+          "name": "Staying active",
+          "slug": "staying-active",
+          "parent_id": null
+        }
+      ],
+      "regular_schedules": [
+        {
+          "id": 12775,
+          "weekday": "Wednesday",
+          "opens_at": "19:00",
+          "closes_at": "20:00"
+        }
+      ],
+      "cost_options": [
+        {
+          "id": 1481,
+          "option": "Per person",
+          "amount": "6.00",
+          "cost_type": "per session"
+        }
+      ],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 10750,
+      "updated_at": "2024-02-02T11:03:33.135Z",
+      "name": "Dimensions ",
+      "description": "In 1976, armed with a single phone in a rented office, Dimensions began supporting people with learning disabilities, autism and complex needs out of institutions, helping them lead ordinary lives in their local communities.\r\n\r\nForty years on, our work is fundamentally unchanged: we support people with learning disabilities and autistic people to have a louder voice, choice and control in their lives. Our 7000 colleagues deliver ambitious, effective, personalised support often with those whose previous support has not been successful.\r\n\r\nWorking alongside our colleagues are family members and many of the people we support. They could be quality checkers, interviewers or members of our Council. Their voices and experiences inform the research we use to deliver improved outcomes. Together, we continue to prove that life really can get better.\r\n\r\nThrough our person-centred approach we support:\r\n\r\nPeople with profound and multiple learning disabilities \r\nPeople with complex autism\r\nPeople needing full time support, and those needing a little less\r\nPeople with complex health needs\r\nPeople whose behaviour may challenge those around them\r\nPeople in assessment and treatment units\r\nYoung adults leaving school and college\r\nPeople with forensic support needs\r\nPeople looking for a place to live\r\nPeople and families needing a break\r\nPeople seeking employment\r\n",
+      "url": "https://dimensions-uk.org/",
+      "min_age": 18,
+      "max_age": 65,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2023-07-06T14:40:18.613Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" },
+        { "name": "Buckinghamshire Online Directory", "label": "bod" }
+      ],
+      "locations": [
+        {
+          "id": 11851,
+          "name": "Ground Floor, Building 1230 ",
+          "address_1": "Arlington Business Park",
+          "city": " Theale, Reading",
+          "state_province": null,
+          "postal_code": "RG7 4SA",
+          "country": null,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-1.063543, 51.435689]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 14666,
+          "name": "",
+          "title": "",
+          "email": "enquiries@dimensions-uk.org",
+          "phone": "0300 303 9001"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 6919,
+        "name": "Dimensions ",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 273,
+          "name": "Advice and support",
+          "slug": "advice-and-support",
+          "parent_id": null
+        },
+        {
+          "id": 314,
+          "name": "SEND Services",
+          "slug": "send-services",
+          "parent_id": 273
+        },
+        {
+          "id": 463,
+          "name": "Development and independence support ",
+          "slug": "development-and-independence-support",
+          "parent_id": 314
+        },
+        {
+          "id": 464,
+          "name": "Emotional and mental health ",
+          "slug": "emotional-and-mental-health",
+          "parent_id": 314
+        }
+      ],
+      "regular_schedules": [],
+      "cost_options": [],
+      "links": [
+        {
+          "label": "Facebook",
+          "url": "https://www.facebook.com/dimensionsUK/?locale=en_GB"
+        }
+      ],
+      "send_needs": [
+        { "id": 1, "name": "Autism", "slug": "autism" },
+        {
+          "id": 2,
+          "name": "Social, emotional and mental health difficulties",
+          "slug": "social-emotional-and-mental-health-difficulties"
+        },
+        {
+          "id": 4,
+          "name": "Communication and interaction",
+          "slug": "communication-and-interaction"
+        },
+        {
+          "id": 5,
+          "name": "Sensory and physical needs",
+          "slug": "sensory-and-physical-needs"
+        }
+      ],
+      "suitabilities": [
+        {
+          "id": 1,
+          "name": "Visual and/or hearing impediment",
+          "slug": "visual-and-or-hearing-impediment"
+        },
+        {
+          "id": 4,
+          "name": "Physical disabilities",
+          "slug": "physical-disabilities"
+        },
+        {
+          "id": 5,
+          "name": "Mental health/acquired brain injury",
+          "slug": "mental-health-acquired-brain-injury"
+        },
+        { "id": 6, "name": "Autism", "slug": "autism" },
+        {
+          "id": 7,
+          "name": "Learning difficulties",
+          "slug": "learning-difficulties"
+        }
+      ],
+      "local_offer": {
+        "description": "Through our person-centred approach we support a range of circumstances facing SEND people.\r\n\r\n",
+        "link": "",
+        "survey_answers": [
+          {
+            "question": "What outcomes does your setting, service or activity aim to achieve for children and young people with SEND and their families?",
+            "answer": ""
+          },
+          {
+            "question": "What recent SEND-specific training has been completed by your staff and/or volunteers?",
+            "answer": ""
+          },
+          {
+            "question": "How do you involve parents and how can I get involved?",
+            "answer": ""
+          },
+          {
+            "question": "How will you share information with me about my child’s progress? What is additional for children with SEND?",
+            "answer": ""
+          },
+          {
+            "question": "How accessible is the environment (indoors and outdoors)?",
+            "answer": ""
+          },
+          {
+            "question": "How can children and young people with SEND and their families start to use your service or activity?",
+            "answer": ""
+          },
+          {
+            "question": "What future plans do you have for developing your SEND provision?",
+            "answer": ""
+          }
+        ]
+      },
+      "distance_away": null
+    },
+    {
+      "id": 2787,
+      "updated_at": "2024-04-02T12:54:08.286Z",
+      "name": "Sinead Stringfellow",
+      "description": "Childminder located in Chalfont St. Peter in the District of Chiltern.\r\nQualified Nursery Nurse with 25 years experience in childcare. Graded outstanding with Ofsted\r\n ",
+      "url": null,
+      "min_age": null,
+      "max_age": null,
+      "age_band_under_2": true,
+      "age_band_2": true,
+      "age_band_3_4": true,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2021-03-01T15:44:55.973Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 3509,
+          "name": "",
+          "address_1": null,
+          "city": "Chalfont St. Peter, Gerrards Cross",
+          "state_province": "Buckinghamshire",
+          "postal_code": "SL9",
+          "country": "GB",
+          "geometry": { "type": "Point", "coordinates": [-0.55, 51.61] },
+          "mask_exact_address": true,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 5363,
+          "name": "Sinead Stringfellow",
+          "title": "Childminder",
+          "email": "sinead.stringfellow@gmail.com",
+          "phone": "01494 871629"
+        },
+        {
+          "id": 5364,
+          "name": "",
+          "title": "",
+          "email": "",
+          "phone": "07932 021038"
+        }
+      ],
+      "meta": [
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "Yes" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": "52"
+        },
+        { "key": "Maximum number of children a day?", "value": "" },
+        { "key": "Vacancies for under 5 year olds", "value": "0" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "0" },
+        { "key": "Vacancies for over 8 year olds", "value": "0" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        {
+          "key": "Communication Email address",
+          "value": "sinead.stringfellow@gmail.com"
+        },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "01494871629" }
+      ],
+      "organisation": {
+        "id": 2300,
+        "name": "Sinead Stringfellow Childminding Service",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 21,
+          "name": "Childcare and early years",
+          "slug": "childcare-and-early-years",
+          "parent_id": null
+        },
+        {
+          "id": 42,
+          "name": "Childminders",
+          "slug": "childminders",
+          "parent_id": 21
+        },
+        {
+          "id": 303,
+          "name": "2 year old funded - government support",
+          "slug": "2-year-old-funded-government-support",
+          "parent_id": 21
+        },
+        {
+          "id": 304,
+          "name": "Funded childcare",
+          "slug": "funded-childcare",
+          "parent_id": 21
+        },
+        {
+          "id": 305,
+          "name": "3/4 year old funded providers",
+          "slug": "3-4-year-old-funded-providers",
+          "parent_id": 21
+        },
+        {
+          "id": 306,
+          "name": "30 hours funded providers",
+          "slug": "30-hours-funded-providers",
+          "parent_id": 21
+        },
+        {
+          "id": 416,
+          "name": "Ofsted registered childminders",
+          "slug": "ofsted-registered-childminders",
+          "parent_id": 42
+        },
+        {
+          "id": 480,
+          "name": "2 year old funded - working parents",
+          "slug": "2-year-old-funded-working-parents",
+          "parent_id": 21
+        },
+        {
+          "id": 481,
+          "name": "9 month to 2 year olds funded providers",
+          "slug": "9-month-to-2-year-olds-funded-providers",
+          "parent_id": 21
+        }
+      ],
+      "regular_schedules": [
+        {
+          "id": 3103,
+          "weekday": "Monday",
+          "opens_at": "07:30",
+          "closes_at": "17:30"
+        },
+        {
+          "id": 3104,
+          "weekday": "Tuesday",
+          "opens_at": "07:30",
+          "closes_at": "17:30"
+        },
+        {
+          "id": 3105,
+          "weekday": "Wednesday",
+          "opens_at": "07:30",
+          "closes_at": "17:30"
+        },
+        {
+          "id": 3106,
+          "weekday": "Thursday",
+          "opens_at": "07:30",
+          "closes_at": "17:30"
+        },
+        {
+          "id": 3107,
+          "weekday": "Friday",
+          "opens_at": "07:30",
+          "closes_at": "17:00"
+        }
+      ],
+      "cost_options": [],
+      "links": [],
+      "send_needs": [
+        { "id": 1, "name": "Autism", "slug": "autism" },
+        {
+          "id": 2,
+          "name": "Social, emotional and mental health difficulties",
+          "slug": "social-emotional-and-mental-health-difficulties"
+        },
+        {
+          "id": 6,
+          "name": "Cognition and learning",
+          "slug": "cognition-and-learning"
+        }
+      ],
+      "suitabilities": [],
+      "local_offer": {
+        "description": "As an Ofsted registered childminder I am a qualified Early Years Teacher. As a childminder, I work alone, with occasional support from an assistant. I am therefore solely responsible for planning in the setting. I have attended inclusion training and I use this knowledge and information to create individual learning plans for children with special educational needs. These are reviewed each term with parents. Learning Journeys are available online for parents to view at any time and are encouraged to contribute with comments and photographs.  More in-depth discussions take place during home visits which can be arranged to suit parents. Parents are encouraged to contribute to children’s planning and suggestions for home learning can be provided. Parent input, alongside talking, observing and listening to the children enables the childminder to discover what they are interested in and to make plans to help them progress.\r\n ",
+        "link": "",
+        "survey_answers": [
+          {
+            "question": "What outcomes does your setting, service or activity aim to achieve for children and young people with SEND and their families?",
+            "answer": "I acknowledge children individually and adapt my setting to meet each child's needs. Respect towards self, others and the environment will always be emphasised. I plan activities and play opportunities which are linked to the Early Years Foundation Stage to develop children’s Emotional, Physical, Social and Intellectual capabilities. I monitor the progress of each individual child, following the EYFS framework. I speak to both parents and children on a daily basis to review progress and adapt their needs accordingly. \r\n"
+          },
+          {
+            "question": "What recent SEND-specific training has been completed by your staff and/or volunteers?",
+            "answer": "Recognising and supporting children with SEN\r\nAutism Awareness\r\nADHD awareness \r\nAll updated in April 2022"
+          },
+          {
+            "question": "How do you involve parents and how can I get involved?",
+            "answer": "I am always available for an informal discussion at drop off and collection times. Each child has a daily diary that parents can use to communicate information. Home visits can be arranged to discuss children’s progress more in-depth. Each child has an online Learning Journey to which parents can log in, they can view activities, next steps and progress. Children’s progress is tracked following the Early Years Foundation Stage Outcomes which are reviewed regularly and shared with parents through summative assessment. "
+          },
+          {
+            "question": "How will you share information with me about my child’s progress? What is additional for children with SEND?",
+            "answer": "Information will be shared via informal chats at drop off and collection\r\nPhotos and messages will be sent during the day\r\nRegular meetups and home visits will also take place"
+          },
+          {
+            "question": "How accessible is the environment (indoors and outdoors)?",
+            "answer": "For those with access issues, the setting can be accessed via the back of the property which is on one level."
+          },
+          {
+            "question": "How can children and young people with SEND and their families start to use your service or activity?",
+            "answer": "Please contact me to discuss the way forward "
+          },
+          {
+            "question": "What future plans do you have for developing your SEND provision?",
+            "answer": "I will continue to add to my SEN training portfolio "
+          }
+        ]
+      },
+      "distance_away": null
+    },
+    {
+      "id": 9343,
+      "updated_at": "2022-11-17T12:37:18.736Z",
+      "name": "Bourne End Community Centre",
+      "description": "Bourne End Community Centre is run by Bourne End (Buckinghamshire) Community Association. The Association was founded in 1962 with aims to build and provide a Community Centre and providing for the education, leisure and social welfare of people in the local area. The local area is broadly defined as the parishes of Wooburn and Bourne End, Hedsor and parts of Little Marlow.\r\n\r\nThe Association consists entirely of volunteers and has many of its own special interest sections in addition to many links into the wider community through statutory bodies and affiliated organisations. It is a registered charity in England and Wales (charity number 300236).\r\n\r\nAfter five years of fund raising effort, Bourne End Community Centre opened in 1967. The Centre is situated in the heart of Bourne End near the Library and the Day Centre and in front of the main car park for the village and nearby shopping area of the Parade.\r\n\r\nThe Association continues to be responsible for the maintenance and administration of the Community Centre. The Centre is open seven days a week from early morning until late at night. The Office is usually manned from 9am to 4pm Monday to Friday. Although the Community Centre is professionally run with paid staff (Centre Manager and Assistant, cleaning staff, Bar Manager and staff), the Association is self-supporting and receives no funding from local authorities or other organisations",
+      "url": "http://bourneendcommunitycentre.org.uk/index.php/about",
+      "min_age": null,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2022-11-17T12:35:46.773Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [],
+      "contacts": [],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 6317,
+        "name": "Bourne End Community Centre",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 271,
+          "name": "Libraries, churches, community centres",
+          "slug": "libraries-churches-community-centres",
+          "parent_id": 3
+        },
+        {
+          "id": 370,
+          "name": "Community centres",
+          "slug": "community-centres",
+          "parent_id": 271
+        }
+      ],
+      "regular_schedules": [],
+      "cost_options": [],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 6046,
+      "updated_at": "2022-03-07T13:16:53.265Z",
+      "name": "Card making and Paper Craft Classes",
+      "description": "I am an Independent Stampin' Up Demonstrator selling high-quality craft products mainly aimed at card makers, scrapbookers, and paper crafters. \r\n\r\nI run papercraft and card-making classes and workshops from my home in Leckhmapstead near Buckingham. \r\n\r\nI offer an online option once a week where a basic craft kit is sent out to you in advance and we then meet on Zoom to complete the cards together.",
+      "url": "https://www.facebook.com/clairescraftstore/",
+      "min_age": 18,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2021-09-14T13:04:09.319Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" },
+        { "name": "Buckinghamshire Online Directory", "label": "bod" }
+      ],
+      "locations": [
+        {
+          "id": 6959,
+          "name": "",
+          "address_1": null,
+          "city": "Leckhampstead",
+          "state_province": "Buckinghamshire",
+          "postal_code": "MK18",
+          "country": "GB",
+          "geometry": { "type": "Point", "coordinates": [-0.94, 52.03] },
+          "mask_exact_address": true,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 9552,
+          "name": "Claire Humphries",
+          "title": "Business owner",
+          "email": "claire@clairescraftstore.co.uk",
+          "phone": ""
+        }
+      ],
+      "meta": [
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" },
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" }
+      ],
+      "organisation": {
+        "id": 4221,
+        "name": "Craft Classes - Leckhampstead",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 267,
+          "name": "Arts, crafts and cooking",
+          "slug": "arts-crafts-and-cooking",
+          "parent_id": 3
+        },
+        {
+          "id": 287,
+          "name": "Education and learning",
+          "slug": "education-and-learning",
+          "parent_id": null
+        }
+      ],
+      "regular_schedules": [],
+      "cost_options": [],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 11931,
+      "updated_at": "2024-02-06T11:16:53.158Z",
+      "name": "Noah's Ark Baby and Tots",
+      "description": "Noah’s Ark Baby and Tot group runs on Tuesdays from 9:15am – 10:45am during term time, and is for children from the village and the church.\r\n\r\nRegistration is required as numbers are limited – see below.\r\n\r\nA donation towards the cost of refreshments may be made, otherwise there is no charge for attending.\r\n\r\nEach session follows a structured theme around a bible story and includes free play, story and song time, a craft activity and refreshment.",
+      "url": "https://acbc.church/whats-on/noahs-ark-baby-and-tots/",
+      "min_age": 0,
+      "max_age": 4,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": true,
+      "created_at": "2024-02-06T11:16:53.158Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 13123,
+          "name": "Aston Clinton Baptist Church",
+          "address_1": "Green End Street",
+          "city": "Aston Clinton",
+          "state_province": null,
+          "postal_code": "HP22 5EX",
+          "country": null,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.725026, 51.802651]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 66,
+        "name": "Aston Clinton Baptist Church",
+        "description": "Aston Clinton Baptist Church is a lively and active group of Christians, centred on the village of Aston Clinton. We have a wide range of regular events going on, with many established links to our community. For full details, see website.",
+        "email": "minister@astonclintonbaptist.org",
+        "url": "https://www.astonclintonbaptist.org/welcome.htm"
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 123,
+          "name": "Activities for babies and toddlers",
+          "slug": "activities-for-babies-and-toddlers",
+          "parent_id": 3
+        }
+      ],
+      "regular_schedules": [
+        {
+          "id": 18782,
+          "weekday": "Tuesday",
+          "opens_at": "09:15",
+          "closes_at": "10:45"
+        }
+      ],
+      "cost_options": [],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 3481,
+      "updated_at": "2023-06-29T12:51:14.586Z",
+      "name": "ZKS Martial Arts: Teen, Adult Club",
+      "description": "ZKS Martial Arts are an award-winning group and we are very proud of the service that we offer to all our members. Our aim is to provide a fun, safe and informative class structure that will be aimed at the correct age range. We have spent many years designing and perfecting programmes most suitable for each age group. \r\n",
+      "url": "https://www.zksma.club/",
+      "min_age": 13,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2021-03-01T15:53:24.912Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" },
+        { "name": "Buckinghamshire Online Directory", "label": "bod" }
+      ],
+      "locations": [
+        {
+          "id": 4313,
+          "name": "111 to 113",
+          "address_1": " Cambridge Street",
+          "city": "Aylesbury",
+          "state_province": null,
+          "postal_code": "HP20 1BT",
+          "country": "GB",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.808969, 51.819283]
+          },
+          "mask_exact_address": false,
+          "accessibilities": [
+            { "name": "Changing facilities", "slug": "changing-facilities" },
+            { "name": "Bus stop nearby", "slug": "bus-stop-nearby" }
+          ]
+        }
+      ],
+      "contacts": [
+        {
+          "id": 6653,
+          "name": "",
+          "title": "",
+          "email": "info@zksma.co.uk",
+          "phone": "01296 392630"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 1209,
+        "name": "ZKS Martial Arts",
+        "description": "We provide mixed martial arts training for children from aged 3 up to adult.  There are classes across Aylesbury, Haddenham, Wendover, Princes Risborough, Watford and other villages, for more details please see our website for classes near you.",
+        "email": "info@zksma.co.uk",
+        "url": "http://www.zksmartialarts.co.uk"
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 266,
+          "name": "Sports and fitness",
+          "slug": "sports-and-fitness",
+          "parent_id": 3
+        },
+        {
+          "id": 369,
+          "name": "Martial arts",
+          "slug": "martial-arts",
+          "parent_id": 266
+        },
+        {
+          "id": 403,
+          "name": "Staying active",
+          "slug": "staying-active",
+          "parent_id": null
+        }
+      ],
+      "regular_schedules": [],
+      "cost_options": [
+        {
+          "id": 5238,
+          "option": "One class per week",
+          "amount": "30.00",
+          "cost_type": "per month"
+        },
+        {
+          "id": 5239,
+          "option": "Two Classes per week",
+          "amount": "40.00",
+          "cost_type": "per month"
+        }
+      ],
+      "links": [
+        { "label": "Facebook", "url": "https://www.facebook.com/ZKSMAnews/" }
+      ],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 9436,
+      "updated_at": "2022-12-01T10:37:17.611Z",
+      "name": "Monkey Music (Marlow)",
+      "description": "Monkey Music Classes in Marlow Classes Mondays and Wednesdays. \r\n\r\nYou will spend quality time with your little one; helping their learning and exploration as well as enjoying your time together. We have classes suitable for babies from 12 weeks, for toddlers and for those older little ones. For those clever older little monkeys of preschool age, we have our wonderful Ding-Dong curriculum where little ones are introduced to instruments of the orchestra and progress to beating crotchet, quaver and crotchet rest rhythms, a fantastic basis for learning a musical instrument when they are older. Monkey Music is fun and educational too. Our classes are grouped according to 4 age groups so that classes are tailored to the exact age of the child. \r\n\r\nClaire, who owns and runs Monkey Music Amersham, Beaconsfield and The Chalfonts is a former Monkey Music parent herself, loves music and plays piano and clarinet. She is a mum of two and works with Elen, Claire and Lara to bring you lessons over the course of the week. We have four different classes where children are grouped according to their age, and this means that classes can be tailored to the social, linguistic and musical development of that particular age group. \r\n\r\nClasses are small of no more than 15 in a class, so that the teacher can get to know your child and notice his or her progression. \r\n\r\nThe Marlow venue is Christ Church United Reformed Church on Oxford Road near Sainsbury's car park.  It does have its own car park with a small number of spaces at the front of the car park, but mums also park in the pay and display car park behind Sainsbury's.",
+      "url": "https://www.monkeymusic.co.uk/area/amersham-beaconsfield-chalfonts",
+      "min_age": 0,
+      "max_age": 5,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2022-11-30T16:38:53.511Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 10387,
+          "name": "Christ Church ",
+          "address_1": "18 Oxford Road",
+          "city": "Marlow",
+          "state_province": null,
+          "postal_code": "SL7 2NL",
+          "country": null,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.780345, 51.572309]
+          },
+          "mask_exact_address": false,
+          "accessibilities": [
+            {
+              "name": "Baby changing facilities",
+              "slug": "baby-changing-facilities"
+            },
+            { "name": "Car parking", "slug": "car-parking" },
+            { "name": "Changing facilities", "slug": "changing-facilities" },
+            { "name": "Building has lift", "slug": "building-has-lift" }
+          ]
+        }
+      ],
+      "contacts": [
+        {
+          "id": 13204,
+          "name": "Claire Youngman",
+          "title": "Director",
+          "email": "amersham@monkeymusic.co.uk",
+          "phone": "01494 716861"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 759,
+        "name": "Monkey Music (Amersham and Surrounding Areas)",
+        "description": "Monkey Music classes in Amersham, Beaconsfield, Little Missenden or Gerrards Cross. Music classes tailored to the social, linguistic and musical development of babies and toddlers.You will spend quality time with your little one; helping their learning and exploration as well as enjoying your time together. We have classes suitable for babies from 12 weeks, for toddlers and for those older little ones. For those clever older little monkeys of preschool age, we have our wonderful Ding-Dong curriculum where little ones are introduced to instruments of the orchestra and progress to beating crotchet, quaver and crotchet rest rhythms - a fantastic basis for learning a musical instrument when they are older. We have been nominated for 3 awards in the HOOP Buckinghamshire Awards 2019 – best class for babies, best class for toddlers and best music class. Our teachers were voted in 2016 for the What's on 4 Little Ones Awards in the Most Outstanding Activity Leader for the Under 5s category.\nMonkey Music is fun and educational too. Our classes are grouped according to 4 age groups so that classes are tailored to the exact age of the child. \nElen, who owns and runs Monkey Music Amersham, Beaconsfield and The Chalfonts is a music graduate, teacher and professional singer who has performed for 10 years in the West End. She is a mum of twins and is a national trainer for Monkey Music. Alongside her is Nicky who is Mum of one lovely girl, has a beautiful singing voice and a background in Marketing (including some time with Cbeebies). We have four different classes where children are grouped according to their age and this means that classes can be tailored to the social, linguistic and musical development of that particular age group. Classes are small, no more than 15 in a class, so that the teacher can get to know your child and notice his or her progression.",
+        "email": "amersham@monkeymusic.co.uk",
+        "url": "https://www.monkeymusic.co.uk/area/amersham-beaconsfield-chalfonts/elen-mon-wayne"
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 123,
+          "name": "Activities for babies and toddlers",
+          "slug": "activities-for-babies-and-toddlers",
+          "parent_id": 3
+        },
+        {
+          "id": 268,
+          "name": "Dance, drama and music",
+          "slug": "dance-drama-and-music",
+          "parent_id": 3
+        }
+      ],
+      "regular_schedules": [
+        {
+          "id": 13880,
+          "weekday": "Tuesday",
+          "opens_at": "10:00",
+          "closes_at": "12:00"
+        }
+      ],
+      "cost_options": [
+        {
+          "id": 4306,
+          "option": "babies and toddlers",
+          "amount": "10.50",
+          "cost_type": "per session"
+        }
+      ],
+      "links": [
+        {
+          "label": "Facebook",
+          "url": "https://www.facebook.com/MonkeyMusicAmersham"
+        },
+        {
+          "label": "Instagram",
+          "url": "https://www.instagram.com/monkeymusicamersham/"
+        }
+      ],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 11882,
+      "updated_at": "2024-04-26T12:52:03.085Z",
+      "name": "Bucks Art Club at Halton",
+      "description": "A small local group where people meet to paint and draw what they like in any medium.\r\n\r\nThere is no commitment, and you can attend when you want. The first session is free, and if you enjoyed it, you can continue with the sessions. There are no tutors or directions, just friendly comments from colleagues.\r\n\r\nWe meet on a Thursday at Halton Village Hall from 1:30pm to 3:30pm. Refreshments are provided, as well as easy parking on the forecourt.\r\n",
+      "url": "https://www.facebook.com/groups/822815409342181",
+      "min_age": 18,
+      "max_age": 100,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2024-02-01T17:00:34.265Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" },
+        { "name": "Buckinghamshire Online Directory", "label": "bod" }
+      ],
+      "locations": [
+        {
+          "id": 13073,
+          "name": "Halton Village Hall",
+          "address_1": "11 Old School Close, Halton",
+          "city": "Aylesbury ",
+          "state_province": null,
+          "postal_code": "HP22 5NG",
+          "country": null,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.735186, 51.784219]
+          },
+          "mask_exact_address": false,
+          "accessibilities": [
+            {
+              "name": "Accessible toilet facilities",
+              "slug": "accessible-toilet-facilities"
+            },
+            {
+              "name": "Wheelchair accessible entrance",
+              "slug": "wheelchair-accessible-entrance"
+            },
+            { "name": "Car parking", "slug": "car-parking" },
+            { "name": "Bus stop nearby", "slug": "bus-stop-nearby" }
+          ]
+        }
+      ],
+      "contacts": [
+        {
+          "id": 15857,
+          "name": "Michael",
+          "title": "Brooks",
+          "email": "tx99tx@gmail.com",
+          "phone": "07753 841590"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 7392,
+        "name": "Bucks Art Club at Halton",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 267,
+          "name": "Arts, crafts and cooking",
+          "slug": "arts-crafts-and-cooking",
+          "parent_id": 3
+        }
+      ],
+      "regular_schedules": [
+        {
+          "id": 18712,
+          "weekday": "Thursday",
+          "opens_at": "13:30",
+          "closes_at": "15:30"
+        }
+      ],
+      "cost_options": [
+        {
+          "id": 6253,
+          "option": "To cover hall hire and refreshments",
+          "amount": "13.00",
+          "cost_type": "per session"
+        }
+      ],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 6532,
+      "updated_at": "2023-11-09T15:03:49.642Z",
+      "name": "The Salvation Army - Buckingham Corps",
+      "description": "The Salvation Army in Buckingham is here to serve.  If you are in need of food or other essentials, we can help.",
+      "url": "https://www.salvationarmy.org.uk/buckingham",
+      "min_age": null,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": true,
+      "created_at": "2021-09-14T13:05:40.256Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" },
+        { "name": "Buckinghamshire Online Directory", "label": "bod" }
+      ],
+      "locations": [
+        {
+          "id": 7445,
+          "name": "Salvation Army",
+          "address_1": "Moreton Road",
+          "city": "Buckingham",
+          "state_province": "Buckinghamshire",
+          "postal_code": "MK18 1JZ",
+          "country": "GB",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.987768, 52.002104]
+          },
+          "mask_exact_address": false,
+          "accessibilities": [
+            {
+              "name": "Accessible toilet facilities",
+              "slug": "accessible-toilet-facilities"
+            },
+            {
+              "name": "Wheelchair accessible entrance",
+              "slug": "wheelchair-accessible-entrance"
+            },
+            {
+              "name": "Baby changing facilities",
+              "slug": "baby-changing-facilities"
+            },
+            { "name": "Car parking", "slug": "car-parking" },
+            { "name": "Bus stop nearby", "slug": "bus-stop-nearby" }
+          ]
+        }
+      ],
+      "contacts": [
+        {
+          "id": 10031,
+          "name": "John Parry",
+          "title": "",
+          "email": "buckingham@salvationarmy.org.uk",
+          "phone": "07786998586"
+        },
+        {
+          "id": 15041,
+          "name": "Michael Edmondson",
+          "title": "Community Support Worker",
+          "email": "michael.edmondson@salvationarmy.org.uk",
+          "phone": "01280 824691"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 3355,
+        "name": "Salvation Army - Buckingham",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 273,
+          "name": "Advice and support",
+          "slug": "advice-and-support",
+          "parent_id": null
+        },
+        {
+          "id": 280,
+          "name": "Money and benefits",
+          "slug": "money-and-benefits",
+          "parent_id": 273
+        },
+        {
+          "id": 456,
+          "name": "Accessing food and foodbanks",
+          "slug": "accessing-food-and-foodbanks",
+          "parent_id": 280
+        }
+      ],
+      "regular_schedules": [],
+      "cost_options": [],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 9557,
+      "updated_at": "2024-04-25T15:49:32.726Z",
+      "name": "May Half term workshop at Wycombe Swan",
+      "description": "Join Wycombe Swan’s team for three days of dance and drama this May half-term!\r\n\r\nWorkshops for ages 7 to 11 will take place on:\r\n\r\nTuesday 28 May 10:30am to 3:30pm\r\nWednesday 29 May 10:30am to 3:30pm\r\nThursday 30 May 110:30am to 3:30pm\r\n\r\nEvery day, there will be short breaks during the morning and afternoon sessions, and a 1-hour lunch 12:30pm to 1:30pm. Participants will need to bring a packed lunch and a bottle of water. Please do not bring food that contains nuts. Lunches will take place in the venue and will be supervised.\r\n\r\nNo dance or drama experience is needed. Beginners welcome.\r\n\r\nOnce you have booked your place for your chosen session(s), the Creative Learning team will send a registration form to complete your booking. All sessions will take place in the Wycombe Swan’s Oak Room. Participants will sign in and out at the Oak Room entrance (not the main entrance).\r\n\r\nThese are three x 1-day classes. You may sign up for one, two, or all three. Each day costs £32 per person. \r\n\r\nEach day will be run by the same workshop leaders but with a different theme each day.\r\n\r\nWe believe that no young person should miss out due to financial constraints. For this reason, we offer a limited number of free bursary places so that anybody can take part. If you would like to apply for a bursary, please contact our creative learning team. ",
+      "url": "https://trafalgartickets.com/wycombe-swan-theatre/en-GB/event/other/may-half-term-workshops-dance-drama-tickets",
+      "min_age": 7,
+      "max_age": 11,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2023-01-10T14:47:01.793Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 10545,
+          "name": "Wycombe Swan",
+          "address_1": "St Mary Street",
+          "city": "High Wycombe",
+          "state_province": null,
+          "postal_code": "HP11 2XE",
+          "country": null,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-0.750104, 51.628052]
+          },
+          "mask_exact_address": false,
+          "accessibilities": []
+        }
+      ],
+      "contacts": [
+        {
+          "id": 16372,
+          "name": "Free bursary places",
+          "title": "",
+          "email": "creativelearning@wycombeswan.co.uk",
+          "phone": ""
+        },
+        {
+          "id": 13356,
+          "name": "Tickets",
+          "title": "",
+          "email": "boxoffice@wycombeswan.co.uk",
+          "phone": "0343 310 0060"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": ""
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 1197,
+        "name": "Wycombe Swan",
+        "description": "The Wycombe Swan is one of the UK's leading regional theatres. Presenting an eclectic mix of productions throughout the year, the Wycombe Swan is home to great comedy acts (including the Chuckle Brothers), dance (including Swan Lake), drama, musicals (including Hairspray), special local events, as well as the Wycombe Swan Summer Youth Project - an annual musical production featuring 250 local young people.\nIt is also home to the Wycombe Swan Youth Theatre - a permanent Youth Theatre Company open to 10 to 19 year olds. As well as running workshops and performance-based activities, the Youth Theatre present a show every year.\nThe Wycombe Swan complex consists of the main theatre, Wycombe Swan Town Hall, and the Oak Room - an ornate setting for functions and parties. It has a capacity of 1076.",
+        "email": "admin@wycombeswan.co.uk",
+        "url": "https://wycombeswan.co.uk/Online/"
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 265,
+          "name": "Holiday activities",
+          "slug": "holiday-activities",
+          "parent_id": 3
+        },
+        {
+          "id": 268,
+          "name": "Dance, drama and music",
+          "slug": "dance-drama-and-music",
+          "parent_id": 3
+        },
+        {
+          "id": 487,
+          "name": "Dance and drama courses and camps",
+          "slug": "dance-and-drama-courses-and-camps",
+          "parent_id": 265
+        }
+      ],
+      "regular_schedules": [
+        {
+          "id": 18780,
+          "weekday": "Tuesday",
+          "opens_at": "10:30",
+          "closes_at": "15:30"
+        },
+        {
+          "id": 18781,
+          "weekday": "Wednesday",
+          "opens_at": "10:30",
+          "closes_at": "15:30"
+        },
+        {
+          "id": 19848,
+          "weekday": "Thursday",
+          "opens_at": "10:30",
+          "closes_at": "15:30"
+        }
+      ],
+      "cost_options": [
+        { "id": 5855, "option": " ", "amount": "32.00", "cost_type": "per day" }
+      ],
+      "links": [
+        {
+          "label": "Book tickets from 26 April",
+          "url": "https://booking.trafalgartickets.com/en/wycombe-swan-theatre/buyingflow/tickets/21103/"
+        }
+      ],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": null,
+      "distance_away": null
+    },
+    {
+      "id": 1993,
+      "updated_at": "2024-02-01T08:56:49.925Z",
+      "name": "Lu Hyatt",
+      "description": "I HAVE SOME SPACES BECOMING AVAILABLE FOR TUESDAYS, WEDNESDAYS AND THURSDAYS. Fridays TBC. \r\n\r\nHi, I am a fully qualified DBS checked Childminder based in Amersham. Ofsted registered.\r\nThanks for looking at my details. Please contact me for a chat to see if I can help your family.\r\n\r\nI provide a fun, safe, and stimulating environment for all children.  I offer a warm home-from-home environment.  I will strive to accommodate parents' needs whilst providing an enjoyable, activity-rich, and homely environment so your child will thrive.  \r\n\r\nI offer flexible hours and collections and drop-offs where possible. The 123 Club is located in a quiet residential part of Amersham. I have a 19-year-old daughter who has grown up with the children.\r\n\r\nSome of the many activities I offer are playdough, arts and crafts, painting, reading corner, cooking corner, outdoor play, hoppers, water play, swing ball, basketball, sand play and soft play, puzzles, doll house, car and garage, games and music.\r\n\r\nI work with parents to accommodate each child's dietary needs and support their cultural requirements.  Home-cooked meals and healthy snacks are provided.\r\n\r\nIf you have any other questions at all please give me a call for a chat. Thanks, speak soon, Lu",
+      "url": null,
+      "min_age": null,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": true,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2021-03-01T15:34:12.346Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [
+        {
+          "id": 2545,
+          "name": "",
+          "address_1": null,
+          "city": "Amersham",
+          "state_province": "Buckinghamshire",
+          "postal_code": "HP7",
+          "country": "GB",
+          "geometry": { "type": "Point", "coordinates": [-0.6, 51.67] },
+          "mask_exact_address": true,
+          "accessibilities": [
+            {
+              "name": "Baby changing facilities",
+              "slug": "baby-changing-facilities"
+            },
+            { "name": "Car parking", "slug": "car-parking" },
+            { "name": "Changing facilities", "slug": "changing-facilities" }
+          ]
+        }
+      ],
+      "contacts": [
+        {
+          "id": 3918,
+          "name": "Lu Hyatt",
+          "title": "Childminder",
+          "email": "lu.m.hyatt@gmail.com",
+          "phone": "07905 038547"
+        }
+      ],
+      "meta": [
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "Yes" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": "51"
+        },
+        { "key": "Maximum number of children a day?", "value": "" },
+        { "key": "Vacancies for under 5 year olds", "value": "" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "" },
+        { "key": "Vacancies for over 8 year olds", "value": "" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        {
+          "key": "Communication Email address",
+          "value": "lu.m.hyatt@gmail.com"
+        },
+        { "key": "Contact Name", "value": "Lu Hyatt" },
+        { "key": "Contact Phone number ", "value": "01494583991" }
+      ],
+      "organisation": {
+        "id": 2007,
+        "name": "Lu Hyatt Childminding",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 21,
+          "name": "Childcare and early years",
+          "slug": "childcare-and-early-years",
+          "parent_id": null
+        },
+        {
+          "id": 42,
+          "name": "Childminders",
+          "slug": "childminders",
+          "parent_id": 21
+        },
+        {
+          "id": 416,
+          "name": "Ofsted registered childminders",
+          "slug": "ofsted-registered-childminders",
+          "parent_id": 42
+        }
+      ],
+      "regular_schedules": [
+        {
+          "id": 3068,
+          "weekday": "Monday",
+          "opens_at": "07:00",
+          "closes_at": "19:00"
+        },
+        {
+          "id": 3069,
+          "weekday": "Tuesday",
+          "opens_at": "07:00",
+          "closes_at": "19:00"
+        },
+        {
+          "id": 3070,
+          "weekday": "Wednesday",
+          "opens_at": "07:00",
+          "closes_at": "19:00"
+        },
+        {
+          "id": 3071,
+          "weekday": "Thursday",
+          "opens_at": "07:00",
+          "closes_at": "19:00"
+        },
+        {
+          "id": 3072,
+          "weekday": "Friday",
+          "opens_at": "07:00",
+          "closes_at": "19:00"
+        },
+        {
+          "id": 18671,
+          "weekday": "Saturday",
+          "opens_at": "09:00",
+          "closes_at": "18:00"
+        },
+        {
+          "id": 18672,
+          "weekday": "Sunday",
+          "opens_at": "09:00",
+          "closes_at": "18:00"
+        }
+      ],
+      "cost_options": [
+        {
+          "id": 1067,
+          "option": "all ages",
+          "amount": "80.00",
+          "cost_type": "per day"
+        }
+      ],
+      "links": [],
+      "send_needs": [],
+      "suitabilities": [],
+      "local_offer": {
+        "description": "I am a registered Childminder and The 123 Club is based in a quiet residential part of Amersham. I provide a fun, safe and stimulating environment for all children.  I will strive to accommodate parents' needs whilst providing an enjoyable, activity rich and homely environment that your child will thrive in.  I offer flexible hours at a reasonable rate. I have a High School aged child (16). ",
+        "link": "",
+        "survey_answers": [
+          {
+            "question": "What outcomes does your setting, service or activity aim to achieve for children and young people with SEND and their families?",
+            "answer": ""
+          },
+          {
+            "question": "What recent SEND-specific training has been completed by your staff and/or volunteers?",
+            "answer": ""
+          },
+          {
+            "question": "How do you involve parents and how can I get involved?",
+            "answer": ""
+          },
+          {
+            "question": "How will you share information with me about my child’s progress? What is additional for children with SEND?",
+            "answer": ""
+          },
+          {
+            "question": "How accessible is the environment (indoors and outdoors)?",
+            "answer": ""
+          },
+          {
+            "question": "How can children and young people with SEND and their families start to use your service or activity?",
+            "answer": ""
+          },
+          {
+            "question": "What future plans do you have for developing your SEND provision?",
+            "answer": ""
+          }
+        ]
+      },
+      "distance_away": null
+    },
+    {
+      "id": 9624,
+      "updated_at": "2023-01-18T09:06:00.704Z",
+      "name": "Dance Irish ",
+      "description": "We are a local Irish dance group based in High Wycombe Buckinghamshire.\r\n\r\nAfter dancing most of my life, across 3-4 different dance schools and academies, i decided that I wanted to enjoy Irish Dancing without the pressure and stress of competing.\r\n\r\nThe love of dance, for me, has always been in the music and the people you're dancing with, of course I enjoyed winning trophies, who doesn’t? but, I questioned if it was worth the pageantry and politics.\r\n\r\nI set up Dance Irish initially as a community hub, where anyone was invited to come and give it a go, now we’ve grown to multiple classes per week and are proud to say that we are a dance company, fully focused around Irish Dance.\r\n\r\nWe learn and grow using enjoyable and sometimes entertaining methods! We perform for charities and of course on St Patricks day! We go to shows in our local theatres, alongside monthly coffee mornings after class. Most importantly we genuinely just love to Dance Irish.\r\n\r\nPlease note that we are open to people of all ages and all levels, this includes newcomers its great way to get fit and also test the mind with something new.",
+      "url": "https://dance-irish.weebly.com/about.html",
+      "min_age": 4,
+      "max_age": null,
+      "age_band_under_2": null,
+      "age_band_2": null,
+      "age_band_3_4": null,
+      "age_band_5_7": null,
+      "age_band_8_plus": null,
+      "age_band_all": null,
+      "needs_referral": null,
+      "free": null,
+      "created_at": "2023-01-17T22:04:33.596Z",
+      "status": "active",
+      "target_directories": [
+        { "name": "Family Information Service", "label": "bfis" }
+      ],
+      "locations": [],
+      "contacts": [
+        {
+          "id": 13430,
+          "name": "Victoria Sives",
+          "title": "Owner ",
+          "email": "dance.irish@outlook.com",
+          "phone": "07585706014"
+        }
+      ],
+      "meta": [
+        { "key": "Maximum number of children a day?", "value": "" },
+        {
+          "key": "How many weeks in a calendar year are you open?",
+          "value": "45"
+        },
+        { "key": "Vacancies for under 5 year olds", "value": "10" },
+        { "key": "Vacancies for 5 to 8 year olds", "value": "10" },
+        { "key": "Vacancies for over 8 year olds", "value": "10" },
+        { "key": "Do you provide a pick-up/drop-off service?", "value": "No" },
+        {
+          "key": "Where is your pick-up/drop-off service from/to?",
+          "value": ""
+        },
+        { "key": "Childcare vacancies currently", "value": "No" },
+        { "key": "Communication Email address", "value": "" },
+        { "key": "Contact Name", "value": "" },
+        { "key": "Contact Phone number ", "value": "" }
+      ],
+      "organisation": {
+        "id": 6465,
+        "name": "Dance Irish ",
+        "description": null,
+        "email": null,
+        "url": null
+      },
+      "taxonomies": [
+        {
+          "id": 3,
+          "name": "Things to do",
+          "slug": "things-to-do",
+          "parent_id": null
+        },
+        {
+          "id": 268,
+          "name": "Dance, drama and music",
+          "slug": "dance-drama-and-music",
+          "parent_id": 3
+        }
+      ],
+      "regular_schedules": [
+        {
+          "id": 14240,
+          "weekday": "Monday",
+          "opens_at": "17:00",
+          "closes_at": "18:00"
+        },
+        {
+          "id": 14241,
+          "weekday": "Monday",
+          "opens_at": "18:15",
+          "closes_at": "19:15"
+        },
+        {
+          "id": 14242,
+          "weekday": "Monday",
+          "opens_at": "19:30",
+          "closes_at": "20:30"
+        },
+        {
+          "id": 14243,
+          "weekday": "Saturday",
+          "opens_at": "09:00",
+          "closes_at": "10:00"
+        },
+        {
+          "id": 14244,
+          "weekday": "Saturday",
+          "opens_at": "10:15",
+          "closes_at": "11:15"
+        }
+      ],
+      "cost_options": [
+        {
+          "id": 4450,
+          "option": "All ages",
+          "amount": "8.00",
+          "cost_type": "per session"
+        }
+      ],
+      "links": [
+        {
+          "label": "Facebook",
+          "url": "https://m.facebook.com/danceirishbuckinghamshire/?locale=en_GB&_rdr"
+        },
+        {
+          "label": "Tiktok",
+          "url": "https://www.tiktok.com/@dance_irish_?_t=8Z774dXUKjG&_r=1"
+        }
+      ],
+      "send_needs": [],
+      "suitabilities": [
+        {
+          "id": 1,
+          "name": "Visual and/or hearing impediment",
+          "slug": "visual-and-or-hearing-impediment"
+        },
+        { "id": 2, "name": "Older people", "slug": "older-people" },
+        {
+          "id": 5,
+          "name": "Mental health/acquired brain injury",
+          "slug": "mental-health-acquired-brain-injury"
+        },
+        {
+          "id": 7,
+          "name": "Learning difficulties",
+          "slug": "learning-difficulties"
+        }
+      ],
+      "local_offer": null,
+      "distance_away": null
     }
   ]
 }
