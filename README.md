@@ -143,6 +143,7 @@ You can configure it using a `.env` file locally. Run `cp .env.example .env` to 
 | `EMAIL_HOST`                           | URLs in emails will be built using this host.                                                                                                 | https://example.com                         | Yes, for email features                                       |
 | `REACT_APP_TARGETS`                    | If you have created directories in outpost set this field to fetch for those you want to display here, otherwise all services will be fetched | bfis,bod                                    | No                                                            |
 | `REACT_APP_SITE_URL`                   | The site url - used for the /public html files needing a canonical url for best SEO (set automatically if using netlify)                      | `https://github.com/wearefuturegov/scout-x` | Yes                                                           |
+| `REACT_APP_PARENT_TAXONOMY_ID`         | If you don't want to start the left hand side taxonomies from the top level you can define a parent taxonomy ID here                          | `https://github.com/wearefuturegov/scout-x` | No                                                            |
 
 ## 🧪 Tests and linting
 

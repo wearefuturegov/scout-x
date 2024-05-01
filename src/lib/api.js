@@ -109,26 +109,30 @@ export const fetchServiceDataFromApi = async (
   if (theme.targets.length > 0)
     directory.push([].concat(theme.targets).join(","))
 
+  const url = `${
+    process.env.REACT_APP_API_HOST
+  }/services?${queryString.stringify({
+    directory,
+    keywords,
+    location,
+    lat,
+    lng,
+    taxonomies,
+    needs,
+    accessibilities,
+    suitabilities,
+    days,
+    min_age,
+    max_age,
+    only,
+    page,
+    per_page,
+  })}`
+
+  console.log("fetchServiceDataFromApi", url)
+
   try {
-    const res = await fetch(
-      `${process.env.REACT_APP_API_HOST}/services?${queryString.stringify({
-        directory,
-        keywords,
-        location,
-        lat,
-        lng,
-        taxonomies,
-        needs,
-        accessibilities,
-        suitabilities,
-        days,
-        min_age,
-        max_age,
-        only,
-        page,
-        per_page,
-      })}`
-    )
+    const res = await fetch(url)
     const results = await res.json()
     // add query number to each result so we can track which query it came from
     results.content = results.content.map(r => (r = { ...r, query_num }))
