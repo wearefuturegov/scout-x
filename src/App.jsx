@@ -100,9 +100,9 @@ const App = ({ children, location, navigate }) => {
   useEffect(() => {
     fetchSiteData()
       .then(([taxonomies, suitabilities, sendOptions, accessibilities]) => {
-        if (theme && theme.parentTaxonomyId) {
+        if (theme?.parentTaxonomyId && parseInt(theme.parentTaxonomyId)) {
           const parentTaxonomy = taxonomies.find(
-            t => t.id === theme.parentTaxonomyId
+            t => parseInt(t.id) === parseInt(theme.parentTaxonomyId)
           )
           if (parentTaxonomy && parentTaxonomy.children) {
             taxonomies = parentTaxonomy.children
@@ -131,7 +131,7 @@ const App = ({ children, location, navigate }) => {
     if (moreResults) {
       setLoading(true)
       fetchServiceData(location.search, page).then(data => {
-        console.log("data", data)
+        // console.log("data", data)
         setResults(prevResults => {
           const newResults = [...prevResults, ...data.content]
           const deduplicatedResults = removeDuplicateServices(newResults)

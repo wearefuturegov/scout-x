@@ -105,14 +105,13 @@ export const fetchServiceDataFromApi = async (
     only,
   } = queryString.parse(query)
 
-  let directory = []
-  if (theme.targets.length > 0)
-    directory.push([].concat(theme.targets).join(","))
+  let directories = []
+  if (theme.targets.length > 0) directories = theme.targets
 
   const url = `${
     process.env.REACT_APP_API_HOST
   }/services?${queryString.stringify({
-    directory,
+    directories,
     keywords,
     location,
     lat,
@@ -129,7 +128,7 @@ export const fetchServiceDataFromApi = async (
     per_page,
   })}`
 
-  console.log("fetchServiceDataFromApi", url)
+  // console.log("fetchServiceDataFromApi", url)
 
   try {
     const res = await fetch(url)
@@ -151,15 +150,16 @@ export const fetchData = async resource => {
   let filters = ""
   if (resource === "taxonomies" && theme.targets.length > 0) {
     filters = `?${queryString.stringify(
-      { directory: theme.targets.split(",") },
+      { directories: theme.targets },
       { arrayFormat: "bracket" }
     )}`
   }
 
+  const url = `${process.env.REACT_APP_FILTERS_DATASOURCE}/${resource}${filters}`
+
+  // console.log("fetchData", resource, url)
   try {
-    const res = await fetch(
-      `${process.env.REACT_APP_FILTERS_DATASOURCE}/${resource}${filters}`
-    )
+    const res = await fetch(url)
     return await res.json()
   } catch (err) {
     console.log(err)
