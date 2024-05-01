@@ -161,7 +161,6 @@ const Layout = ({
   headerComponents,
   sidebarComponents,
   mainContentComponents,
-  scrollRef,
 }) => (
   <>
     <GlobalStyle />
@@ -174,7 +173,7 @@ const Layout = ({
         <MainContent id="main-content">{headerComponents}</MainContent>
       </PageHeaderInner>
     </PageHeader>
-    <ResultsArea ref={scrollRef}>
+    <ResultsArea>
       <ResultsAreaInner>
         <Sidebar id="sidebar" aria-label="sidebar">
           {sidebarComponents}

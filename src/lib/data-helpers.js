@@ -1,3 +1,4 @@
+import queryString from "query-string"
 /**
  * Find the next level down of categories
  * @param {*} taxonomies
@@ -5,7 +6,7 @@
  * @returns
  */
 export const subcategoriesOf = (taxonomies, parent) => {
-  console.log(taxonomies, parent)
+  // console.log(taxonomies, parent)
   const subcategories = taxonomies.find(taxon => taxon.slug === parent)
   return subcategories ? subcategories.children : []
 }
@@ -35,3 +36,65 @@ export const formatSuitabilityOptions = suitabilities =>
   suitabilities.sort((a, b) =>
     a.label.toLowerCase() > b.label.toLowerCase() ? 1 : -1
   )
+
+/**
+ * Our API only allows for AND queries so we can't send:
+ * collection=animal&taxonomies=guineapig&taxonomies=hamster
+ * as that will return 0 results
+ * but we can send
+ * collection=animal&taxonomies=guineapig
+ * collection=animal&taxonomies=hamster
+ *
+ * We store our hierarchy as parent:slug as opposed to an array
+ * because of the complications of queryParams as well as the fact
+ * that historically the url's for scout have been easily readable
+ *
+ * Also, we send collection, parent and slug because we're not
+ * sending the ID and there could be multiple taxonomies with the same
+ * slug so we request the whole tree (outpost has validation that ensures the whole tree is assigned to the service)
+ *
+ * @param {*} collection
+ * @param {*} categories
+ */
+export const defineQueryTaxonomies = (collection, categories) => {
+  const taxonomies = []
+
+  if (categories && collection) {
+    categories = [].concat(categories)
+    categories.forEach(element => {
+      let [parent, slug] = element.split(":")
+      taxonomies.push(
+        [collection, parent, slug].filter(item => item !== undefined)
+      )
+    })
+  } else if (!categories && collection) {
+    taxonomies.push([collection])
+  }
+
+  return taxonomies
+}
+
+export const removeDuplicateServices = services => {
+  return services.filter(
+    (service, index, self) => index === self.findIndex(t => t.id === service.id)
+  )
+}
+
+export const sortServices = (services, query) => {
+  let { keywords, lat, lng, location } = queryString.parse(query)
+  // sorting
+  // if there is a location then sort by distance_away
+  // if there is a keyword and no location then the order matters
+  // otherwise sort by updated_at
+  if (!keywords && (lat || lng || location)) {
+    return services.sort(
+      (a, b) => new Date(a.distance_away) - new Date(b.distance_away)
+    )
+  } else if (keywords && !(lat || lng || location)) {
+    return services.sort((a, b) => new Date(b.score) - new Date(a.score))
+  } else {
+    return services.sort(
+      (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
+    )
+  }
+}

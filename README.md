@@ -37,49 +37,6 @@ The pinboard feature uses localstorage, and it has one email-sending function th
 
 ## 💻 Running it locally
 
-### Using docker
-
-```sh
-git clone git@github.com:wearefuturegov/scout-x.git && cd scout-x
-
-# build the image - if using for the first time
-docker build --tag test-scout:development --target development .
-
-# run the image in local environment
-docker run -p 3003:3000 --name test-scout -v $(pwd):/app:cached -i -d test-scout:development
-
-# access the site
-open http://localhost:3003/
-
-# open shell in container
-docker exec -it test-scout /bin/ash;
-
-# stop the container
-docker stop test-scout
-
-# start again
-docker start test-scout
-```
-
-### Using docker-compose
-
-```sh
-git clone git@github.com:wearefuturegov/scout-x.git && cd scout-x
-
-# build the image
-docker compose -f docker-compose.development.yml build
-
-# run the container
-docker compose -f docker-compose.development.yml up -d
-
-# open shell in container
-docker compose -f docker-compose.development.yml exec scout-dev /bin/ash;
-
-# stop the container
-docker compose -f docker-compose.development.yml stop
-
-```
-
 ### Locally
 
 You need Node.js and `npm` installed, plus an API for Scout to consume data from.
@@ -94,6 +51,21 @@ npm run dev
 Before building, it will attempt to grab the latest version of the collection, category and SEND needs filters if there's an appropriate datasource available.
 
 It'll be on **localhost:3000**.
+
+### Using docker-compose
+
+```sh
+git clone git@github.com:wearefuturegov/scout-x.git && cd scout-x
+
+docker compose up -d
+
+# open shell in container
+docker compose exec scout /bin/ash;
+
+# stop the container
+docker compose stop
+
+```
 
 ### Serverless functions
 
@@ -110,18 +82,6 @@ It's suitable for [any static host](https://facebook.github.io/create-react-app/
 Run the `npm run build` command and then serve the `/build` folder.
 
 If you want to use the built-in email sending function, you'll _need_ to host it on Netlify.
-
-### Docker
-
-You can also deploy via docker
-
-```sh
-# build the image
-docker compose build
-
-# run the container
-docker compose up -d
-```
 
 ## 🧬 Configuration
 
@@ -143,6 +103,7 @@ You can configure it using a `.env` file locally. Run `cp .env.example .env` to 
 | `EMAIL_HOST`                           | URLs in emails will be built using this host.                                                                                                 | https://example.com                         | Yes, for email features                                       |
 | `REACT_APP_TARGETS`                    | If you have created directories in outpost set this field to fetch for those you want to display here, otherwise all services will be fetched | bfis,bod                                    | No                                                            |
 | `REACT_APP_SITE_URL`                   | The site url - used for the /public html files needing a canonical url for best SEO (set automatically if using netlify)                      | `https://github.com/wearefuturegov/scout-x` | Yes                                                           |
+| `REACT_APP_PARENT_TAXONOMY_ID`         | If you don't want to start the left hand side taxonomies from the top level you can define a parent taxonomy ID here                          | `https://github.com/wearefuturegov/scout-x` | No                                                            |
 
 ## 🧪 Tests and linting
 
@@ -158,18 +119,4 @@ You can lint with:
 
 ```
 npm run lint
-```
-
-### Run locally on docker
-
-**Linting**
-
-```sh
-docker exec -it test-scout npm run lint
-```
-
-**Unit tests**
-
-```sh
-docker exec -it test-scout npm run test:unit
 ```

@@ -2,11 +2,11 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
+import { usePrevious } from "./hooks/useRef"
 import useFathom from "./hooks/useFathom"
 
 // fetch data for the app and filters
 import { fetchServiceData, fetchSiteData } from "./lib/api"
-import { setAllPaginationValues } from "./lib/utils"
 import daysOptionsData from "./data/_days.json"
 import onlyOptionsData from "./data/_only.json"
 import {
@@ -14,6 +14,8 @@ import {
   formatAccessibilityOptions,
   formatDaysOptions,
   formatSuitabilityOptions,
+  removeDuplicateServices,
+  sortServices,
 } from "./lib/data-helpers"
 
 import Layout, {
@@ -44,8 +46,6 @@ import { checkCookiesAccepted } from "./lib/cookies"
 import AlertStatic from "./components/AlertStatic"
 
 const App = ({ children, location, navigate }) => {
-  const scrollTarget = useRef(null)
-
   const [keywords, setKeywords] = useQuery("keywords", "")
 
   const [coverage, setCoverage] = useQuery("location", "")
@@ -79,8 +79,9 @@ const App = ({ children, location, navigate }) => {
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const [page, setPage] = useQuery("page", 1, { numerical: true })
-  const [pagination, setPagination] = useState({})
+  const [page, setPage] = useState(1)
+  const [estTotalResults, setEstTotalResults] = useState(0)
+  const [moreResults, setMoreResults] = useState(true)
 
   // filter options
   const [collectionOptions, setCollectionOptions] = useState([])
@@ -99,9 +100,9 @@ const App = ({ children, location, navigate }) => {
   useEffect(() => {
     fetchSiteData()
       .then(([taxonomies, suitabilities, sendOptions, accessibilities]) => {
-        if (theme && theme.parentTaxonomyId) {
+        if (theme?.parentTaxonomyId && parseInt(theme.parentTaxonomyId)) {
           const parentTaxonomy = taxonomies.find(
-            t => t.id === theme.parentTaxonomyId
+            t => parseInt(t.id) === parseInt(theme.parentTaxonomyId)
           )
           if (parentTaxonomy && parentTaxonomy.children) {
             taxonomies = parentTaxonomy.children
@@ -117,22 +118,36 @@ const App = ({ children, location, navigate }) => {
       })
   }, [])
 
-  // on page search update the data
+  const prevLocationSearch = usePrevious(location.search)
+
+  // on params update or page change, fetch new data
   useEffect(() => {
-    setLoading(true)
-    fetchServiceData(location.search).then(data => {
-      setResults(data.content)
-      setPagination(
-        setAllPaginationValues(
-          data.totalElements,
-          data.totalPages,
-          data.number,
-          theme.resultsPerPage
-        )
-      )
-      setLoading(false)
-    })
-  }, [location.search])
+    if (prevLocationSearch !== location.search) {
+      setResults([])
+      setMoreResults(true)
+    }
+
+    // only fetchservicedata if location.search is different or page is different to before
+    if (moreResults) {
+      setLoading(true)
+      fetchServiceData(location.search, page).then(data => {
+        // console.log("data", data)
+        setResults(prevResults => {
+          const newResults = [...prevResults, ...data.content]
+          const deduplicatedResults = removeDuplicateServices(newResults)
+          const sortedResults = sortServices(
+            deduplicatedResults,
+            location.search
+          )
+
+          return sortedResults
+        })
+        setEstTotalResults(data.estTotalResults)
+        setMoreResults(data.moreResults !== 0)
+        setLoading(false)
+      })
+    }
+  }, [location.search, moreResults, page, prevLocationSearch])
 
   // on page search we change collections so need to update sub categories
   useEffect(() => {
@@ -254,7 +269,6 @@ const App = ({ children, location, navigate }) => {
         </title>
       </Helmet>
       <Layout
-        scrollRef={scrollTarget}
         headerComponents={
           <>
             <SearchBar
@@ -312,8 +326,7 @@ const App = ({ children, location, navigate }) => {
             location={location}
             page={page}
             setPage={setPage}
-            scrollTarget={scrollTarget}
-            pagination={pagination}
+            estTotalResults={estTotalResults}
           />
         }
       />
@@ -331,12 +344,13 @@ const MainContent = ({
   setMapVisible,
   navigate,
   location,
-  pagination,
+  estTotalResults,
   page,
   setPage,
-  scrollTarget,
 }) => {
+  const scrollTarget = useRef(null)
   const cookiesAccepted = checkCookiesAccepted()
+
   // still loading
   if (loading)
     return (
@@ -371,14 +385,23 @@ const MainContent = ({
   // not loading, results exist and has length that is not 0
   return (
     <>
-      <ResultsHeader>
+      <ResultsHeader ref={scrollTarget}>
         <Count>
           <>
             Showing{" "}
-            {pagination.currentPage <= pagination.lastPage && (
+            {page <= Math.ceil(results.length / theme.resultsPerPage) && (
               <>
                 <strong>
-                  {pagination.from} - {pagination.to} out of {pagination.total}
+                  {(page - 1) * theme.resultsPerPage + 1}-
+                  {Math.min(page * theme.resultsPerPage, results.length)}
+                </strong>{" "}
+                out of{" "}
+                <strong>
+                  {Math.ceil(results.length / theme.resultsPerPage) > page ? (
+                    <>~{estTotalResults}</>
+                  ) : (
+                    <>{results.length}</>
+                  )}
                 </strong>{" "}
               </>
             )}
@@ -413,12 +436,21 @@ const MainContent = ({
         ))}
       <PinboardLink location={location} />
       <ResultsList aria-live="polite">
-        {results?.map(s => (
-          <ServiceCard key={s.id} {...s} />
-        ))}
+        {results
+          ?.slice(
+            (page - 1) * theme.resultsPerPage,
+            page * theme.resultsPerPage
+          )
+          .map((s, i) => (
+            <ServiceCard
+              key={s.id}
+              // ref={i === 0 ? scrollTarget : null}
+              {...s}
+            />
+          ))}
       </ResultsList>
       <Pagination
-        totalPages={pagination.totalPages}
+        totalPages={Math.ceil(results.length / theme.resultsPerPage)}
         page={page}
         setPage={setPage}
         scrollTarget={scrollTarget}
