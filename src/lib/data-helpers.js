@@ -91,10 +91,7 @@ export const sortServices = (services, query) => {
       (a, b) => new Date(a.distance_away) - new Date(b.distance_away)
     )
   } else if (keywords && !(lat || lng || location)) {
-    // @TODO sort by relevance
-    return services.sort(
-      (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-    )
+    return services.sort((a, b) => new Date(b.score) - new Date(a.score))
   } else {
     return services.sort(
       (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
