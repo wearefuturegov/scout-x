@@ -74,7 +74,7 @@ const ServiceCardFooter = props => {
 
   return (
     <Footer>
-      {local_offer && <LocalOfferTag>Part of local offer</LocalOfferTag>}
+      {local_offer && <LocalOfferTag>Part of SEND local offer</LocalOfferTag>}
       {theme.noLocationIsCountywide && countywide && (
         <CountyWideServiceTag>
           {theme.serviceCard.countyWideServiceText}

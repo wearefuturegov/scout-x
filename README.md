@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://outpost-staging.herokuapp.com/">
-        <img src="https://github.com/wearefuturegov/scout-x/blob/master/public/scout.png?raw=true" width="350px" />               
+        <img src="https://github.com/wearefuturegov/scout-x/blob/develop/public/scout.png?raw=true" width="350px" />               
     </a>
 </p>
   
@@ -11,7 +11,7 @@
 ---
 
 <p align="center">
-   <img src="https://github.com/wearefuturegov/scout-x/raw/master/docs/examples.jpg?raw=true" width="750px" />     
+   <img src="https://github.com/wearefuturegov/scout-x/raw/develop/docs/intro-scout.png?raw=true" width="750px" />     
 </p>
 <p align="center">
    <em>Example screens from the app</em>         
@@ -37,6 +37,8 @@ The pinboard feature uses localstorage, and it has one email-sending function th
 
 ## 💻 Running it locally
 
+### Locally
+
 You need Node.js and `npm` installed, plus an API for Scout to consume data from.
 
 First, clone the repo:
@@ -49,6 +51,21 @@ npm run dev
 Before building, it will attempt to grab the latest version of the collection, category and SEND needs filters if there's an appropriate datasource available.
 
 It'll be on **localhost:3000**.
+
+### Using docker-compose
+
+```sh
+git clone git@github.com:wearefuturegov/scout-x.git && cd scout-x
+
+docker compose up -d
+
+# open shell in container
+docker compose exec scout /bin/ash;
+
+# stop the container
+docker compose stop
+
+```
 
 ### Serverless functions
 
@@ -86,6 +103,7 @@ You can configure it using a `.env` file locally. Run `cp .env.example .env` to 
 | `EMAIL_HOST`                           | URLs in emails will be built using this host.                                                                                                 | https://example.com                         | Yes, for email features                                       |
 | `REACT_APP_TARGETS`                    | If you have created directories in outpost set this field to fetch for those you want to display here, otherwise all services will be fetched | bfis,bod                                    | No                                                            |
 | `REACT_APP_SITE_URL`                   | The site url - used for the /public html files needing a canonical url for best SEO (set automatically if using netlify)                      | `https://github.com/wearefuturegov/scout-x` | Yes                                                           |
+| `REACT_APP_PARENT_TAXONOMY_ID`         | If you don't want to start the left hand side taxonomies from the top level you can define a parent taxonomy ID here                          | `https://github.com/wearefuturegov/scout-x` | No                                                            |
 
 ## 🧪 Tests and linting
 

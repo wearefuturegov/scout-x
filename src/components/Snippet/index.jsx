@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import A from "../A"
+import { A } from "../A"
 
 const Outer = styled.div`
   margin-bottom: 15px;

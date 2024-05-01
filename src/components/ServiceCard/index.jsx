@@ -27,6 +27,7 @@ const Outer = styled.li`
       opacity: 1;
     }
   }
+  /* border: ${props => (props.hasRef ? "1px solid red" : "none")}; */
 `
 
 const StyledLink = styled(Link)`
@@ -59,17 +60,26 @@ const Description = styled.p`
   line-height: 1.5;
 `
 
-const ServiceCard = ({ id, name, description, ...service }) => {
-  const { search } = useLocation()
-  return (
-    <Outer>
-      <StyledLink to={`/service/${id}${search}`}>
-        <Name>{name}</Name>
-      </StyledLink>
-      <Description>{truncate(description, 18)}</Description>
-      <Footer {...service} />
-    </Outer>
-  )
-}
+const ServiceCard = React.forwardRef(
+  ({ id, name, description, ...service }, ref) => {
+    const { search } = useLocation()
+    // const [hasRef, setHasRef] = useState(false)
+
+    // useEffect(() => {
+    //   setHasRef(ref !== null)
+    // }, [ref])
+
+    // <Outer ref={ref} hasRef={hasRef}>
+    return (
+      <Outer ref={ref}>
+        <StyledLink to={`/service/${id}${search}`}>
+          <Name>{name}</Name>
+        </StyledLink>
+        <Description>{truncate(description, 18)}</Description>
+        <Footer {...service} />
+      </Outer>
+    )
+  }
+)
 
 export default ServiceCard
