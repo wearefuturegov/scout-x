@@ -50,32 +50,34 @@ export const fetchServiceData = async (query, page) => {
   // api does AND queries only so we need to split the requests up according to the categories
   const taxonomies = defineQueryTaxonomies(collection, categories)
 
-  try {
-    // return 2x as many results if there are multiple taxonomies to account for any duplicates so pagination works (not foolproof but works for now)
-    const results = await Promise.all(
-      taxonomies.length > 1
-        ? taxonomies.map((taxonomy, i) =>
-            fetchServiceDataFromApi(query, taxonomy, per_page * 2, page, i)
-          )
-        : [fetchServiceDataFromApi(query, taxonomies, per_page * 2, page)]
-    )
-    const combinedResults = results.map(r => r.content).flat()
-    const deduplicatedResults = removeDuplicateServices(combinedResults, query)
-    const sortedResults = sortServices(deduplicatedResults, query)
+  // return 2x as many results if there are multiple taxonomies to account for any duplicates so pagination works (not foolproof but works for now)
+  const results = await Promise.all(
+    taxonomies.length > 1
+      ? taxonomies.map((taxonomy, i) =>
+          fetchServiceDataFromApi(query, taxonomy, per_page * 2, page, i)
+        )
+      : [fetchServiceDataFromApi(query, taxonomies, per_page * 2, page)]
+  )
 
+  let sortedResults = []
+  let moreResults = 0
+  let estTotalResults = 0
+
+  const combinedResults = results.map(r => r?.content).flat()
+
+  if (combinedResults.length > 0) {
+    const deduplicatedResults = removeDuplicateServices(combinedResults, query)
+    sortedResults = sortServices(deduplicatedResults, query)
     // moreResults tries to guess if theres going to nbe any more results to show if its 0 then we're no longer returning any results for any queries and can hide load more
     // we use estTotalResults to show the user how many results we think there are going to be
+    moreResults = results.reduce((acc, r) => acc + r.content.length, 0)
+    estTotalResults = results.reduce((acc, r) => acc + r.totalElements, 0)
+  }
 
-    let moreResults = results.reduce((acc, r) => acc + r.content.length, 0)
-    let estTotalResults = results.reduce((acc, r) => acc + r.totalElements, 0)
-
-    return {
-      content: sortedResults,
-      moreResults,
-      estTotalResults,
-    }
-  } catch (err) {
-    console.log(err)
+  return {
+    content: sortedResults,
+    moreResults,
+    estTotalResults,
   }
 }
 
@@ -137,7 +139,9 @@ export const fetchServiceDataFromApi = async (
     results.content = results.content.map(r => (r = { ...r, query_num }))
     return results
   } catch (err) {
-    console.log(err)
+    console.error("An error occurred fetching data from Outpost API")
+    // console.log(err)
+    return { content: [] }
   }
 }
 
@@ -162,7 +166,8 @@ export const fetchData = async resource => {
     const res = await fetch(url)
     return await res.json()
   } catch (err) {
-    console.log(err)
+    console.error("An error occurred fetching data from Outpost")
+    // console.log(err)
     return []
   }
 }
