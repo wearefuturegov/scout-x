@@ -30,7 +30,29 @@ const Input = styled.input`
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    opacity: ${props => (props.childSelected ? 0.5 : 1)};
   }
+`
+
+const InputFakeSelected = styled(Input)`
+  + label:after {
+    position: absolute;
+    content: "";
+    display: block;
+    height: 19px;
+    width: 19px;
+    left: 5px;
+    top: 5px;
+    background-image: url(${tick});
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+  }
+`
+
+const ChildField = styled(Field)`
+  margin-left: 40px;
 `
 
 const Filter = ({
@@ -45,12 +67,59 @@ const Filter = ({
 
   const handleChange = e => {
     let { checked, value } = e.target
+    const [parent, slug] = value.split(":")
+
     if (checked) {
-      setSelection([...selection, value])
+      let tmpSelection = selection
+
+      if (parent) {
+        // parent can't exist on its own (if child is selected)
+        tmpSelection = tmpSelection.filter(f => f !== parent)
+      }
+
+      if (hasSelectedChildren(value)) {
+        // if selecting parent, remove all children
+        tmpSelection = tmpSelection.filter(f => !f.startsWith(value))
+      }
+
+      setSelection([...tmpSelection, value])
     } else {
       setSelection(selection.filter(el => el !== value))
     }
     setPage(1)
+  }
+
+  /**
+   * Returns true or false if the parent has children in the array eg
+   * ['parent1:child1', 'parent1:child2'] parent = 'parent1' would return true
+   * @param {*} parent
+   * @returns
+   */
+  const hasSelectedChildren = parent =>
+    selection.find(f => f.includes(parent)) ? true : false
+
+  /**
+   * Field component
+   * @param {*} param0
+   * @returns
+   */
+  const FieldComponent = ({ id, value, checked, label, isChild }) => {
+    const Component = isChild ? ChildField : Field
+    const InputComponent =
+      !isChild && hasSelectedChildren(value) ? InputFakeSelected : Input
+
+    return (
+      <Component>
+        <InputComponent
+          type="checkbox"
+          id={id}
+          value={value}
+          onChange={handleChange}
+          checked={checked}
+        />
+        <Label htmlFor={id}>{label}</Label>
+      </Component>
+    )
   }
 
   return (
@@ -70,18 +139,36 @@ const Filter = ({
       </Header>
       {(!foldable || unfolded) && (
         <Content>
-          {options.map((o, i) => (
-            <Field key={`${o.slug}-${i}`}>
-              <Input
-                type="checkbox"
-                id={`${o.slug}-${i}`}
-                value={o.slug}
-                onChange={handleChange}
-                checked={selection.includes(o.slug)}
-              />
-              <Label htmlFor={`${o.slug}-${i}`}>{o.label}</Label>
-            </Field>
-          ))}
+          {options.map((o, i) => {
+            const isChecked = selection.includes(o.slug)
+            return (
+              <React.Fragment key={`${o.slug}-${i}`}>
+                <FieldComponent
+                  key={`${o.slug}-${i}`}
+                  id={`${o.slug}-${i}`}
+                  value={o.slug}
+                  checked={isChecked}
+                  label={o.label}
+                />
+                {o.children &&
+                  o.children.map((c, j) => {
+                    const isChildChecked = selection.includes(
+                      `${o.slug}:${c.slug}`
+                    )
+                    return (
+                      <FieldComponent
+                        key={`${o.slug}:${c.slug}-${j}`}
+                        id={`${o.slug}:${c.slug}-${j}`}
+                        value={`${o.slug}:${c.slug}`}
+                        checked={isChildChecked}
+                        label={c.label}
+                        isChild
+                      />
+                    )
+                  })}
+              </React.Fragment>
+            )
+          })}
         </Content>
       )}
     </Outer>
