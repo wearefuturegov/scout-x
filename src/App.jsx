@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
-import { usePrevious } from "./hooks/useRef"
 import useFathom from "./hooks/useFathom"
 
 // fetch data for the app and filters
@@ -80,6 +79,13 @@ const App = ({ children, location, navigate }) => {
   const [loading, setLoading] = useState(true)
 
   const [page, setPage] = useState(1)
+  const [appState, setAppState] = useState({
+    page: 1,
+    search: location.search,
+    pageChanged: true,
+    prevPages: [0],
+  })
+
   const [estTotalResults, setEstTotalResults] = useState(0)
   const [moreResults, setMoreResults] = useState(true)
 
@@ -94,60 +100,123 @@ const App = ({ children, location, navigate }) => {
   )
   const [onlyOptions, setOnlyOptions] = useState(onlyOptionsData)
 
+  const handleResults = useCallback(
+    (services, search, includePrevServices = false) => {
+      setResults(prevResults => {
+        const newResults = includePrevServices
+          ? [...prevResults, ...services.content]
+          : services.content
+        const deduplicatedResults = removeDuplicateServices(newResults)
+        const sortedResults = sortServices(deduplicatedResults, search)
+        return sortedResults
+      })
+      let moreResults = services.moreResults !== 0
+      if (moreResults) {
+        setEstTotalResults(services.estTotalResults)
+      }
+      setMoreResults(moreResults)
+    },
+    []
+  )
+
   useFathom()
 
   // only fetch once on site load
   useEffect(() => {
-    fetchSiteData()
-      .then(([taxonomies, suitabilities, sendOptions, accessibilities]) => {
-        if (theme?.parentTaxonomyId && parseInt(theme.parentTaxonomyId)) {
-          const parentTaxonomy = taxonomies.find(
-            t => parseInt(t.id) === parseInt(theme.parentTaxonomyId)
-          )
-          if (parentTaxonomy && parentTaxonomy.children) {
-            taxonomies = parentTaxonomy.children
-          }
+    let ignore = false
+    const getFilterOptions = async () => {
+      let [
+        taxonomies,
+        suitabilities,
+        sendOptions,
+        accessibilities,
+      ] = await fetchSiteData()
+
+      if (theme?.parentTaxonomyId && parseInt(theme.parentTaxonomyId)) {
+        const parentTaxonomy = taxonomies.find(
+          t => parseInt(t.id) === parseInt(theme.parentTaxonomyId)
+        )
+        if (parentTaxonomy && parentTaxonomy.children) {
+          taxonomies = parentTaxonomy.children
         }
+      }
+
+      if (!ignore) {
         setCollectionOptions(taxonomies)
         setSuitabilityOptions(formatSuitabilityOptions(suitabilities))
         setSendOptions(sendOptions)
         setAccessibilityOptions(formatAccessibilityOptions(accessibilities))
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      }
+    }
+
+    getFilterOptions()
+
+    return () => {
+      ignore = true
+    }
   }, [])
 
-  const prevLocationSearch = usePrevious(location.search)
-
-  // on params update or page change, fetch new data
+  // we can't rely on location.search or page to trigger a new fetch especially with async issues so we use appState
   useEffect(() => {
-    if (prevLocationSearch !== location.search) {
-      setResults([])
-      setMoreResults(true)
-    }
+    let active = true
 
-    // only fetchservicedata if location.search is different or page is different to before
-    if (moreResults) {
+    const getNewData = async () => {
       setLoading(true)
-      fetchServiceData(location.search, page).then(data => {
-        // console.log("data", data)
-        setResults(prevResults => {
-          const newResults = [...prevResults, ...data.content]
-          const deduplicatedResults = removeDuplicateServices(newResults)
-          const sortedResults = sortServices(
-            deduplicatedResults,
-            location.search
-          )
+      const services = await fetchServiceData(appState.search, appState.page)
 
-          return sortedResults
-        })
-        setEstTotalResults(data.estTotalResults)
-        setMoreResults(data.moreResults !== 0)
+      if (active) {
+        handleResults(services, appState.search, appState.pageChanged)
         setLoading(false)
-      })
+      }
     }
-  }, [location.search, moreResults, page, prevLocationSearch])
+
+    // if we're going back and forward between pages we don't want to fetch new data unnecessarily
+    // so if appState.pageChanged === true and the page we're currently on has already been fetched then
+    // don't fetch new data or just ignore the page change completely if its a location change
+    if (
+      (appState.pageChanged && !appState.prevPages.includes(appState.page)) ||
+      !appState.pageChanged
+    ) {
+      getNewData()
+    }
+
+    return () => {
+      active = false
+    }
+  }, [handleResults, appState])
+
+  // when the location changes then update the relevant information
+  // make sure that pageChanged is false when search changes
+  useEffect(() => {
+    setAppState(prevAppState => {
+      if (prevAppState.search !== location.search) {
+        return {
+          ...prevAppState,
+          search: location.search,
+          pageChanged: false,
+          prevPages: [0],
+        }
+      } else {
+        return prevAppState
+      }
+    })
+  }, [location.search])
+
+  // when page changes add some relevant information for the page slice logic
+  useEffect(() => {
+    setAppState(prevAppState => {
+      if (prevAppState.page !== page) {
+        return {
+          ...prevAppState,
+          page,
+          pageChanged: true,
+          prevPages: [...prevAppState.prevPages, prevAppState.page],
+        }
+      } else {
+        return prevAppState
+      }
+    })
+  }, [page])
 
   // on page search we change collections so need to update sub categories
   useEffect(() => {
