@@ -9,7 +9,7 @@ export const vars_bfis_send = {
   headerComponents: (
     <SingleStrongLink
       text="How to use this directory"
-      url="https://familyinfo.buckinghamshire.gov.uk/"
+      url="https://familyinfo.buckinghamshire.gov.uk/directory-how-to"
     />
   ),
 }
