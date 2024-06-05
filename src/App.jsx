@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import { Helmet } from "react-helmet"
 import useQuery from "./hooks/useQuery"
 import useFathom from "./hooks/useFathom"
 
 // fetch data for the app and filters
 import { fetchServiceData, fetchSiteData } from "./lib/api"
-import { setAllPaginationValues } from "./lib/utils"
 import daysOptionsData from "./data/_days.json"
 import onlyOptionsData from "./data/_only.json"
 import {
@@ -14,6 +13,8 @@ import {
   formatAccessibilityOptions,
   formatDaysOptions,
   formatSuitabilityOptions,
+  removeDuplicateServices,
+  sortServices,
 } from "./lib/data-helpers"
 
 import Layout, {
@@ -44,8 +45,6 @@ import { checkCookiesAccepted } from "./lib/cookies"
 import AlertStatic from "./components/AlertStatic"
 
 const App = ({ children, location, navigate }) => {
-  const scrollTarget = useRef(null)
-
   const [keywords, setKeywords] = useQuery("keywords", "")
 
   const [coverage, setCoverage] = useQuery("location", "")
@@ -79,8 +78,16 @@ const App = ({ children, location, navigate }) => {
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const [page, setPage] = useQuery("page", 1, { numerical: true })
-  const [pagination, setPagination] = useState({})
+  const [page, setPage] = useState(1)
+  const [appState, setAppState] = useState({
+    page: 1,
+    search: location.search,
+    pageChanged: true,
+    prevPages: [0],
+  })
+
+  const [estTotalResults, setEstTotalResults] = useState(0)
+  const [moreResults, setMoreResults] = useState(true)
 
   // filter options
   const [collectionOptions, setCollectionOptions] = useState([])
@@ -93,38 +100,123 @@ const App = ({ children, location, navigate }) => {
   )
   const [onlyOptions, setOnlyOptions] = useState(onlyOptionsData)
 
+  const handleResults = useCallback(
+    (services, search, includePrevServices = false) => {
+      setResults(prevResults => {
+        const newResults = includePrevServices
+          ? [...prevResults, ...services.content]
+          : services.content
+        const deduplicatedResults = removeDuplicateServices(newResults)
+        const sortedResults = sortServices(deduplicatedResults, search)
+        return sortedResults
+      })
+      let moreResults = services.moreResults !== 0
+      if (moreResults) {
+        setEstTotalResults(services.estTotalResults)
+      }
+      setMoreResults(moreResults)
+    },
+    []
+  )
+
   useFathom()
 
   // only fetch once on site load
   useEffect(() => {
-    fetchSiteData()
-      .then(([taxonomies, suitabilities, sendOptions, accessibilities]) => {
+    let ignore = false
+    const getFilterOptions = async () => {
+      let [
+        taxonomies,
+        suitabilities,
+        sendOptions,
+        accessibilities,
+      ] = await fetchSiteData()
+
+      if (theme?.parentTaxonomyId && parseInt(theme.parentTaxonomyId)) {
+        const parentTaxonomy = taxonomies.find(
+          t => parseInt(t.id) === parseInt(theme.parentTaxonomyId)
+        )
+        if (parentTaxonomy && parentTaxonomy.children) {
+          taxonomies = parentTaxonomy.children
+        }
+      }
+
+      if (!ignore) {
         setCollectionOptions(taxonomies)
         setSuitabilityOptions(formatSuitabilityOptions(suitabilities))
         setSendOptions(sendOptions)
         setAccessibilityOptions(formatAccessibilityOptions(accessibilities))
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      }
+    }
+
+    getFilterOptions()
+
+    return () => {
+      ignore = true
+    }
   }, [])
 
-  // on page search update the data
+  // we can't rely on location.search or page to trigger a new fetch especially with async issues so we use appState
   useEffect(() => {
-    setLoading(true)
-    fetchServiceData(location.search).then(data => {
-      setResults(data.content)
-      setPagination(
-        setAllPaginationValues(
-          data.totalElements,
-          data.totalPages,
-          data.number,
-          theme.resultsPerPage
-        )
-      )
-      setLoading(false)
+    let active = true
+
+    const getNewData = async () => {
+      setLoading(true)
+      const services = await fetchServiceData(appState.search, appState.page)
+
+      if (active) {
+        handleResults(services, appState.search, appState.pageChanged)
+        setLoading(false)
+      }
+    }
+
+    // if we're going back and forward between pages we don't want to fetch new data unnecessarily
+    // so if appState.pageChanged === true and the page we're currently on has already been fetched then
+    // don't fetch new data or just ignore the page change completely if its a location change
+    if (
+      (appState.pageChanged && !appState.prevPages.includes(appState.page)) ||
+      !appState.pageChanged
+    ) {
+      getNewData()
+    }
+
+    return () => {
+      active = false
+    }
+  }, [handleResults, appState])
+
+  // when the location changes then update the relevant information
+  // make sure that pageChanged is false when search changes
+  useEffect(() => {
+    setAppState(prevAppState => {
+      if (prevAppState.search !== location.search) {
+        return {
+          ...prevAppState,
+          search: location.search,
+          pageChanged: false,
+          prevPages: [0],
+        }
+      } else {
+        return prevAppState
+      }
     })
   }, [location.search])
+
+  // when page changes add some relevant information for the page slice logic
+  useEffect(() => {
+    setAppState(prevAppState => {
+      if (prevAppState.page !== page) {
+        return {
+          ...prevAppState,
+          page,
+          pageChanged: true,
+          prevPages: [...prevAppState.prevPages, prevAppState.page],
+        }
+      } else {
+        return prevAppState
+      }
+    })
+  }, [page])
 
   // on page search we change collections so need to update sub categories
   useEffect(() => {
@@ -246,17 +338,19 @@ const App = ({ children, location, navigate }) => {
         </title>
       </Helmet>
       <Layout
-        scrollRef={scrollTarget}
         headerComponents={
-          <SearchBar
-            keywords={keywords}
-            setKeywords={setKeywords}
-            coverage={coverage}
-            setCoverage={setCoverage}
-            setLat={setLat}
-            setLng={setLng}
-            setPage={setPage}
-          />
+          <>
+            <SearchBar
+              keywords={keywords}
+              setKeywords={setKeywords}
+              coverage={coverage}
+              setCoverage={setCoverage}
+              setLat={setLat}
+              setLng={setLng}
+              setPage={setPage}
+            />
+            {theme.headerComponents ?? theme.headerComponents}
+          </>
         }
         sidebarComponents={
           <>
@@ -301,8 +395,7 @@ const App = ({ children, location, navigate }) => {
             location={location}
             page={page}
             setPage={setPage}
-            scrollTarget={scrollTarget}
-            pagination={pagination}
+            estTotalResults={estTotalResults}
           />
         }
       />
@@ -320,12 +413,13 @@ const MainContent = ({
   setMapVisible,
   navigate,
   location,
-  pagination,
+  estTotalResults,
   page,
   setPage,
-  scrollTarget,
 }) => {
+  const scrollTarget = useRef(null)
   const cookiesAccepted = checkCookiesAccepted()
+
   // still loading
   if (loading)
     return (
@@ -360,14 +454,23 @@ const MainContent = ({
   // not loading, results exist and has length that is not 0
   return (
     <>
-      <ResultsHeader>
+      <ResultsHeader ref={scrollTarget}>
         <Count>
           <>
             Showing{" "}
-            {pagination.currentPage <= pagination.lastPage && (
+            {page <= Math.ceil(results.length / theme.resultsPerPage) && (
               <>
                 <strong>
-                  {pagination.from} - {pagination.to} out of {pagination.total}
+                  {(page - 1) * theme.resultsPerPage + 1}-
+                  {Math.min(page * theme.resultsPerPage, results.length)}
+                </strong>{" "}
+                out of{" "}
+                <strong>
+                  {Math.ceil(results.length / theme.resultsPerPage) > page ? (
+                    <>~{estTotalResults}</>
+                  ) : (
+                    <>{results.length}</>
+                  )}
                 </strong>{" "}
               </>
             )}
@@ -402,12 +505,21 @@ const MainContent = ({
         ))}
       <PinboardLink location={location} />
       <ResultsList aria-live="polite">
-        {results?.map(s => (
-          <ServiceCard key={s.id} {...s} />
-        ))}
+        {results
+          ?.slice(
+            (page - 1) * theme.resultsPerPage,
+            page * theme.resultsPerPage
+          )
+          .map((s, i) => (
+            <ServiceCard
+              key={s.id}
+              // ref={i === 0 ? scrollTarget : null}
+              {...s}
+            />
+          ))}
       </ResultsList>
       <Pagination
-        totalPages={pagination.totalPages}
+        totalPages={Math.ceil(results.length / theme.resultsPerPage)}
         page={page}
         setPage={setPage}
         scrollTarget={scrollTarget}

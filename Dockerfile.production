@@ -13,9 +13,11 @@ RUN cd /tmp && \
     npm install
 WORKDIR /app
 
-#  build and install all  the things for the development env
-FROM build_frontend 
-COPY --from=build_frontend ./tmp ./app
-EXPOSE 3000
-CMD ["npm", "run", "dev" ]
 
+FROM build_frontend
+COPY --from=build_frontend ./tmp ./
+COPY . /app
+RUN npm install -g serve
+RUN npm run build 
+EXPOSE 3000
+CMD ["serve", "-s", "build", "-l", "3000"]

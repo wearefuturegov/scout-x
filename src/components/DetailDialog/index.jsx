@@ -11,7 +11,7 @@ import {
 import { Helmet } from "react-helmet"
 import "@reach/dialog/styles.css"
 
-import A from "../A"
+import { A } from "../A"
 import PinboardButton from "../PinboardButton"
 import Description from "../Description"
 import LocalOffer from "../LocalOffer"

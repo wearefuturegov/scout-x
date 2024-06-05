@@ -151,11 +151,16 @@ const SkipLink = styled.a`
   }
 `
 
+const MainContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+`
+
 const Layout = ({
   headerComponents,
   sidebarComponents,
   mainContentComponents,
-  scrollRef,
 }) => (
   <>
     <GlobalStyle />
@@ -165,10 +170,10 @@ const Layout = ({
       <PageHeaderInner>
         <Breadcrumbs />
         <PageTitle>Find activities and organisations near you</PageTitle>
-        <div id="main-content">{headerComponents}</div>
+        <MainContent id="main-content">{headerComponents}</MainContent>
       </PageHeaderInner>
     </PageHeader>
-    <ResultsArea ref={scrollRef}>
+    <ResultsArea>
       <ResultsAreaInner>
         <Sidebar id="sidebar" aria-label="sidebar">
           {sidebarComponents}
