@@ -1,9 +1,11 @@
 import { theme_generic } from "./generic/theme_generic"
 import { theme_bfis } from "./bfis/theme_bfis"
+import { theme_bfis_send } from "./bfis-send/theme_bfis_send"
 import { theme_bod } from "./bod/theme_bod"
 import { theme_tvvru } from "./tvvru/theme_tvvru"
 import { vars_generic } from "./generic/vars_generic"
 import { vars_bfis } from "./bfis/vars_bfis"
+import { vars_bfis_send } from "./bfis-send/vars_bfis_send"
 import { vars_bod } from "./bod/vars_bod"
 import { vars_tvvru } from "./tvvru/vars_tvvru"
 import validThemes from "./valid-themes.json"
@@ -63,6 +65,7 @@ const generate_theme = (vars, theme_vars) => {
     targets: formatTargets(),
     slug: vars.slug,
     title: vars.hasOwnProperty("title") ? vars.title : "",
+    parentTaxonomyId: process.env.REACT_APP_PARENT_TAXONOMY_ID || false,
     resultsPerPage: vars.hasOwnProperty("resultsPerPage")
       ? vars.resultsPerPage
       : 20,
@@ -78,6 +81,7 @@ const generate_theme = (vars, theme_vars) => {
     tagline: vars.hasOwnProperty("tagline") ? vars.tagline : "",
     beta: vars.hasOwnProperty("beta") ? vars.beta : false,
     headerLogo: vars.headerLogo,
+    headerComponents: vars.headerComponents ?? vars.headerComponents,
     cookiesDisabledMessage: vars.cookiesDisabledMessage,
     cookieMessage: vars.cookieMessage,
     cookieName: vars.cookieName,
@@ -172,6 +176,10 @@ switch (getThemeLabel()) {
   case "bfis":
     currentTheme = theme_bfis
     currentVars = vars_bfis
+    break
+  case "bfis-send":
+    currentTheme = theme_bfis_send
+    currentVars = vars_bfis_send
     break
   case "bod":
     currentTheme = theme_bod

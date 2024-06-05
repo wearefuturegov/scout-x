@@ -14,7 +14,7 @@ const useFathom = () => {
   }, [cookiesAccepted])
 
   useEffect(() => {
-    console.log(location.pathname + location.search)
+    // console.log(location.pathname + location.search)
     if (cookiesAccepted) {
       ReactGA.pageview(location.pathname + location.search)
     }

@@ -23,30 +23,37 @@ const SecondaryButton = styled.button`
   }
 `
 
-const Pagination = ({ totalPages, page, setPage, scrollTarget }) =>
-  totalPages > 0 && (
-    <ResultsFooter>
-      {totalPages > page && (
-        <Button
-          onClick={() => {
-            scrollTarget.current.scrollIntoView()
-            setPage(page + 1)
-          }}
-        >
-          Next page
-        </Button>
-      )}
-      {page > 1 && (
-        <SecondaryButton
-          onClick={() => {
-            scrollTarget.current.scrollIntoView()
-            setPage(page - 1)
-          }}
-        >
-          Previous page
-        </SecondaryButton>
-      )}
-    </ResultsFooter>
+const Pagination = ({ totalPages, page, setPage, scrollTarget }) => {
+  return (
+    totalPages > 0 && (
+      <ResultsFooter>
+        {totalPages > page && (
+          <Button
+            onClick={() => {
+              if (scrollTarget?.current !== null) {
+                scrollTarget.current.scrollIntoView()
+              }
+              setPage(page + 1)
+            }}
+          >
+            Next page
+          </Button>
+        )}
+        {page > 1 && (
+          <SecondaryButton
+            onClick={() => {
+              if (scrollTarget?.current !== null) {
+                scrollTarget.current.scrollIntoView()
+              }
+              setPage(page - 1)
+            }}
+          >
+            Previous page
+          </SecondaryButton>
+        )}
+      </ResultsFooter>
+    )
   )
+}
 
 export default Pagination

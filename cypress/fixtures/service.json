@@ -128,7 +128,7 @@
       }
     ]
   },
-  "target_directories": [
+  "directories": [
     {
       "name": "Buckinghamshire Online Directory",
       "label": "bod"

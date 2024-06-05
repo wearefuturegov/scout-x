@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+.env*
 
 # Local Netlify folder
 .netlify
@@ -32,7 +33,6 @@ yarn-error.log*
 /cypress/screenshots
 
 /cypress/videos
-
 
 debug.log
 
