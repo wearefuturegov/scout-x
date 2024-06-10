@@ -8,10 +8,20 @@ const Prefooter = ({ children }) => (
       {[!theme.contactPhone && !theme.contactEmail].includes(false) && (
         <Styles.PrefooterColumn>
           <h2>Get in touch</h2>
-          <p>
-            Contact us online for more information and advice from our
-            supportive team:
-          </p>
+
+          {theme.contactForm ? (
+            <p>
+              <Styles.PrefooterLink href={theme.contactForm}>
+                Contact us online
+              </Styles.PrefooterLink>{" "}
+              for more information and advice from our supportive team:
+            </p>
+          ) : (
+            <p>
+              Contact us online for more information and advice from our
+              supportive team:
+            </p>
+          )}
           {theme.contactEmail && (
             <Styles.PrefooterLink href={`mailto:${theme.contactEmail}`}>
               {theme.contactEmail}

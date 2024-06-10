@@ -75,6 +75,8 @@ const generate_theme = (vars, theme_vars) => {
     contactPhone: vars.hasOwnProperty("contactPhone")
       ? vars.contactPhone
       : false,
+    contactForm: vars.hasOwnProperty("contactForm") ? vars.contactForm : false,
+    socialMedia: vars.hasOwnProperty("socialMedia") ? vars.socialMedia : false,
     serviceHomepageUrl: vars.serviceHomepageUrl,
     organisation: vars.hasOwnProperty("organisation") ? vars.organisation : "",
     organisationUrl: vars.organisationUrl,
@@ -89,9 +91,15 @@ const generate_theme = (vars, theme_vars) => {
       ? vars.cookieCallback
       : () => {},
     footerNav: vars.footerNav,
-    outpostLoginUrl: process.env.REACT_APP_OUTPOST_LOGIN_URL,
-    outpostRegisterUrl: process.env.REACT_APP_OUTPOST_REGISTER_URL,
-    feedbackUrl: process.env.REACT_APP_FEEDBACK_URL,
+    outpostLoginUrl: vars.hasOwnProperty("outpostLoginUrl")
+      ? vars.outpostLoginUrl
+      : process.env.REACT_APP_OUTPOST_LOGIN_URL,
+    outpostRegisterUrl: vars.hasOwnProperty("outpostRegisterUrl")
+      ? vars.outpostRegisterUrl
+      : process.env.REACT_APP_OUTPOST_REGISTER_URL,
+    feedbackUrl: vars.hasOwnProperty("feedbackUrl")
+      ? vars.feedbackUrl
+      : process.env.REACT_APP_FEEDBACK_URL,
     outpostUrl: process.env.REACT_APP_OUTPOST_URL || "",
     mapSwitchSmall: vars.hasOwnProperty("mapSwitchSmall")
       ? vars.mapSwitchSmall

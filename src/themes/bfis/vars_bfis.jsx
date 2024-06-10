@@ -7,6 +7,35 @@ export const vars_bfis = {
   title: "Family information service",
   contactEmail: "familyinfo@buckinghamshire.gov.uk",
   contactPhone: "01296 383 293",
+  contactForm:
+    "https://my.buckinghamshire.gov.uk/portal/itouchvision/r/gds/category_link?cuid=FD9FD6EDD42732928F7E205634D070AA8CA0E0D9&lang=EN&P_LANG=en",
+  socialMedia: [
+    {
+      type: "facebook",
+      label: "Buckinghamshire Council Facebook",
+      url: "https://www.facebook.com/bucksfamilyinfo",
+    },
+    {
+      type: "twitter",
+      label: "Buckinghamshire Council Twitter",
+      url: "https://twitter.com/bucksfamilyinfo",
+    },
+    {
+      type: "youtube",
+      label: "Buckinghamshire Council Youtube",
+      url: "https://www.youtube.com/channel/UC1FH7pKrMzhgotJVCV9RzcA",
+    },
+    {
+      type: "instagram",
+      label: "Buckinghamshire Council Instagram",
+      url: "https://www.instagram.com/bucksfamilyinfo",
+    },
+    {
+      type: "linkedin",
+      label: "Buckinghamshire Council Linkedin",
+      url: "https://www.linkedin.com/company/bucksfamilyinfo",
+    },
+  ],
   serviceHomepageUrl: "https://familyinfo.buckinghamshire.gov.uk",
   organisation: "Buckinghamshire Council",
   organisationUrl: "https://www.buckinghamshire.gov.uk/",
