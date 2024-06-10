@@ -1,4 +1,3 @@
-import React from "react"
 import { vars_bfis } from "./../bfis/vars_bfis"
 
 export const vars_bfis_send = {

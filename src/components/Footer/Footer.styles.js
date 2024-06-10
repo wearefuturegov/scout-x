@@ -45,7 +45,7 @@ export const NavLink = styled.a`
   margin-right: 15px;
 `
 
-export const SocialMedia = styled.p`
+export const SocialMedia = styled.div`
   margin: 40px 0px;
 
   @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
