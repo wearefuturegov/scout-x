@@ -4,7 +4,7 @@ module.exports = {
   onPreBuild({ netlifyConfig }) {
     // Modify build command's environment variables
     netlifyConfig.build.environment.REACT_APP_SITE_URL =
-      process.env.context === "production"
+      process.env.CONTEXT === "production"
         ? process.env.URL
         : process.env.DEPLOY_PRIME_URL
   },
