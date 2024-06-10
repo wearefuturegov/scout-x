@@ -1,5 +1,4 @@
 import React from "react"
-import * as Styles from "./../Icon.styles"
 
 const Twitter = ({ fillColor }) => (
   <svg
