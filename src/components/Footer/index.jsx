@@ -2,11 +2,17 @@ import React from "react"
 import ogl from "./ogl.svg"
 import * as Styles from "./Footer.styles"
 import { theme } from "./../../themes/theme_generator"
+import SocialMedia from "../SocialMedia"
 
 const Footer = ({ children }) => (
   <Styles.Outer>
     <Styles.Inner>
       {theme.footerNav}
+      {theme.socialMedia && (
+        <Styles.SocialMedia>
+          <SocialMedia links={theme.socialMedia} />
+        </Styles.SocialMedia>
+      )}
       <Styles.License>
         <img src={ogl} alt="Open Government License" />
         All content is available under the{" "}
