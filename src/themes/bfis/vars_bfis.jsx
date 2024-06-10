@@ -1,4 +1,5 @@
 import React from "react"
+import SingleStrongLink from "../../components/SingleStrongLink"
 import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
 
@@ -141,6 +142,12 @@ export const vars_bfis = {
       name: "only-show",
     },
   ],
+  headerComponents: (
+    <SingleStrongLink
+      text="How to use this directory"
+      url="https://familyinfo.buckinghamshire.gov.uk/directory-how-to"
+    />
+  ),
 }
 
 export default vars_bfis
