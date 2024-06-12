@@ -132,9 +132,9 @@ const App = ({ children, location, navigate }) => {
         accessibilities,
       ] = await fetchSiteData()
 
-      if (theme?.parentTaxonomyId && parseInt(theme.parentTaxonomyId)) {
+      if (theme?.parentTaxonomySlug) {
         const parentTaxonomy = taxonomies.find(
-          t => parseInt(t.id) === parseInt(theme.parentTaxonomyId)
+          t => t.slug === theme.parentTaxonomySlug
         )
         if (parentTaxonomy && parentTaxonomy.children) {
           taxonomies = parentTaxonomy.children
