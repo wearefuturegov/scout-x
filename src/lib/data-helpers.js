@@ -1,4 +1,5 @@
 import queryString from "query-string"
+import { theme } from "./../themes/theme_generator"
 /**
  * Find the next level down of categories
  * @param {*} taxonomies
@@ -58,17 +59,31 @@ export const formatSuitabilityOptions = suitabilities =>
  */
 export const defineQueryTaxonomies = (collection, categories) => {
   const taxonomies = []
-
   if (categories && collection) {
     categories = [].concat(categories)
     categories.forEach(element => {
       let [parent, slug] = element.split(":")
-      taxonomies.push(
-        [collection, parent, slug].filter(item => item !== undefined)
-      )
+
+      if (theme?.parentTaxonomySlug) {
+        taxonomies.push(
+          [theme.parentTaxonomySlug, collection, parent, slug].filter(
+            item => item !== undefined
+          )
+        )
+      } else {
+        taxonomies.push(
+          [collection, parent, slug].filter(item => item !== undefined)
+        )
+      }
     })
   } else if (!categories && collection) {
-    taxonomies.push([collection])
+    if (theme?.parentTaxonomySlug) {
+      taxonomies.push([theme.parentTaxonomySlug, collection])
+    } else {
+      taxonomies.push([collection])
+    }
+  } else if (theme?.parentTaxonomySlug && !categories && !collection) {
+    taxonomies.push([theme.parentTaxonomySlug])
   }
 
   return taxonomies
