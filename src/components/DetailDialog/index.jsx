@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 import fetch from "isomorphic-unfetch"
-import {
-  daysSince,
-  buildGoodToKnow,
-  truncate,
-  twelveHourTime,
-} from "../../lib/utils"
+import { daysSince, buildGoodToKnow, truncate } from "../../lib/utils"
 import { Helmet } from "react-helmet"
 import "@reach/dialog/styles.css"
 
@@ -25,6 +20,9 @@ import { theme } from "./../../themes/theme_generator"
 import { checkCookiesAccepted } from "./../../lib/cookies"
 
 import AlertStatic from "./../AlertStatic"
+
+import { Crosshead, Columns, Table } from "./DetailDialog.styles"
+import ScheduleTable from "./ScheduleTable"
 
 const Body = styled(InheritedBody)`
   &:first-of-type {
@@ -81,35 +79,6 @@ const TwoColumnTickList = styled(TickList)`
   }
 `
 
-const Crosshead = styled.h2`
-  margin-bottom: 15px;
-  color: ${props => props.theme.styles.text};
-`
-
-const Columns = styled.div`
-  margin-bottom: 30px;
-  &:last-of-type {
-    margin-bottom: 0px;
-  }
-  div {
-    margin-bottom: 20px;
-    &:last-of-type {
-      margin-bottom: 0px;
-    }
-  }
-  @supports (display: grid) {
-    @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 35px;
-      row-gap: 25px;
-      div {
-        margin-bottom: 0px;
-      }
-    }
-  }
-`
-
 const ContactName = styled.h3`
   line-height: 1.5;
   color: ${props => props.theme.styles.text};
@@ -118,17 +87,6 @@ const ContactName = styled.h3`
 const ContactRole = styled.p`
   margin-bottom: 5px;
   font-style: italic;
-`
-
-const Table = styled.table`
-  width: 100%;
-  color: ${props => props.theme.styles.text};
-  td {
-    width: 50%;
-  }
-  tr:not(:last-child) td {
-    padding-bottom: 10px;
-  }
 `
 
 const Footer = styled(Body)`
@@ -275,8 +233,10 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
             {service.description && (
               <Description description={service.description} />
             )}
-            {service.locations.length > 1 && (
-              <LocationAccordion locations={service.locations} />
+            {service.service_at_locations.length > 1 && (
+              <LocationAccordion
+                service_at_locations={service.service_at_locations}
+              />
             )}
           </Body>
           {goodToKnow.length > 0 && (
@@ -354,26 +314,32 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
                   </TickList>
                 </Columns>
               )}
+
             {service.regular_schedules.length > 0 && (
-              <Columns>
-                <Crosshead>Hours</Crosshead>
-                <Table>
-                  <tbody>
-                    {service.regular_schedules.map((sched, i) => (
-                      <tr key={i}>
-                        <td>
-                          <strong>{sched.weekday}s</strong>
-                        </td>
-                        <td>
-                          {twelveHourTime(sched.opens_at)} to{" "}
-                          {twelveHourTime(sched.closes_at)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </Columns>
+              <ScheduleTable
+                title="Hours"
+                regular_schedules={service.regular_schedules.filter(
+                  v => v.service_at_location === null
+                )}
+              />
             )}
+
+            {service.service_at_locations.length > 1 && (
+              <>
+                {service.service_at_locations.map((service_at_location, i) => (
+                  <ScheduleTable
+                    key={service_at_location.id}
+                    subtitle={
+                      service_at_location.location.name ||
+                      service_at_location.location.address_1 ||
+                      `Location ${i + 1}`
+                    }
+                    regular_schedules={service_at_location.regular_schedule}
+                  />
+                ))}
+              </>
+            )}
+
             {service.cost_options.length > 0 && (
               <Columns>
                 <Crosshead>Fees</Crosshead>
