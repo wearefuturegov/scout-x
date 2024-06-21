@@ -25,13 +25,13 @@ export default ({ results }) => {
 
   let resultsLatLng = []
   results.map(result =>
-    result.locations.map(location => {
+    result.service_at_locations.map(service_at_location => {
       if (
-        location.geometry.coordinates[0] &&
-        location.geometry.coordinates[1]
+        service_at_location.location.geometry.coordinates[0] &&
+        service_at_location.location.geometry.coordinates[1]
       ) {
         resultsLatLng.push([
-          `${location.geometry.coordinates[1]},${location.geometry.coordinates[0]}`,
+          `${service_at_location.location.geometry.coordinates[1]},${service_at_location.location.geometry.coordinates[0]}`,
         ])
       }
       return null

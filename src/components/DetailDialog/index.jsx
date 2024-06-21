@@ -213,8 +213,8 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
           {!cookiesAccepted && (
             <AlertStatic>{theme.cookiesDisabledMessage}</AlertStatic>
           )}
-          {service.locations.length === 1 && (
-            <SingleLocation {...service.locations[0]} />
+          {service.service_at_locations.length === 1 && (
+            <SingleLocation {...service.service_at_locations[0].location} />
           )}
           <Body>
             <Actions>
@@ -290,16 +290,23 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
             </Body>
           )}
           <Body>
-            {service.hasOwnProperty("locations") &&
-              service.locations.length === 1 &&
-              service.locations[0].hasOwnProperty("accessibilities") &&
-              service.locations[0].accessibilities.length > 0 && (
+            {service.hasOwnProperty("service_at_locations") &&
+              service.service_at_locations.length === 1 &&
+              service.service_at_locations[0].location.hasOwnProperty(
+                "accessibilities"
+              ) &&
+              service.service_at_locations[0].location.accessibilities.length >
+                0 && (
                 <Columns>
                   <Crosshead>Access needs</Crosshead>
                   <TickList>
-                    {service.locations[0].accessibilities.map(point => (
-                      <TickListItem key={point.name}>{point.name}</TickListItem>
-                    ))}
+                    {service.service_at_locations[0].location.accessibilities.map(
+                      point => (
+                        <TickListItem key={point.name}>
+                          {point.name}
+                        </TickListItem>
+                      )
+                    )}
                   </TickList>
                 </Columns>
               )}
