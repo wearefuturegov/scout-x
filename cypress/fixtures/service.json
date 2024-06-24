@@ -18,6 +18,36 @@
   "needs_referral": null,
   "free": null,
   "created_at": "2020-11-26T10:49:42.460Z",
+  "service_at_locations": [
+    {
+      "id": 1,
+      "service_id": 1,
+      "location_id": 1,
+      "location": {
+        "id": 1,
+        "name": "St Joseph's Catholic Infant School",
+        "address_1": " Hazell Avenue",
+        "city": "Aylesbury",
+        "state_province": "Buckinghamshire",
+        "postal_code": "HP21 7JF",
+        "country": "GB",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-0.790659, 51.811001]
+        },
+        "mask_exact_address": false,
+        "accessibilities": []
+      },
+      "regular_schedule": [
+        {
+          "id": 1,
+          "weekday": "Monday",
+          "opens_at": "10:00",
+          "closes_at": "17:00"
+        }
+      ]
+    }
+  ],
   "locations": [
     {
       "id": 1,
@@ -62,7 +92,8 @@
       "id": 1,
       "weekday": "Monday",
       "opens_at": "10:00",
-      "closes_at": "17:00"
+      "closes_at": "17:00",
+      "service_at_location": null
     }
   ],
   "cost_options": [],
