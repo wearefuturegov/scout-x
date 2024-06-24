@@ -20,8 +20,8 @@ const BoundSetter = ({ results }) => {
     if (results.length > 0) {
       results.map(result =>
         bounds.extend({
-          lat: result.location.geometry.coordinates[1],
-          lng: result.location.geometry.coordinates[0],
+          lat: result.location?.geometry?.coordinates[1],
+          lng: result.location?.geometry?.coordinates[0],
         })
       )
       map.fitBounds(bounds)
@@ -31,22 +31,22 @@ const BoundSetter = ({ results }) => {
 }
 
 const ListMap = React.memo(({ results, isLoaded, location, navigate }) => {
-  let plottableResults = []
-  results.map(result =>
-    result.locations.map(location => {
+  const plottableResults = results.reduce((acc, result) => {
+    result.service_at_locations.forEach(service_at_location => {
       if (
-        location.geometry.coordinates[0] &&
-        location.geometry.coordinates[1]
+        service_at_location.location?.geometry?.coordinates[0] &&
+        service_at_location.location?.geometry?.coordinates[1] &&
+        !acc.find(item => item.id === result.id) // Check if the result id is already in the accumulator
       ) {
-        plottableResults.push({
+        acc.push({
           id: result.id,
           name: result.name,
-          location: location,
+          location: service_at_location.location,
         })
       }
-      return null
     })
-  )
+    return acc
+  }, [])
 
   return isLoaded ? (
     <Outer>
