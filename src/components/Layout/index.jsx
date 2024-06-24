@@ -5,6 +5,7 @@ import Header from "../Header"
 import Footer from "../Footer"
 import Breadcrumbs from "../Breadcrumbs"
 import Prefooter from "../Prefooter"
+import { theme } from "./../../themes/theme_generator"
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -45,11 +46,22 @@ const PageHeaderInner = styled.div`
 export const PageTitle = styled.h1`
   color: ${props => props.theme.styles.text};
   font-size: 1.75rem;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     font-size: 2.625rem;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     max-width: 60%;
+  }
+`
+
+export const PageDescription = styled.p`
+  color: ${props => props.theme.styles.grey};
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  max-width: 80%;
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
   }
 `
 
@@ -170,6 +182,9 @@ const Layout = ({
       <PageHeaderInner>
         <Breadcrumbs />
         <PageTitle>Find activities and organisations near you</PageTitle>
+        {theme?.description && (
+          <PageDescription>{theme.description}</PageDescription>
+        )}
         <MainContent id="main-content">{headerComponents}</MainContent>
       </PageHeaderInner>
     </PageHeader>

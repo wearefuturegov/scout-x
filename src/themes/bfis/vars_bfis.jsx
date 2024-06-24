@@ -2,10 +2,21 @@ import React from "react"
 import SingleStrongLink from "../../components/SingleStrongLink"
 import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
+import Description from "../../components/Description"
 
 export const vars_bfis = {
   slug: "bfis",
   title: "Family information service",
+  description: (
+    <>
+      Information, support, childcare and things to do for families, children
+      and young people up to 19 years (25 years with a disability/additional
+      need). For SEND local offer please visit{" "}
+      <a href="https://directory.send.buckinghamshire.gov.uk/">
+        Bucks SEND Local Offer
+      </a>
+    </>
+  ),
   contactEmail: "familyinfo@buckinghamshire.gov.uk",
   contactPhone: "01296 383 293",
   contactForm:

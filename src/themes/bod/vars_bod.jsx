@@ -5,6 +5,16 @@ import * as Styles from "../../components/Footer/Footer.styles"
 export const vars_bod = {
   slug: "bod",
   title: "Bucks Online Directory",
+  description: (
+    <>
+      Information on activities, groups and support services available in
+      Buckinghamshire. For Information, support, childcare and things to do for
+      families, children and young people please see{" "}
+      <a href="https://directory.familyinfo.buckinghamshire.gov.uk/">
+        Family information service directory
+      </a>
+    </>
+  ),
   contactEmail: "communities@buckinghamshire.gov.uk",
   contactPhone: false,
   serviceHomepageUrl: "https://directory.buckinghamshire.gov.uk",
