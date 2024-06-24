@@ -20,8 +20,8 @@ const BoundSetter = ({ results }) => {
     if (results.length > 0) {
       results.map(result =>
         bounds.extend({
-          lat: result.location.geometry.coordinates[1],
-          lng: result.location.geometry.coordinates[0],
+          lat: result.location?.geometry?.coordinates[1],
+          lng: result.location?.geometry?.coordinates[0],
         })
       )
       map.fitBounds(bounds)
@@ -34,8 +34,8 @@ const ListMap = React.memo(({ results, isLoaded, location, navigate }) => {
   const plottableResults = results.reduce((acc, result) => {
     result.service_at_locations.forEach(service_at_location => {
       if (
-        service_at_location.location.geometry.coordinates[0] &&
-        service_at_location.location.geometry.coordinates[1] &&
+        service_at_location.location?.geometry?.coordinates[0] &&
+        service_at_location.location?.geometry?.coordinates[1] &&
         !acc.find(item => item.id === result.id) // Check if the result id is already in the accumulator
       ) {
         acc.push({

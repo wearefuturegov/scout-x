@@ -27,8 +27,8 @@ export default ({ results }) => {
   results.map(result =>
     result.service_at_locations.map(service_at_location => {
       if (
-        service_at_location.location.geometry.coordinates[0] &&
-        service_at_location.location.geometry.coordinates[1]
+        service_at_location.location?.geometry?.coordinates[0] &&
+        service_at_location.location?.geometry?.coordinates[1]
       ) {
         resultsLatLng.push([
           `${service_at_location.location.geometry.coordinates[1]},${service_at_location.location.geometry.coordinates[0]}`,
