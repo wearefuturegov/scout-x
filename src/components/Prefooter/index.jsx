@@ -34,10 +34,14 @@ const Prefooter = ({ children }) => (
       {theme.feedbackUrl && (
         <Styles.PrefooterColumn>
           <h2>Feedback</h2>
-          <p>This is a brand new website. Your feedback helps us improve it.</p>
-          <Styles.PrefooterLink href={theme.feedbackUrl}>
-            Give feedback
-          </Styles.PrefooterLink>
+          <p>
+            Use our{" "}
+            <Styles.PrefooterLink href={theme.feedbackUrl}>
+              feedback form
+            </Styles.PrefooterLink>{" "}
+            to tell us what you think about our directory. Your feedback helps
+            us to improve our service.
+          </p>
         </Styles.PrefooterColumn>
       )}
 
