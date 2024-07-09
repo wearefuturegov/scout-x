@@ -96,16 +96,11 @@ export const removeDuplicateServices = services => {
 }
 
 export const sortServices = (services, query) => {
-  let { keywords, lat, lng, location } = queryString.parse(query)
+  let { keywords } = queryString.parse(query)
   // sorting
-  // if there is a location then sort by distance_away
-  // if there is a keyword and no location then the order matters
+  // if there is a keyword sort by score
   // otherwise sort by updated_at
-  if (!keywords && (lat || lng || location)) {
-    return services.sort(
-      (a, b) => new Date(a.distance_away) - new Date(b.distance_away)
-    )
-  } else if (keywords && !(lat || lng || location)) {
+  if (keywords) {
     return services.sort((a, b) => new Date(b.score) - new Date(a.score))
   } else {
     return services.sort(

@@ -61,7 +61,7 @@ const Description = styled.p`
 `
 
 const ServiceCard = React.forwardRef(
-  ({ id, name, description, ...service }, ref) => {
+  ({ id, name, description, score, ...service }, ref) => {
     const { search } = useLocation()
     // const [hasRef, setHasRef] = useState(false)
 
@@ -71,7 +71,7 @@ const ServiceCard = React.forwardRef(
 
     // <Outer ref={ref} hasRef={hasRef}>
     return (
-      <Outer ref={ref}>
+      <Outer ref={ref} data-score={score}>
         <StyledLink to={`/service/${id}${search}`}>
           <Name>{name}</Name>
         </StyledLink>
