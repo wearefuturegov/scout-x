@@ -482,7 +482,8 @@ const MainContent = ({
             )}{" "}
             {coverage && (
               <>
-                within 20 miles of <strong>{coverage}</strong>
+                within {theme.proximity / 1609.34} miles of{" "}
+                <strong>{coverage}</strong>
               </>
             )}
           </>
