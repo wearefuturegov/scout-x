@@ -120,7 +120,6 @@ const getQueryType = query => {
  */
 export const sortServices = (services, query) => {
   const queryType = getQueryType(query)
-  console.log(queryType)
   switch (queryType) {
     case "location":
       return services.sort((a, b) => a.distance_away - b.distance_away)
