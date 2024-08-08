@@ -95,16 +95,41 @@ export const removeDuplicateServices = services => {
   )
 }
 
-export const sortServices = (services, query) => {
-  let { keywords } = queryString.parse(query)
-  // sorting
-  // if there is a keyword sort by score
-  // otherwise sort by updated_at
-  if (keywords) {
-    return services.sort((a, b) => new Date(b.score) - new Date(a.score))
+/**
+ * tells us the query type to help with sorting
+ */
+const getQueryType = query => {
+  let { keywords, lat, lng, location } = queryString.parse(query)
+  const hasLocation = lat || lng || location
+  if (keywords && !hasLocation) {
+    return "keyword"
+  } else if (keywords === undefined && hasLocation) {
+    return "location"
+  } else if (keywords && hasLocation) {
+    return "keyword_location"
   } else {
-    return services.sort(
-      (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-    )
+    return undefined
+  }
+}
+
+/**
+ * We only do this because we're returning multiple queries
+ * @param {*} services
+ * @param {*} query
+ * @returns
+ */
+export const sortServices = (services, query) => {
+  const queryType = getQueryType(query)
+  switch (queryType) {
+    case "location":
+      return services.sort((a, b) => a.distance_away - b.distance_away)
+    case "keyword_location":
+      return services.sort((a, b) => a.distance_away - b.distance_away)
+    case "keyword":
+      return services.sort((a, b) => b.score - a.score)
+    default:
+      return services.sort(
+        (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
+      )
   }
 }
