@@ -1,6 +1,8 @@
 import React from "react"
 import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
+import ResponsiveSentence from "../../components/ResponsiveSentence"
+import { AStrong } from "../../components/A"
 
 export const vars_bod = {
   slug: "bod",
@@ -89,6 +91,27 @@ export const vars_bod = {
     },
   ],
   noLocationIsCountywide: true,
+  headerComponentsBeforeSearch: (
+    <ResponsiveSentence
+      desktop={
+        <>
+          Find activities, organisations, and services for families and children
+          up to 19 years (25 with SEND) in our{" "}
+          <AStrong href="https://directory.familyinfo.buckinghamshire.gov.uk/">
+            FIS directory
+          </AStrong>
+        </>
+      }
+      mobile={
+        <>
+          For families visit our{" "}
+          <AStrong href="https://directory.familyinfo.buckinghamshire.gov.uk/">
+            FIS directory
+          </AStrong>
+        </>
+      }
+    />
+  ),
 }
 
 export default vars_bod

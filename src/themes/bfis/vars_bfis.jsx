@@ -2,6 +2,8 @@ import React from "react"
 import SingleStrongLink from "../../components/SingleStrongLink"
 import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
+import ResponsiveSentence from "../../components/ResponsiveSentence"
+import { AStrong } from "../../components/A"
 
 export const vars_bfis = {
   slug: "bfis",
@@ -146,6 +148,27 @@ export const vars_bfis = {
     <SingleStrongLink
       text="How to use this directory"
       url="https://familyinfo.buckinghamshire.gov.uk/directory-how-to"
+    />
+  ),
+  headerComponentsBeforeSearch: (
+    <ResponsiveSentence
+      desktop={
+        <>
+          Find activities, organisations, and services for adults (aged 18 plus)
+          in our{" "}
+          <AStrong href="https://directory.buckinghamshire.gov.uk/">
+            BOD directory
+          </AStrong>
+        </>
+      }
+      mobile={
+        <>
+          For adults visit our{" "}
+          <AStrong href="https://directory.buckinghamshire.gov.uk/">
+            BOD directory
+          </AStrong>
+        </>
+      }
     />
   ),
 }
