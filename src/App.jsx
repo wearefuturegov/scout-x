@@ -340,6 +340,8 @@ const App = ({ children, location, navigate }) => {
       <Layout
         headerComponents={
           <>
+            {theme.headerComponentsBeforeSearch ??
+              theme.headerComponentsBeforeSearch}
             <SearchBar
               keywords={keywords}
               setKeywords={setKeywords}
