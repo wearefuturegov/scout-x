@@ -35,6 +35,7 @@ import Filter from "./components/Filter"
 import RadioFilter from "./components/Filter/RadioFilter"
 import KeywordFilter from "./components/Filter/KeywordFilter"
 import AgeFilter from "./components/Filter/AgeFilter"
+import StarttimeEndtimeDayFilter from "./components/Filter/StarttimeEndtimeDay"
 import ListMap from "./components/ListMap"
 import ListMapStatic from "./components/ListMapStatic"
 import Pagination from "./components/Pagination"
@@ -69,6 +70,9 @@ const App = ({ children, location, navigate }) => {
     array: true,
   })
   const [days, setDays] = useQuery("days", [], { array: true })
+  const [startTime, setStartTime] = useQuery("start_time", [], { array: true })
+  const [endTime, setEndTime] = useQuery("end_time", [], { array: true })
+  const [day, setDay] = useQuery("day", [], { array: true })
   const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
   const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
   const [only, setOnly] = useQuery("only", [], { array: true })
@@ -284,6 +288,21 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
+  const filterStarttimeEndTimeDay = daysOptions.length > 0 && (
+    <StarttimeEndtimeDayFilter
+      key="opening-times"
+      legend="Availability"
+      startTime={startTime}
+      endTime={endTime}
+      day={day}
+      setStartTime={setStartTime}
+      setEndTime={setEndTime}
+      setDay={setDay}
+      setPage={setPage}
+      foldable
+    />
+  )
+
   const filterSuitabilities = suitabilityOptions.length > 0 && (
     <Filter
       key="suitabilities"
@@ -321,6 +340,11 @@ const App = ({ children, location, navigate }) => {
       component: filterDays,
       clear: [setDays],
       clearValue: [[]],
+    },
+    startTimeEndTimeDay: {
+      component: filterStarttimeEndTimeDay,
+      clear: [setStartTime, setEndTime, setDay],
+      clearValue: [[], [], []],
     },
     suitabilities: {
       component: filterSuitabilities,
