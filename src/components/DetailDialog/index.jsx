@@ -149,6 +149,43 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
   if (service.name) {
     let goodToKnow = buildGoodToKnow(service)
     let categories = service.taxonomies
+
+    const all_location_regular_schedules = service.regular_schedules.filter(
+      v => v.service_at_location === null
+    )
+
+    const {
+      all_location_event_times,
+      all_location_opening_times,
+    } = all_location_regular_schedules.reduce(
+      (acc, sched) => {
+        if (sched.dtstart) {
+          acc.all_location_event_times.push(sched)
+        } else {
+          acc.all_location_opening_times.push(sched)
+        }
+        return acc
+      },
+      { all_location_event_times: [], all_location_opening_times: [] }
+    )
+
+    const location_regular_schedules = service.service_at_locations.reduce(
+      (acc, schedule) => {
+        if (schedule.regular_schedule && schedule.regular_schedule.length > 0) {
+          const locationId = schedule.location_id
+          if (!acc[locationId]) {
+            acc[locationId] = {
+              location: schedule.location,
+              regular_schedules: [],
+            }
+          }
+          acc[locationId].regular_schedules.push(...schedule.regular_schedule)
+        }
+        return acc
+      },
+      {}
+    )
+
     return (
       <Dialog handleDismiss={handleDismiss} dialogTitle={service.name}>
         <Helmet>
@@ -321,32 +358,58 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
                   </TickList>
                 </Columns>
               )}
+            {/* 4 options
 
-            {service.regular_schedules.length > 0 && (
+              just opening hours
+              just event times
+
+              event times and opening hours
+
+              all at location */}
+            {/* opening times for all locations and locations */}
+            {all_location_opening_times.length > 0 && (
               <ScheduleTable
                 title="Hours"
-                regular_schedules={service.regular_schedules.filter(
-                  v => v.service_at_location === null
-                )}
+                regular_schedules={all_location_opening_times}
               />
             )}
-
-            {service.service_at_locations.length > 1 && (
-              <>
-                {service.service_at_locations.map((service_at_location, i) => (
-                  <ScheduleTable
-                    key={service_at_location.id}
-                    subtitle={
-                      service_at_location.location.name ||
-                      service_at_location.location.address_1 ||
-                      `Location ${i + 1}`
-                    }
-                    regular_schedules={service_at_location.regular_schedule}
-                  />
-                ))}
-              </>
+            {Object.entries(location_regular_schedules).map(
+              ([location_id, location]) => (
+                <ScheduleTable
+                  key={location_id}
+                  subtitle={
+                    location.name ||
+                    location.address_1 ||
+                    `Location ${location_id}`
+                  }
+                  regular_schedules={location.regular_schedules.filter(
+                    v => v.dtstart === null
+                  )}
+                />
+              )
             )}
-
+            {/* event times for all locations and locations */}
+            {all_location_event_times.length > 0 && (
+              <ScheduleTable
+                title="Times"
+                regular_schedules={all_location_event_times}
+              />
+            )}{" "}
+            {Object.entries(location_regular_schedules).map(
+              ([location_id, location]) => (
+                <ScheduleTable
+                  key={location_id}
+                  subtitle={
+                    location.name ||
+                    location.address_1 ||
+                    `Location ${location_id}`
+                  }
+                  regular_schedules={location.regular_schedules.filter(
+                    v => v.dtstart !== null
+                  )}
+                />
+              )
+            )}
             {service.cost_options.length > 0 && (
               <Columns>
                 <Crosshead>Fees</Crosshead>
