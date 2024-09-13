@@ -174,7 +174,7 @@ const StarttimeEndtimeDayFilter = ({
   foldable,
 }) => {
   const [unfolded, setUnfolded] = useState(
-    startTime || endTime || day.length > 0
+    startTime.length > 0 || endTime.length > 0 || day.length > 0
   )
 
   return (
