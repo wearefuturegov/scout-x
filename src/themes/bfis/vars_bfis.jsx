@@ -143,6 +143,10 @@ export const vars_bfis = {
       order: 4,
       name: "starttime-endtime-day",
     },
+    {
+      order: 5,
+      name: "schedule",
+    },
   ],
   headerComponents: (
     <SingleStrongLink

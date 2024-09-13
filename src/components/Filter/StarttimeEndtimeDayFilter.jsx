@@ -138,9 +138,9 @@ const AllFieldsForm = ({
       ))}
       <ColumnContent>
         <ColumnField>
-          <LabelWithMargin htmlFor="start_date">Opens at</LabelWithMargin>
+          <LabelWithMargin htmlFor="start_time">Opens at</LabelWithMargin>
           <Input
-            id={`start_date`}
+            id={`start_time`}
             onChange={handleStartTimeChange}
             value={startTimeValue}
             type="time"
@@ -148,9 +148,9 @@ const AllFieldsForm = ({
           />
         </ColumnField>
         <ColumnField>
-          <LabelWithMargin htmlFor="end_date">Closes at</LabelWithMargin>
+          <LabelWithMargin htmlFor="end_time">Closes at</LabelWithMargin>
           <Input
-            id={`end_date`}
+            id={`end_time`}
             onChange={handleEndTimeChange}
             value={endTimeValue}
             type="time"

@@ -35,7 +35,7 @@ import Filter from "./components/Filter"
 import RadioFilter from "./components/Filter/RadioFilter"
 import KeywordFilter from "./components/Filter/KeywordFilter"
 import AgeFilter from "./components/Filter/AgeFilter"
-import StarttimeEndtimeDayFilter from "./components/Filter/StarttimeEndtimeDay"
+import StarttimeEndtimeDayFilter from "./components/Filter/StarttimeEndtimeDayFilter"
 import ListMap from "./components/ListMap"
 import ListMapStatic from "./components/ListMapStatic"
 import Pagination from "./components/Pagination"
@@ -44,6 +44,7 @@ import { theme } from "./themes/theme_generator"
 import ClearFilters from "./components/ClearFilters"
 import { checkCookiesAccepted } from "./lib/cookies"
 import AlertStatic from "./components/AlertStatic"
+import ScheduleFilter from "./components/Filter/ScheduleFilter"
 
 const App = ({ children, location, navigate }) => {
   const [keywords, setKeywords] = useQuery("keywords", "")
@@ -69,6 +70,9 @@ const App = ({ children, location, navigate }) => {
   const [suitabilities, setSuitabilities] = useQuery("suitabilities", [], {
     array: true,
   })
+  const [schedule, setSchedule] = useQuery("schedule", false)
+  const [startDate, setStartDate] = useQuery("startDate", false)
+  const [endDate, setEndDate] = useQuery("endDate", false)
   const [days, setDays] = useQuery("days", [], { array: true })
   const [startTime, setStartTime] = useQuery("start_time", [], { array: true })
   const [endTime, setEndTime] = useQuery("end_time", [], { array: true })
@@ -288,7 +292,7 @@ const App = ({ children, location, navigate }) => {
     />
   )
 
-  const filterStarttimeEndTimeDay = daysOptions.length > 0 && (
+  const filterStarttimeEndTimeDay = (
     <StarttimeEndtimeDayFilter
       key="opening-times"
       legend="Availability"
@@ -298,6 +302,21 @@ const App = ({ children, location, navigate }) => {
       setStartTime={setStartTime}
       setEndTime={setEndTime}
       setDay={setDay}
+      setPage={setPage}
+      foldable
+    />
+  )
+
+  const filterSchedule = (
+    <ScheduleFilter
+      key="event-times"
+      legend="Schedule"
+      schedule={schedule}
+      startDate={startDate}
+      endDate={endDate}
+      setSchedule={setSchedule}
+      setStartDate={setStartDate}
+      setEndDate={setEndDate}
       setPage={setPage}
       foldable
     />
@@ -345,6 +364,11 @@ const App = ({ children, location, navigate }) => {
       component: filterStarttimeEndTimeDay,
       clear: [setStartTime, setEndTime, setDay],
       clearValue: [[], [], []],
+    },
+    schedule: {
+      component: filterSchedule,
+      clear: [setSchedule, setStartDate, setEndDate],
+      clearValue: [false, false, false],
     },
     suitabilities: {
       component: filterSuitabilities,
