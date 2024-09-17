@@ -71,8 +71,8 @@ const App = ({ children, location, navigate }) => {
     array: true,
   })
   const [schedule, setSchedule] = useQuery("schedule", false)
-  const [startDate, setStartDate] = useQuery("startDate", false)
-  const [endDate, setEndDate] = useQuery("endDate", false)
+  const [startDate, setStartDate] = useQuery("start_date", false)
+  const [endDate, setEndDate] = useQuery("end_date", false)
   const [days, setDays] = useQuery("days", [], { array: true })
   const [startTime, setStartTime] = useQuery("start_time", [], { array: true })
   const [endTime, setEndTime] = useQuery("end_time", [], { array: true })

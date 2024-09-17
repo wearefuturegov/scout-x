@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import {
   Outer,
@@ -6,14 +6,10 @@ import {
   Header,
   UnfoldButton,
   Content,
-  Label,
-  InputCheckbox,
-  Field,
   RadioLabel,
   RadioField,
   InputRadio,
 } from "./layout"
-import { set } from "react-ga"
 
 const ColumnContent = styled(Content)`
   display: grid;
