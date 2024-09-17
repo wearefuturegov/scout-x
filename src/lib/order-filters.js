@@ -25,6 +25,9 @@ export const orderFilters = (filters, filterOrder) => {
       case "starttime-endtime-day":
         output.push(filters.startTimeEndTimeDay.component)
         break
+      case "schedule":
+        output.push(filters.schedule.component)
+        break
       case "suitabilities":
         output.push(filters.suitabilities.component)
         break
