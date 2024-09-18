@@ -83,10 +83,14 @@ export const vars_bod = {
     },
     {
       order: 4,
-      name: "days",
+      name: "starttime-endtime-day",
     },
     {
       order: 5,
+      name: "schedule",
+    },
+    {
+      order: 6,
       name: "only-show",
     },
   ],
