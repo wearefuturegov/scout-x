@@ -295,7 +295,7 @@ const App = ({ children, location, navigate }) => {
   const filterStarttimeEndTimeDay = (
     <StarttimeEndtimeDayFilter
       key="opening-times"
-      legend="Availability"
+      legend="Opening hours"
       startTime={startTime}
       endTime={endTime}
       day={day}
@@ -310,7 +310,7 @@ const App = ({ children, location, navigate }) => {
   const filterSchedule = (
     <ScheduleFilter
       key="event-times"
-      legend="Schedule"
+      legend="Event times"
       schedule={schedule}
       startDate={startDate}
       endDate={endDate}
