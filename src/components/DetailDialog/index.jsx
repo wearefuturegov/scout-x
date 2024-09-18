@@ -374,15 +374,15 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
               />
             )}
             {Object.entries(location_regular_schedules).map(
-              ([location_id, location]) => (
+              ([location_id, l]) => (
                 <ScheduleTable
                   key={location_id}
                   subtitle={
-                    location.name ||
-                    location.address_1 ||
+                    l.location.name ||
+                    l.location.address_1 ||
                     `Location ${location_id}`
                   }
-                  regular_schedules={location.regular_schedules.filter(
+                  regular_schedules={l.regular_schedules.filter(
                     v => v.dtstart === null
                   )}
                 />
@@ -396,15 +396,15 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
               />
             )}{" "}
             {Object.entries(location_regular_schedules).map(
-              ([location_id, location]) => (
+              ([location_id, l]) => (
                 <ScheduleTable
                   key={location_id}
                   subtitle={
-                    location.name ||
-                    location.address_1 ||
+                    l.location.name ||
+                    l.location.address_1 ||
                     `Location ${location_id}`
                   }
-                  regular_schedules={location.regular_schedules.filter(
+                  regular_schedules={l.regular_schedules.filter(
                     v => v.dtstart !== null
                   )}
                 />
