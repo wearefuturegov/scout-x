@@ -3,6 +3,8 @@ import styled from "styled-components"
 import downArrow from "./down-arrow.svg"
 import upArrow from "./up-arrow.svg"
 
+import tick from "./tick.svg"
+
 export const Outer = styled.fieldset`
   border: none;
   margin-bottom: 0px;
@@ -77,5 +79,65 @@ export const Label = styled.label`
     position: absolute;
     left: 0px;
     top: 0px;
+  }
+`
+
+export const InputCheckbox = styled.input`
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 29px;
+  height: 29px;
+  opacity: 0;
+  &:checked + label:after {
+    position: absolute;
+    content: "";
+    display: block;
+    height: 19px;
+    width: 19px;
+    left: 5px;
+    top: 5px;
+    background-image: url(${tick});
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: ${props => (props.childSelected ? 0.5 : 1)};
+  }
+`
+
+export const InputRadio = styled.input`
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 29px;
+  border-radius: 100%;
+  height: 29px;
+  opacity: 0;
+  &:checked + label:after {
+    position: absolute;
+    content: "";
+    display: block;
+    border-radius: 100%;
+    background: ${props => props.theme.styles.text};
+    height: 19px;
+    width: 19px;
+    left: 5px;
+    top: 5px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+`
+
+export const RadioField = styled(Field)`
+  &:focus-within label:before {
+    outline: none;
+    box-shadow: 0px 0px 0px 3px ${props => props.theme.styles.focus};
+  }
+`
+
+export const RadioLabel = styled(Label)`
+  &:before {
+    border-radius: 100%;
   }
 `

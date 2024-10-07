@@ -136,12 +136,16 @@ export const vars_bfis = {
       name: "ages",
     },
     {
-      order: 4,
-      name: "days",
-    },
-    {
       order: 3,
       name: "only-show",
+    },
+    {
+      order: 4,
+      name: "starttime-endtime-day",
+    },
+    {
+      order: 5,
+      name: "schedule",
     },
   ],
   headerComponents: (

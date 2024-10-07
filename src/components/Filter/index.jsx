@@ -8,33 +8,11 @@ import {
   Header,
   UnfoldButton,
   Content,
+  InputCheckbox,
 } from "./layout"
 import tick from "./tick.svg"
 
-const Input = styled.input`
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 29px;
-  height: 29px;
-  opacity: 0;
-  &:checked + label:after {
-    position: absolute;
-    content: "";
-    display: block;
-    height: 19px;
-    width: 19px;
-    left: 5px;
-    top: 5px;
-    background-image: url(${tick});
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: ${props => (props.childSelected ? 0.5 : 1)};
-  }
-`
-
-const InputFakeSelected = styled(Input)`
+const InputFakeSelected = styled(InputCheckbox)`
   + label:after {
     position: absolute;
     content: "";
@@ -106,7 +84,7 @@ const Filter = ({
   const FieldComponent = ({ id, value, checked, label, isChild }) => {
     const Component = isChild ? ChildField : Field
     const InputComponent =
-      !isChild && hasSelectedChildren(value) ? InputFakeSelected : Input
+      !isChild && hasSelectedChildren(value) ? InputFakeSelected : InputCheckbox
 
     return (
       <Component>
