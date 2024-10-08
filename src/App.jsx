@@ -310,7 +310,7 @@ const App = ({ children, location, navigate }) => {
   const filterSchedule = (
     <ScheduleFilter
       key="event-times"
-      legend="Event times"
+      legend="Activity & event dates"
       schedule={schedule}
       startDate={startDate}
       endDate={endDate}
