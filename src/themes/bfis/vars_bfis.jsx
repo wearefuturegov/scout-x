@@ -21,7 +21,7 @@ export const vars_bfis = {
     {
       type: "twitter",
       label: "Buckinghamshire Council Twitter",
-      url: "https://twitter.com/bucksfamilyinfo",
+      url: "https://x.com/bucksfamilyinfo",
     },
     {
       type: "youtube",
