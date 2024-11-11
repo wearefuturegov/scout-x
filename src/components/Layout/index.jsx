@@ -87,18 +87,14 @@ const MainArea = styled.main`
 `
 
 export const ResultsHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.9rem;
   margin-bottom: 25px;
-  *:first-child {
-    margin-bottom: 15px;
-  }
-  @media screen and (min-width: ${props => props.theme.styles.breakpointS}) {
-    display: flex;
+  @media screen and (min-width: ${props => props.theme.styles.breakpointM}) {
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    *:first-child {
-      margin-bottom: 0px;
-    }
   }
 `
 

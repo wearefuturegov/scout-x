@@ -20,6 +20,7 @@ export const vars_bod = {
     countyWideServiceText: "Buckinghamshire wide",
     hideCategories: true,
   },
+  showResultsPerPage: true,
   cookiesDisabledMessage:
     "Please note, cookies are needed for site functionality such as interactive maps and location autocomplete.",
   cookieMessage: (
