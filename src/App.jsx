@@ -7,7 +7,7 @@ import useFathom from "./hooks/useFathom"
 // fetch data for the app and filters
 import { fetchServiceData, fetchSiteData } from "./lib/api"
 import daysOptionsData from "./data/_days.json"
-import onlyOptionsData from "./data/_only.json"
+import { onlyOptionsData } from "./lib/filters"
 import {
   subcategoriesOf,
   formatAccessibilityOptions,

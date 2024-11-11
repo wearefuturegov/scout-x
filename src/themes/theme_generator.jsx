@@ -110,6 +110,9 @@ const generate_theme = (vars, theme_vars) => {
     mapSwitchSmall: vars.hasOwnProperty("mapSwitchSmall")
       ? vars.mapSwitchSmall
       : true,
+    filterOnlyOptions: vars.hasOwnProperty("filterOnlyOptions")
+      ? vars.filterOnlyOptions
+      : [],
     filterOrder: vars.hasOwnProperty("filterOrder") ? vars.filterOrder : [],
     noLocationIsCountywide: vars.hasOwnProperty("noLocationIsCountywide")
       ? vars.noLocationIsCountywide

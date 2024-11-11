@@ -126,6 +126,16 @@ export const vars_bfis = {
       </Styles.NavLink>
     </Styles.Nav>
   ),
+  filterOnlyOptions: [
+    {
+      label: "Part of the Local Offer",
+      slug: "local-offer",
+    },
+    {
+      label: "Part of the Family Hubs",
+      slug: "family-hubs",
+    },
+  ],
   filterOrder: [
     {
       order: 1,
