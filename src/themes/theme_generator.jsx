@@ -67,6 +67,9 @@ const generate_theme = (vars, theme_vars) => {
     title: vars.hasOwnProperty("title") ? vars.title : "",
     parentTaxonomySlug: process.env.REACT_APP_PARENT_TAXONOMY_SLUG || false,
     proximity: vars.hasOwnProperty("proximity") ? vars.proximity : 5 * 1609.34, // miles x 1609.34 = Distance in meters
+    showResultsPerPage: vars.hasOwnProperty("showResultsPerPage")
+      ? vars.showResultsPerPage
+      : false,
     resultsPerPage: vars.hasOwnProperty("resultsPerPage")
       ? vars.resultsPerPage
       : 20,
