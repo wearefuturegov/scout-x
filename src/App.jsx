@@ -45,6 +45,7 @@ import ClearFilters from "./components/ClearFilters"
 import { checkCookiesAccepted } from "./lib/cookies"
 import AlertStatic from "./components/AlertStatic"
 import ScheduleFilter from "./components/Filter/ScheduleFilter"
+import ResultsPerPage from "./components/ResultsPerPage"
 
 const App = ({ children, location, navigate }) => {
   const [keywords, setKeywords] = useQuery("keywords", "")
@@ -80,6 +81,9 @@ const App = ({ children, location, navigate }) => {
   const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
   const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
   const [only, setOnly] = useQuery("only", [], { array: true })
+  const [perPage, setPerPage] = useQuery("per_page", false, {
+    numerical: true,
+  })
 
   const [mapVisible, setMapVisible] = useQuery("map", false, { boolean: true })
 
@@ -429,6 +433,7 @@ const App = ({ children, location, navigate }) => {
                 filters={filters}
                 clearCategory={setCollection}
                 clearSubCategory={setCategories}
+                clearPerPage={setPerPage}
               />
             </Filters>
           </>
@@ -446,6 +451,8 @@ const App = ({ children, location, navigate }) => {
             page={page}
             setPage={setPage}
             estTotalResults={estTotalResults}
+            perPage={perPage}
+            setPerPage={setPerPage}
           />
         }
       />
@@ -466,10 +473,15 @@ const MainContent = ({
   estTotalResults,
   page,
   setPage,
+  perPage,
+  setPerPage,
 }) => {
   const scrollTarget = useRef(null)
   const cookiesAccepted = checkCookiesAccepted()
 
+  const resultsPerPage = perPage
+    ? parseInt(perPage)
+    : theme.resultsPerPage || 20
   // still loading
   if (loading)
     return (
@@ -508,15 +520,15 @@ const MainContent = ({
         <Count>
           <>
             Showing{" "}
-            {page <= Math.ceil(results.length / theme.resultsPerPage) && (
+            {page <= Math.ceil(results.length / resultsPerPage) && (
               <>
                 <strong>
-                  {(page - 1) * theme.resultsPerPage + 1}-
-                  {Math.min(page * theme.resultsPerPage, results.length)}
+                  {(page - 1) * resultsPerPage + 1}-
+                  {Math.min(page * resultsPerPage, results.length)}
                 </strong>{" "}
                 out of{" "}
                 <strong>
-                  {Math.ceil(results.length / theme.resultsPerPage) > page ? (
+                  {Math.ceil(results.length / resultsPerPage) > page ? (
                     <>~{estTotalResults}</>
                   ) : (
                     <>{results.length}</>
@@ -538,6 +550,15 @@ const MainContent = ({
             )}
           </>
         </Count>
+        {theme.showResultsPerPage && (
+          <ResultsPerPage
+            key="resultsPerPage"
+            perPage={perPage}
+            setPerPage={setPerPage}
+            setPage={setPage}
+            foldable
+          />
+        )}
         <Switch
           id="map-toggle"
           checked={mapVisible}
@@ -557,10 +578,7 @@ const MainContent = ({
       <PinboardLink location={location} />
       <ResultsList aria-live="polite">
         {results
-          ?.slice(
-            (page - 1) * theme.resultsPerPage,
-            page * theme.resultsPerPage
-          )
+          ?.slice((page - 1) * resultsPerPage, page * resultsPerPage)
           .map((s, i) => (
             <ServiceCard
               key={s.id}
@@ -570,7 +588,7 @@ const MainContent = ({
           ))}
       </ResultsList>
       <Pagination
-        totalPages={Math.ceil(results.length / theme.resultsPerPage)}
+        totalPages={Math.ceil(results.length / resultsPerPage)}
         page={page}
         setPage={setPage}
         scrollTarget={scrollTarget}
