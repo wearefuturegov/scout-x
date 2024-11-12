@@ -39,6 +39,8 @@ const Filter = ({
   selection,
   setSelection,
   setPage,
+  meta,
+  setMeta,
   foldable,
 }) => {
   const [unfolded, setUnfolded] = useState(selection.length > 0 ? true : false)
@@ -46,6 +48,8 @@ const Filter = ({
   const handleChange = e => {
     let { checked, value } = e.target
     const [parent] = value.split(":")
+    const isMeta = value.startsWith("meta-")
+    value = isMeta ? value.replace("meta-", "") : value
 
     if (checked) {
       let tmpSelection = selection
@@ -60,9 +64,18 @@ const Filter = ({
         tmpSelection = tmpSelection.filter(f => !f.startsWith(value))
       }
 
-      setSelection([...tmpSelection, value])
+      if (isMeta) {
+        setMeta([...tmpSelection, value])
+      } else {
+        setSelection([...tmpSelection, value])
+      }
     } else {
-      setSelection(selection.filter(el => el !== value))
+      if (isMeta) {
+        console.log(meta, value)
+        setMeta(selection.filter(el => el !== value))
+      } else {
+        setSelection(selection.filter(el => el !== value))
+      }
     }
     setPage(1)
   }
@@ -118,13 +131,19 @@ const Filter = ({
       {(!foldable || unfolded) && (
         <Content>
           {options.map((o, i) => {
-            const isChecked = selection.includes(o.slug)
+            let isChecked = selection.includes(o.slug)
+            let value = o.slug
+            const isMetaOption = o.type === "meta"
+            if (isMetaOption) {
+              value = `meta-${o.slug}:${o.value}`
+              isChecked = meta.includes(value.replace("meta-", ""))
+            }
             return (
               <React.Fragment key={`${o.slug}-${i}`}>
                 <FieldComponent
-                  key={`${o.slug}-${i}`}
-                  id={`${o.slug}-${i}`}
-                  value={o.slug}
+                  key={`${value}-${i}`}
+                  id={`${value}-${i}`}
+                  value={value}
                   checked={isChecked}
                   label={o.label}
                 />

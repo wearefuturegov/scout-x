@@ -127,13 +127,19 @@ export const vars_bfis = {
     </Styles.Nav>
   ),
   filterOnlyOptions: [
+    // {
+    //   label: "Needs referral",
+    //   slug: "needs-referral",
+    // },
     {
-      label: "Part of the Local Offer",
+      label: "Part of SEND Local Offer",
       slug: "local-offer",
     },
     {
-      label: "Part of the Family Hubs",
-      slug: "family-hubs",
+      label: "Part of Family Hubs Network",
+      slug: "family-hub",
+      value: "Yes",
+      type: "meta",
     },
   ],
   filterOrder: [

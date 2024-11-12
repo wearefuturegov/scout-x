@@ -114,6 +114,7 @@ export const fetchServiceDataFromApi = async (
     min_age,
     max_age,
     only,
+    meta,
   } = queryString.parse(query)
 
   let directories = []
@@ -140,6 +141,7 @@ export const fetchServiceDataFromApi = async (
     min_age,
     max_age,
     only,
+    meta,
     page,
     per_page,
   })}`

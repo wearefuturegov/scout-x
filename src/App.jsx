@@ -81,6 +81,7 @@ const App = ({ children, location, navigate }) => {
   const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
   const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
   const [only, setOnly] = useQuery("only", [], { array: true })
+  const [meta, setMeta] = useQuery("meta", [], { array: true })
   const [perPage, setPerPage] = useQuery("per_page", false, {
     numerical: true,
   })
@@ -279,6 +280,8 @@ const App = ({ children, location, navigate }) => {
       options={onlyOptions}
       selection={only}
       setSelection={setOnly}
+      meta={meta}
+      setMeta={setMeta}
       setPage={setPage}
       foldable
     />
