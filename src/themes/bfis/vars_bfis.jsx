@@ -193,11 +193,10 @@ export const vars_bfis = {
     />
   ),
   ServiceCardFooter: args => {
-    return (
-      <>
-        <FamilyHubsNetworkTag />
-      </>
-    )
+    const isFamilyHub =
+      args?.meta.filter(m => m.key === "family-hub" && m.value === "Yes")
+        .length > 0
+    return <>{isFamilyHub && <FamilyHubsNetworkTag />}</>
   },
 }
 
