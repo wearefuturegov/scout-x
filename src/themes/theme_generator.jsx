@@ -90,6 +90,7 @@ const generate_theme = (vars, theme_vars) => {
     headerComponents: vars.headerComponents ?? vars.headerComponents,
     headerComponentsBeforeSearch:
       vars.headerComponentsBeforeSearch ?? vars.headerComponentsBeforeSearch,
+    ServiceCardFooter: vars.ServiceCardFooter ?? vars.ServiceCardFooter,
     cookiesDisabledMessage: vars.cookiesDisabledMessage,
     cookieMessage: vars.cookieMessage,
     cookieName: vars.cookieName,

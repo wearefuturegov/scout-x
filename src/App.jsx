@@ -437,6 +437,7 @@ const App = ({ children, location, navigate }) => {
                 clearCategory={setCollection}
                 clearSubCategory={setCategories}
                 clearPerPage={setPerPage}
+                clearMeta={setMeta}
               />
             </Filters>
           </>

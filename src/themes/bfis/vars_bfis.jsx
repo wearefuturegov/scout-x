@@ -4,6 +4,7 @@ import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
 import ResponsiveSentence from "../../components/ResponsiveSentence"
 import { AStrong } from "../../components/A"
+import { FamilyHubsNetworkTag } from "../../components/FamilyHubsNetwork"
 
 export const vars_bfis = {
   slug: "bfis",
@@ -191,6 +192,13 @@ export const vars_bfis = {
       }
     />
   ),
+  ServiceCardFooter: args => {
+    return (
+      <>
+        <FamilyHubsNetworkTag />
+      </>
+    )
+  },
 }
 
 export default vars_bfis
