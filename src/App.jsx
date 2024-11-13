@@ -7,7 +7,7 @@ import useFathom from "./hooks/useFathom"
 // fetch data for the app and filters
 import { fetchServiceData, fetchSiteData } from "./lib/api"
 import daysOptionsData from "./data/_days.json"
-import onlyOptionsData from "./data/_only.json"
+import { onlyOptionsData } from "./lib/filters"
 import {
   subcategoriesOf,
   formatAccessibilityOptions,
@@ -81,6 +81,7 @@ const App = ({ children, location, navigate }) => {
   const [minAge, setMinAge] = useQuery("min_age", false, { numerical: true })
   const [maxAge, setMaxAge] = useQuery("max_age", false, { numerical: true })
   const [only, setOnly] = useQuery("only", [], { array: true })
+  const [meta, setMeta] = useQuery("meta", [], { array: true })
   const [perPage, setPerPage] = useQuery("per_page", false, {
     numerical: true,
   })
@@ -279,6 +280,8 @@ const App = ({ children, location, navigate }) => {
       options={onlyOptions}
       selection={only}
       setSelection={setOnly}
+      meta={meta}
+      setMeta={setMeta}
       setPage={setPage}
       foldable
     />
@@ -434,6 +437,7 @@ const App = ({ children, location, navigate }) => {
                 clearCategory={setCollection}
                 clearSubCategory={setCategories}
                 clearPerPage={setPerPage}
+                clearMeta={setMeta}
               />
             </Filters>
           </>

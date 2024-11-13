@@ -4,6 +4,7 @@ import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
 import ResponsiveSentence from "../../components/ResponsiveSentence"
 import { AStrong } from "../../components/A"
+import { FamilyHubsNetworkTag } from "../../components/FamilyHubsNetwork"
 
 export const vars_bfis = {
   slug: "bfis",
@@ -126,6 +127,22 @@ export const vars_bfis = {
       </Styles.NavLink>
     </Styles.Nav>
   ),
+  filterOnlyOptions: [
+    // {
+    //   label: "Needs referral",
+    //   slug: "needs-referral",
+    // },
+    {
+      label: "Part of SEND Local Offer",
+      slug: "local-offer",
+    },
+    {
+      label: "Part of Family Hubs Network",
+      slug: "family-hub",
+      value: "Yes",
+      type: "meta",
+    },
+  ],
   filterOrder: [
     {
       order: 1,
@@ -175,6 +192,12 @@ export const vars_bfis = {
       }
     />
   ),
+  ServiceCardFooter: args => {
+    const isFamilyHub =
+      args?.meta.filter(m => m.key === "family-hub" && m.value === "Yes")
+        .length > 0
+    return <>{isFamilyHub && <FamilyHubsNetworkTag />}</>
+  },
 }
 
 export default vars_bfis
