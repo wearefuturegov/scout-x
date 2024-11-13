@@ -137,7 +137,7 @@ export const vars_bfis = {
       slug: "local-offer",
     },
     {
-      label: "Part of Family Hubs Network",
+      label: "Part of Family Hub Network",
       slug: "family-hub",
       value: "Yes",
       type: "meta",
