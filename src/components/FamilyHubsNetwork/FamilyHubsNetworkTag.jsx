@@ -25,5 +25,5 @@ const FamilyHubsNetwork = styled.strong`
 `
 
 export const FamilyHubsNetworkTag = () => {
-  return <FamilyHubsNetwork>Part of Family Hubs Network</FamilyHubsNetwork>
+  return <FamilyHubsNetwork>Part of Family Hub Network</FamilyHubsNetwork>
 }
