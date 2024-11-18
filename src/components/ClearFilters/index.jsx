@@ -40,6 +40,8 @@ const ClearFilters = ({
   filters,
   clearCategory,
   clearSubCategory,
+  clearPerPage,
+  clearMeta,
 }) => {
   const actionClearFilters = e => {
     e && e.preventDefault()
@@ -49,6 +51,10 @@ const ClearFilters = ({
     clearCategory(false)
 
     clearSubCategory([])
+
+    clearPerPage(false)
+
+    clearMeta([])
 
     Object.keys(filters).forEach(function (key) {
       filters[key].clear.map((clr, i) => clr(filters[key].clearValue[i]))

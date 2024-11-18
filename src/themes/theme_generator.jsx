@@ -67,6 +67,9 @@ const generate_theme = (vars, theme_vars) => {
     title: vars.hasOwnProperty("title") ? vars.title : "",
     parentTaxonomySlug: process.env.REACT_APP_PARENT_TAXONOMY_SLUG || false,
     proximity: vars.hasOwnProperty("proximity") ? vars.proximity : 5 * 1609.34, // miles x 1609.34 = Distance in meters
+    showResultsPerPage: vars.hasOwnProperty("showResultsPerPage")
+      ? vars.showResultsPerPage
+      : false,
     resultsPerPage: vars.hasOwnProperty("resultsPerPage")
       ? vars.resultsPerPage
       : 20,
@@ -87,6 +90,7 @@ const generate_theme = (vars, theme_vars) => {
     headerComponents: vars.headerComponents ?? vars.headerComponents,
     headerComponentsBeforeSearch:
       vars.headerComponentsBeforeSearch ?? vars.headerComponentsBeforeSearch,
+    ServiceCardFooter: vars.ServiceCardFooter ?? vars.ServiceCardFooter,
     cookiesDisabledMessage: vars.cookiesDisabledMessage,
     cookieMessage: vars.cookieMessage,
     cookieName: vars.cookieName,
@@ -107,6 +111,9 @@ const generate_theme = (vars, theme_vars) => {
     mapSwitchSmall: vars.hasOwnProperty("mapSwitchSmall")
       ? vars.mapSwitchSmall
       : true,
+    filterOnlyOptions: vars.hasOwnProperty("filterOnlyOptions")
+      ? vars.filterOnlyOptions
+      : [],
     filterOrder: vars.hasOwnProperty("filterOrder") ? vars.filterOrder : [],
     noLocationIsCountywide: vars.hasOwnProperty("noLocationIsCountywide")
       ? vars.noLocationIsCountywide

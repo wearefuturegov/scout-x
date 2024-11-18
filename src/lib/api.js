@@ -44,8 +44,12 @@ export const fetchSiteData = async query => {
  * @returns
  */
 export const fetchServiceData = async (query, page) => {
-  const per_page = theme.resultsPerPage || 20
-  let { collection, categories } = queryString.parse(query)
+  let { collection, categories, per_page: query_per_page } = queryString.parse(
+    query
+  )
+  const per_page = query_per_page
+    ? parseInt(query_per_page)
+    : theme.resultsPerPage || 20
 
   // api does AND queries only so we need to split the requests up according to the categories
   const taxonomies = defineQueryTaxonomies(collection, categories)
@@ -89,7 +93,7 @@ export const fetchServiceData = async (query, page) => {
 export const fetchServiceDataFromApi = async (
   query,
   taxonomies,
-  per_page = theme.resultsPerPage || 20,
+  per_page,
   page,
   query_num = 0
 ) => {
@@ -110,6 +114,7 @@ export const fetchServiceDataFromApi = async (
     min_age,
     max_age,
     only,
+    meta,
   } = queryString.parse(query)
 
   let directories = []
@@ -136,6 +141,7 @@ export const fetchServiceDataFromApi = async (
     min_age,
     max_age,
     only,
+    meta,
     page,
     per_page,
   })}`
