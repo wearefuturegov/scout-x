@@ -4,8 +4,10 @@ import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
 import ResponsiveSentence from "../../components/ResponsiveSentence"
 import { AStrong } from "../../components/A"
-import { FamilyHubsNetworkTag } from "../../components/FamilyHubsNetwork"
-import { Crosshead } from "../../components/DetailDialog/DetailDialog.styles"
+import {
+  FamilyHubsNetworkTag,
+  FamilyHubsNetworkLogo,
+} from "../../components/FamilyHubsNetwork"
 
 export const vars_bfis = {
   slug: "bfis",
@@ -199,19 +201,23 @@ export const vars_bfis = {
         .length > 0
     return <>{isFamilyHub && <FamilyHubsNetworkTag />}</>
   },
-  DetailDialogExtra: service => {
-    return (
-      <>
-        <Crosshead>Part of Family Hub Network</Crosshead>
-        <p>
-          The Family Hub network helps families with babies, children, and young
-          people from birth until they turn 19 (or up to 25 for those with
-          special educational needs and disabilities). As part of the Family Hub
-          Network in Buckinghamshire, we are committed to making it easier for
-          families to get the help and support they need.
-        </p>
-      </>
-    )
+  DetailDialogExtra: ({ service }) => {
+    if (service.meta?.some(m => m.key === "family-hub")) {
+      return (
+        <>
+          <FamilyHubsNetworkLogo />
+          <p>
+            The Family Hub network helps families with babies, children, and
+            young people from birth until they turn 19 (or up to 25 for those
+            with special educational needs and disabilities). As part of the
+            Family Hub Network in Buckinghamshire, we are committed to making it
+            easier for families to get the help and support they need.
+          </p>
+        </>
+      )
+    } else {
+      return <></>
+    }
   },
 }
 
