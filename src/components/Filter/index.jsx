@@ -71,7 +71,6 @@ const Filter = ({
       }
     } else {
       if (isMeta) {
-        console.log(meta, value)
         setMeta(selection.filter(el => el !== value))
       } else {
         setSelection(selection.filter(el => el !== value))
