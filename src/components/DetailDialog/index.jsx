@@ -326,11 +326,8 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
               />
             </Body>
           )}
-
           {theme.DetailDialogExtra && (
-            <Body>
-              <theme.DetailDialogExtra service={service} />
-            </Body>
+            <theme.DetailDialogExtra service={service} />
           )}
           <Body>
             {service.hasOwnProperty("service_at_locations") &&
