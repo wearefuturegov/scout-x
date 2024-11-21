@@ -4,7 +4,10 @@ import logo from "./logo.svg"
 import * as Styles from "../../components/Footer/Footer.styles"
 import ResponsiveSentence from "../../components/ResponsiveSentence"
 import { AStrong } from "../../components/A"
-import { FamilyHubsNetworkTag } from "../../components/FamilyHubsNetwork"
+import {
+  FamilyHubsNetworkTag,
+  FamilyHubsNetworkDetailDialog,
+} from "../../components/FamilyHubsNetwork"
 
 export const vars_bfis = {
   slug: "bfis",
@@ -197,6 +200,13 @@ export const vars_bfis = {
       args?.meta.filter(m => m.key === "family-hub" && m.value === "Yes")
         .length > 0
     return <>{isFamilyHub && <FamilyHubsNetworkTag />}</>
+  },
+  DetailDialogExtra: ({ service }) => {
+    if (service.meta?.some(m => m.key === "family-hub")) {
+      return <FamilyHubsNetworkDetailDialog />
+    } else {
+      return null
+    }
   },
 }
 

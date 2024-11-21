@@ -91,6 +91,7 @@ const generate_theme = (vars, theme_vars) => {
     headerComponentsBeforeSearch:
       vars.headerComponentsBeforeSearch ?? vars.headerComponentsBeforeSearch,
     ServiceCardFooter: vars.ServiceCardFooter ?? vars.ServiceCardFooter,
+    DetailDialogExtra: vars.DetailDialogExtra ?? vars.DetailDialogExtra,
     cookiesDisabledMessage: vars.cookiesDisabledMessage,
     cookieMessage: vars.cookieMessage,
     cookieName: vars.cookieName,

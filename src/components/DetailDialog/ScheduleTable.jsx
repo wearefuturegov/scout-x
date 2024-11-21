@@ -75,7 +75,7 @@ const ScheduleTable = ({ title, subtitle, regular_schedules }) => {
   const EventTimes = () => (
     <List>
       {event_times.map((sched, i) => (
-        <ListItem>{sched.description}</ListItem>
+        <ListItem key={i}>{sched.description}</ListItem>
       ))}
     </List>
   )

@@ -12,7 +12,8 @@ import Description from "../Description"
 import LocalOffer from "../LocalOffer"
 import Loader from "../Loader"
 import { ButtonLink } from "../Button"
-import Dialog, { Body as InheritedBody, Header, Title } from "../Dialog"
+import { Body as InheritedBody, Header, Title } from "../Dialog/Dialog.styles"
+import Dialog from "../Dialog"
 import SingleLocation from "./SingleLocation"
 import LocationAccordion from "./LocationAccordion"
 import { TickList, TickListItem } from "../TickList"
@@ -325,6 +326,9 @@ const DetailDialog = ({ serviceId, location, navigate }) => {
                 sendNeeds={service.send_needs}
               />
             </Body>
+          )}
+          {theme.DetailDialogExtra && (
+            <theme.DetailDialogExtra service={service} />
           )}
           <Body>
             {service.hasOwnProperty("service_at_locations") &&

@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 
-import Dialog, { Header, Title } from "../Dialog"
+import { Header, Title } from "../Dialog/Dialog.styles"
+import Dialog from "../Dialog"
 import { PinboardContextConsumer } from "../../contexts/pinboardContext"
 import ServiceCard from "../ServiceCard"
 import ShareDialog from "../ShareDialog"

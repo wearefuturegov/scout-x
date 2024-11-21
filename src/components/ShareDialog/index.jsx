@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 
 import { Dialog } from "@reach/dialog"
-import { CloseButton, Icon } from "../Dialog"
+import { CloseButton, Icon } from "../Dialog/Dialog.styles"
 import fetch from "isomorphic-unfetch"
 import { SolidButton } from "../Button"
 import close from "./close.svg"
