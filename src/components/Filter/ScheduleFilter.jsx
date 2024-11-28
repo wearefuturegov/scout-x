@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import {
   Outer,
@@ -95,17 +95,49 @@ const ScheduleFilter = ({
   foldable,
 }) => {
   const [unfolded, setUnfolded] = useState(schedule)
+  const [internalFromDate, setInternalFromDate] = useState(startDate)
+  const [internalToDate, setInternalToDate] = useState(endDate)
 
+  // handle the presets - sets internal values
   const handleScheduleChange = e => {
     const selectedSchedule = e.target.value
     setSchedule(selectedSchedule)
     const scheduleValues = scheduleOptionValues[selectedSchedule]
     if (scheduleValues) {
-      setStartDate(scheduleValues.startDate.toISOString().split("T")[0])
-      setEndDate(scheduleValues.endDate.toISOString().split("T")[0])
+      setInternalFromDate(scheduleValues.startDate.toISOString().split("T")[0])
+      setInternalToDate(scheduleValues.endDate.toISOString().split("T")[0])
     }
     setPage(1)
   }
+
+  // when only end date is set - set start date to today or the same as from date end date is on or before today
+  useEffect(() => {
+    if (internalToDate && !internalFromDate) {
+      const today = new Date()
+      const toDate = new Date(internalToDate)
+
+      if (toDate <= today) {
+        setInternalFromDate(internalToDate)
+      } else {
+        setInternalFromDate(today.toISOString().split("T")[0])
+      }
+    }
+  }, [internalFromDate, internalToDate])
+
+  // when internal from and to values are set - update the global state
+  useEffect(() => {
+    if (internalFromDate && internalToDate) {
+      setStartDate(internalFromDate)
+      setEndDate(internalToDate)
+      setPage(1)
+    }
+  }, [internalFromDate, internalToDate, setEndDate, setPage, setStartDate])
+
+  // clear internal value when global value is cleared
+  useEffect(() => {
+    setInternalFromDate(startDate)
+    setInternalToDate(endDate)
+  }, [endDate, startDate])
 
   return (
     <Outer>
@@ -144,8 +176,8 @@ const ScheduleFilter = ({
                 <LabelWithMargin htmlFor="from_date">From</LabelWithMargin>
                 <Input
                   id={`from_date`}
-                  onChange={e => setStartDate(e.target.value)}
-                  value={startDate}
+                  onChange={e => setInternalFromDate(e.target.value)}
+                  value={internalFromDate}
                   type="date"
                 />
               </ColumnField>
@@ -153,8 +185,8 @@ const ScheduleFilter = ({
                 <LabelWithMargin htmlFor="to_date">To</LabelWithMargin>
                 <Input
                   id={`to_date`}
-                  onChange={e => setEndDate(e.target.value)}
-                  value={endDate}
+                  onChange={e => setInternalToDate(e.target.value)}
+                  value={internalToDate}
                   type="date"
                 />
               </ColumnField>
