@@ -10,11 +10,14 @@ export const FamilyHubsNetworkDetailDialog = () => {
       <Body>
         <FamilyHubsNetworkLogo />
         <p>
-          The Family Hub Network helps families with babies, children, and young
-          people from birth until they turn 19 (or up to 25 for those with
-          special educational needs and disabilities). As part of the Family Hub
-          Network in Buckinghamshire, we are committed to making it easier for
-          families to get the help and support they need.
+          The Family Hub Network is a one stop shop for advice, support and
+          services to help throughout your family journey, from birth to 19, or
+          up to 25 with special educational needs and disabilities (SEND).
+        </p>
+        <p>
+          The network involves professionals and community groups working
+          together to ensure that families and residents receive the early help
+          and support they need.
         </p>
       </Body>
     </>
