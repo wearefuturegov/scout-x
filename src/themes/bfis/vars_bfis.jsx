@@ -202,7 +202,7 @@ export const vars_bfis = {
     return <>{isFamilyHub && <FamilyHubsNetworkTag />}</>
   },
   DetailDialogExtra: ({ service }) => {
-    if (service.meta?.some(m => m.key === "family-hub")) {
+    if (service.meta?.some(m => m.key === "family-hub" && m.value === "Yes")) {
       return <FamilyHubsNetworkDetailDialog />
     } else {
       return null
