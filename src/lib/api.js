@@ -63,6 +63,8 @@ export const fetchServiceData = async (query, page) => {
       : [fetchServiceDataFromApi(query, taxonomies, per_page * 2, page)]
   )
 
+  const combinedStatus = results.map(r => r?.status).flat()
+
   let sortedResults = []
   let moreResults = 0
   let estTotalResults = 0
@@ -79,6 +81,7 @@ export const fetchServiceData = async (query, page) => {
   }
 
   return {
+    status: combinedStatus,
     content: sortedResults,
     moreResults,
     estTotalResults,
@@ -150,14 +153,23 @@ export const fetchServiceDataFromApi = async (
 
   try {
     const res = await fetch(url)
+
+    // Handle non-2xx HTTP responses
+    if (!res.ok) {
+      // const errorData = await res.json()
+      // console.log(errorData)
+      return { content: [], status: res.status }
+    }
+
     const results = await res.json()
     // add query number to each result so we can track which query it came from
     results.content = results.content.map(r => (r = { ...r, query_num }))
+    results.status = res.status
     return results
   } catch (err) {
     console.error("An error occurred fetching data from Outpost API")
-    // console.log(err)
-    return { content: [] }
+    console.log(err)
+    return { content: [], status: 400 }
   }
 }
 
