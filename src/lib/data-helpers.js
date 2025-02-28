@@ -90,6 +90,7 @@ export const defineQueryTaxonomies = (collection, categories) => {
 }
 
 export const removeDuplicateServices = services => {
+  if (services || services.length === 0) return services
   return services.filter(
     (service, index, self) => index === self.findIndex(t => t.id === service.id)
   )
