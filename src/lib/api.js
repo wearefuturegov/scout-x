@@ -168,7 +168,7 @@ export const fetchServiceDataFromApi = async (
     return results
   } catch (err) {
     console.error("An error occurred fetching data from Outpost API")
-    console.log(err)
+    // console.log(err)
     return { content: [], status: 400 }
   }
 }
