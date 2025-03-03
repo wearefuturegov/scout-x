@@ -89,6 +89,7 @@ const App = ({ children, location, navigate }) => {
   const [mapVisible, setMapVisible] = useQuery("map", false, { boolean: true })
 
   const [results, setResults] = useState([])
+  const [status, setStatus] = useState([])
   const [loading, setLoading] = useState(true)
 
   const [page, setPage] = useState(1)
@@ -115,6 +116,7 @@ const App = ({ children, location, navigate }) => {
 
   const handleResults = useCallback(
     (services, search, includePrevServices = false) => {
+      setStatus(services.status)
       setResults(prevResults => {
         const newResults = includePrevServices
           ? [...prevResults, ...services.content]
@@ -446,6 +448,7 @@ const App = ({ children, location, navigate }) => {
           <MainContent
             loading={loading}
             results={results}
+            status={status}
             keywords={keywords}
             coverage={coverage}
             mapVisible={mapVisible}
@@ -468,6 +471,7 @@ const App = ({ children, location, navigate }) => {
 const MainContent = ({
   loading,
   results,
+  status,
   keywords,
   coverage,
   mapVisible,
@@ -503,6 +507,15 @@ const MainContent = ({
           <Skeleton />
         </ResultsList>
       </>
+    )
+
+  // if we get a 429 status code then we've made too many requests and we show a specific message
+  if (status && status.includes(429))
+    return (
+      <NoResults>
+        It looks like you've made too many requests in a short period. Please
+        wait a few minutes and try again.
+      </NoResults>
     )
 
   // not loading and no results
